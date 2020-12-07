@@ -1,0 +1,1 @@
+import hints from "./real7b-index.js"; const step = {id: "real7b", stepAnswer: ["5"], problemType: "MultipleChoice", stepTitle: "What is (5+8)+(-8)?", stepBody: "", choices: ["8", "-5", "0", "5"], answerType: "string", hints: hints}; export {step};

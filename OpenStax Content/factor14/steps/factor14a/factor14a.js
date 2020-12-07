@@ -1,0 +1,1 @@
+import React from 'react'; import { InlineMath } from 'react-katex';import hints from "./factor14a-index.js"; const step = {id: "factor14a", stepAnswer: ["10m^3"], problemType: "TextBox", stepTitle: <div> <InlineMath math="200p^3 m^3-30p^2 m^3+40m^3"/></div>, stepBody: "", answerType: "arithmetic", hints: hints}; export {step};

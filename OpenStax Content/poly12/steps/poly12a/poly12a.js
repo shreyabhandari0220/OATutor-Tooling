@@ -1,0 +1,1 @@
+import hints from "./poly12a-index.js"; const step = {id: "poly12a", stepAnswer: ["3x^2-2xy+17x-8y+20"], problemType: "TextBox", stepTitle: "Multiply(x+4)(3x-2y+5).", stepBody: "", answerType: "arithmetic", hints: hints}; export {step};

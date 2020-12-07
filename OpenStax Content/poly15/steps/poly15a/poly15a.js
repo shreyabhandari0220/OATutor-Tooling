@@ -1,0 +1,1 @@
+import React from 'react'; import { InlineMath } from 'react-katex';import hints from "./poly15a-index.js"; const step = {id: "poly15a", stepAnswer: ["3w^2+30w+21"], problemType: "TextBox", stepTitle: <div> <InlineMath math="6w^2+24w+24-3w^2-6w+3"/></div>, stepBody: "", answerType: "arithmetic", hints: hints}; export {step};

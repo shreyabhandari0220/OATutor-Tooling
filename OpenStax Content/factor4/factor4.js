@@ -1,0 +1,1 @@
+import React from 'react'; import { InlineMath } from 'react-katex';import steps from "./factor4-index.js"; const problem = {id: "factor4", title: "Factoring a Trionomial with Leading Coefficient 1.", body: "Factor the expression.", steps: steps, }; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./real5a-index.js"; const step = {id: "real5a", stepAnswer: ["4"], problemType: "TextBox", stepTitle: "What is (3*2)**2-4(6+2)?", stepBody: "", answerType: "arithmetic", hints: hints}; export {step};
