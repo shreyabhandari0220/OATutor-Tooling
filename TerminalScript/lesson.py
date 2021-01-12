@@ -49,14 +49,14 @@ def create_total(sheet_key, sheet_names, default_path):
             bkt_params.append(create_bkt_params(skill))
     
     # open("../lessonPlans1.js", "x")
-    file = open("../lessonPlans1.js", "a")
+    file = open("../lessonPlans.js", "a")
     finish_lesson_plan(lesson_plan, file)
     
     # open("../bktParams1.js", "x")
-    file = open("../bktParams1.js", "a")
+    file = open("../bktParams.js", "a")
     finish_bkt_params(bkt_params, file)
     
     file.close()
 
 if __name__ == '__main__':
-    create_total(sys.argv[1], sys.argv[2:], '../Open')
+    create_total(sys.argv[1], sys.argv[2:], '../OpenStax Content')
