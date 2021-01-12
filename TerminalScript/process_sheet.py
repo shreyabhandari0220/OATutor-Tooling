@@ -76,7 +76,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path):
     skillModelJS_lines = []
     skills = []
     skills_unformatted = []
-    skillModelJS_path = os.path.join("..","skillModel1.js")
+    skillModelJS_path = os.path.join("..","skillModel.js")
     skillModelJS_file = open(skillModelJS_path,"r")
     break_index = 0
     line_counter = 0
@@ -233,4 +233,4 @@ def process_sheet(spreadsheet_key, sheet_name, default_path):
     return list(set(skills_unformatted))
 
 if __name__ == '__main__':
-    process_sheet(sys.argv[1], sys.argv[2], '../Open')
+    process_sheet(sys.argv[1], sys.argv[2], '../OpenStax Content')

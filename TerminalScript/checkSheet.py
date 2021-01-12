@@ -6,19 +6,9 @@ import sys
 pd.options.display.html.use_mathjax = False
 
 
-# scope = ['https://spreadsheets.google.com/feeds'] 
-# credentials = ServiceAccountCredentials.from_json_keyfile_name('sunlit-shelter-282118-8847831293f8.json', scope) 
-# gc = gspread.authorize(credentials)
-
-# spreadsheet_key = '1Lp0uGtQsuzxzrm1TSctuZttJRrvaG0E5cwT-75UKZeY' 
-# book = gc.open_by_key(spreadsheet_key) 
-
-# scaff_dic = {"mc": "string", "numeric": "TextBox", "algebra": "TextBox", "string": "string"}
-
-
 def check_sheet(spreadsheet_key, sheet_name):
     scope = ['https://spreadsheets.google.com/feeds'] 
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('sunlit-shelter-282118-8847831293f8.json', scope) 
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('../sunlit-shelter-282118-8847831293f8.json', scope) 
     gc = gspread.authorize(credentials)
     book = gc.open_by_key(spreadsheet_key) 
 
