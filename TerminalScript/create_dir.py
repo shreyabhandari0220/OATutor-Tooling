@@ -2,6 +2,7 @@ import os
 
 def create_problem_dir(name, path):
     #creates directory for problem
+    print(path, name)
     target = path + "/" + name
     os.makedirs(target)
     os.mkdir(target + "/steps")

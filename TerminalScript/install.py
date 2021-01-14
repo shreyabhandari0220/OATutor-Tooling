@@ -10,6 +10,7 @@ def pip_install():
     install('oauth2client')
     install('pytexit')
     install('jsbeautifier')
+    install('openpyxl')
 
 if __name__ == '__main__':
     pip_install()
