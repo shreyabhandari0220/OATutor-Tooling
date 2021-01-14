@@ -37,13 +37,13 @@ def finish_bkt_params(bkt_params, file):
     file.close()
 
 
-def create_total(sheet_key, sheet_names, default_path):
+def create_total(sheet_key, sheet_names, default_path, is_local):
     # open(default_path + "/stepfiles.txt", "x")
     lesson_to_skills = {}
     lesson_plan = []
     bkt_params = []
     for sheet in sheet_names:
-        skills = process_sheet(sheet_key, sheet, default_path)
+        skills = process_sheet(sheet_key, sheet, default_path, is_local)
         lesson_plan.append(create_lesson_plan(sheet, skills))
         for skill in skills:
             bkt_params.append(create_bkt_params(skill))
@@ -59,4 +59,10 @@ def create_total(sheet_key, sheet_names, default_path):
     file.close()
 
 if __name__ == '__main__':
-    create_total(sys.argv[1], sys.argv[2:], '../OpenStax Content')
+    # when calling:
+    # if stored locally: python3 final.py "local" <filename> <sheet_names>
+    # if store on google sheet: python3 final.py "online" <url> <sheet_names>
+    is_local = sys.argv[1]
+    sheet_key = sys.argv[2]
+    sheet_names = sys.argv[3:]
+    create_total(sheet_key, sheet_names, '../OpenStax Content', is_local)

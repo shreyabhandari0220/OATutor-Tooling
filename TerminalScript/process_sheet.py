@@ -28,13 +28,13 @@ def save_images(images,path, num):
     #images is a string of urls separated by spaces
     if type(images) != str:
         return "", 0
-    images = images.split(" ");
+    images = images.split(" ")
     names = []
     for i in images: 
         num += 1
         name = "figure" + str(num) + ".gif"
         names.append(name)
-        urllib.request.urlretrieve(i, path + "/" + name);
+        urllib.request.urlretrieve(i, path + "/" + name)
     return names, num
 
 
@@ -59,16 +59,29 @@ def create_problem_js(name,title,body, images=[]):
     return contents
 
 
-def process_sheet(spreadsheet_key, sheet_name, default_path):
-    book = get_sheet(spreadsheet_key, sheet_name)
-    worksheet = book.worksheet(sheet_name) 
-    table = worksheet.get_all_values()
-    df = pd.DataFrame(table[1:], columns=table[0]) 
-    ##Only keep columns we need 
-    df = df[["Problem Name","Row Type","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
-    
-    df = df.astype(str)
-    df.replace('', 0.0, inplace = True)
+def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
+    if is_local == "online":
+        book = get_sheet(spreadsheet_key, sheet_name)
+        worksheet = book.worksheet(sheet_name) 
+        table = worksheet.get_all_values()
+        df = pd.DataFrame(table[1:], columns=table[0]) 
+        ##Only keep columns we need 
+        df = df[["Problem Name","Row Type","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
+        df = df.astype(str)
+        df.replace('', 0.0, inplace = True)
+
+    elif is_local == "local":
+        path = '../Excel Content/'
+        path += spreadsheet_key
+        df = pd.read_excel(path, sheet_name, header=0)
+        ##Only keep columns we need 
+        df = df[["Problem Name","Row Type","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
+        df = df.astype(str)
+        df.replace('nan', float(0.0), inplace=True)
+
+    elif is_local != "local" and is_local != "online":
+        raise NameError('Please enter either \'local\' to indicate a locally stored file, or \'online\' to indicate a file stored as a google sheet.')
+
     df["Body Text"] = df["Body Text"].str.replace("\"", "\\\"")
     df["Title"] = df["Title"].str.replace("\"", "\\\"")
     
@@ -233,4 +246,10 @@ def process_sheet(spreadsheet_key, sheet_name, default_path):
     return list(set(skills_unformatted))
 
 if __name__ == '__main__':
-    process_sheet(sys.argv[1], sys.argv[2], '../OpenStax Content')
+    # when calling:
+    # if stored locally: python3 final.py "local" <filename> <sheet_names>
+    # if store on google sheet: python3 final.py "online" <url> <sheet_names>
+    is_local = sys.argv[1]
+    sheet_key = sys.argv[2]
+    sheet_names = sys.argv[3:]
+    process_sheet(sheet_key, sheet_names, '../OpenStax Content', is_local)

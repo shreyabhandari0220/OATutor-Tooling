@@ -10,7 +10,7 @@ def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhint
     hint_id = step + "-" + hint_id
     for image in images:
         body += "\\n##{0}##".format(image)
-    if type(dependencies) == str:
+    if type(dependencies) == str and dependencies != 'None':
         try:
             dependencies = json.dumps([hint_dic[hint_id] for hint_id in dependencies.split(",")])
         except Exception as e:
@@ -57,7 +57,7 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
     for image in images:
         body += "\\n##{0}##".format(image)
 
-    if type(dependencies) == str:
+    if type(dependencies) == str and dependencies != 'None':
         try:
             dependencies = json.dumps([hint_dic[hint_id] for hint_id in dependencies.split(",")])
         except Exception as e:
