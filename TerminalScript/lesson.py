@@ -1,4 +1,5 @@
 import sys
+import pandas as pd
 from process_sheet import process_sheet
 
 def create_bkt_params(name):
@@ -37,23 +38,29 @@ def finish_bkt_params(bkt_params, file):
     file.close()
 
 
-def create_total(sheet_key, sheet_names, default_path, is_local):
+def create_total(sheet_keys, default_path, is_local, sheet_names=None):
+    ''' if sheet_names is not provided, default to run all sheets'''
     # open(default_path + "/stepfiles.txt", "x")
     lesson_to_skills = {}
     lesson_plan = []
     bkt_params = []
-    for sheet in sheet_names:
-        skills = process_sheet(sheet_key, sheet, default_path, is_local)
-        lesson_plan.append(create_lesson_plan(sheet, skills))
-        for skill in skills:
-            bkt_params.append(create_bkt_params(skill))
-    
+    excel_path = "../Excel/"
+    for sheet_key in sheet_keys:
+        if not sheet_names or len(sheet_keys) > 1:
+            myexcel = pd.ExcelFile(excel_path + sheet_key)
+            sheet_names = [tab for tab in myexcel.sheet_names if tab[:2] != '!!']
+        for sheet in sheet_names:
+            skills = process_sheet(sheet_key, sheet, default_path, is_local)
+            lesson_plan.append(create_lesson_plan(sheet, skills))
+            for skill in skills:
+                bkt_params.append(create_bkt_params(skill))
+
     # open("../lessonPlans1.js", "x")
-    file = open("../lessonPlans.js", "a")
+    file = open("../lessonPlans1.js", "a")
     finish_lesson_plan(lesson_plan, file)
     
     # open("../bktParams1.js", "x")
-    file = open("../bktParams.js", "a")
+    file = open("../bktParams1.js", "a")
     finish_bkt_params(bkt_params, file)
     
     file.close()

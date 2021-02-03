@@ -16,9 +16,10 @@ from create_dir import *
 from create_content import *
 
 
-def get_sheet(spreadsheet_key, sheet_name):
+def get_sheet(spreadsheet_key):
     scope = ['https://spreadsheets.google.com/feeds'] 
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('../sunlit-shelter-282118-8847831293f8.json', scope) 
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('../My-Project-98802-f6fa58ba2d03.json', scope) 
+    # credentials = ServiceAccountCredentials.from_json_keyfile_name('../sunlit-shelter-282118-8847831293f8.json', scope) 
     gc = gspread.authorize(credentials)
     book = gc.open_by_key(spreadsheet_key) 
     return book
@@ -61,7 +62,7 @@ def create_problem_js(name,title,body, images=[]):
 
 def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
     if is_local == "online":
-        book = get_sheet(spreadsheet_key, sheet_name)
+        book = get_sheet(spreadsheet_key)
         worksheet = book.worksheet(sheet_name) 
         table = worksheet.get_all_values()
         df = pd.DataFrame(table[1:], columns=table[0]) 
@@ -71,9 +72,13 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
         df.replace('', 0.0, inplace = True)
 
     elif is_local == "local":
-        path = '../Excel Content/'
-        path += spreadsheet_key
-        df = pd.read_excel(path, sheet_name, header=0)
+        excel_path = '../Excel/'
+        excel_path += spreadsheet_key
+        try:
+            df = pd.read_excel(excel_path, sheet_name, header=0)
+        except:
+            print(excel_path, sheet_name)
+            return
         ##Only keep columns we need 
         df = df[["Problem Name","Row Type","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
         df = df.astype(str)
@@ -89,7 +94,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
     skillModelJS_lines = []
     skills = []
     skills_unformatted = []
-    skillModelJS_path = os.path.join("..","skillModel.js")
+    skillModelJS_path = os.path.join("..","skillModel1.js")
     skillModelJS_file = open(skillModelJS_path,"r")
     break_index = 0
     line_counter = 0
@@ -216,7 +221,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
                         hint_dic[row["HintID"]] = full_id
                         tutoring.append(scaff)
                         previous_tutor = row
-                        previous_images = hint_images
+                        previous_images = scaff_images
 
 
 
@@ -251,5 +256,5 @@ if __name__ == '__main__':
     # if store on google sheet: python3 final.py "online" <url> <sheet_names>
     is_local = sys.argv[1]
     sheet_key = sys.argv[2]
-    sheet_names = sys.argv[3:]
-    process_sheet(sheet_key, sheet_names, '../OpenStax Content', is_local)
+    sheet_name = sys.argv[3]
+    process_sheet(sheet_key, sheet_name, '../OpenStax', is_local)

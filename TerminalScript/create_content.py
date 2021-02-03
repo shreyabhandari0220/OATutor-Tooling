@@ -45,13 +45,17 @@ def handle_answer_type(answer_type):
     elif answer_type == "algebra" or answer_type == "numeric":
         return "arithmetic", "TextBox"
     else:
-        print(answer_type)
         raise Exception('answer type not correct' + answer_type)
 
 
 def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, dependencies=0.0, images="", subhints=[], hint_dic={}):
     title, title_latex = preprocess_text_to_latex(title, True)
     body, body_latex = preprocess_text_to_latex(body, True)
+
+    # getting rid of timestamp format for fractions
+    if len(answer) > 8 and answer[-8:] == '00:00:00':
+        li = re.split('-| ', answer)
+        answer = str(int(li[1])) + '/' + str(int(li[2]))
     
     scaffold_id = step + "-" + hint_id
     for image in images:
@@ -107,6 +111,11 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
     
     title, title_latex = preprocess_text_to_latex(title)
     body, body_latex = preprocess_text_to_latex(body)
+
+    # getting rid of timestamp format for fractions
+    if len(answer) > 8 and answer[-8:] == '00:00:00':
+        li = re.split('-| ', answer)
+        answer = str(int(li[1])) + '/' + str(int(li[2]))
     new_answer, answer_latex = preprocess_text_to_latex(answer)
 
     for img in image:
