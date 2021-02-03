@@ -9,8 +9,7 @@ pd.options.display.html.use_mathjax = False
 def check_sheet(spreadsheet_key, sheet_name, is_local):
     scaff_dic = {"mc": "string", "numeric": "TextBox", "algebra": "TextBox", "string": "string"}
     if is_local == "local":
-        path = '../Excel Content/'
-        path += spreadsheet_key
+        path = spreadsheet_key
         df = pd.read_excel(path, sheet_name, header=0) 
 
     elif is_local == "online":
@@ -36,21 +35,36 @@ def check_sheet(spreadsheet_key, sheet_name, is_local):
 
     df["Body Text"] = df["Body Text"].str.replace("\"", "\\\"")
     df["Title"] = df["Title"].str.replace("\"", "\\\"")
-    
+
     for index, row in df.iterrows():
         if type(row["Problem Name"]) != str:
+            # file.write('\n' + str(sheet_name) + "Problem Name\n")
+            # file.write(str(row))
+            # file.write('\n')
             print(sheet_name, "Problem Name")
             print(row)
         if (row["Row Type"] == "hint" or row["Row Type"] == "scaffold") and type(row["HintID"]) != str:
+            # file.write('\n' + str(sheet_name) + "Hint ID\n")
+            # file.write(str(row))
+            # file.write('\n')
             print(sheet_name, "Hint ID")
             print(row)
         if (row["Row Type"] == "step" or row["Row Type"] == "scaffold") and type(row["answerType"]) != str:
+            # file.write('\n' + str(sheet_name) + "answer type\n")
+            # file.write(str(row))
+            # file.write('\n')
             print(sheet_name, "answer type")
             print(row)
         if (row["Row Type"] == "problem" and type(row["openstax KC"]) != str):
+            # file.write('\n' + str(sheet_name) + "kc\n")
+            # file.write(str(row))
+            # file.write('\n')
             print(sheet_name, "kc")
             print(row)
         if (row["Row Type"] == "scaffold" and row["answerType"] not in scaff_dic):
+            # file.write('\n' + str(sheet_name) + "answer Type\n")
+            # file.write(str(row))
+            # file.write('\n')
             print(sheet_name, "answer Type")
             print(row)
 
@@ -58,6 +72,13 @@ if __name__ == '__main__':
     is_local = sys.argv[1]
     sheet_key = sys.argv[2]
     sheet_names = sys.argv[3:]
+    if sheet_names[0] == '..':
+        myexcel = pd.ExcelFile(sheet_key)
+        sheet_names = [tab for tab in myexcel.sheet_names if tab[:2] != '!!']    
+    file = open("errors.txt", "a")
     for sheet in sheet_names:
+        file.write('checking:' + str(sheet) + '\n')
         print('checking:', sheet)
         check_sheet(sheet_key, sheet, is_local)
+
+    file.close()
