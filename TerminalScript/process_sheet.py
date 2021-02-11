@@ -18,7 +18,7 @@ from create_content import *
 
 def get_sheet(spreadsheet_key):
     scope = ['https://spreadsheets.google.com/feeds'] 
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('../My-Project-98802-f6fa58ba2d03.json', scope) 
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('../sunlit-shelter-282118-8847831293f8.json', scope) 
     # credentials = ServiceAccountCredentials.from_json_keyfile_name('../sunlit-shelter-282118-8847831293f8.json', scope) 
     gc = gspread.authorize(credentials)
     book = gc.open_by_key(spreadsheet_key) 

@@ -31,12 +31,12 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC= False):
         word = words[i]
         
         if any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators]):
-            punctuation = re.findall("[\?\.,:]+}$", word) #Capture all the punctuation at the end of the sentence
+            punctuation = re.findall("[\?\.,:]", word) #Capture all the punctuation at the end of the sentence
             if punctuation:
                 punctuation = punctuation[0]
             else:
                 punctuation = ""
-            word = re.sub("[\?\.,:]+}$", "", word)
+            word = re.sub("[\?\.,:]", "", word)
             try:                
                 sides = re.split('(=|U|<=|>=)', word)
                 sides = [handle_word(side) for side in sides]
@@ -45,7 +45,8 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC= False):
                     new_word = "$$" + "".join(sides) + "$$"
                     #sides = ["$$" + side + "$$" for side in sides] 
                 elif tutoring:
-                    new_word = "$$" + "".join([side.replace("\\", "\\\\") for side in sides]) + "$$"
+                    new_word = "$$" + "".join(sides) + "$$"
+                    # new_word = "$$" + "".join([side.replace("\\", "\\\\") for side in sides]) + "$$"
                     #sides = ["$$" + side.replace("\\", "\\\\") + "$$" for side in sides]
                 else:
                     new_word = "<InlineMath math=\"" + "".join(sides) + "\"/>"

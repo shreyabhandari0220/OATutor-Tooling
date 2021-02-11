@@ -14,19 +14,29 @@ def create_lesson_plan(sheet, skills):
     lesson_name = "Lesson " + lesson_number
     learning_objectives = "{"
     for skill in skills:
-        learning_objectives += skill + ": 0.95, "
+        learning_objectives += "\"" + skill + "\": 0.95, "
+    # strip the last comma
+    if len(learning_objectives) > 1:
+        learning_objectives = learning_objectives[:-2]
     learning_objectives += "}"
     
-    lesson_plan = "{id: " + "\"{0}\", name: \"{1}\", topics: \"{2}\", allowRecyle: false, learningObjectives: {3} ".format(lesson_id, lesson_name, lesson_topics, learning_objectives) + "},"
+    lesson_plan = "{\"id\": " + "\"{0}\", \"name\": \"{1}\", \"topics\": \"{2}\", \"allowRecyle\": false, \"learningObjectives\": {3} ".format(lesson_id, lesson_name, lesson_topics, learning_objectives) + "},"
     return lesson_plan
 
 
-def finish_lesson_plan(lesson_plan, file):
-    lesson_to_write = "var lessonPlans = ["
+def create_course_plan(course_name, lesson_plan):
+    course_to_write = "{courseName: \"" + course_name + "\", " + "lessons: ["
     for lesson in lesson_plan:
-        lesson_to_write += lesson
-    lesson_to_write += "]; export default lessonPlans;"
-    file.write(lesson_to_write)
+        course_to_write += lesson
+    course_to_write += "]},"
+    return course_to_write
+
+def finish_course_plan(courses, file):
+    course_to_write = "var courses =  ["
+    for course in courses:
+        course_to_write += course
+    course_to_write += "]; export default courses;"
+    file.write(course_to_write)
     file.close()
 
 def finish_bkt_params(bkt_params, file):
@@ -41,11 +51,13 @@ def finish_bkt_params(bkt_params, file):
 def create_total(sheet_keys, default_path, is_local, sheet_names=None):
     ''' if sheet_names is not provided, default to run all sheets'''
     # open(default_path + "/stepfiles.txt", "x")
-    lesson_to_skills = {}
-    lesson_plan = []
+    # lesson_to_skills = {}
+    course_plan = []
     bkt_params = []
     excel_path = "../Excel/"
     for sheet_key in sheet_keys:
+        lesson_plan = []
+        course_name = sheet_key[:-5]
         if not sheet_names or len(sheet_keys) > 1:
             myexcel = pd.ExcelFile(excel_path + sheet_key)
             sheet_names = [tab for tab in myexcel.sheet_names if tab[:2] != '!!']
@@ -54,10 +66,13 @@ def create_total(sheet_keys, default_path, is_local, sheet_names=None):
             lesson_plan.append(create_lesson_plan(sheet, skills))
             for skill in skills:
                 bkt_params.append(create_bkt_params(skill))
+        course_plan.append(create_course_plan(course_name, lesson_plan))
+    # strip the last comma
+    course_plan[-1] = course_plan[-1][:-1]
 
     # open("../lessonPlans1.js", "x")
-    file = open("../lessonPlans1.js", "a")
-    finish_lesson_plan(lesson_plan, file)
+    file = open("../coursePlans1.js", "a")
+    finish_course_plan(course_plan, file)
     
     # open("../bktParams1.js", "x")
     file = open("../bktParams1.js", "a")
