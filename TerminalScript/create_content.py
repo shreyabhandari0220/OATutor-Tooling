@@ -4,6 +4,11 @@ import re
 from process_text import preprocess_text_to_latex
 
 def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhints=[], hint_dic={}):
+    if type(body) == float:
+        body = ""
+    if type(title) == float:
+        title = ""
+    
     title, title_latex = preprocess_text_to_latex(title, True)
     body, body_latex = preprocess_text_to_latex(body, True)
     
@@ -49,6 +54,11 @@ def handle_answer_type(answer_type):
 
 
 def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, dependencies=0.0, images="", subhints=[], hint_dic={}):
+    if type(body) == float:
+        body = ""
+    if type(title) == float:
+        title = ""
+    
     title, title_latex = preprocess_text_to_latex(title, True)
     body, body_latex = preprocess_text_to_latex(body, True)
 
@@ -79,10 +89,10 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
     
     if type(mc_answers) != float:
         mc_answers = json.dumps([preprocess_text_to_latex(mc_answer, True)[0] for mc_answer in mc_answers.split("|") if mc_answer])
-        answer = preprocess_text_to_latex(answer, True)[0]
+        answer = json.dumps(preprocess_text_to_latex(answer, True)[0])
+        scaff_ans = "[" + str(answer) + "]"
     
     
-
     scaff_obj = "id: \"{0}\", type: \"scaffold\", problemType: \"{1}\", answerType: \"{2}\", hintAnswer: {3}, dependencies: {4}".format(scaffold_id, problem_type, answer_type, scaff_ans, dependencies)
     scaff_obj += ", title: \"{0}\"".format(title)
     scaff_obj += ", text: \"{0}\"".format(body)
