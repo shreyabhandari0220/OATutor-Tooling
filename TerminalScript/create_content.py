@@ -88,8 +88,8 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
 
     
     if type(mc_answers) != float:
-        mc_answers = json.dumps([preprocess_text_to_latex(mc_answer, True)[0] for mc_answer in mc_answers.split("|") if mc_answer])
-        answer = json.dumps(preprocess_text_to_latex(answer, True)[0])
+        mc_answers = json.dumps([preprocess_text_to_latex(mc_answer, True, True)[0] for mc_answer in mc_answers.split("|") if mc_answer])
+        answer = json.dumps(preprocess_text_to_latex(answer, True, True)[0])
         scaff_ans = "[" + str(answer) + "]"
     
     
