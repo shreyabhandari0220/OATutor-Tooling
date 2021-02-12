@@ -45,8 +45,8 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC= False):
                     new_word = "$$" + "".join(sides) + "$$"
                     #sides = ["$$" + side + "$$" for side in sides] 
                 elif tutoring:
-                    new_word = "$$" + "".join(sides) + "$$"
-                    # new_word = "$$" + "".join([side.replace("\\", "\\\\") for side in sides]) + "$$"
+                    # new_word = "$$" + "".join(sides) + "$$"
+                    new_word = "$$" + "".join([side.replace("\\", "\\\\") for side in sides]) + "$$"
                     #sides = ["$$" + side.replace("\\", "\\\\") + "$$" for side in sides]
                 else:
                     new_word = "<InlineMath math=\"" + "".join(sides) + "\"/>"
