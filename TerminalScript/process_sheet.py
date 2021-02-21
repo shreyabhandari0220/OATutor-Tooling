@@ -257,4 +257,4 @@ if __name__ == '__main__':
     is_local = sys.argv[1]
     sheet_key = sys.argv[2]
     sheet_name = sys.argv[3]
-    process_sheet(sheet_key, sheet_name, '../OpenStax', is_local)
+    process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local)

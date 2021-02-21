@@ -132,7 +132,7 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
         body += "##" + img + "## "
     if choices:
         choices = json.dumps([preprocess_text_to_latex(mc_answer, True, True)[0] for mc_answer in choices.split("|") if mc_answer])
-        answer = preprocess_text_to_latex(answer, True)[0]
+        answer = preprocess_text_to_latex(answer, tutoring=True, stepAns=True)[0]
     
     answer_type, problem_type = handle_answer_type(answer_type)
     if answer_type == "arithmetic":
