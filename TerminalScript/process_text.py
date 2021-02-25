@@ -14,10 +14,8 @@ regex = re.compile("|".join(map(re.escape, replace.keys())))
 def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
     text = str(text)
     text = regex.sub(lambda match: replace[match.group(0)], text)
-    coordinate = True
     if not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", text): #Checking to see if there are coordinates/intervals before replacing () with []
         text = regex.sub(lambda match: conditionally_replace[match.group(0)], text)
-        coordinate = False
     
     
     #Account for space in sqrt(x, y)
@@ -40,11 +38,12 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
                 punctuation = punctuation[0]
             else:
                 punctuation = ""
-            if not coordinate:
+            strip_punc = not re.findall("[\d]\.[\d]", word) and not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", word)
+            if strip_punc:
                 word = re.sub("[\?\.,:]", "", word)
             try:                
                 sides = re.split('(=|U|<=|>=)', word)
-                sides = [handle_word(side, coordinate) for side in sides]
+                sides = [handle_word(side) for side in sides]
                 new_word = ""
                 if tutoring and stepMC:
                     new_word = "$$" + "".join(sides) + "$$"
@@ -57,7 +56,8 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
                     new_word = "<InlineMath math=\"" + "".join(sides) + "\"/>"
                     #sides = ["<InlineMath math=\"" + side + "\"/>" for side in sides]
                 #new_word = "=".join(sides)
-                new_word += punctuation
+                if strip_punc:
+                    new_word += punctuation
                 latex=True
                 words[i] = new_word
                 
@@ -69,11 +69,12 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
     text = " ".join(words)
     return text, latex
 
-def handle_word(word, coordinates):
+def handle_word(word):
     latex_dic = {"=": "=", "U": " \cup ", "<=" : " \leq ", ">=" : " \geq "}
     if word in latex_dic:
         return latex_dic[word]
     
+    coordinates = re.findall("[\(|\[][-\d\s\D]+,[-\d\s\D]+[\)|\]]",word)
     if coordinates:
         word = re.sub("inf", r"\\infty", word)
         return word
@@ -110,5 +111,6 @@ def handle_word(word, coordinates):
     for item in scientific_notation:
         word = re.sub(item[0] + "\{" + item[1] + "\}", item[0] + "\\\\times {" + item[1] + "}", word)
     word = re.sub(r"\\operatorname{pm}\\left\(a\\right\)(\\times)?", r"\\pm ", word)
+    word = re.sub(r"f x", r"f\\left(x\\right)", word)
     
     return word[2:-2]
