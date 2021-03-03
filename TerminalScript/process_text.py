@@ -74,6 +74,9 @@ def handle_word(word):
     if word in latex_dic:
         return latex_dic[word]
     
+    if not (any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])):
+        return word
+    
     coordinates = re.findall("[\(|\[][-\d\s\D]+,[-\d\s\D]+[\)|\]]",word)
     if coordinates:
         word = re.sub("inf", r"\\infty", word)
@@ -97,6 +100,7 @@ def handle_word(word):
     word = re.sub(r"sqrt\*", r"sqrt", word)
     word = re.sub(r"abs\*", r"abs", word)
     word = re.sub(r"pm\*", r"pm", word)
+    word = re.sub('\(\-', '(__', word)
     
     # handle double negative sign. Looks like py2tex handles double negative signs wrong.
     double_neg = re.search('-\(\-', word)
@@ -110,7 +114,7 @@ def handle_word(word):
     #Here do the substitutions for the things that py2tex can't handle
     for item in scientific_notation:
         word = re.sub(item[0] + "\{" + item[1] + "\}", item[0] + "\\\\times {" + item[1] + "}", word)
-    word = re.sub(r"\\operatorname{pm}\\left\(a\\right\)(\\times)?", r"\\pm ", word)
-    word = re.sub(r"f x", r"f\\left(x\\right)", word)
+    word = re.sub(r"\\operatorname{(\w*|\d*)pm}\\left\(a\\right\)(\\times)?", r"\g<1>\\pm ", word)
+    word = re.sub(r"__(\d|\w)", r"\\left(\-\g<1>\\right)", word)
     
     return word[2:-2]

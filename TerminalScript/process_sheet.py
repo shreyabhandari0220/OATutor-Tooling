@@ -47,19 +47,6 @@ def create_default_pathway(tutoring):
     return to_return
 
 
-def create_problem_js(name,title,body, images=[]):
-    if type(body) == float:
-        body= ""
-    for image in images:
-        body += "\\n##{0}##".format(image)
-    if type(title) == float:
-        title = ""
-    contents = "import React from 'react'; import { InlineMath } from 'react-katex';" + "import steps from \"./{0}-index.js\"; const problem = ".format(name) + "{" + "id: \"{0}\", title: \"{1}\", body: \"{2}\", ".format(name, title, body) 
-    contents +=  "steps: steps, }; export { problem };"
-    
-    return contents
-
-
 def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
     if is_local == "online":
         book = get_sheet(spreadsheet_key)

@@ -3,6 +3,27 @@ import re
 
 from process_text import preprocess_text_to_latex
 
+def create_problem_js(name,title,body, images=[]):
+    if type(body) == float:
+        body= ""
+    for image in images:
+        body += "\\n##{0}##".format(image)
+    if type(title) == float:
+        title = ""
+    title, title_latex = preprocess_text_to_latex(title)
+    body, body_latex = preprocess_text_to_latex(body)
+
+    if title_latex:
+        title = "<div> " + title + "</div>"
+    if body_latex:
+        body = "<div> " + body + "</div>"
+
+    contents = "import React from 'react'; import { InlineMath } from 'react-katex';" + "import steps from \"./{0}-index.js\"; const problem = ".format(name) + "{" + "id: \"{0}\", title: \"{1}\", body: \"{2}\", ".format(name, title, body) 
+    contents +=  "steps: steps, }; export { problem };"
+    
+    return contents
+
+
 def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhints=[], hint_dic={}):
     if type(body) == float:
         body = ""
