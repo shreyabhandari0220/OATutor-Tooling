@@ -11,6 +11,7 @@ def pip_install():
     install('pytexit')
     install('jsbeautifier')
     install('openpyxl')
+    install('--upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib')
 
 if __name__ == '__main__':
     pip_install()

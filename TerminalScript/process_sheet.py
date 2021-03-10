@@ -15,6 +15,7 @@ pd.options.display.html.use_mathjax = False
 from create_dir import *
 from create_content import *
 
+URL_SPREADSHEET_KEY = '1yyeDxm52Zd__56Y0T3CdoeyXvxHVt0ITDKNKWIoIMkU'
 
 def get_sheet(spreadsheet_key):
     scope = ['https://spreadsheets.google.com/feeds'] 
@@ -46,6 +47,15 @@ def create_default_pathway(tutoring):
     to_return += "]; export {hints};"
     return to_return
 
+def get_all_url():
+    book = get_sheet(URL_SPREADSHEET_KEY)
+    worksheet = book.worksheet('URLs')
+    table = worksheet.get_all_values()
+    df = pd.DataFrame(table[1:], columns=table[0])
+    df = df[["Book","URL"]]
+    df = df.astype(str)
+    df.replace('', 0.0, inplace = True)
+    return df
 
 def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
     if is_local == "online":
