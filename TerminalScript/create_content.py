@@ -13,12 +13,17 @@ def create_problem_js(name,title,body, images=[]):
     title, title_latex = preprocess_text_to_latex(title)
     body, body_latex = preprocess_text_to_latex(body)
 
-    if title_latex:
-        title = "<div> " + title + "</div>"
-    if body_latex:
-        body = "<div> " + body + "</div>"
+    contents = "import React from 'react'; import { InlineMath } from 'react-katex';" + "import steps from \"./{0}-index.js\"; const problem = ".format(name) + "{" + "id: \"{0}\", ".format(name)
 
-    contents = "import React from 'react'; import { InlineMath } from 'react-katex';" + "import steps from \"./{0}-index.js\"; const problem = ".format(name) + "{" + "id: \"{0}\", title: \"{1}\", body: \"{2}\", ".format(name, title, body) 
+    if title_latex:
+        contents += "title: <div> {0} </div>, ".format(title)
+    else:
+        contents += "title: {0}, ".format(title)
+    if body_latex:
+        contents += "body: <div> {0} </div>, ".format(body)
+    else:
+        contents += "body: {0}, ".format(body)
+    
     contents +=  "steps: steps, }; export { problem };"
     
     return contents

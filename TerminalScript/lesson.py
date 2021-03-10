@@ -1,6 +1,6 @@
 import sys
 import pandas as pd
-from process_sheet import process_sheet
+from process_sheet import process_sheet, get_all_url, get_sheet
 
 def create_bkt_params(name):
     return "\"" + name + "\": {probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1},"
@@ -47,26 +47,39 @@ def finish_bkt_params(bkt_params, file):
     file.write(bkt_params_string)
     file.close()
 
-
-def create_total(sheet_keys, default_path, is_local, sheet_names=None):
+def create_total(default_path, is_local, sheet_names=None, sheet_keys=None):
     ''' if sheet_names is not provided, default to run all sheets'''
     # open(default_path + "/stepfiles.txt", "x")
     # lesson_to_skills = {}
     course_plan = []
     bkt_params = []
-    excel_path = "../Excel/"
-    for sheet_key in sheet_keys:
-        lesson_plan = []
-        course_name = sheet_key[:-5]
-        if not sheet_names or len(sheet_keys) > 1:
-            myexcel = pd.ExcelFile(excel_path + sheet_key)
-            sheet_names = [tab for tab in myexcel.sheet_names if tab[:2] != '!!']
-        for sheet in sheet_names:
-            skills = process_sheet(sheet_key, sheet, default_path, is_local)
-            lesson_plan.append(create_lesson_plan(sheet, skills))
-            for skill in skills:
-                bkt_params.append(create_bkt_params(skill))
-        course_plan.append(create_course_plan(course_name, lesson_plan))
+    if is_local == 'local':
+        excel_path = "../Excel/"
+        for sheet_key in sheet_keys:
+            lesson_plan = []
+            course_name = sheet_key[:-5]
+            if not sheet_names or len(sheet_keys) > 1:
+                myexcel = pd.ExcelFile(excel_path + sheet_key)
+                sheet_names = [tab for tab in myexcel.sheet_names if tab[:2] != '!!']
+            for sheet in sheet_names:
+                skills = process_sheet(sheet_key, sheet, default_path, is_local)
+                lesson_plan.append(create_lesson_plan(sheet, skills))
+                for skill in skills:
+                    bkt_params.append(create_bkt_params(skill))
+            course_plan.append(create_course_plan(course_name, lesson_plan))
+    elif is_local == 'online':
+        url_df = get_all_url()
+        for index, row in url_df.iterrows():
+            lesson_plan = []
+            course_name, book_url = row['Book'], row['URL']
+            book = get_sheet(book_url)
+            sheet_names = [sheet.title for sheet in book.worksheets() if sheet.title[:2] != '!!']
+            for sheet in sheet_names:
+                skills = process_sheet(book_url, sheet, default_path, 'online')
+                lesson_plan.append(create_lesson_plan(sheet, skills))
+                for skill in skills:
+                    bkt_params.append(create_bkt_params(skill))
+            course_plan.append(create_course_plan(course_name, lesson_plan))
     # strip the last comma
     course_plan[-1] = course_plan[-1][:-1]
 
