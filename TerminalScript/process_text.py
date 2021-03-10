@@ -17,12 +17,12 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
     if not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", text): #Checking to see if there are coordinates/intervals before replacing () with []
         text = regex.sub(lambda match: conditionally_replace[match.group(0)], text)
     
-    
     #Account for space in sqrt(x, y)
     text = re.sub(r"sqrt[\s]?\(([^,]+),[\s]+([^\)])\)", r"sqrt(\g<1>,\g<2>)", text)
     text = re.sub(r"sqrt(?:\s*)?\(", r"sqrt(", text)
     text = re.sub(r"abs(?:\s*)?\(", r"abs(", text)
     text = re.sub("\([\s]*([-\d]+)[\s]*,[\s]*([-\d]+)[\s]*\)", "(\g<1>,\g<2>)", text) #To account for coordinates
+    text = re.sub("\s\\\\\"\s", " ", text)
     for operator in supported_operators:
         text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
 
@@ -39,6 +39,11 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
             else:
                 punctuation = ""
             strip_punc = not re.findall("[\d]\.[\d]", word) and not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", word)
+            quote = False
+            # if the word is wrapped in quote.
+            if (word[:2] == "\\\"" and word[-2:] == "\\\"") or (word[0] == "\\\'" and word[-1] == "\\\'"):
+                word = word[2:-2]
+                quote = True
             if strip_punc:
                 word = re.sub("[\?\.,:]", "", word)
             try:                
@@ -50,7 +55,10 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
                     #sides = ["$$" + side + "$$" for side in sides] 
                 elif tutoring:
                     # new_word = "$$" + "".join(sides) + "$$"
-                    new_word = "$$" + "".join([side.replace("\\", "\\\\") for side in sides]) + "$$"
+                    if quote:
+                        new_word = "$$" + "\\\"" + "".join([side.replace("\\", "\\\\") for side in sides]) + "\\\"" + "$$"
+                    else:
+                        new_word = "$$" + "".join([side.replace("\\", "\\\\") for side in sides]) + "$$"
                     #sides = ["$$" + side.replace("\\", "\\\\") + "$$" for side in sides]
                 else:
                     new_word = "<InlineMath math=\"" + "".join(sides) + "\"/>"

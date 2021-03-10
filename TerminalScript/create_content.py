@@ -18,11 +18,11 @@ def create_problem_js(name,title,body, images=[]):
     if title_latex:
         contents += "title: <div> {0} </div>, ".format(title)
     else:
-        contents += "title: {0}, ".format(title)
+        contents += "title: \"{0}\", ".format(title)
     if body_latex:
         contents += "body: <div> {0} </div>, ".format(body)
     else:
-        contents += "body: {0}, ".format(body)
+        contents += "body: \"{0}\", ".format(body)
     
     contents +=  "steps: steps, }; export { problem };"
     
@@ -34,7 +34,6 @@ def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhint
         body = ""
     if type(title) == float:
         title = ""
-    
     title, title_latex = preprocess_text_to_latex(title, True)
     body, body_latex = preprocess_text_to_latex(body, True)
     
