@@ -1,1 +1,1 @@
-import React from 'react'; import { InlineMath } from 'react-katex';import steps from "./add30-index.js"; const problem = {id: "add30", title: <div> Fill in<,>, <InlineMath math="or=for"/> each of the following pairs of numbers: </div>, body: "", steps: steps, }; export { problem };
+import React from 'react'; import { InlineMath } from 'react-katex';import steps from "./add30-index.js"; const problem = {id: "add30", title: <div> Fill in <, >, or <InlineMath math="="/> for each of the following pairs of numbers: </div>, body: "", steps: steps, }; export { problem };

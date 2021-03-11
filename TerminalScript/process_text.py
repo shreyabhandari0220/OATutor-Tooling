@@ -25,8 +25,10 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
     text = re.sub("\s\\\\\"\s", " ", text) #To account for quoted LaTeX expressions.
     text = re.sub("\\\\pipe", "|", text) #To account for literal | in mc answers
     text = re.sub(r"\\/", r"\\\\slash\\\\", text) #To account for literal /
-    for operator in supported_operators:
-        text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
+
+    # for operator in supported_operators:
+    #     text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
+
 
     words = text.split()
     latex = False
@@ -61,6 +63,8 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
                         new_word = "$$" + "\\\"" + "".join([side.replace("\\", "\\\\") for side in sides]) + "\\\"" + "$$"
                     else:
                         new_word = "$$" + "".join([side.replace("\\", "\\\\") for side in sides]) + "$$"
+                    new_word = re.sub(r"\\\\\"\$\$", r"\"$$", new_word)
+                    new_word = re.sub(r"\$\$\\\\\"", r"$$\"", new_word)
                     #sides = ["$$" + side.replace("\\", "\\\\") + "$$" for side in sides]
                 else:
                     new_word = "<InlineMath math=\"" + "".join(sides) + "\"/>"
