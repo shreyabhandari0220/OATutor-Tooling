@@ -3,7 +3,7 @@ import sys
 sys.path.insert(0, "../textToLatex")
 from pytexit import py2tex
 
-supported_operators = ["**", "/", "*", "+", ">", "<", "="]
+supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_"]
 supported_word_operators = ["sqrt", "abs", "inf"]
 answer_only_operators = ["-"]
 replace = {"⋅" : "*", "−" : "-", "^" : "**", "𝑥" : "x", "𝑎" : "a", "𝑏" : "b", "𝑦" : "y", "–": "-", "≥" : ">=", "≤": "<=", "∪" : "U"}
@@ -25,6 +25,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
     text = re.sub("\s\\\\\"\s", " ", text) #To account for quoted LaTeX expressions.
     text = re.sub("\\\\pipe", "|", text) #To account for literal | in mc answers
     text = re.sub(r"\\/", r"\\\\slash\\\\", text) #To account for literal /
+    text = re.sub(",(\S)", ", \g<1>", text)
 
     # for operator in supported_operators:
     #     text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
@@ -32,6 +33,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
 
     words = text.split()
     latex = False
+    angle_bracket = False
     for i in list(range(len(words))):
         word = words[i]
         if ((stepMC or stepAns) and any([op in word for op in answer_only_operators])) or \
@@ -44,12 +46,21 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
                 punctuation = ""
             strip_punc = not re.findall("[\d]\.[\d]", word) and not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", word)
             quote = False
+            open_braces = closing_braces = False
             # if the word is wrapped in quote.
             if (word[:2] == "\\\"" and word[-2:] == "\\\"") or (word[0] == "\\\'" and word[-1] == "\\\'"):
                 word = word[2:-2]
                 quote = True
+            # if the word contains 
             if strip_punc:
                 word = re.sub("[\?\.,:]", "", word)
+            # handles braces in LaTeX
+            if word[:1] == "{":
+                open_braces = True
+                word = word[1:]
+            if word[-1:] == "}":
+                closing_braces = True
+                word = word[:-1]
             try:                
                 sides = re.split('(=|U|<=|>=)', word)
                 sides = [handle_word(side) for side in sides]
@@ -57,7 +68,8 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
                 if tutoring and stepMC:
                     new_word = "$$" + "".join(sides) + "$$"
                     #sides = ["$$" + side + "$$" for side in sides] 
-                elif tutoring:
+                # elif tutoring:
+                else:
                     # new_word = "$$" + "".join(sides) + "$$"
                     if quote:
                         new_word = "$$" + "\\\"" + "".join([side.replace("\\", "\\\\") for side in sides]) + "\\\"" + "$$"
@@ -66,12 +78,17 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
                     new_word = re.sub(r"\\\\\"\$\$", r"\"$$", new_word)
                     new_word = re.sub(r"\$\$\\\\\"", r"$$\"", new_word)
                     #sides = ["$$" + side.replace("\\", "\\\\") + "$$" for side in sides]
-                else:
-                    new_word = "<InlineMath math=\"" + "".join(sides) + "\"/>"
+                # else:
+                #     new_word = "<InlineMath math=\"" + "".join(sides) + "\"/>"
                     #sides = ["<InlineMath math=\"" + side + "\"/>" for side in sides]
                 #new_word = "=".join(sides)
                 if strip_punc:
                     new_word += punctuation
+                if open_braces:
+                    new_word = "{" + new_word
+                if closing_braces:
+                    new_word = new_word + "}"
+                new_word = re.sub(r"\\operatorname{or}", r"|", new_word)
                 latex=True
                 words[i] = new_word
                 
@@ -116,20 +133,13 @@ def handle_word(word):
     word = re.sub(r"abs\*", r"abs", word)
     word = re.sub(r"pm\*", r"pm", word)
     word = re.sub('\(\-', '(__', word)
-    
-    # handle double negative sign. Looks like py2tex handles double negative signs wrong.
-    double_neg = re.search('-\(\-', word)
-    if double_neg:
-        before_neg = word[:double_neg.start()]
-        after_neg = word[double_neg.end() - 3:]
-        word = py2tex(before_neg, simplify_output=False)[:-2] + py2tex(after_neg, simplify_output=False)[2:]
-    else:
-        word = py2tex(word, simplify_output=False)
+
+    word = py2tex(word, simplify_output=False)
     
     #Here do the substitutions for the things that py2tex can't handle
     for item in scientific_notation:
         word = re.sub(item[0] + "\{" + item[1] + "\}", item[0] + "\\\\times {" + item[1] + "}", word)
     word = re.sub(r"\\operatorname{(\w*|\d*)pm}\\left\(a\\right\)(\\times)?", r"\g<1>\\pm ", word)
-    word = re.sub(r"__(\d|\w)", r"\\left(\-\g<1>\\right)", word)
+    word = re.sub(r"__(\d|\w)", r"\\left(-\g<1>\\right)", word) #handles first negative sign following opening parenthesis
     
     return word[2:-2]
