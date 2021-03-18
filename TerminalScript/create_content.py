@@ -13,18 +13,21 @@ def create_problem_js(name,title,body, images=[]):
     title, title_latex = preprocess_text_to_latex(title)
     body, body_latex = preprocess_text_to_latex(body)
 
-    contents = "import React from 'react'; import { InlineMath } from 'react-katex';" + "import steps from \"./{0}-index.js\"; const problem = ".format(name) + "{" + "id: \"{0}\", ".format(name)
+    # contents = "import React from 'react'; import { InlineMath } from 'react-katex';" + "import steps from \"./{0}-index.js\"; const problem = ".format(name) + "{" + "id: \"{0}\", ".format(name)
+    contents = "import steps from \"./{0}-index.js\"; const problem = ".format(name) + "{" + "id: \"{0}\", ".format(name)
 
-    if title_latex:
-        contents += "title: <div> {0} </div>, ".format(title)
-    else:
-        contents += "title: \"{0}\", ".format(title)
-    if body_latex:
-        contents += "body: <div> {0} </div>, ".format(body)
-    else:
-        contents += "body: \"{0}\", ".format(body)
+    # if title_latex:
+    #     contents += "title: <div> {0} </div>, ".format(title)
+    # else:
+    contents += "title: \"{0}\", ".format(title)
+    # if body_latex:
+    #     contents += "body: <div> {0} </div>, ".format(body)
+    # else:
+    contents += "body: \"{0}\", ".format(body)
     
     contents +=  "steps: steps, }; export { problem };"
+    
+    contents = re.sub("[\.js]{2,}", ".js", contents) #To account for .js.js or .js.js.js
     
     return contents
 
@@ -165,16 +168,16 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
 
     step =  "import hints from \"./{0}-index.js\"; const step = ".format(step_id) + "{" + "id: \"{0}\", stepAnswer: [\"{1}\"], problemType: \"{2}\"".format(step_id, answer, problem_type)
     
-    if title_latex or body_latex:
-        step = "import React from 'react'; import { InlineMath } from 'react-katex';" + step
-    if title_latex:
-        step += ", stepTitle: <div> " + title + "</div>"
-    else:
-        step += ", stepTitle: \"{0}\"".format(title)
-    if body_latex:
-        step += ", stepBody: <div> " + body + "</div>"
-    else:
-        step += ", stepBody: \"{0}\"".format(body)
+    # if title_latex or body_latex:
+    #     step = "import React from 'react'; import { InlineMath } from 'react-katex';" + step
+    # if title_latex:
+    #     step += ", stepTitle: <div> " + title + "</div>"
+    # else:
+    step += ", stepTitle: \"{0}\"".format(title)
+    # if body_latex:
+    #     step += ", stepBody: <div> " + body + "</div>"
+    # else:
+    step += ", stepBody: \"{0}\"".format(body)
     
     if answer_latex:
         ", answerLatex: \"{0}\"".format(new_answer)

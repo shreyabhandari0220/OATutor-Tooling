@@ -116,7 +116,6 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
         result_problems = ""
         path, problem_js  = create_problem_dir(problem_name, default_path)
         step_count = tutor_count = 0
-        #nice coding bro
         current_step_path = current_step_name = step_reg_js = step_index_js = default_pathway_js = ""
         images = False
         figure_path = ""
@@ -235,6 +234,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
             problem_images, num = save_images(problem_row["Images (space delimited)"], figure_path, int(images))
             images += num
         prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_images)
+        re.sub("[\.js]{2,}", ".js", prob_js)
         file = open(problem_js, "w")
         file.write(prob_js)
         file.close()
