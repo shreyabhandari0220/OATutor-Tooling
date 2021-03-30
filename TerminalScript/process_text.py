@@ -25,7 +25,6 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
     text = re.sub("\s\\\\\"\s", " ", text) #To account for quoted LaTeX expressions.
     text = re.sub("\\\\pipe", "|", text) #To account for literal | in mc answers
     text = re.sub(r"\\/", r"\\\\slash\\\\", text) #To account for literal /
-    text = re.sub(",(\S)", ", \g<1>", text)
 
     # for operator in supported_operators:
     #     text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
@@ -39,6 +38,9 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
         if ((stepMC or stepAns) and any([op in word for op in answer_only_operators])) or \
             any([op in word for op in supported_operators]) or \
             any([op in word for op in supported_word_operators]):
+            if not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", word): # only add in space if is not coordinate
+                word = re.sub(",(\S)", ", \g<1>", word)
+
             punctuation = re.findall("[\?\.,:]", word) #Capture all the punctuation at the end of the sentence
             if punctuation:
                 punctuation = punctuation[0]
