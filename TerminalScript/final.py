@@ -18,16 +18,9 @@ if __name__ == '__main__':
         for f in os.listdir("../Excel"):
             if not f.startswith('~$') and f.endswith(".xlsx"):
                 sheet_keys.append(f)
+        create_total('../OpenStax', is_local, sheet_keys)
     elif get_all_in_dir == '..' and is_local == 'online':
         create_total('../OpenStax', is_local)
     else:
         sheet_keys = sys.argv[2:]
-
-    # sheet_key = sys.argv[2:]
-    # sheet_names = sys.argv[4:]
-    # if sheet_names[0] == '..':
-    #     myexcel = pd.ExcelFile(sheet_key)
-    #     sheet_names = [tab for tab in myexcel.sheet_names if tab[:2] != '!!']
-    # create_total(sheet_key, sheet_names, '../OpenStax', is_local)
-
-create_total('../OpenStax', is_local, sheet_keys)
+        create_total('../OpenStax', is_local, sheet_keys)

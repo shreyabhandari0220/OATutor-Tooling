@@ -47,10 +47,8 @@ def finish_bkt_params(bkt_params, file):
     file.write(bkt_params_string)
     file.close()
 
-def create_total(default_path, is_local, sheet_names=None, sheet_keys=None):
+def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
     ''' if sheet_names is not provided, default to run all sheets'''
-    # open(default_path + "/stepfiles.txt", "x")
-    # lesson_to_skills = {}
     course_plan = []
     bkt_params = []
     if is_local == 'local':

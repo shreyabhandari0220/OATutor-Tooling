@@ -4,7 +4,7 @@ sys.path.insert(0, "../textToLatex")
 from pytexit import py2tex
 
 supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_"]
-supported_word_operators = ["sqrt", "abs", "inf"]
+supported_word_operators = ["sqrt", "abs(", "inf"]
 answer_only_operators = ["-"]
 replace = {"⋅" : "*", "−" : "-", "^" : "**", "𝑥" : "x", "𝑎" : "a", "𝑏" : "b", "𝑦" : "y", "–": "-", "≥" : ">=", "≤": "<=", "∪" : "U"}
 conditionally_replace = {"[" : "(", "]" : ")"}
@@ -69,21 +69,13 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
                 new_word = ""
                 if tutoring and stepMC:
                     new_word = "$$" + "".join(sides) + "$$"
-                    #sides = ["$$" + side + "$$" for side in sides] 
-                # elif tutoring:
                 else:
-                    # new_word = "$$" + "".join(sides) + "$$"
                     if quote:
                         new_word = "$$" + "\\\"" + "".join([side.replace("\\", "\\\\") for side in sides]) + "\\\"" + "$$"
                     else:
                         new_word = "$$" + "".join([side.replace("\\", "\\\\") for side in sides]) + "$$"
                     new_word = re.sub(r"\\\\\"\$\$", r"\"$$", new_word)
                     new_word = re.sub(r"\$\$\\\\\"", r"$$\"", new_word)
-                    #sides = ["$$" + side.replace("\\", "\\\\") + "$$" for side in sides]
-                # else:
-                #     new_word = "<InlineMath math=\"" + "".join(sides) + "\"/>"
-                    #sides = ["<InlineMath math=\"" + side + "\"/>" for side in sides]
-                #new_word = "=".join(sides)
                 if strip_punc:
                     new_word += punctuation
                 if open_braces:
