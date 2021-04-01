@@ -27,7 +27,7 @@ def create_problem_js(name,title,body, images=[]):
     
     contents +=  "steps: steps, }; export { problem };"
     
-    contents = re.sub("[\.js]{2,}", ".js", contents) #To account for .js.js or .js.js.js
+    contents = re.sub("(\.js){2,}", ".js", contents) #To account for .js.js or .js.js.js
     
     return contents
 
