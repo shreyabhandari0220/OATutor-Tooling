@@ -4,7 +4,7 @@ sys.path.insert(0, "../textToLatex")
 from pytexit import py2tex
 
 supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_"]
-supported_word_operators = ["sqrt", "abs(", "inf"]
+supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{"]
 answer_only_operators = ["-"]
 replace = {"⋅" : "*", "−" : "-", "^" : "**", "𝑥" : "x", "𝑎" : "a", "𝑏" : "b", "𝑦" : "y", "–": "-", "≥" : ">=", "≤": "<=", "∪" : "U"}
 conditionally_replace = {"[" : "(", "]" : ")"}
@@ -60,7 +60,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
             if word[:1] == "{":
                 open_braces = True
                 word = word[1:]
-            if word[-1:] == "}":
+            if word[-1:] == "}" and "ln{" not in word:
                 closing_braces = True
                 word = word[:-1]
             try:                
@@ -102,6 +102,12 @@ def handle_word(word):
     
     if not (any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])):
         return word
+
+    if "log{" in word:
+        return re.sub("log{(\d+|\w+)}", r"\\log_{\g<1>}", word)
+
+    if "ln{" in word:
+        return re.sub("ln{", r"\\ln{", word)
     
     coordinates = re.findall("[\(|\[][-\d\s\D]+,[-\d\s\D]+[\)|\]]",word)
     if coordinates:
@@ -126,7 +132,7 @@ def handle_word(word):
     word = re.sub(r"sqrt\*", r"sqrt", word)
     word = re.sub(r"abs\*", r"abs", word)
     word = re.sub(r"pm\*", r"pm", word)
-    word = re.sub('\(\-', '(__', word)
+    word = re.sub('\(\-', '(negneg', word)
 
     word = py2tex(word, simplify_output=False)
     
@@ -134,6 +140,6 @@ def handle_word(word):
     for item in scientific_notation:
         word = re.sub(item[0] + "\{" + item[1] + "\}", item[0] + "\\\\times {" + item[1] + "}", word)
     word = re.sub(r"\\operatorname{(\w*|\d*)pm}\\left\(a\\right\)(\\times)?", r"\g<1>\\pm ", word)
-    word = re.sub(r"__(\d|\w)", r"\\left(-\g<1>\\right)", word) #handles first negative sign following opening parenthesis
+    word = re.sub(r"negneg(\d|\w)", r"\\left(-\g<1>\\right)", word) #handles first negative sign following opening parenthesis
     
     return word[2:-2]
