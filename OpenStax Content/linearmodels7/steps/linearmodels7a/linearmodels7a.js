@@ -1,0 +1,1 @@
+import hints from "./linearmodels7a-index.js"; const step = {id: "linearmodels7a", stepAnswer: ["0"], problemType: "TextBox", stepTitle: "Find a reasonable domain and range for the function P.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

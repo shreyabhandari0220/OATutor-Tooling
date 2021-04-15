@@ -1,0 +1,1 @@
+import hints from "./linearmodels9a-index.js"; const step = {id: "linearmodels9a", stepAnswer: ["0"], problemType: "TextBox", stepTitle: "If the function P is graphed, find and interpret the slope of the function.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
