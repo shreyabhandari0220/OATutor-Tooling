@@ -3,7 +3,25 @@ import re
 
 from process_text import preprocess_text_to_latex
 
-def create_problem_js(name,title,body, images=[]):
+def create_variabilization(variabilization):
+    if variabilization:
+        variabilization = re.sub('\s*', '', variabilization)
+        var_list = variabilization.split("\n")
+        var_str = ""
+        for var in var_list:
+            name, field = var.split(":")
+            fields = field[1:-1].split(",")  #get rid of brackets
+            var_str += name + ": ["
+            for f in fields:
+                var_str += "\"" + f + "\", "
+            var_str = var_str[:-2]
+            var_str += "], "
+        var_str = "{" + var_str[:-2] + "}"
+    else:
+        var_str = "{}"
+    return var_str
+
+def create_problem_js(name,title,body,images=[],variabilization=''):
     if type(body) == float:
         body= ""
     for image in images:
@@ -12,6 +30,8 @@ def create_problem_js(name,title,body, images=[]):
         title = ""
     title, title_latex = preprocess_text_to_latex(title)
     body, body_latex = preprocess_text_to_latex(body)
+    
+    var_str = create_variabilization(variabilization)
 
     # contents = "import React from 'react'; import { InlineMath } from 'react-katex';" + "import steps from \"./{0}-index.js\"; const problem = ".format(name) + "{" + "id: \"{0}\", ".format(name)
     contents = "import steps from \"./{0}-index.js\"; const problem = ".format(name) + "{" + "id: \"{0}\", ".format(name)
@@ -25,20 +45,24 @@ def create_problem_js(name,title,body, images=[]):
     # else:
     contents += "body: \"{0}\", ".format(body)
     
-    contents +=  "steps: steps, }; export { problem };"
+    contents +=  "steps: steps, "
+    contents += "variabilization: {0}".format(var_str)
+    contents += "}; export { problem };"
     
     contents = re.sub("(\.js){2,}", ".js", contents) #To account for .js.js or .js.js.js
     
     return contents
 
 
-def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhints=[], hint_dic={}):
+def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhints=[], hint_dic={}, variabilization=''):
     if type(body) == float:
         body = ""
     if type(title) == float:
         title = ""
     title, title_latex = preprocess_text_to_latex(title, True)
     body, body_latex = preprocess_text_to_latex(body, True)
+
+    var_str = create_variabilization(variabilization)
     
     hint_id = step + "-" + hint_id
     for image in images:
@@ -64,6 +88,9 @@ def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhint
     
     if len(subhints) > 0:
         hint_obj += ", subHints: {0}".format(subhint_text)
+    
+    hint_obj += ", variabilization: {0}".format(var_str)
+
     hint_obj = "{" + hint_obj + "}"
     return hint_obj, hint_id
 
@@ -81,7 +108,7 @@ def handle_answer_type(answer_type):
         raise Exception('answer type not correct' + answer_type)
 
 
-def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, dependencies=0.0, images="", subhints=[], hint_dic={}):
+def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, dependencies=0.0, images="", subhints=[], hint_dic={}, variabilization=""):
     if type(body) == float:
         body = ""
     if type(title) == float:
@@ -89,6 +116,8 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
     
     title, title_latex = preprocess_text_to_latex(title, True)
     body, body_latex = preprocess_text_to_latex(body, True)
+
+    var_str = create_variabilization(variabilization)
 
     # getting rid of timestamp format for fractions
     if len(answer) > 8 and answer[-8:] == '00:00:00':
@@ -136,11 +165,13 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
         subhint_text = "[" + subhint_text + "]"    
         scaff_obj += ", subHints: {0}".format(subhint_text)
 
+    scaff_obj += ", variabilization: {0}".format(var_str)
+
     scaff_obj = "{" + scaff_obj + "}"
     return scaff_obj, scaffold_id
 
 
-def create_step(name, title, body, answer, answer_type, number, choices="", image=""):
+def create_step(name, title, body, answer, answer_type, number, choices="", image="", variabilization=""):
     step_id = name + chr(ord('a')+number-1)
     if type(body) == float:
         body = ""
@@ -149,6 +180,8 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
     
     title, title_latex = preprocess_text_to_latex(title)
     body, body_latex = preprocess_text_to_latex(body)
+
+    var_str = create_variabilization(variabilization)
 
     # getting rid of timestamp format for fractions
     if len(answer) > 8 and answer[-8:] == '00:00:00':
@@ -186,7 +219,10 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
     
     if type(choices) == str:
         step += ", choices: " + str(choices)
-    step += ", answerType: \"{0}\", hints: hints".format(answer_type) + "}; export {step};"
+    step += ", answerType: \"{0}\", hints: hints".format(answer_type)
+    step += ", variabilization: {0}".format(var_str)
+    step += "}; export {step};"
+
     return step
 
 # hinty = create_hint("pythag1a", "h1", "Net Force", "Just do x+y", dependencies="h1,h2", images=["figure1"],hint_dic={"h1": "pythag1a-h1", "h2":"pythag1a-h2"})

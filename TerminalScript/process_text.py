@@ -25,6 +25,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
     text = re.sub("\s\\\\\"\s", " ", text) #To account for quoted LaTeX expressions.
     text = re.sub("\\\\pipe", "|", text) #To account for literal | in mc answers
     text = re.sub(r"\\/", r"\\\\slash\\\\", text) #To account for literal /
+    text = re.sub(r"@{(\d+|\w+)}", r"aaa\g<1>ttt", text)
 
     # for operator in supported_operators:
     #     text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
@@ -93,6 +94,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
                 pass
     text = " ".join(words)
     text = re.sub(r"\\\\slash\\\\", "/", text)
+    text = re.sub(r"aaa(\w+|\d+)ttt", r"@{\g<1>}", text)
     return text, latex
 
 def handle_word(word):

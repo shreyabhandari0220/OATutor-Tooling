@@ -64,7 +64,11 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
         table = worksheet.get_all_values()
         df = pd.DataFrame(table[1:], columns=table[0]) 
         ##Only keep columns we need 
-        df = df[["Problem Name","Row Type","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
+        variabilization = 'Variabilization' in df.columns
+        if variabilization:
+            df = df[["Problem Name","Row Type","Variabilization","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
+        else:
+            df = df[["Problem Name","Row Type","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
         df = df.astype(str)
         df.replace('', 0.0, inplace = True)
 
@@ -77,7 +81,11 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
             print(excel_path, sheet_name)
             return
         ##Only keep columns we need 
-        df = df[["Problem Name","Row Type","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
+        variabilization = 'Variabilization' in df.columns
+        if variabilization:
+            df = df[["Problem Name","Row Type","Variabilization","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
+        else:
+            df = df[["Problem Name","Row Type","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
         df = df.astype(str)
         df.replace('nan', float(0.0), inplace=True)
 
@@ -165,7 +173,10 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
                         step_images, num = save_images(row["Images (space delimited)"], figure_path, int(images))
                         images += num
                     choices = type(row["mcChoices"]) == str and row["mcChoices"]
-                    step_file.write(create_step(row['Problem Name'], row['Title'], row["Body Text"], row["Answer"], row["answerType"], step_count, choices, step_images))
+                    if variabilization:
+                        step_file.write(create_step(row['Problem Name'], row['Title'], row["Body Text"], row["Answer"], row["answerType"], step_count, choices, step_images, variabilization=row["Variabilization"]))
+                    else:
+                        step_file.write(create_step(row['Problem Name'], row['Title'], row["Body Text"], row["Answer"], row["answerType"], step_count, choices, step_images))
                     step_file.close()
                     
                     
@@ -182,16 +193,28 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
                         images += num
                     hint_id = row['Parent'] + "-" + row['HintID']
                     if row_type == 'hint':
-                        subhint, subhint_id = create_hint(current_step_name, hint_id, row["Title"], row["Body Text"], row["Dependency"], hint_images, hint_dic=hint_dic)
+                        if variabilization:
+                            subhint, subhint_id = create_hint(current_step_name, hint_id, row["Title"], row["Body Text"], row["Dependency"], hint_images, hint_dic=hint_dic, variabilization=row["Variabilization"])
+                        else:
+                            subhint, subhint_id = create_hint(current_step_name, hint_id, row["Title"], row["Body Text"], row["Dependency"], hint_images, hint_dic=hint_dic)
                     else:
-                        subhint, subhint_id = create_scaffold(current_step_name, hint_id, row["Title"], row["Body Text"], row["answerType"], row["Answer"], row["mcChoices"], row["Dependency"], hint_images, hint_dic=hint_dic)
+                        if variabilization:
+                            subhint, subhint_id = create_scaffold(current_step_name, hint_id, row["Title"], row["Body Text"], row["answerType"], row["Answer"], row["mcChoices"], row["Dependency"], hint_images, hint_dic=hint_dic, variabilization=row["Variabilization"])
+                        else:   
+                            subhint, subhint_id = create_scaffold(current_step_name, hint_id, row["Title"], row["Body Text"], row["answerType"], row["Answer"], row["mcChoices"], row["Dependency"], hint_images, hint_dic=hint_dic)
                     hint_dic[row["HintID"]] = subhint_id
                     current_subhints.append(subhint)
                     tutoring.pop()
                     if previous_tutor['Row Type'] == 'hint':
-                        previous, hint_id = create_hint(current_step_name, previous_tutor["HintID"], previous_tutor["Title"], previous_tutor["Body Text"], previous_tutor["Dependency"], previous_images, subhints=current_subhints, hint_dic=hint_dic)
+                        if variabilization:
+                            previous, hint_id = create_hint(current_step_name, previous_tutor["HintID"], previous_tutor["Title"], previous_tutor["Body Text"], previous_tutor["Dependency"], previous_images, subhints=current_subhints, hint_dic=hint_dic, variabilization=previous_tutor["Variabilization"])
+                        else:
+                            previous, hint_id = create_hint(current_step_name, previous_tutor["HintID"], previous_tutor["Title"], previous_tutor["Body Text"], previous_tutor["Dependency"], previous_images, subhints=current_subhints, hint_dic=hint_dic)
                     else:
-                        previous, hint_id = create_scaffold(current_step_name, previous_tutor["HintID"], previous_tutor["Title"], previous_tutor["Body Text"], previous_tutor["answerType"], previous_tutor["Answer"], previous_tutor["mcChoices"], previous_tutor["Dependency"], previous_images, subhints=current_subhints, hint_dic=hint_dic)
+                        if variabilization:
+                            previous, hint_id = create_scaffold(current_step_name, previous_tutor["HintID"], previous_tutor["Title"], previous_tutor["Body Text"], previous_tutor["answerType"], previous_tutor["Answer"], previous_tutor["mcChoices"], previous_tutor["Dependency"], previous_images, subhints=current_subhints, hint_dic=hint_dic, variabilization=previous_tutor["Variabilization"])
+                        else:
+                            previous, hint_id = create_scaffold(current_step_name, previous_tutor["HintID"], previous_tutor["Title"], previous_tutor["Body Text"], previous_tutor["answerType"], previous_tutor["Answer"], previous_tutor["mcChoices"], previous_tutor["Dependency"], previous_images, subhints=current_subhints, hint_dic=hint_dic)
                     tutoring.append(previous)
                 elif row_type == "hint" or row_type == "scaffold":
                     tutor_count += 1
@@ -202,8 +225,11 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
                             if not images:
                                 figure_path = create_fig_dir(path)
                             hint_images, num = save_images(row["Images (space delimited)"], figure_path, int(images))
-                            images += num                        
-                        hint, full_id = create_hint(current_step_name, row["HintID"], row["Title"], row["Body Text"], row["Dependency"], hint_images, hint_dic=hint_dic)
+                            images += num   
+                        if variabilization:
+                            hint, full_id = create_hint(current_step_name, row["HintID"], row["Title"], row["Body Text"], row["Dependency"], hint_images, hint_dic=hint_dic, variabilization=row["Variabilization"])
+                        else:                     
+                            hint, full_id = create_hint(current_step_name, row["HintID"], row["Title"], row["Body Text"], row["Dependency"], hint_images, hint_dic=hint_dic)
                         hint_dic[row["HintID"]] = full_id
                         tutoring.append(hint)
                         previous_tutor = row
@@ -215,7 +241,10 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
                                 figure_path = create_fig_dir(path)
                             scaff_images, num = save_images(row["Images (space delimited)"], figure_path, int(images))
                             images += num
-                        scaff, full_id = create_scaffold(current_step_name, row["HintID"], row["Title"], row["Body Text"], row["answerType"], row["Answer"], row["mcChoices"], row["Dependency"], scaff_images, hint_dic=hint_dic)
+                        if variabilization:
+                            scaff, full_id = create_scaffold(current_step_name, row["HintID"], row["Title"], row["Body Text"], row["answerType"], row["Answer"], row["mcChoices"], row["Dependency"], scaff_images, hint_dic=hint_dic, variabilization=row["Variabilization"])
+                        else:
+                            scaff, full_id = create_scaffold(current_step_name, row["HintID"], row["Title"], row["Body Text"], row["answerType"], row["Answer"], row["mcChoices"], row["Dependency"], scaff_images, hint_dic=hint_dic)
                         hint_dic[row["HintID"]] = full_id
                         tutoring.append(scaff)
                         previous_tutor = row
@@ -235,7 +264,10 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
                 figure_path = create_fig_dir(path)
             problem_images, num = save_images(problem_row["Images (space delimited)"], figure_path, int(images))
             images += num
-        prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_images)
+        if variabilization:
+            prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_images, variabilization=problem_row["Variabilization"])
+        else:
+            prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_images)
         re.sub("[\.js]{2,}", ".js", prob_js)
         file = open(problem_js, "w")
         file.write(prob_js)
