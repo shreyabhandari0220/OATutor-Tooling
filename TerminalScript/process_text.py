@@ -136,7 +136,7 @@ def handle_word(word):
     word = re.sub(r"pm\*", r"pm", word)
     word = re.sub('\(\-', '(negneg', word)
 
-    word = py2tex(word, simplify_output=False)
+    word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
     
     #Here do the substitutions for the things that py2tex can't handle
     for item in scientific_notation:
