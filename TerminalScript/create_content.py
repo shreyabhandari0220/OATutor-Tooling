@@ -102,7 +102,7 @@ def handle_answer_type(answer_type):
         return "string", "MultipleChoice"
     elif answer_type == "string":
         return answer_type, "TextBox"
-    elif answer_type == "algebra" or answer_type == "numeric":
+    elif answer_type == "algebra" or answer_type == "algebraic" or answer_type == "numeric":
         return "arithmetic", "TextBox"
     else:
         raise Exception('answer type not correct' + answer_type)
