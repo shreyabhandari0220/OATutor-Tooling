@@ -6,7 +6,7 @@ from pytexit import py2tex
 supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_"]
 supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{"]
 answer_only_operators = ["-"]
-replace = {"⋅" : "*", "−" : "-", "^" : "**", "𝑥" : "x", "𝑎" : "a", "𝑏" : "b", "𝑦" : "y", "–": "-", "≥" : ">=", "≤": "<=", "∪" : "U"}
+replace = {"⋅" : "*", "−" : "-", "^" : "**", "𝑥" : "x", "𝑎" : "a", "𝑏" : "b", "𝑦" : "y", "–": "-", "≥" : ">=", "≤": "<=", "∪" : "U", "π" : "pi"}
 conditionally_replace = {"[" : "(", "]" : ")"}
 regex = re.compile("|".join(map(re.escape, replace.keys())))
 
