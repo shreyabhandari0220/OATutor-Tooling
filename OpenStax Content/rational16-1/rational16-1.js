@@ -1,0 +1,1 @@
+import steps from "./rational16-1-index.js"; const problem = {id: "rational16-1", title: "Finding verical asymptotes and removable discontinuities", body: "", steps: steps, variabilization: {}}; export { problem };

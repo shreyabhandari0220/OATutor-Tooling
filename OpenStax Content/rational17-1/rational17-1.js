@@ -1,0 +1,1 @@
+import steps from "./rational17-1-index.js"; const problem = {id: "rational17-1", title: "Finding vertical asymptotes and removable discontinuities", body: "", steps: steps, variabilization: {}}; export { problem };

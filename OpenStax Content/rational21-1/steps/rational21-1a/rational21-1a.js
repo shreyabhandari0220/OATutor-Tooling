@@ -1,0 +1,1 @@
+import hints from "./rational21-1a-index.js"; const step = {id: "rational21-1a", stepAnswer: ["(0,5/4),(-5,0)"], problemType: "TextBox", stepTitle: "$$f(x)=\\frac{x+\\left(5\\right)}{x^2+\\left(4\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

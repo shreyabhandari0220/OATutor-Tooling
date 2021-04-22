@@ -1,0 +1,1 @@
+import steps from "./rational18-1-index.js"; const problem = {id: "rational18-1", title: "Finding X and Y intercepts of rational functions", body: "", steps: steps, variabilization: {}}; export { problem };

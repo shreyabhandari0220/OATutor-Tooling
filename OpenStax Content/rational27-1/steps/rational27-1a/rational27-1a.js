@@ -1,0 +1,1 @@
+import hints from "./rational27-1a-index.js"; const step = {id: "rational27-1a", stepAnswer: ["2x+4"], problemType: "TextBox", stepTitle: "$$f(x)=\\frac{\\left(4\\right) x^2-\\left(10\\right)}{\\left(2\\right) x-\\left(4\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
