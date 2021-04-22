@@ -2,6 +2,10 @@ import re
 import sys
 sys.path.insert(0, "../textToLatex")
 from pytexit import py2tex
+import io
+
+sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
+sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
 
 supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_"]
 supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{"]
