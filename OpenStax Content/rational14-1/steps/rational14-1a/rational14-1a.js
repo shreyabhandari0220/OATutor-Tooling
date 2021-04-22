@@ -1,0 +1,1 @@
+import hints from "./rational14-1a-index.js"; const step = {id: "rational14-1a", stepAnswer: ["x=-2, x=1"], problemType: "TextBox", stepTitle: "$$k(x)=$$ $$\\left(5\\right)+\\frac{\\left(2\\right) x^2}{\\left(2\\right)-x-x^2}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

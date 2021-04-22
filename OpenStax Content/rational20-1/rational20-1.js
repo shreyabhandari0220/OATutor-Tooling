@@ -1,0 +1,1 @@
+import steps from "./rational20-1-index.js"; const problem = {id: "rational20-1", title: "Identifying Horizontal and Vertical Asymptotes", body: "Find the vertical and horizontal asymptotes of the function:", steps: steps, variabilization: {}}; export { problem };

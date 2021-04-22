@@ -1,0 +1,1 @@
+import steps from "./rational7-1-index.js"; const problem = {id: "rational7-1", title: "Analyzing Rational Functions #", body: "Find the domain, vertical asymptotes, and horizontal asymptotes of the function.", steps: steps, variabilization: {}}; export { problem };
