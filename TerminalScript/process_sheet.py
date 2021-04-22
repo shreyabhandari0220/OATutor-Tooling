@@ -5,6 +5,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 # import jsbeautifier
 import os
 import urllib.request
+import requests
 import json
 import re
 import sys
@@ -36,7 +37,12 @@ def save_images(images,path, num):
         num += 1
         name = "figure" + str(num) + ".gif"
         names.append(name)
-        urllib.request.urlretrieve(i, path + "/" + name)
+        try:
+            urllib.request.urlretrieve(i, path + "/" + name)
+        except urllib.error.HTTPError:
+            r = requests.get(i)
+            with open(path + "/" + name, 'wb') as outfile:
+                outfile.write(r.content)
     return names, num
 
 

@@ -1,0 +1,1 @@
+import steps from "./rational23-1-index.js"; const problem = {id: "rational23-1", title: "Finding the Intercepts of a Rational Function", body: "Find the x- and y-intercepts of the function.", steps: steps, variabilization: {}}; export { problem };
