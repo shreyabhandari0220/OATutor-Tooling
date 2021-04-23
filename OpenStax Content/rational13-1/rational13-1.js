@@ -1,1 +1,0 @@
-import steps from "./rational13-1-index.js"; const problem = {id: "rational13-1", title: "Finding the Domain of Rational Functions", body: "For the following exercises, find the domain of the rational functions.", steps: steps, variabilization: {}}; export { problem };

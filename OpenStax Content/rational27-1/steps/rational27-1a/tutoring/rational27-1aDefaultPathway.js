@@ -1,1 +1,0 @@
-var hints = [{id: "rational27-1a-h1", type: "hint", dependencies: [], title: "Dividing the Polynomials", text: "We can divide the polynomials using synthetic division as shown in the image (from Emath). The quotient excluding the remainder is $$\\left(2\\right) x+\\left(4\\right)$$, which is our slant asymptote.\n##figure1.gif##", variabilization: {}}, ]; export {hints};
