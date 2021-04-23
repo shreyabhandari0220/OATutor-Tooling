@@ -69,11 +69,11 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
         url_df = get_all_url()
         for index, row in url_df.iterrows():
             lesson_plan = []
-            course_name, book_url = row['Book'], row['URL']
+            course_name, book_url, latex = row['Book'], row['URL'], row['Latex']
             book = get_sheet(book_url)
             sheet_names = [sheet.title for sheet in book.worksheets() if sheet.title[:2] != '!!']
             for sheet in sheet_names:
-                skills = process_sheet(book_url, sheet, default_path, 'online')
+                skills = process_sheet(book_url, sheet, default_path, 'online',latex)
                 lesson_plan.append(create_lesson_plan(sheet, skills))
                 for skill in skills:
                     bkt_params.append(create_bkt_params(skill))
