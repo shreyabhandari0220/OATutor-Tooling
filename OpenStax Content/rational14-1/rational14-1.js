@@ -1,1 +1,0 @@
-import steps from "./rational14-1-index.js"; const problem = {id: "rational14-1", title: "Identifying Vertical Asymptotes", body: "", steps: steps, variabilization: {}}; export { problem };
