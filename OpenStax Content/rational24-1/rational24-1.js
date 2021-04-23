@@ -1,1 +1,0 @@
-import steps from "./rational24-1-index.js"; const problem = {id: "rational24-1", title: "Finding the Intercepts of a Rational Function", body: "Find the x- and y-intercepts of the function.", steps: steps, variabilization: {}}; export { problem };
