@@ -9,6 +9,7 @@ import requests
 import json
 import re
 import sys
+import time
 
 pd.options.display.html.use_mathjax = False
 
@@ -21,7 +22,6 @@ URL_SPREADSHEET_KEY = '1yyeDxm52Zd__56Y0T3CdoeyXvxHVt0ITDKNKWIoIMkU'
 def get_sheet(spreadsheet_key):
     scope = ['https://spreadsheets.google.com/feeds'] 
     credentials = ServiceAccountCredentials.from_json_keyfile_name('../sunlit-shelter-282118-8847831293f8.json', scope) 
-    # credentials = ServiceAccountCredentials.from_json_keyfile_name('../sunlit-shelter-282118-8847831293f8.json', scope) 
     gc = gspread.authorize(credentials)
     book = gc.open_by_key(spreadsheet_key) 
     return book
@@ -37,12 +37,9 @@ def save_images(images,path, num):
         num += 1
         name = "figure" + str(num) + ".gif"
         names.append(name)
-        try:
-            urllib.request.urlretrieve(i, path + "/" + name)
-        except urllib.error.HTTPError:
-            r = requests.get(i)
-            with open(path + "/" + name, 'wb') as outfile:
-                outfile.write(r.content)
+        r = requests.get(i)
+        with open(path + "/" + name, 'wb') as outfile:
+            outfile.write(r.content)
     return names, num
 
 
@@ -63,6 +60,118 @@ def get_all_url():
     df.replace('', 0.0, inplace = True)
     return df
 
+def next_available_row(worksheet):
+    str_list = list(filter(None, worksheet.col_values(1)))
+    return str(len(str_list)+1)
+
+def validate_image(image):
+    try:
+        requests.get(image)
+    except:
+        raise Exception("Image retrieval error")
+
+def validate_question(question, variabilization):
+    result_problems = ""
+    step_count = tutor_count = 0
+    current_step_path = current_step_name = step_reg_js = step_index_js = default_pathway_js = ""
+    images = False
+    figure_path = ""
+    problem_row = question.iloc[0]
+    tutoring = []
+    current_subhints = []
+    previous_tutor = ""
+    previous_images = ""
+    hint_dic = {}
+    problem_name = question.iloc[0]['Problem Name']
+
+    try:
+        problem_skills = re.split("\||,", question.iloc[0]["openstax KC"])
+        problem_skills = ["_".join(skill.lower().split()).replace("-", "_") for skill in problem_skills]
+    except:
+        print("Problem skills empty for: ", problem_name)
+        raise Exception("Problem Skills broken")
+
+    for index, row in question.iterrows():
+        #checks row type 
+        row_type = row['Row Type'].strip().lower()
+        if index != 0:
+            if row_type == "step":
+                step_images = ""
+                #checks images and creates the figures path if necessary
+                if type(row["Images (space delimited)"]) == str:
+                    validate_image(row["Images (space delimited)"])
+                choices = type(row["mcChoices"]) == str and row["mcChoices"]
+                if variabilization:
+                    create_step(row['Problem Name'], row['Title'], row["Body Text"], row["Answer"], row["answerType"], step_count, choices, "", variabilization=row["Variabilization"])
+                else:
+                    create_step(row['Problem Name'], row['Title'], row["Body Text"], row["Answer"], row["answerType"], step_count, choices, "")
+            
+            elif (row_type == 'hint' or row_type == "scaffold") and type(row['Parent']) != float:
+                hint_images = ""
+                if type(row["Images (space delimited)"]) == str and type(row["Images (space delimited)"]) != np.float64:
+                    validate_image(row["Images (space delimited)"])
+                hint_id = row['Parent'] + "-" + row['HintID']
+                if row_type == 'hint':
+                    if variabilization:
+                        subhint, subhint_id = create_hint(current_step_name, hint_id, row["Title"], row["Body Text"], row["Dependency"], hint_images, hint_dic=hint_dic, variabilization=row["Variabilization"])
+                    else:
+                        subhint, subhint_id = create_hint(current_step_name, hint_id, row["Title"], row["Body Text"], row["Dependency"], hint_images, hint_dic=hint_dic)
+                else:
+                    if variabilization:
+                        subhint, subhint_id = create_scaffold(current_step_name, hint_id, row["Title"], row["Body Text"], row["answerType"], row["Answer"], row["mcChoices"], row["Dependency"], hint_images, hint_dic=hint_dic, variabilization=row["Variabilization"])
+                    else:   
+                        subhint, subhint_id = create_scaffold(current_step_name, hint_id, row["Title"], row["Body Text"], row["answerType"], row["Answer"], row["mcChoices"], row["Dependency"], hint_images, hint_dic=hint_dic)
+                hint_dic[row["HintID"]] = subhint_id
+                current_subhints.append(subhint)
+                tutoring.pop()
+                if previous_tutor['Row Type'] == 'hint':
+                    if variabilization:
+                        previous, hint_id = create_hint(current_step_name, previous_tutor["HintID"], previous_tutor["Title"], previous_tutor["Body Text"], previous_tutor["Dependency"], previous_images, subhints=current_subhints, hint_dic=hint_dic, variabilization=previous_tutor["Variabilization"])
+                    else:
+                        previous, hint_id = create_hint(current_step_name, previous_tutor["HintID"], previous_tutor["Title"], previous_tutor["Body Text"], previous_tutor["Dependency"], previous_images, subhints=current_subhints, hint_dic=hint_dic)
+                else:
+                    if variabilization:
+                        previous, hint_id = create_scaffold(current_step_name, previous_tutor["HintID"], previous_tutor["Title"], previous_tutor["Body Text"], previous_tutor["answerType"], previous_tutor["Answer"], previous_tutor["mcChoices"], previous_tutor["Dependency"], previous_images, subhints=current_subhints, hint_dic=hint_dic, variabilization=previous_tutor["Variabilization"])
+                    else:
+                        previous, hint_id = create_scaffold(current_step_name, previous_tutor["HintID"], previous_tutor["Title"], previous_tutor["Body Text"], previous_tutor["answerType"], previous_tutor["Answer"], previous_tutor["mcChoices"], previous_tutor["Dependency"], previous_images, subhints=current_subhints, hint_dic=hint_dic)
+                tutoring.append(previous)
+
+            elif row_type == "hint" or row_type == "scaffold":
+                tutor_count += 1
+                current_subhints = []
+                if row_type == "hint":
+                    hint_images = ""
+                    if type(row["Images (space delimited)"]) == str:
+                        validate_image(row["Images (space delimited)"])
+                    if variabilization:
+                        hint, full_id = create_hint(current_step_name, row["HintID"], row["Title"], row["Body Text"], row["Dependency"], hint_images, hint_dic=hint_dic, variabilization=row["Variabilization"])
+                    else:                     
+                        hint, full_id = create_hint(current_step_name, row["HintID"], row["Title"], row["Body Text"], row["Dependency"], hint_images, hint_dic=hint_dic)
+                    hint_dic[row["HintID"]] = full_id
+                    tutoring.append(hint)
+                    previous_tutor = row
+                    previous_images = hint_images
+                if row_type == "scaffold":
+                    scaff_images = ""
+                    if type(row["Images (space delimited)"]) == str:
+                        validate_image(row["Images (space delimited)"])
+                    if variabilization:
+                        scaff, full_id = create_scaffold(current_step_name, row["HintID"], row["Title"], row["Body Text"], row["answerType"], row["Answer"], row["mcChoices"], row["Dependency"], scaff_images, hint_dic=hint_dic, variabilization=row["Variabilization"])
+                    else:
+                        scaff, full_id = create_scaffold(current_step_name, row["HintID"], row["Title"], row["Body Text"], row["answerType"], row["Answer"], row["mcChoices"], row["Dependency"], scaff_images, hint_dic=hint_dic)
+                    hint_dic[row["HintID"]] = full_id
+                    tutoring.append(scaff)
+                    previous_tutor = row
+                    previous_images = scaff_images
+        
+        problem_images = ""
+        if type(problem_row["Images (space delimited)"]) == str:
+            validate_image(problem_row["Images (space delimited)"])
+        if variabilization:
+            prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_images, variabilization=problem_row["Variabilization"])
+        else:
+            prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_images)
+
 def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
     if is_local == "online":
         book = get_sheet(spreadsheet_key)
@@ -77,6 +186,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
             df = df[["Problem Name","Row Type","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
         df = df.astype(str)
         df.replace('', 0.0, inplace = True)
+        df.replace(' ', 0.0, inplace = True)
+        
 
     elif is_local == "local":
         excel_path = '../Excel/'
@@ -102,6 +213,12 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
     df["Title"] = df["Title"].str.replace("\"", "\\\"")
     df["openstax KC"] = df["openstax KC"].str.replace("\'", "\\\'")
     df["KC"] = df["KC"].str.replace("\'", "\\\'")
+
+    scope = ['https://spreadsheets.google.com/feeds'] 
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('../sunlit-shelter-282118-8847831293f8.json', scope) 
+    gc = gspread.authorize(credentials)
+    error_book = gc.open_by_key('1-QliKCPEEbq8dNI7IUAkUF_Ws6mbB738g64QaGMdN7o')
+    error_worksheet = error_book.worksheet('Errors')
     
     
     skillModelJS_lines = []
@@ -111,6 +228,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
     skillModelJS_file = open(skillModelJS_path,"r", encoding="utf-8")
     break_index = 0
     line_counter = 0
+    error_data = []
     for line in skillModelJS_file:
         if "Start Inserting" in line:
             break_index = line_counter
@@ -120,10 +238,17 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
     questions = [x for _, x in df.groupby(df['Problem Name'])]
     
     for question in questions:
-        #gets the initial name through the first row problem name 
         problem_name = question.iloc[0]['Problem Name']
+
         try:
-            #problem_skills = question.iloc[0]["openstax KC"].split(",")
+            validate_question(question, variabilization)
+        except Exception as e:
+            error = [sheet_name, problem_name, str(e), time.asctime(time.localtime(time.time()))]
+            error_data.append(error)
+            continue
+
+        #gets the initial name through the first row problem name 
+        try:
             problem_skills = re.split("\||,", question.iloc[0]["openstax KC"])
             problem_skills = ["_".join(skill.lower().split()).replace("-", "_") for skill in problem_skills]
         except:
@@ -154,7 +279,6 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
             row_type = row['Row Type'].strip().lower()
             if index != 0:
                 if row_type == "step":
-                    #Look into this tomorrow it might not be taking the last step not sure what this does 
                     if step_count > 0:
                         #writes to step 
                         to_write = create_default_pathway(tutoring)
@@ -285,6 +409,12 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local):
         for item in new_skillModelJS_lines:
             f.write(item)
     skills_unformatted = ["_".join(skill.lower().split()) for skill in skills_unformatted]
+
+    # Update errors on the error sheet
+    next_row = next_available_row(error_worksheet)
+    end_row = str(int(next_row) + len(error_data) - 1)
+    error_worksheet.update('A{}:D{}'.format(next_row, end_row), error_data)
+
     return list(set(skills_unformatted))
 
 if __name__ == '__main__':

@@ -73,7 +73,7 @@ def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhint
         except Exception as e:
             print("Key error")
             print(step, hint_id, title, body)
-            raise Exception("hint key error")
+            raise Exception("Hint key error")
     else:
         dependencies = "[]"
     
@@ -104,8 +104,10 @@ def handle_answer_type(answer_type):
         return answer_type, "TextBox"
     elif answer_type == "algebra" or answer_type == "algebraic" or answer_type == "numeric":
         return "arithmetic", "TextBox"
+    elif type(answer_type) != str:
+        raise Exception("Answer type is missing")
     else:
-        raise Exception('answer type not correct' + answer_type)
+        raise Exception('Answer type not correct' + answer_type)
 
 
 def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, dependencies=0.0, images="", subhints=[], hint_dic={}, variabilization=""):
@@ -120,9 +122,12 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
     var_str = create_variabilization(variabilization)
 
     # getting rid of timestamp format for fractions
-    if len(answer) > 8 and answer[-8:] == '00:00:00':
-        li = re.split('-| ', answer)
-        answer = str(int(li[1])) + '/' + str(int(li[2]))
+    try:
+        if len(answer) > 8 and answer[-8:] == '00:00:00':
+            li = re.split('-| ', answer)
+            answer = str(int(li[1])) + '/' + str(int(li[2]))
+    except TypeError:
+        raise Exception("Scaffold answer missing")
     
     scaffold_id = step + "-" + hint_id
     for image in images:
@@ -184,9 +189,13 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
     var_str = create_variabilization(variabilization)
 
     # getting rid of timestamp format for fractions
-    if len(answer) > 8 and answer[-8:] == '00:00:00':
-        li = re.split('-| ', answer)
-        answer = str(int(li[1])) + '/' + str(int(li[2]))
+    try:
+        if len(answer) > 8 and answer[-8:] == '00:00:00':
+            li = re.split('-| ', answer)
+            answer = str(int(li[1])) + '/' + str(int(li[2]))
+    except TypeError:
+        raise Exception("Step answer missing")
+
     new_answer, answer_latex = preprocess_text_to_latex(answer)
 
     for img in image:
@@ -200,16 +209,7 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
         answer = re.sub("\*\*", "^", answer)
 
     step =  "import hints from \"./{0}-index.js\"; const step = ".format(step_id) + "{" + "id: \"{0}\", stepAnswer: [\"{1}\"], problemType: \"{2}\"".format(step_id, answer, problem_type)
-    
-    # if title_latex or body_latex:
-    #     step = "import React from 'react'; import { InlineMath } from 'react-katex';" + step
-    # if title_latex:
-    #     step += ", stepTitle: <div> " + title + "</div>"
-    # else:
     step += ", stepTitle: \"{0}\"".format(title)
-    # if body_latex:
-    #     step += ", stepBody: <div> " + body + "</div>"
-    # else:
     step += ", stepBody: \"{0}\"".format(body)
     
     if answer_latex:
@@ -224,10 +224,3 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
     step += "}; export {step};"
 
     return step
-
-# hinty = create_hint("pythag1a", "h1", "Net Force", "Just do x+y", dependencies="h1,h2", images=["figure1"],hint_dic={"h1": "pythag1a-h1", "h2":"pythag1a-h2"})
-# print(hinty[0])
-
-# print(create_scaffold("slope2a", "h1", "Slope Example (Part 1)", "what is the answer to x**2+5", "mc", "3", mc_answers="3**2|4**2|5**2|6**2", images=["figure1.gif"]))
-
-# print(create_step("slope3", "What is the slope of the line graphed below 2**2?", "", "C: 3/2", "mc", 1, choices="a|b|c|d", image="slope3.jpg"))
