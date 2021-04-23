@@ -1,1 +1,0 @@
-var hints = [{id: "rational19-1a-h1", type: "scaffold", problemType: "TextBox", answerType: "arithmetic", hintAnswer: ["1/10"], dependencies: [], title: "As t goes to $$\\infty$$, what value does C(t) approach?", text: "", variabilization: {}}, ]; export {hints};

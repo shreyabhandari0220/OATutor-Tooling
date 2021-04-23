@@ -1,1 +1,0 @@
-import steps from "./rational29-1-index.js"; const problem = {id: "rational29-1", title: "Finding the Slant Asymptote of a Function", body: "Find the slant asymptote of the function.", steps: steps, variabilization: {}}; export { problem };
