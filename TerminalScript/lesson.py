@@ -72,7 +72,6 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
             course_name, book_url = row['Book'], row['URL']
             book = get_sheet(book_url)
             sheet_names = [sheet.title for sheet in book.worksheets() if sheet.title[:2] != '!!']
-            # sheet_names = [sheet.title for sheet in book.worksheets() if sheet.title[:2] != '!!' and sheet.title[0] != '4' and sheet.title[0] != '5']
             for sheet in sheet_names:
                 skills = process_sheet(book_url, sheet, default_path, 'online')
                 lesson_plan.append(create_lesson_plan(sheet, skills))
