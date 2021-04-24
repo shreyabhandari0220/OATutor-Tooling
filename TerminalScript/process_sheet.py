@@ -211,6 +211,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex):
 
     df["Body Text"] = df["Body Text"].str.replace("\"", "\\\"")
     df["Title"] = df["Title"].str.replace("\"", "\\\"")
+    df["Body Text"] = df["Body Text"].str.replace("\\n", "\\\\n")
+    df["Title"] = df["Title"].str.replace("\\n", "\\\\n")
     df["openstax KC"] = df["openstax KC"].str.replace("\'", "\\\'")
     df["KC"] = df["KC"].str.replace("\'", "\\\'")
 
@@ -424,4 +426,5 @@ if __name__ == '__main__':
     is_local = sys.argv[1]
     sheet_key = sys.argv[2]
     sheet_name = sys.argv[3]
+    latex = sys.argv[4]
     process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex)

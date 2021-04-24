@@ -15,24 +15,30 @@ conditionally_replace = {"[" : "(", "]" : ")"}
 regex = re.compile("|".join(map(re.escape, replace.keys())))
 
 #Figure out way to deal with equal signs
-def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
-    text = str(text)
-    text = regex.sub(lambda match: replace[match.group(0)], text)
-    if not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", text): #Checking to see if there are coordinates/intervals before replacing () with []
-        text = regex.sub(lambda match: conditionally_replace[match.group(0)], text)
-    
-    #Account for space in sqrt(x, y)
-    text = re.sub(r"sqrt[\s]?\(([^,]+),[\s]+([^\)])\)", r"sqrt(\g<1>,\g<2>)", text)
-    text = re.sub(r"sqrt(?:\s*)?\(", r"sqrt(", text)
-    text = re.sub(r"abs(?:\s*)?\(", r"abs(", text)
-    text = re.sub("\([\s]*([-\d]+)[\s]*,[\s]*([-\d]+)[\s]*\)", "(\g<1>,\g<2>)", text) #To account for coordinates
-    text = re.sub("\s\\\\\"\s", " ", text) #To account for quoted LaTeX expressions.
-    text = re.sub("\\\\pipe", "|", text) #To account for literal | in mc answers
-    text = re.sub(r"\\/", r"\\\\slash\\\\", text) #To account for literal /
-    text = re.sub(r"@{(\d+|\w+)}", r"aaa\g<1>ttt", text)
+def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, render_latex="TRUE"):
+    if render_latex == "TRUE":
+        render_latex = True
+    else:
+        render_latex = False
 
-    # for operator in supported_operators:
-    #     text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
+    if render_latex:
+        text = str(text)
+        text = regex.sub(lambda match: replace[match.group(0)], text)
+        if not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", text): #Checking to see if there are coordinates/intervals before replacing () with []
+            text = regex.sub(lambda match: conditionally_replace[match.group(0)], text)
+        
+        #Account for space in sqrt(x, y)
+        text = re.sub(r"sqrt[\s]?\(([^,]+),[\s]+([^\)])\)", r"sqrt(\g<1>,\g<2>)", text)
+        text = re.sub(r"sqrt(?:\s*)?\(", r"sqrt(", text)
+        text = re.sub(r"abs(?:\s*)?\(", r"abs(", text)
+        text = re.sub("\([\s]*([-\d]+)[\s]*,[\s]*([-\d]+)[\s]*\)", "(\g<1>,\g<2>)", text) #To account for coordinates
+        text = re.sub("\s\\\\\"\s", " ", text) #To account for quoted LaTeX expressions.
+        text = re.sub("\\\\pipe", "|", text) #To account for literal | in mc answers
+        text = re.sub(r"\\/", r"\\\\slash\\\\", text) #To account for literal /
+        text = re.sub(r"@{(\d+|\w+)}", r"aaa\g<1>ttt", text)
+
+        # for operator in supported_operators:
+        #     text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
 
 
     words = text.split()
@@ -40,9 +46,10 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
     angle_bracket = False
     for i in list(range(len(words))):
         word = words[i]
-        if ((stepMC or stepAns) and any([op in word for op in answer_only_operators])) or \
+        if render_latex and (((stepMC or stepAns) and \
+            any([op in word for op in answer_only_operators])) or \
             any([op in word for op in supported_operators]) or \
-            any([op in word for op in supported_word_operators]):
+            any([op in word for op in supported_word_operators])):
             if not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", word): # only add in space if is not coordinate
                 word = re.sub(",(\S)", ", \g<1>", word)
 
@@ -99,6 +106,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False):
     text = " ".join(words)
     text = re.sub(r"\\\\slash\\\\", "/", text)
     text = re.sub(r"aaa(\w+|\d+)ttt", r"@{\g<1>}", text)
+    # text = re.sub(r"\n", r"\\\\n", text)
     return text, latex
 
 def handle_word(word):

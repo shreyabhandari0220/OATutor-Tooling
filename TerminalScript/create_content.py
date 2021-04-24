@@ -28,9 +28,9 @@ def create_problem_js(name,title,body,images=[],variabilization='',latex=True):
         body += "\\n##{0}##".format(image)
     if type(title) == float:
         title = ""
-    if latex == "TRUE":
-        title, title_latex = preprocess_text_to_latex(title)
-        body, body_latex = preprocess_text_to_latex(body)
+
+    title, title_latex = preprocess_text_to_latex(title, render_latex=latex)
+    body, body_latex = preprocess_text_to_latex(body, render_latex=latex)
     
     var_str = create_variabilization(variabilization)
 
@@ -61,9 +61,8 @@ def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhint
     if type(title) == float:
         title = ""
     
-    if latex == "TRUE":
-        title, title_latex = preprocess_text_to_latex(title, True)
-        body, body_latex = preprocess_text_to_latex(body, True)
+    title, title_latex = preprocess_text_to_latex(title, True, render_latex=latex)
+    body, body_latex = preprocess_text_to_latex(body, True, render_latex=latex)
 
     var_str = create_variabilization(variabilization)
     
@@ -119,9 +118,8 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
     if type(title) == float:
         title = ""
     
-    if latex == "TRUE":
-        title, title_latex = preprocess_text_to_latex(title, True)
-        body, body_latex = preprocess_text_to_latex(body, True)
+    title, title_latex = preprocess_text_to_latex(title, True, render_latex=latex)
+    body, body_latex = preprocess_text_to_latex(body, True, render_latex=latex)
 
     var_str = create_variabilization(variabilization)
 
@@ -141,8 +139,6 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
         try:
             dependencies = json.dumps([hint_dic[hint_id] for hint_id in dependencies.split(",")])
         except Exception as e:
-            print("Key error")
-            print(step, hint_id, title, body)
             raise Exception("hint key error")
     else:
         dependencies = "[]"
@@ -154,11 +150,8 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
 
     
     if type(mc_answers) != float:
-        if latex == "TRUE":
-            mc_answers = json.dumps([preprocess_text_to_latex(mc_answer, True, True)[0] for mc_answer in mc_answers.split("|") if mc_answer])
-            answer = json.dumps(preprocess_text_to_latex(answer, True, True)[0])
-        else:
-            mc_answers = json.dumps(mc_answers.split("|"))
+        mc_answers = json.dumps([preprocess_text_to_latex(mc_answer, True, True, render_latex=latex)[0] for mc_answer in mc_answers.split("|") if mc_answer])
+        answer = json.dumps(preprocess_text_to_latex(answer, True, True, render_latex=latex)[0])
         scaff_ans = "[" + str(answer) + "]"
     
     
@@ -190,9 +183,8 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
     if type(title) == float:
         title = ""
     
-    if latex == "TRUE":
-        title, title_latex = preprocess_text_to_latex(title)
-        body, body_latex = preprocess_text_to_latex(body)
+    title, title_latex = preprocess_text_to_latex(title, render_latex=latex)
+    body, body_latex = preprocess_text_to_latex(body, render_latex=latex)
 
     var_str = create_variabilization(variabilization)
 
@@ -206,18 +198,13 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
 
     answer_latex = False
 
-    if latex == "TRUE":
-        new_answer, answer_latex = preprocess_text_to_latex(answer)
+    new_answer, answer_latex = preprocess_text_to_latex(answer, render_latex=latex)
 
     for img in image:
         body += "##" + img + "## "
     if choices:
-        if latex == "TRUE":
-            choices = json.dumps([preprocess_text_to_latex(mc_answer, True, True)[0] for mc_answer in choices.split("|") if mc_answer])
-            answer = preprocess_text_to_latex(answer, tutoring=True, stepAns=True)[0]
-        else:
-            choices = json.dumps(choices.split("|"))
-            # choices = json.dumps(mc_answer for mc_answer in choices.split("|") if mc_answer])
+        choices = json.dumps([preprocess_text_to_latex(mc_answer, True, True, render_latex=latex)[0] for mc_answer in choices.split("|") if mc_answer])
+        answer = preprocess_text_to_latex(answer, tutoring=True, stepAns=True, render_latex=latex)[0]
     
     answer_type, problem_type = handle_answer_type(answer_type)
     if answer_type == "arithmetic":
