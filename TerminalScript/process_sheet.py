@@ -211,6 +211,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex):
 
     df["Body Text"] = df["Body Text"].str.replace("\"", "\\\"")
     df["Title"] = df["Title"].str.replace("\"", "\\\"")
+    df["Answer"] = df["Answer"].str.replace("\"", "\\\"")
+    df["mcChoices"] = df["mcChoices"].str.replace("\"", "\\\"")
     df["Body Text"] = df["Body Text"].str.replace("\\n", "\\\\n")
     df["Title"] = df["Title"].str.replace("\\n", "\\\\n")
     df["openstax KC"] = df["openstax KC"].str.replace("\'", "\\\'")
