@@ -141,8 +141,6 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
         try:
             dependencies = json.dumps([hint_dic[hint_id] for hint_id in dependencies.split(",")])
         except Exception as e:
-            print("Key error")
-            print(step, hint_id, title, body)
             raise Exception("hint key error")
     else:
         dependencies = "[]"
@@ -159,6 +157,7 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
             answer = json.dumps(preprocess_text_to_latex(answer, True, True)[0])
         else:
             mc_answers = json.dumps(mc_answers.split("|"))
+            answer = json.dumps(answer)
         scaff_ans = "[" + str(answer) + "]"
     
     
