@@ -34,7 +34,7 @@ problems.map(problem => {
         console.log(step);
         console.log("=================");
         errors += 1;
-        errorList[step.id] = "Arithmetic answer contains string";
+        errorList[step.id] = "Arithmetic answer contains comma";
       }
     }
 
@@ -64,7 +64,7 @@ problems.map(problem => {
           console.log(hint);
           console.log("=================");
           errors += 1;
-          errorList[hint.id] = "Arithmetic answer contains string";
+          errorList[hint.id] = "Arithmetic answer contains comma";
         }
       }
     })
