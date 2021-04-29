@@ -3,6 +3,21 @@
 ## Our project
 This repository is meant to store content curated for the OpenITS system developed by Computational Approaches to Human Learning at UC Berkeley. The OpenITS system was developed to make learning more accessible and provide an open-source tutoring system for researchers, teachers, and students to access, disseminate, and better understand learning materials. The purpose of this README is to provide better understanding of how to structure content such that it can be read into the OpenITS system.
 
+## How to use the script
+To run script on one sheet, change directory into TerminalScript, and use the command: 
+```
+python3 process_sheet.py online <sheet_key> <sheet_name> <latex>
+```
+If verbosity is desired, run the command:
+```
+python3 process_sheet.py online <sheet_key> <sheet_name> <latex> TRUE
+```
+To run script on all content created so far, use the command:
+```
+python3 final.py online ..
+```
+Note that verbosity would be False when running final.py.
+
 ## How to structure content
 The script in this repo reads in Google Sheets and outputs JS files ready to be processed by the system. For every sheet procesed by the system, there are some requirements for headers and notation that ensure the script is read properly. Every sheet must have: "Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", and "Taxonomy". 
 
