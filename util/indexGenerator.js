@@ -11,7 +11,7 @@ const getDirectories = source =>
 const getFiles = source =>
   fs.readdirSync(source).map(name => path.join(source, name)).filter((source) => !isDirectory(source));
 
-const REMOVE_FILES = false;
+const REMOVE_FILES = true;
 const OVERWRITE = true;
 
 function writeIndexFile(path, data) {
