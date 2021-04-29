@@ -88,8 +88,6 @@ def validate_question(question, variabilization, latex, verbosity):
         problem_skills = re.split("\||,", question.iloc[0]["openstax KC"])
         problem_skills = ["_".join(skill.lower().split()).replace("-", "_") for skill in problem_skills]
     except:
-        if verbosity:
-            print("Problem skills empty for: ", problem_name)
         raise Exception("Problem Skills broken")
 
     for index, row in question.iterrows():
@@ -196,8 +194,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         try:
             df = pd.read_excel(excel_path, sheet_name, header=0)
         except:
-            if verbosity:
-                print("path not found:", excel_path, sheet_name)
+            print("path not found:", excel_path, sheet_name)
             return
         ##Only keep columns we need 
         variabilization = 'Variabilization' in df.columns
@@ -411,7 +408,6 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         file.close()
 
     new_skillModelJS_lines = skillModelJS_lines[0:break_index] + skills + skillModelJS_lines[break_index:]
-    new_skillModelJS_lines
     with open(skillModelJS_path, 'w') as f:
         for item in new_skillModelJS_lines:
             f.write(item)
@@ -421,6 +417,13 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     next_row = next_available_row(error_worksheet)
     end_row = str(int(next_row) + len(error_data) - 1)
     error_worksheet.update('A{}:D{}'.format(next_row, end_row), error_data)
+
+    for e in error_data:
+        print("====")
+        print('Sheet name:', e[0])
+        print('Problem name:', e[1])
+        print('Error type:', e[2])
+        print()
 
     return list(set(skills_unformatted))
 
