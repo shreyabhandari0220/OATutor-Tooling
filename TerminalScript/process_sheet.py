@@ -85,14 +85,18 @@ def validate_question(question, variabilization, latex, verbosity):
     problem_name = question.iloc[0]['Problem Name']
     error_data = []
 
+    if not question['Row Type'].str.contains('problem').any() and not question['Row Type'].str.contains('Problem').any():
+        raise Exception("Missing problem row")
+
     try:
         problem_skills = re.split("\||,", question.iloc[0]["openstax KC"])
         problem_skills = ["_".join(skill.lower().split()).replace("-", "_") for skill in problem_skills]
     except:
         raise Exception("Problem Skills broken")
 
-    if not question['Row Type'].str.contains('step').any():
+    if not question['Row Type'].str.contains('step').any() and not question['Row Type'].str.contains('Step').any():
         raise Exception("Problem does not have step(s)")
+    
 
     for index, row in question.iterrows():
         #checks row type 
@@ -183,7 +187,7 @@ def validate_question(question, variabilization, latex, verbosity):
     
     return error_data
 
-def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False):
+def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, write_gc=False):
     if is_local == "online":
         book = get_sheet(spreadsheet_key)
         worksheet = book.worksheet(sheet_name) 
@@ -223,7 +227,10 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     df["Body Text"] = df["Body Text"].str.replace("\"", "\\\"")
     df["Title"] = df["Title"].str.replace("\"", "\\\"")
     df["Answer"] = df["Answer"].str.replace("\"", "\\\"")
-    df["mcChoices"] = df["mcChoices"].str.replace("\"", "\\\"")
+    try:
+        df["mcChoices"] = df["mcChoices"].str.replace("\"", "\\\"")
+    except AttributeError:
+        pass
     df["Body Text"] = df["Body Text"].str.replace("\\n", r"\\\\n")
     df["Title"] = df["Title"].str.replace("\\n", r"\\\\n")
     df["openstax KC"] = df["openstax KC"].str.replace("\'", "\\\'")
@@ -432,9 +439,10 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     # Update errors on the error sheet
     error_data.sort(key=lambda e: int(re.findall('\d+$', e[1])[0])) #sort errors according to problem number
-    next_row = next_available_row(error_worksheet)
-    end_row = str(int(next_row) + len(error_data) - 1)
-    error_worksheet.update('A{}:D{}'.format(next_row, end_row), error_data)
+    if write_gc:
+        next_row = next_available_row(error_worksheet)
+        end_row = str(int(next_row) + len(error_data) - 1)
+        error_worksheet.update('A{}:D{}'.format(next_row, end_row), error_data)
 
     for e in error_data:
         print("====")
@@ -462,4 +470,4 @@ if __name__ == '__main__':
             verbosity = False
     else:
         verbosity = False
-    process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, verbosity)
+    process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, verbosity, write_gc=True)

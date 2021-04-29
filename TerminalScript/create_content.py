@@ -73,7 +73,7 @@ def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhint
         try:
             dependencies = json.dumps([hint_dic[hint_id] for hint_id in dependencies.split(",")])
         except Exception as e:
-            raise Exception("Hint key error")
+            raise Exception("Hint key error (might be cause by errors in the rows above)")
     else:
         dependencies = "[]"
     
@@ -137,7 +137,7 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
         try:
             dependencies = json.dumps([hint_dic[hint_id] for hint_id in dependencies.split(",")])
         except Exception as e:
-            raise Exception("hint key error")
+            raise Exception("Hint key error (might be cause by errors in the rows above)")
     else:
         dependencies = "[]"
     

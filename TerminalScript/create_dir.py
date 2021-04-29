@@ -7,14 +7,18 @@ def create_problem_dir(name, path, verbosity):
         print(path, name)
     #handle namespace collision
     tailing = 1
+    once = False
     target = path + "/" + name
     if os.path.exists(target):
-        target = path + "/" + str(tailing) + name
-        name = str(tailing) + name   
+        target = path + "/a" + str(tailing) + name
+        once = True 
     while os.path.exists(target):
+        once = False
         tailing += 1
-        target = path + "/" + str(tailing) + name
-        name = str(tailing) + name
+        target = path + "/a" + str(tailing) + name
+        name = "a" + str(tailing) + name
+    if once:
+        name = "a1" + name
     os.makedirs(target)
     os.mkdir(target + "/steps")
     problem_js = target + "/" + name+".js"
