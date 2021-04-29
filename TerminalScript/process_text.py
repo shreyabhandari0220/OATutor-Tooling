@@ -15,7 +15,7 @@ conditionally_replace = {"[" : "(", "]" : ")"}
 regex = re.compile("|".join(map(re.escape, replace.keys())))
 
 #Figure out way to deal with equal signs
-def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, render_latex="TRUE"):
+def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, render_latex="TRUE", verbosity=False):
     if render_latex == "TRUE":
         render_latex = True
     else:
@@ -99,9 +99,10 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
                 words[i] = new_word
                 
             except Exception as e:
-                print("This failed")
-                print(word)
-                print(e)
+                if verbosity:
+                    print("This failed")
+                    print(word)
+                    print(e)
                 pass
     text = " ".join(words)
     text = re.sub(r"\\\\slash\\\\", "/", text)
