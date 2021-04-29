@@ -1,15 +1,29 @@
 import os
+BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 
 def create_problem_dir(name, path, verbosity):
     #creates directory for problem
     if verbosity:
         print(path, name)
+    #handle namespace collision
+    tailing = 1
+    once = False
     target = path + "/" + name
+    if os.path.exists(target):
+        target = path + "/a" + str(tailing) + name
+        once = True 
+    while os.path.exists(target):
+        once = False
+        tailing += 1
+        target = path + "/a" + str(tailing) + name
+        name = "a" + str(tailing) + name
+    if once:
+        name = "a1" + name
     os.makedirs(target)
     os.mkdir(target + "/steps")
     problem_js = target + "/" + name+".js"
     open(problem_js, "x")
-    return target, problem_js
+    return name, target, problem_js
 
 def create_fig_dir(path):
     figures = path+"/figures"

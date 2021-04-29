@@ -73,9 +73,7 @@ def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhint
         try:
             dependencies = json.dumps([hint_dic[hint_id] for hint_id in dependencies.split(",")])
         except Exception as e:
-            print("Key error")
-            print(step, hint_id, title, body)
-            raise Exception("Hint key error")
+            raise Exception("Hint key error (might be cause by errors in the rows above)")
     else:
         dependencies = "[]"
     
@@ -109,7 +107,7 @@ def handle_answer_type(answer_type):
     elif type(answer_type) != str:
         raise Exception("Answer type is missing")
     else:
-        raise Exception('Answer type not correct' + answer_type)
+        raise Exception('Answer type not correct: ' + answer_type)
 
 
 def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, dependencies=0.0, images="", subhints=[], hint_dic={}, variabilization="",latex=True,verbosity=False):
@@ -139,7 +137,7 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
         try:
             dependencies = json.dumps([hint_dic[hint_id] for hint_id in dependencies.split(",")])
         except Exception as e:
-            raise Exception("hint key error")
+            raise Exception("Hint key error (might be cause by errors in the rows above)")
     else:
         dependencies = "[]"
     
