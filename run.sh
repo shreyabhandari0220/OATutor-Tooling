@@ -13,3 +13,6 @@ node ./util/indexGenerator.js
 
 echo "[STAGE 3]: Running validator. Validator warnings (if any) will print below."
 node --experimental-modules .\postScriptValidator.js 
+
+echo "[STAGE 4]: Cleaning up directory..."
+rm -rf ./OpenStax1
