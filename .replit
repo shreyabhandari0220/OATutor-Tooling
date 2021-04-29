@@ -1,0 +1,2 @@
+run = "chmod +x ./run.sh; ./run.sh"
+language = "bash"
