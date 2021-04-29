@@ -21,7 +21,7 @@ def create_variabilization(variabilization):
         var_str = "{}"
     return var_str
 
-def create_problem_js(name,title,body,images=[],variabilization='',latex=True):
+def create_problem_js(name,title,body,images=[],variabilization='',latex=True,verbosity=False):
     if type(body) == float:
         body= ""
     for image in images:
@@ -29,8 +29,8 @@ def create_problem_js(name,title,body,images=[],variabilization='',latex=True):
     if type(title) == float:
         title = ""
 
-    title, title_latex = preprocess_text_to_latex(title, render_latex=latex)
-    body, body_latex = preprocess_text_to_latex(body, render_latex=latex)
+    title, title_latex = preprocess_text_to_latex(title, render_latex=latex, verbosity=verbosity)
+    body, body_latex = preprocess_text_to_latex(body, render_latex=latex, verbosity=verbosity)
     
     var_str = create_variabilization(variabilization)
 
@@ -55,14 +55,14 @@ def create_problem_js(name,title,body,images=[],variabilization='',latex=True):
     return contents
 
 
-def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhints=[], hint_dic={}, variabilization='',latex=True):
+def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhints=[], hint_dic={}, variabilization='',latex=True,verbosity=False):
     if type(body) == float:
         body = ""
     if type(title) == float:
         title = ""
     
-    title, title_latex = preprocess_text_to_latex(title, True, render_latex=latex)
-    body, body_latex = preprocess_text_to_latex(body, True, render_latex=latex)
+    title, title_latex = preprocess_text_to_latex(title, True, render_latex=latex, verbosity=verbosity)
+    body, body_latex = preprocess_text_to_latex(body, True, render_latex=latex, verbosity=verbosity)
 
     var_str = create_variabilization(variabilization)
     
@@ -112,14 +112,14 @@ def handle_answer_type(answer_type):
         raise Exception('Answer type not correct' + answer_type)
 
 
-def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, dependencies=0.0, images="", subhints=[], hint_dic={}, variabilization="",latex=True):
+def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, dependencies=0.0, images="", subhints=[], hint_dic={}, variabilization="",latex=True,verbosity=False):
     if type(body) == float:
         body = ""
     if type(title) == float:
         title = ""
     
-    title, title_latex = preprocess_text_to_latex(title, True, render_latex=latex)
-    body, body_latex = preprocess_text_to_latex(body, True, render_latex=latex)
+    title, title_latex = preprocess_text_to_latex(title, True, render_latex=latex, verbosity=verbosity)
+    body, body_latex = preprocess_text_to_latex(body, True, render_latex=latex, verbosity=verbosity)
 
     var_str = create_variabilization(variabilization)
 
@@ -150,8 +150,8 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
 
     
     if type(mc_answers) != float:
-        mc_answers = json.dumps([preprocess_text_to_latex(mc_answer, True, True, render_latex=latex)[0] for mc_answer in mc_answers.split("|") if mc_answer])
-        answer = json.dumps(preprocess_text_to_latex(answer, True, True, render_latex=latex)[0])
+        mc_answers = json.dumps([preprocess_text_to_latex(mc_answer, True, True, render_latex=latex, verbosity=verbosity)[0] for mc_answer in mc_answers.split("|") if mc_answer])
+        answer = json.dumps(preprocess_text_to_latex(answer, True, True, render_latex=latex, verbosity=verbosity)[0])
         scaff_ans = "[" + str(answer) + "]"
     
     
@@ -176,15 +176,15 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
     return scaff_obj, scaffold_id
 
 
-def create_step(name, title, body, answer, answer_type, number, choices="", image="", variabilization="",latex=True):
+def create_step(name, title, body, answer, answer_type, number, choices="", image="", variabilization="",latex=True, verbosity=False):
     step_id = name + chr(ord('a')+number-1)
     if type(body) == float:
         body = ""
     if type(title) == float:
         title = ""
     
-    title, title_latex = preprocess_text_to_latex(title, render_latex=latex)
-    body, body_latex = preprocess_text_to_latex(body, render_latex=latex)
+    title, title_latex = preprocess_text_to_latex(title, render_latex=latex, verbosity=verbosity)
+    body, body_latex = preprocess_text_to_latex(body, render_latex=latex, verbosity=verbosity)
 
     var_str = create_variabilization(variabilization)
 
@@ -198,13 +198,13 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
 
     answer_latex = False
 
-    new_answer, answer_latex = preprocess_text_to_latex(answer, render_latex=latex)
+    new_answer, answer_latex = preprocess_text_to_latex(answer, render_latex=latex, verbosity=verbosity)
 
     for img in image:
         body += "##" + img + "## "
     if choices:
-        choices = json.dumps([preprocess_text_to_latex(mc_answer, True, True, render_latex=latex)[0] for mc_answer in choices.split("|") if mc_answer])
-        answer = preprocess_text_to_latex(answer, tutoring=True, stepAns=True, render_latex=latex)[0]
+        choices = json.dumps([preprocess_text_to_latex(mc_answer, True, True, render_latex=latex, verbosity=verbosity)[0] for mc_answer in choices.split("|") if mc_answer])
+        answer = preprocess_text_to_latex(answer, tutoring=True, stepAns=True, render_latex=latex, verbosity=verbosity)[0]
     
     answer_type, problem_type = handle_answer_type(answer_type)
     if answer_type == "arithmetic":
