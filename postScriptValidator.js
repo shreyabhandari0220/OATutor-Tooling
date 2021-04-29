@@ -1,4 +1,4 @@
-import problems from './OpenStax Content/problemPool.js';
+import problems from './OpenStax1/problemPool.js';
 
 var stepCounter = 0;
 var hintCounter = 0;

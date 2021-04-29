@@ -2,7 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const process = require('process');
 
-process.chdir('./OpenStax Content');
+const FOLDER = './OpenStax1'; //'./OpenStax Content';
+
+process.chdir(FOLDER);
 
 const isDirectory = source => fs.lstatSync(source).isDirectory();
 const getDirectories = source =>
@@ -11,7 +13,7 @@ const getDirectories = source =>
 const getFiles = source =>
   fs.readdirSync(source).map(name => path.join(source, name)).filter((source) => !isDirectory(source));
 
-const REMOVE_FILES = true;
+const REMOVE_FILES = false;
 const OVERWRITE = true;
 
 function writeIndexFile(path, data) {
