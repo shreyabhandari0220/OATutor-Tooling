@@ -8,7 +8,8 @@ To run script on one sheet, change directory into TerminalScript, and use the co
 ```
 python3 process_sheet.py online <sheet_key> <sheet_name> <latex>
 ```
-where sheet_key is part of the google sheet URL, and sheet name is the name of Google sheet tab to be run on. latex should be true if the content generated requires latex rendering, false otherwise.
+where sheet_key is part of the google sheet URL, and sheet name is the name of Google sheet tab to be run on. latex should be true if the content generated requires LaTeX rendering, false otherwise.
+
 If verbosity is desired, run the command:
 ```
 python3 process_sheet.py online <sheet_key> <sheet_name> <latex> TRUE
