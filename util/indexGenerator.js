@@ -21,11 +21,11 @@ function writeIndexFile(path, data) {
     if (err) {
       console.log("Already exists or write error");
     } else {
-      console.log("Saved!");
+      //console.log("Saved!");
     }
     if (REMOVE_FILES) {
       fs.unlinkSync(path);
-      console.log("Removed files!")
+      //console.log("Removed files!")
     }
   });
 }
