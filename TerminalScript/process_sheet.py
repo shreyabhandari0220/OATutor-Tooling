@@ -255,6 +255,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     for question in questions:
         problem_name = question.iloc[0]['Problem Name']
 
+        # validate all fields that relate to this problem
         try:
             question_error_data = validate_question(question, variabilization, latex, verbosity)
             if question_error_data:
@@ -275,7 +276,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                 print("Problem skills empty for: ", problem_name)
             raise Exception("Problem Skills broken")
         result_problems = ""
-        path, problem_js  = create_problem_dir(problem_name, default_path, verbosity)
+        problem_name, path, problem_js  = create_problem_dir(problem_name, default_path, verbosity)
         step_count = tutor_count = 0
         current_step_path = current_step_name = step_reg_js = step_index_js = default_pathway_js = ""
         images = False
