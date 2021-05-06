@@ -5,12 +5,11 @@ from process_text import preprocess_text_to_latex
 
 def create_variabilization(variabilization):
     if variabilization:
-        variabilization = re.sub('\s*', '', variabilization)
         var_list = variabilization.split("\n")
         var_str = ""
         for var in var_list:
             name, field = var.split(":")
-            fields = field[1:-1].split(",")  #get rid of brackets
+            fields = field[1:-1].split("|")  #get rid of brackets
             var_str += name + ": ["
             for f in fields:
                 var_str += "\"" + f + "\", "
