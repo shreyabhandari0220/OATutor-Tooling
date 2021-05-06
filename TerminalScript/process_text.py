@@ -148,6 +148,7 @@ def handle_word(word):
     word = re.sub(r"abs\*", r"abs", word)
     word = re.sub(r"pm\*", r"pm", word)
     word = re.sub('\(\-', '(negneg', word)
+    # word = re.sub('\*\*\(negneg', '\(\-', word)
 
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
     

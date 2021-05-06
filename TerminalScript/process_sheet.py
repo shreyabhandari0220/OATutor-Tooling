@@ -261,6 +261,10 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     
     for question in questions:
         problem_name = question.iloc[0]['Problem Name']
+        
+        # skip empty rows
+        if type(problem_name) != str:
+            continue
 
         # validate all fields that relate to this problem
         try:
@@ -438,7 +442,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     skills_unformatted = ["_".join(skill.lower().split()) for skill in skills_unformatted]
 
     # Update errors on the error sheet
-    error_data.sort(key=lambda e: int(re.findall('\d+$', e[1])[0])) #sort errors according to problem number
+    # if len(error_data) > 0:
+        # error_data.sort(key=lambda e: int(re.findall('\d+$', e[1])[0])) #sort errors according to problem number
     if write_gc:
         next_row = next_available_row(error_worksheet)
         end_row = str(int(next_row) + len(error_data) - 1)
