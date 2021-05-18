@@ -1,14 +1,21 @@
 import os
+import hashlib
+
 BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 
-def create_problem_dir(name, path, verbosity):
+
+def create_problem_dir(sheet_name, name, path, verbosity, conflict_names):
     #creates directory for problem
     if verbosity:
         print(path, name)
-    #handle namespace collision
+    # handle namespace collision
     tailing = 1
     once = False
+    if name in conflict_names:
+        name = hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6] + name
     target = path + "/" + name
+
+    # most likely will not use this, but this is an additional catch for namespace error
     if os.path.exists(target):
         target = path + "/a" + str(tailing) + name
         once = True 
@@ -19,6 +26,7 @@ def create_problem_dir(name, path, verbosity):
         name = "a" + str(tailing) + name
     if once:
         name = "a1" + name
+
     os.makedirs(target)
     os.mkdir(target + "/steps")
     problem_js = target + "/" + name+".js"
