@@ -13,7 +13,6 @@ import time
 
 pd.options.display.html.use_mathjax = False
 
-# from get_sheet import get_sheet
 from create_dir import *
 from create_content import *
 
@@ -187,7 +186,7 @@ def validate_question(question, variabilization, latex, verbosity):
     
     return error_data
 
-def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, write_gc=False):
+def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, write_gc=False, conflict_names=[]):
     if is_local == "online":
         book = get_sheet(spreadsheet_key)
         worksheet = book.worksheet(sheet_name) 
@@ -287,7 +286,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                 print("Problem skills empty for: ", problem_name)
             raise Exception("Problem Skills broken")
         result_problems = ""
-        problem_name, path, problem_js  = create_problem_dir(problem_name, default_path, verbosity)
+        problem_name, path, problem_js  = create_problem_dir(sheet_name, problem_name, default_path, verbosity, conflict_names)
         step_count = tutor_count = 0
         current_step_path = current_step_name = step_reg_js = step_index_js = default_pathway_js = ""
         images = False

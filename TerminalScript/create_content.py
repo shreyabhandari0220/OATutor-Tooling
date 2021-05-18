@@ -33,16 +33,9 @@ def create_problem_js(name,title,body,images=[],variabilization='',latex=True,ve
     
     var_str = create_variabilization(variabilization)
 
-    # contents = "import React from 'react'; import { InlineMath } from 'react-katex';" + "import steps from \"./{0}-index.js\"; const problem = ".format(name) + "{" + "id: \"{0}\", ".format(name)
     contents = "import steps from \"./{0}-index.js\"; const problem = ".format(name) + "{" + "id: \"{0}\", ".format(name)
 
-    # if title_latex:
-    #     contents += "title: <div> {0} </div>, ".format(title)
-    # else:
     contents += "title: \"{0}\", ".format(title)
-    # if body_latex:
-    #     contents += "body: <div> {0} </div>, ".format(body)
-    # else:
     contents += "body: \"{0}\", ".format(body)
     
     contents +=  "steps: steps, "
