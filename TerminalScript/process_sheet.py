@@ -54,7 +54,7 @@ def get_all_url():
     worksheet = book.worksheet('URLs')
     table = worksheet.get_all_values()
     df = pd.DataFrame(table[1:], columns=table[0])
-    df = df[["Book","URL","Latex"]]
+    df = df[["Book","URL"]]
     df = df.astype(str)
     df.replace('', 0.0, inplace = True)
     return df
@@ -69,7 +69,7 @@ def validate_image(image):
     except:
         raise Exception("Image retrieval error")
 
-def validate_question(question, variabilization, latex, verbosity):
+def validate_question(sheet_name, question, variabilization, latex, verbosity):
     result_problems = ""
     step_count = tutor_count = 0
     current_step_path = current_step_name = step_reg_js = step_index_js = default_pathway_js = ""
@@ -117,7 +117,10 @@ def validate_question(question, variabilization, latex, verbosity):
                     hint_images = ""
                     if type(row["Images (space delimited)"]) == str and type(row["Images (space delimited)"]) != np.float64:
                         validate_image(row["Images (space delimited)"])
-                    hint_id = row['Parent'] + "-" + row['HintID']
+                    try:
+                        hint_id = row['Parent'] + "-" + row['HintID']
+                    except TypeError:
+                        raise Exception("Hint ID is missing")
                     if row_type == 'hint':
                         if variabilization:
                             subhint, subhint_id = create_hint(current_step_name, hint_id, row["Title"], row["Body Text"], row["Dependency"], hint_images, hint_dic=hint_dic, variabilization=row["Variabilization"],latex=latex,verbosity=verbosity)
@@ -267,9 +270,9 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
         # validate all fields that relate to this problem
         try:
-            question_error_data = validate_question(question, variabilization, latex, verbosity)
+            question_error_data = validate_question(sheet_name, question, variabilization, latex, verbosity)
             if question_error_data:
-                error_data.extend(validate_question(question, variabilization, latex, verbosity))
+                error_data.extend(validate_question(sheet_name, question, variabilization, latex, verbosity))
                 raise Exception("Error encountered in validator")
         except Exception as e:
             if str(e) != "Error encountered in validator":

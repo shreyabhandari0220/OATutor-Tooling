@@ -58,7 +58,10 @@ def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhint
 
     var_str = create_variabilization(variabilization)
     
-    hint_id = step + "-" + hint_id
+    try:
+        hint_id = step + "-" + hint_id
+    except TypeError:
+        raise Exception("Hint ID is missing")
     for image in images:
         body += "\\n##{0}##".format(image)
     if type(dependencies) == str and dependencies != 'None':
@@ -121,7 +124,10 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
     except TypeError:
         raise Exception("Scaffold answer missing")
     
-    scaffold_id = step + "-" + hint_id
+    try:
+        scaffold_id = step + "-" + hint_id
+    except TypeError:
+        raise Exception("Scaffold ID is missing")
     for image in images:
         body += "\\n##{0}##".format(image)
 
