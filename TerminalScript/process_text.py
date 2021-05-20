@@ -46,10 +46,11 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
     angle_bracket = False
     for i in list(range(len(words))):
         word = words[i]
-        if render_latex and (((stepMC or stepAns) and \
-            any([op in word for op in answer_only_operators])) or \
-            any([op in word for op in supported_operators]) or \
-            any([op in word for op in supported_word_operators])):
+        # if render_latex and (((stepMC or stepAns) and \
+        #     any([op in word for op in answer_only_operators])) or \
+        #     any([op in word for op in supported_operators]) or \
+        #     any([op in word for op in supported_word_operators])):
+        if use_latex(word, render_latex, stepMC, stepAns):
             if not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", word): # only add in space if is not coordinate
                 word = re.sub(",(\S)", ", \g<1>", word)
 
@@ -75,6 +76,9 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
             if word[-1:] == "}" and "ln{" not in word:
                 closing_braces = True
                 word = word[:-1]
+            # if the word is forced latex
+            if word[:2] == '$$' and word[-2:] == '$$':
+                word = word[2:-2]
             try:                
                 sides = re.split('(=|U|<=|>=)', word)
                 sides = [handle_word(side) for side in sides]
@@ -104,11 +108,25 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
                     print(word)
                     print(e)
                 pass
+        # if forced verbatim
+        if word[:2] == '##' and word[-2:] == '##':
+            words[i] = word[2:-2]
     text = " ".join(words)
     text = re.sub(r"\\\\slash\\\\", "/", text)
     text = re.sub(r"aaa(\w+|\d+)ttt", r"@{\g<1>}", text)
     # text = re.sub(r"\n", r"\\\\n", text)
     return text, latex
+
+def use_latex(word, render_latex, stepMC, stepAns):
+    if word[:2] == '$$' or word[-2:] == '$$':
+        return True
+    if word[:2] == '##' or word[-2:] == '##':
+        return False
+    if not render_latex:
+        return False
+    if (stepMC or stepAns) and any([op in word for op in answer_only_operators]):
+        return True
+    return any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])
 
 def handle_word(word):
     latex_dic = {"=": "=", "U": " \cup ", "<=" : " \leq ", ">=" : " \geq "}

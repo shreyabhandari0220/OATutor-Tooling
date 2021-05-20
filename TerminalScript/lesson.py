@@ -47,8 +47,42 @@ def finish_bkt_params(bkt_params, file):
     file.write(bkt_params_string)
     file.close()
 
+
+all_problem_names = []
+conflict_names = []
+
+def names_from_one_sheet(sheet_key, sheet_name):
+    book = get_sheet(sheet_key)
+    worksheet = book.worksheet(sheet_name) 
+    table = worksheet.get_all_values()
+    df = pd.DataFrame(table[1:], columns=table[0])
+    df = df[["Problem Name"]]
+    df = df.astype(str)
+    df.replace('', 0.0, inplace = True)
+    df.replace(' ', 0.0, inplace = True)
+    questions = [x for _, x in df.groupby(df['Problem Name'])]
+    for question in questions:
+        problem_name = question.iloc[0]['Problem Name']
+        # skip empty rows
+        if type(problem_name) != str:
+            continue
+        problem_row = question.iloc[0]
+        if problem_name in all_problem_names:
+            conflict_names.append(problem_name)
+        else:
+            all_problem_names.append(problem_name)
+
+def check_names_online():
+    url_df = get_all_url()
+    for index, row in url_df.iterrows():
+        course_name, book_url = row['Book'], row['URL']
+        book = get_sheet(book_url)
+        sheet_names = [sheet.title for sheet in book.worksheets() if sheet.title[:2] != '!!']
+        for sheet in sheet_names:
+            names_from_one_sheet(book_url, sheet)
+
 def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
-    ''' if sheet_names is not provided, default to run all sheets'''
+    '''if sheet_names is not provided, default to run all sheets'''
     course_plan = []
     bkt_params = []
     if is_local == 'local':
@@ -66,14 +100,19 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
                     bkt_params.append(create_bkt_params(skill))
             course_plan.append(create_course_plan(course_name, lesson_plan))
     elif is_local == 'online':
+        # checks for problem name conflicts. Conflicted names are stored in conflict_names in conflict_names.py
+        check_names_online()
         url_df = get_all_url()
         for index, row in url_df.iterrows():
             lesson_plan = []
-            course_name, book_url, latex = row['Book'], row['URL'], row['Latex']
+            course_name, book_url = row['Book'], row['URL']
             book = get_sheet(book_url)
             sheet_names = [sheet.title for sheet in book.worksheets() if sheet.title[:2] != '!!']
             for sheet in sheet_names:
-                skills = process_sheet(book_url, sheet, default_path, 'online',latex)
+                if sheet[:2] == '##':
+                    skills = process_sheet(book_url, sheet, default_path, 'online','FALSE',conflict_names=conflict_names)
+                else:
+                    skills = process_sheet(book_url, sheet, default_path, 'online','TRUE',conflict_names=conflict_names)
                 lesson_plan.append(create_lesson_plan(sheet, skills))
                 for skill in skills:
                     bkt_params.append(create_bkt_params(skill))
