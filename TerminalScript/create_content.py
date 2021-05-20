@@ -33,16 +33,9 @@ def create_problem_js(name,title,body,images=[],variabilization='',latex=True,ve
     
     var_str = create_variabilization(variabilization)
 
-    # contents = "import React from 'react'; import { InlineMath } from 'react-katex';" + "import steps from \"./{0}-index.js\"; const problem = ".format(name) + "{" + "id: \"{0}\", ".format(name)
     contents = "import steps from \"./{0}-index.js\"; const problem = ".format(name) + "{" + "id: \"{0}\", ".format(name)
 
-    # if title_latex:
-    #     contents += "title: <div> {0} </div>, ".format(title)
-    # else:
     contents += "title: \"{0}\", ".format(title)
-    # if body_latex:
-    #     contents += "body: <div> {0} </div>, ".format(body)
-    # else:
     contents += "body: \"{0}\", ".format(body)
     
     contents +=  "steps: steps, "
@@ -65,7 +58,10 @@ def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhint
 
     var_str = create_variabilization(variabilization)
     
-    hint_id = step + "-" + hint_id
+    try:
+        hint_id = step + "-" + hint_id
+    except TypeError:
+        raise Exception("Hint ID is missing")
     for image in images:
         body += "\\n##{0}##".format(image)
     if type(dependencies) == str and dependencies != 'None':
@@ -128,7 +124,10 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
     except TypeError:
         raise Exception("Scaffold answer missing")
     
-    scaffold_id = step + "-" + hint_id
+    try:
+        scaffold_id = step + "-" + hint_id
+    except TypeError:
+        raise Exception("Scaffold ID is missing")
     for image in images:
         body += "\\n##{0}##".format(image)
 
