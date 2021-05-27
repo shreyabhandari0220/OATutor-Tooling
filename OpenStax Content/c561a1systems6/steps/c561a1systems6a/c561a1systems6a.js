@@ -1,0 +1,1 @@
+import hints from "./systems6a-index.js"; const step = {id: "systems6a", stepAnswer: ["$$(1,-3),(2,3)$$"], problemType: "MultipleChoice", stepTitle: "$$-\\left(2\\right) x^2+y=-5$$, \\n6*x-y=9", stepBody: "", choices: ["$$(1,-3),(2,3)$$", "(1,3),(2,3)", "$$(-1,3),(-2,3)$$", "No Solution"], answerType: "string", hints: hints, variabilization: {}}; export {step};
