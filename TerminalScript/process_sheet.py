@@ -109,9 +109,9 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
                         validate_image(row["Images (space delimited)"])
                     choices = type(row["mcChoices"]) == str and row["mcChoices"]
                     if variabilization:
-                        create_step(row['Problem Name'], row['Title'], row["Body Text"], row["Answer"], row["answerType"], step_count, choices, "", variabilization=row["Variabilization"],latex=latex,verbosity=verbosity)
+                        create_step(problem_name, row['Title'], row["Body Text"], row["Answer"], row["answerType"], step_count, choices, "", variabilization=row["Variabilization"],latex=latex,verbosity=verbosity)
                     else:
-                        create_step(row['Problem Name'], row['Title'], row["Body Text"], row["Answer"], row["answerType"], step_count, choices, "",latex=latex,verbosity=verbosity)
+                        create_step(problem_name, row['Title'], row["Body Text"], row["Answer"], row["answerType"], step_count, choices, "",latex=latex,verbosity=verbosity)
                 
                 elif (row_type == 'hint' or row_type == "scaffold") and type(row['Parent']) != float:
                     hint_images = ""
@@ -344,9 +344,9 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                         images += num
                     choices = type(row["mcChoices"]) == str and row["mcChoices"]
                     if variabilization:
-                        step_file.write(create_step(row['Problem Name'], row['Title'], row["Body Text"], row["Answer"], row["answerType"], step_count, choices, step_images, variabilization=row["Variabilization"],latex=latex,verbosity=verbosity))
+                        step_file.write(create_step(problem_name, row['Title'], row["Body Text"], row["Answer"], row["answerType"], step_count, choices, step_images, variabilization=row["Variabilization"],latex=latex,verbosity=verbosity))
                     else:
-                        step_file.write(create_step(row['Problem Name'], row['Title'], row["Body Text"], row["Answer"], row["answerType"], step_count, choices, step_images,latex=latex,verbosity=verbosity))
+                        step_file.write(create_step(problem_name, row['Title'], row["Body Text"], row["Answer"], row["answerType"], step_count, choices, step_images,latex=latex,verbosity=verbosity))
                     step_file.close()
                     
                     

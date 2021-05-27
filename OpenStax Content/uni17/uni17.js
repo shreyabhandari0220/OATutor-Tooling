@@ -1,1 +1,1 @@
-import steps from "./uni17-index.js.js"; const problem = {id: "uni17", title: "Solve Uniform Motion Applications", body: "", steps: steps, variabilization: {}}; export { problem };
+import steps from "./uni17-index.js"; const problem = {id: "uni17", title: "Solve Uniform Motion Applications", body: "", steps: steps, variabilization: {}}; export { problem };
