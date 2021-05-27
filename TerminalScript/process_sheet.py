@@ -459,9 +459,10 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     # if len(error_data) > 0:
         # error_data.sort(key=lambda e: int(re.findall('\d+$', e[1])[0])) #sort errors according to problem number
     if write_gc:
+        worksheet.update_cell(1, len(df.columns) + 2, 'Validator Output')
         for e in error_data:
             error_row = worksheet.find(e[1]).row
-            worksheet.update_cell(error_row, 17, e[2])
+            worksheet.update_cell(error_row, len(df.columns) + 2, e[2])
 
         # next_row = next_available_row(error_worksheet)
         # end_row = str(int(next_row) + len(error_data) - 1)
