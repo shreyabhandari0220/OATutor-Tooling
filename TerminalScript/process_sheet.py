@@ -255,7 +255,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     skills = []
     skills_unformatted = []
     skillModelJS_path = os.path.join("..","skillModel1.js")
-    skillModelJS_file = open(skillModelJS_path,"r", encoding="utf-8")
+    skillModelJS_file = open(skillModelJS_path,"r")
     break_index = 0
     line_counter = 0
     error_data = []
@@ -334,7 +334,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                     step_file.writelines("    " + current_step_name + ": " + "[\"realnumber\"], \n")
                     #creates step js files 
                     current_step_path, step_reg_js, default_pathway_js = create_step_dir(current_step_name, path+"/steps", verbosity)
-                    step_file = open(step_reg_js, "w", encoding="utf-8")
+                    step_file = open(step_reg_js, "w")
                     step_images = ""
                     #checks images and creates the figures path if necessary
                     if type(row["Images (space delimited)"]) == str:
@@ -423,7 +423,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
 
         to_write = create_default_pathway(tutoring)
-        default_pathway = open(default_pathway_js, "w", encoding="utf-8")
+        default_pathway = open(default_pathway_js, "w")
         default_pathway.write(to_write)
         default_pathway.close()
 
@@ -439,12 +439,12 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         else:
             prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_images,latex=latex,verbosity=verbosity)
         re.sub("[\.js]{2,}", ".js", prob_js)
-        file = open(problem_js, "w", encoding="utf-8")
+        file = open(problem_js, "w")
         file.write(prob_js)
         file.close()
 
     new_skillModelJS_lines = skillModelJS_lines[0:break_index] + skills + skillModelJS_lines[break_index:]
-    with open(skillModelJS_path, 'w', encoding="utf-8") as f:
+    with open(skillModelJS_path, 'w') as f:
         for item in new_skillModelJS_lines:
             f.write(item)
     skills_unformatted = ["_".join(skill.lower().split()) for skill in skills_unformatted]
