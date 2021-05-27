@@ -1,0 +1,1 @@
+import hints from "./systems10a-index.js"; const step = {id: "systems10a", stepAnswer: ["$$(1/2,0)$$"], problemType: "MultipleChoice", stepTitle: "$$\\left(2\\right) x^3-x^2=y$$, $$\\\\ny=\\frac{1}{2}-x$$", stepBody: "", choices: ["$$(1/2,0)$$", "(1,1)", "$$(1/2,0),(1,1)$$", "No Solution"], answerType: "string", hints: hints, variabilization: {}}; export {step};

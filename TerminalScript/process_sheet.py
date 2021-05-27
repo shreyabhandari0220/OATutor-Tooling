@@ -122,6 +122,8 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
                     except TypeError:
                         raise Exception("Hint ID is missing")
                     if row_type == 'hint':
+                        # if type(row['Answer']) != float:
+                        #     raise Exception("hint row has answer. Should be a scaffold")
                         if variabilization:
                             subhint, subhint_id = create_hint(current_step_name, hint_id, row["Title"], row["Body Text"], row["Dependency"], hint_images, hint_dic=hint_dic, variabilization=row["Variabilization"],latex=latex,verbosity=verbosity)
                         else:
@@ -135,6 +137,8 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
                     current_subhints.append(subhint)
                     tutoring.pop()
                     if previous_tutor['Row Type'] == 'hint':
+                        # if type(row['Answer']) != float:
+                        #     raise Exception("hint row has answer. Should be a scaffold")
                         if variabilization:
                             previous, hint_id = create_hint(current_step_name, previous_tutor["HintID"], previous_tutor["Title"], previous_tutor["Body Text"], previous_tutor["Dependency"], previous_images, subhints=current_subhints, hint_dic=hint_dic, variabilization=previous_tutor["Variabilization"],latex=latex,verbosity=verbosity)
                         else:
@@ -150,6 +154,8 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
                     tutor_count += 1
                     current_subhints = []
                     if row_type == "hint":
+                        # if type(row['Answer']) != float:
+                        #     raise Exception("hint row has answer. Should be a scaffold")
                         hint_images = ""
                         if type(row["Images (space delimited)"]) == str:
                             validate_image(row["Images (space delimited)"])
