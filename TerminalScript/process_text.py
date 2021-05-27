@@ -13,9 +13,11 @@ answer_only_operators = ["-"]
 replace = {"⋅" : "*", "−" : "-", "^" : "**", "𝑥" : "x", "𝑎" : "a", "𝑏" : "b", "𝑦" : "y", "–": "-", "≥" : ">=", "≤": "<=", "∪" : "U", "π" : "pi"}
 conditionally_replace = {"[" : "(", "]" : ")"}
 regex = re.compile("|".join(map(re.escape, replace.keys())))
+force_latex = 0.0
 
 #Figure out way to deal with equal signs
 def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, render_latex="TRUE", verbosity=False):
+    global force_latex
     if render_latex == "TRUE":
         render_latex = True
     else:
@@ -35,7 +37,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
         text = re.sub("\s\\\\\"\s", " ", text) #To account for quoted LaTeX expressions.
         text = re.sub("\\\\pipe", "|", text) #To account for literal | in mc answers
         text = re.sub(r"\\/", r"\\\\slash\\\\", text) #To account for literal /
-        text = re.sub(r"@{(\d+|\w+)}", r"aaa\g<1>ttt", text)
+        text = re.sub(r"@{(\d+|\w+)}", r"aaa\g<1>ttt", text) #For variabilization
 
         # for operator in supported_operators:
         #     text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
@@ -46,10 +48,6 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
     angle_bracket = False
     for i in list(range(len(words))):
         word = words[i]
-        # if render_latex and (((stepMC or stepAns) and \
-        #     any([op in word for op in answer_only_operators])) or \
-        #     any([op in word for op in supported_operators]) or \
-        #     any([op in word for op in supported_word_operators])):
         if use_latex(word, render_latex, stepMC, stepAns):
             if not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", word): # only add in space if is not coordinate
                 word = re.sub(",(\S)", ", \g<1>", word)
@@ -79,6 +77,10 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
             # if the word is forced latex
             if word[:2] == '$$' and word[-2:] == '$$':
                 word = word[2:-2]
+            elif word[:2] == '$$':
+                word = word[2:]
+            elif word[-2:] == '$$':
+                word = word[:-2]
             try:        
                 sides = re.split('(=|U|<=|>=)', word)
                 sides = [handle_word(side) for side in sides]
@@ -111,18 +113,43 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
         # if forced verbatim
         if word[:2] == '##' and word[-2:] == '##':
             words[i] = word[2:-2]
+        elif word[:2] == '##':
+            words[i] = word[2:]
+        elif word[-2:] == '##':
+            words[i] = word[:-2]
     text = " ".join(words)
     text = re.sub(r"\\\\slash\\\\", "/", text)
     text = re.sub(r"aaa(\w+|\d+)ttt", r"@{\g<1>}", text)
     # text = re.sub(r"\n", r"\\\\n", text)
+    force_latex = 0.0
     return text, latex
 
 def use_latex(word, render_latex, stepMC, stepAns):
-    if word[:2] == '$$' or word[-2:] == '$$':
+    global force_latex
+    if word[:2] == '$$' and word[-2:] == '$$':
+        force_latex = 0.0
         return True
-    if word[:2] == '##' or word[-2:] == '##':
+    if word[:2] == '$$':
+        force_latex = True
+        return True
+    if word[-2:] == '$$':
+        force_latex = 0.0
+        return True
+    if word[:2] == '##' and word[-2:] == '##':
+        force_latex = 0.0
+        return False
+    if word[:2] == '##':
+        force_latex = False
+        return False
+    if word[-2:] == '##':
+        force_latex = 0.0
+        return False
+    if type(force_latex) != float and force_latex:
+        return True
+    if type(force_latex) != float and not force_latex:
         return False
     if not render_latex:
+        print(7, word)
         return False
     if (stepMC or stepAns) and any([op in word for op in answer_only_operators]):
         return True
