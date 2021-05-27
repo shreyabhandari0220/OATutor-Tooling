@@ -1,1 +1,1 @@
-import hints from "./systems1a-index.js"; const step = {id: "systems1a", stepAnswer: ["TRUE"], problemType: "MultipleChoice", stepTitle: "", stepBody: "", choices: ["True", "False"], answerType: "string", hints: hints, variabilization: {}}; export {step};
+import hints from "./b8b840systems1a-index.js"; const step = {id: "b8b840systems1a", stepAnswer: ["TRUE"], problemType: "MultipleChoice", stepTitle: "", stepBody: "", choices: ["True", "False"], answerType: "string", hints: hints, variabilization: {}}; export {step};
