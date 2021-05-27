@@ -73,13 +73,13 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
             if word[:1] == "{":
                 open_braces = True
                 word = word[1:]
-            if word[-1:] == "}" and "ln{" not in word:
+            if word[-1:] == "}" and "ln{" not in word and '/mat' not in word: 
                 closing_braces = True
                 word = word[:-1]
             # if the word is forced latex
             if word[:2] == '$$' and word[-2:] == '$$':
                 word = word[2:-2]
-            try:                
+            try:        
                 sides = re.split('(=|U|<=|>=)', word)
                 sides = [handle_word(side) for side in sides]
                 new_word = ""
@@ -132,6 +132,17 @@ def handle_word(word):
     latex_dic = {"=": "=", "U": " \cup ", "<=" : " \leq ", ">=" : " \geq "}
     if word in latex_dic:
         return latex_dic[word]
+
+    if r'/mat' in word:
+        word = re.findall('/mat{(.+?)}', word)[0]
+        word = re.sub(r'\),\(', r' \\\\ ', word)
+        word = re.sub('[\(|\)]', '', word)
+        word = re.sub(',', ' & ', word)
+        elements = word.split()
+        elements = [handle_word(e) for e in elements]
+        word = ' '.join(elements)
+        word = r"\begin{bmatrix} " + word + r" \end{bmatrix}"
+        return word
     
     if not (any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])):
         return word
