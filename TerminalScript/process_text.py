@@ -28,7 +28,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
         text = regex.sub(lambda match: replace[match.group(0)], text)
         if not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", text): #Checking to see if there are coordinates/intervals before replacing () with []
             text = regex.sub(lambda match: conditionally_replace[match.group(0)], text)
-        
+
         #Account for space in sqrt(x, y)
         text = re.sub(r"sqrt[\s]?\(([^,]+),[\s]+([^\)])\)", r"sqrt(\g<1>,\g<2>)", text)
         text = re.sub(r"sqrt(?:\s*)?\(", r"sqrt(", text)
@@ -42,22 +42,23 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
         # for operator in supported_operators:
         #     text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
 
-
     words = text.split()
     latex = False
     angle_bracket = False
     for i in list(range(len(words))):
         word = words[i]
         if use_latex(word, render_latex, stepMC, stepAns):
-            if not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", word): # only add in space if is not coordinate
+            if not re.findall("[\[|\(][\+\-\*/\(\)\d\s\w]+,[\+\-\*/\(\)\d\s\w]+[\)|\]]", word): # only add in space if is not coordinate
                 word = re.sub(",(\S)", ", \g<1>", word)
 
-            punctuation = re.findall("[\?\.,:]", word) #Capture all the punctuation at the end of the sentence
-            if punctuation:
-                punctuation = punctuation[0]
-            else:
-                punctuation = ""
-            strip_punc = not re.findall("[\d]\.[\d]", word) and not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", word)
+            # punctuation = re.findall("[\?\.,:]", word) #Capture all the punctuation at the end of the sentence
+            # if punctuation:
+            #     punctuation = punctuation[-1]
+            # else:
+            #     punctuation = ""
+            strip_punc = word[-1] in "?.,:"
+            # strip_punc = not re.findall("[\d]\.[\d]", word) and not \
+            #             re.findall("[\[|\(][\+\-\*/\(\)\d\s\w]+,[\+\-\*/\(\)\d\s\w]+[\)|\]]", word)
             quote = False
             open_braces = closing_braces = False
             # if the word is wrapped in quote.
@@ -66,7 +67,11 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
                 quote = True
             # if the word contains 
             if strip_punc:
-                word = re.sub("[\?\.,:]", "", word)
+                # word = re.sub("[\?\.,:]", "", word)
+                punctuation = word[-1]
+                word = word[:-1]
+            else:
+                punctuation = ""
             # handles braces in LaTeX
             if word[:1] == "{":
                 open_braces = True
@@ -151,11 +156,17 @@ def use_latex(word, render_latex, stepMC, stepAns):
     if not render_latex:
         print(7, word)
         return False
-    if (stepMC or stepAns) and any([op in word for op in answer_only_operators]):
-        return True
-    return any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])
+    parts = word.split('-')
+    for part in parts:
+        if any([op in part for op in supported_operators]) or any([op in part for op in supported_word_operators]) and 'info' not in part:
+            return True
+    return False
+    # if (stepMC or stepAns) and any([op in word for op in answer_only_operators]):
+    #     return True
+    # return any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators]) and 'info' not in word
 
-def handle_word(word):
+def handle_word(word, coord=True):
+    print('4:', word)
     latex_dic = {"=": "=", "U": " \cup ", "<=" : " \leq ", ">=" : " \geq "}
     if word in latex_dic:
         return latex_dic[word]
@@ -175,15 +186,29 @@ def handle_word(word):
         return word
 
     if "log{" in word:
-        return re.sub("log{(\d+|\w+)}", r"\\log_{\g<1>}", word)
+        word = re.sub("log{(\d+|\w+)}", r"\\log_{\g<1>}", word)
+        num = re.search('\}\(([\d\D]+)\)', word)
+        num = '}(' + handle_word(num.group(1)) + ')'
+        num = re.sub(r'\\', r'\\\\', num)
+        word = re.sub('\}\(([\d\D]+)\)', num, word)
+        return word
 
     if "ln{" in word:
         return re.sub("ln{", r"\\ln{", word)
-    
-    coordinates = re.findall("[\(|\[][-\d\s\D]+,[-\d\s\D]+[\)|\]]",word)
-    if coordinates:
-        word = re.sub("inf", r"\\infty", word)
-        return word
+        
+    coordinates = re.findall("[\(|\[][\+\-\*/\(\)\d\s\D]+,[\+\-\*/\(\)\d\s\D]+[\)|\]]", word)
+    if coord and coordinates:
+        trailing = ''
+        if word[-1] != ')' and word[-1] != ')':
+            trailing = word[-1]
+            word = word[:-1]
+        first = re.search('(\(|\[)([-\d\s\D]+),', word)
+        second = re.search(',([-\d\s\D]+)(\)|\])', word)
+        xcoord = handle_word(first.group(2), coord=False)
+        ycoord = handle_word(second.group(1), coord=False)
+        new_coord = first.group(1) + xcoord + ',' + ycoord + second.group(2) + trailing
+        new_coord = re.sub(r'\\', r'\\\\', new_coord)
+        return re.sub("[\(|\[][-\d\D]+,[-\d\D]+[\)|\]]", new_coord, word)
     
     word = re.sub("\+/-", "pm(a)", word)
     
@@ -203,8 +228,12 @@ def handle_word(word):
     word = re.sub(r"sqrt\*", r"sqrt", word)
     word = re.sub(r"abs\*", r"abs", word)
     word = re.sub(r"pm\*", r"pm", word)
+    word = re.sub('\*\*\(\-0.', '**(zero', word)
+    word = re.sub('\*\*\(\-.', '**(zero', word)   
     word = re.sub('\(\-', '(negneg', word)
     # word = re.sub('\*\*\(negneg', '\(\-', word)
+
+    print('5:', word)
 
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
     
@@ -213,5 +242,5 @@ def handle_word(word):
         word = re.sub(item[0] + "\{" + item[1] + "\}", item[0] + "\\\\times {" + item[1] + "}", word)
     word = re.sub(r"\\operatorname{(\w*|\d*)pm}\\left\(a\\right\)(\\times)?", r"\g<1>\\pm ", word)
     word = re.sub(r"negneg(\d|\w)", r"\\left(-\g<1>\\right)", word) #handles first negative sign following opening parenthesis
-    
+    word = re.sub(r"zero", r"-0.", word)
     return word[2:-2]
