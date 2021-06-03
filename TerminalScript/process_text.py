@@ -154,7 +154,6 @@ def use_latex(word, render_latex, stepMC, stepAns):
     if type(force_latex) != float and not force_latex:
         return False
     if not render_latex:
-        print(7, word)
         return False
     parts = word.split('-')
     for part in parts:
@@ -166,7 +165,6 @@ def use_latex(word, render_latex, stepMC, stepAns):
     # return any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators]) and 'info' not in word
 
 def handle_word(word, coord=True):
-    print('4:', word)
     latex_dic = {"=": "=", "U": " \cup ", "<=" : " \leq ", ">=" : " \geq "}
     if word in latex_dic:
         return latex_dic[word]
@@ -233,7 +231,6 @@ def handle_word(word, coord=True):
     word = re.sub('\(\-', '(negneg', word)
     # word = re.sub('\*\*\(negneg', '\(\-', word)
 
-    print('5:', word)
 
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
     
