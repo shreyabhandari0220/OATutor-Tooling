@@ -19,15 +19,15 @@ var courses = [
         topics: "Exponents and Scientific Notation",
         allowRecyle: true,
         learningObjectives: {
-          power_of_a_product_rule: 0.95,
-          using_the_rules_of_exponents: 0.95,
-          quotient_rule: 0.95,
-          power_rule: 0.95,
+          negative_exponent_rule: 0.95,
           zero_exponent_rule: 0.95,
           using_scientific_notation: 0.95,
-          negative_exponent_rule: 0.95,
-          product_rule: 0.95,
           power_of_a_quotient_rule: 0.95,
+          using_the_rules_of_exponents: 0.95,
+          product_rule: 0.95,
+          power_of_a_product_rule: 0.95,
+          power_rule: 0.95,
+          quotient_rule: 0.95,
         },
       },
       {
@@ -46,8 +46,8 @@ var courses = [
         topics: "Polynomials",
         allowRecyle: true,
         learningObjectives: {
-          multiplying_polynomials: 0.95,
           adding_and_subtracting_polynomials: 0.95,
+          multiplying_polynomials: 0.95,
           expanding_polynomials: 0.95,
         },
       },
@@ -57,15 +57,15 @@ var courses = [
         topics: "Factoring Polynomials",
         allowRecyle: true,
         learningObjectives: {
-          factoring_a_perfect_square_trinomial: 0.95,
-          factoring_a_difference_of_squares: 0.95,
-          factoring_polynomials: 0.95,
-          factoring_a_trinomial_with_leading_coefficient_1: 0.95,
-          factoring_by_grouping: 0.95,
-          factoring_a_sum_of_cubes: 0.95,
-          factoring_an_expression_with_fractional_or_negative_exponents: 0.95,
           factoring_a_difference_of_cubes: 0.95,
           factoring_the_greatest_common_factor_of_a_polynomial: 0.95,
+          factoring_a_sum_of_cubes: 0.95,
+          factoring_an_expression_with_fractional_or_negative_exponents: 0.95,
+          factoring_a_trinomial_with_leading_coefficient_1: 0.95,
+          factoring_polynomials: 0.95,
+          factoring_a_perfect_square_trinomial: 0.95,
+          factoring_by_grouping: 0.95,
+          factoring_a_difference_of_squares: 0.95,
         },
       },
       {
@@ -74,8 +74,8 @@ var courses = [
         topics: "Rational Expressions",
         allowRecyle: true,
         learningObjectives: {
-          rational_expressions: 0.95,
           simplifying_complex_rational_expressions: 0.95,
+          rational_expressions: 0.95,
         },
       },
       {
@@ -84,10 +84,10 @@ var courses = [
         topics: "The Rectangular Coordinate Systems and Graph",
         allowRecyle: true,
         learningObjectives: {
-          finding_x_intercepts_and_y_intercepts: 0.95,
           using_the_distance_formula: 0.95,
-          the_rectangular_coordinate_systems_and_graphs: 0.95,
           using_the_midpoint_formula: 0.95,
+          the_rectangular_coordinate_systems_and_graphs: 0.95,
+          finding_x_intercepts_and_y_intercepts: 0.95,
         },
       },
       {
@@ -96,11 +96,11 @@ var courses = [
         topics: "Linear Equations in One Variable",
         allowRecyle: true,
         learningObjectives: {
-          solving_linear_equations_in_one_variable: 0.95,
           solving_a_rational_equation: 0.95,
           determining_whether_graphs_of_lines_are_parallel_or_perpendicular: 0.95,
-          writing_the_equation_of_lines_parallel_or_perpendicular_to_a_given_line: 0.95,
           finding_a_linear_equation: 0.95,
+          writing_the_equation_of_lines_parallel_or_perpendicular_to_a_given_line: 0.95,
+          solving_linear_equations_in_one_variable: 0.95,
         },
       },
       {
@@ -119,8 +119,8 @@ var courses = [
         topics: "Complex Numbers",
         allowRecyle: true,
         learningObjectives: {
-          multiplying_complex_numbers: 0.95,
           expressing_square_roots_of_negative_numbers_as_multiples_of_i: 0.95,
+          multiplying_complex_numbers: 0.95,
           dividing_complex_numbers: 0.95,
           adding_and_subtracting_complex_numbers: 0.95,
           simplifying_powers_of_i: 0.95,
@@ -133,11 +133,11 @@ var courses = [
         allowRecyle: true,
         learningObjectives: {
           using_the_pythagorean_theorem: 0.95,
-          solving_a_quadratic_equation_by_factoring_when_the_leading_coefficient_is_not_1: 0.95,
-          quadratic_equations: 0.95,
           solving_quadratic_equations_by_factoring: 0.95,
           the_discriminant: 0.95,
+          quadratic_equations: 0.95,
           solving_quadratics_with_a_leading_coefficient_of_1: 0.95,
+          solving_a_quadratic_equation_by_factoring_when_the_leading_coefficient_is_not_1: 0.95,
           using_the_quadratic_formula: 0.95,
         },
       },
@@ -147,12 +147,12 @@ var courses = [
         topics: "Other Types of Equations",
         allowRecyle: true,
         learningObjectives: {
-          solving_radical_equations: 0.95,
-          sovling_equations_using_factoring: 0.95,
-          solving_other_types_of_equations: 0.95,
-          solving_equations_using_factoring: 0.95,
           solving_equations_involving_rational_exponents: 0.95,
+          solving_equations_using_factoring: 0.95,
+          solving_other_types_of_equations: 0.95,
           solving_an_absolute_value_equation: 0.95,
+          sovling_equations_using_factoring: 0.95,
+          solving_radical_equations: 0.95,
         },
       },
       {
@@ -161,11 +161,11 @@ var courses = [
         topics: "Linear Inequalities and Absolute Value Inequalities",
         allowRecyle: true,
         learningObjectives: {
-          solving_absolute_value_inequalities: 0.95,
-          solving_inequalities_in_one_variable_algebraically: 0.95,
           using_the_properties_of_inequalities: 0.95,
-          using_interval_notation: 0.95,
           understanding_compound_inequalities: 0.95,
+          using_interval_notation: 0.95,
+          solving_inequalities_in_one_variable_algebraically: 0.95,
+          solving_absolute_value_inequalities: 0.95,
         },
       },
       {
@@ -174,9 +174,9 @@ var courses = [
         topics: "Functions and Function Notation",
         allowRecyle: true,
         learningObjectives: {
+          finding_input_and_output_values_of_a_function: 0.95,
           determining_whether_a_function_is_one_to_one: 0.95,
           determining_whether_a_relation_represents_a_function: 0.95,
-          finding_input_and_output_values_of_a_function: 0.95,
         },
       },
       {
@@ -185,11 +185,11 @@ var courses = [
         topics: "Domain and Range",
         allowRecyle: true,
         learningObjectives: {
-          finding_domains_and_ranges_of_the_toolkit_functions: 0.95,
+          finding_the_domain_of_a_function_defined_by_an_equation: 0.95,
           graphing_piecewise_defined_functions: 0.95,
           finding_domain_and_range_from_graphs: 0.95,
           using_notations_to_specify_domain_and_range: 0.95,
-          finding_the_domain_of_a_function_defined_by_an_equation: 0.95,
+          finding_domains_and_ranges_of_the_toolkit_functions: 0.95,
         },
       },
       {
@@ -199,10 +199,10 @@ var courses = [
         allowRecyle: true,
         learningObjectives: {
           use_a_graph_to_locate_the_absolute_maximum_and_absolute_minimum: 0.95,
-          decreasing: 0.95,
           or_constant: 0.95,
           finding_the_average_rate_of_change_of_a_function: 0.95,
           using_a_graph_to_determine_where_a_function_is_increasing: 0.95,
+          decreasing: 0.95,
         },
       },
       {
@@ -212,9 +212,9 @@ var courses = [
         allowRecyle: true,
         learningObjectives: {
           decomposing_a_composite_function_into_its_component_functions: 0.95,
-          create_a_function_by_composition_of_functions: 0.95,
-          combining_functions_using_algebraic_operations: 0.95,
           evaluating_composite_functions: 0.95,
+          combining_functions_using_algebraic_operations: 0.95,
+          create_a_function_by_composition_of_functions: 0.95,
         },
       },
       {
@@ -223,12 +223,12 @@ var courses = [
         topics: "Transformation of Functions",
         allowRecyle: true,
         learningObjectives: {
-          determining_even_and_odd_functions: 0.95,
-          performing_a_sequence_of_transformation: 0.95,
           rates_of_change: 0.95,
+          performing_a_sequence_of_transformation: 0.95,
           graphing_functions_using_reflections_about_the_axes: 0.95,
-          graphing_functions_using_vertical_and_horizontal_shifts: 0.95,
           transformation_of_functions: 0.95,
+          determining_even_and_odd_functions: 0.95,
+          graphing_functions_using_vertical_and_horizontal_shifts: 0.95,
         },
       },
       {
@@ -245,9 +245,9 @@ var courses = [
         allowRecyle: true,
         learningObjectives: {
           inverse_functions: 0.95,
-          finding_inverse_functions_and_their_graphs: 0.95,
-          finding_and_evaluating_inverse_functions: 0.95,
           verifying_that_two_functions_are_inverse_functions: 0.95,
+          finding_and_evaluating_inverse_functions: 0.95,
+          finding_inverse_functions_and_their_graphs: 0.95,
         },
       },
       {
@@ -256,9 +256,9 @@ var courses = [
         topics: "Linear Functions",
         allowRecyle: true,
         learningObjectives: {
-          linear_functions: 0.95,
           finding_the_slope_of_a_linear_function: 0.95,
           writing_and_interpreting_an_equation_for_a_linear_function: 0.95,
+          linear_functions: 0.95,
           writing_the_equation_for_a_function_from_the_graph_of_a_line: 0.95,
           writing_the_equation_of_a_line_parallel_or_perpendicular_to_a_given_line: 0.95,
         },
@@ -271,8 +271,8 @@ var courses = [
         learningObjectives: {
           using_a_given_input_and_output_to_build_a_model: 0.95,
           modeling_with_linear_functions: 0.95,
-          using_a_diagram_to_build_a_model: 0.95,
           modeling_a_set_of_data_with_linear_functions: 0.95,
+          using_a_diagram_to_build_a_model: 0.95,
         },
       },
       {
@@ -281,14 +281,14 @@ var courses = [
         topics: "Quadratic Functions",
         allowRecyle: true,
         learningObjectives: {
+          recognizing_characteristics_of_parabolas: 0.95,
           understanding_how_the_graphs_of_parabolas_are_related_to_their_quadratic_functions: 0.95,
-          applying_the_vertex_and_x_intercepts_of_a_parabola: 0.95,
+          finding_the_x__and_y_intercepts_of_a_quadratic_function: 0.95,
+          quadratic_functions: 0.95,
+          determining_the_maximum_and_minimum_values_of_quadratic_functions: 0.95,
           finding_the_domain_and_range_of_a_quadratic_function: 0.95,
           rewriting_quadratics_in_standard_form: 0.95,
-          recognizing_characteristics_of_parabolas: 0.95,
-          finding_the_x__and_y_intercepts_of_a_quadratic_function: 0.95,
-          determining_the_maximum_and_minimum_values_of_quadratic_functions: 0.95,
-          quadratic_functions: 0.95,
+          applying_the_vertex_and_x_intercepts_of_a_parabola: 0.95,
         },
       },
       {
@@ -307,11 +307,11 @@ var courses = [
         topics: "Graphs of Polynomial Functions",
         allowRecyle: true,
         learningObjectives: {
-          understanding_the_relationship_between_degree_and_turning_points: 0.95,
-          graphs_of_polynomial_functions: 0.95,
           "power_functions_&_polynomials": 0.95,
           writing_formulas_for_polynomial_functions: 0.95,
           using_factoring_to_find_zeros_of_polynomial_functions: 0.95,
+          understanding_the_relationship_between_degree_and_turning_points: 0.95,
+          graphs_of_polynomial_functions: 0.95,
         },
       },
       {
@@ -320,10 +320,10 @@ var courses = [
         topics: "Dividing Polynomials",
         allowRecyle: true,
         learningObjectives: {
+          using_synthetic_division_to_divide_polynomials: 0.95,
           using_long_division_to_divide_polynomials: 0.95,
           dividing_polynomials: 0.95,
           using_polynomial_division_in_application_problems: 0.95,
-          using_synthetic_division_to_divide_polynomials: 0.95,
         },
       },
       {
@@ -332,14 +332,14 @@ var courses = [
         topics: "Zeros of Polynomial Functions",
         allowRecyle: true,
         learningObjectives: {
-          using_the_factor_theorem_to_solve_a_polynomial_equation: 0.95,
           using_the_fundamental_theorem_of_algebra: 0.95,
-          using_the_linear_factorization_theorem_to_find_polynomials_with_given_zeros: 0.95,
-          finding_the_zeros_of_polynomial_functions: 0.95,
-          "using_descartes’_rule_of_signs": 0.95,
-          evaluating_a_polynomial_using_the_remainder_theorem: 0.95,
-          solving_real_world_applications: 0.95,
           using_the_rational_zero_theorem_to_find_rational_zeros: 0.95,
+          solving_real_world_applications: 0.95,
+          "using_descartes’_rule_of_signs": 0.95,
+          finding_the_zeros_of_polynomial_functions: 0.95,
+          evaluating_a_polynomial_using_the_remainder_theorem: 0.95,
+          using_the_factor_theorem_to_solve_a_polynomial_equation: 0.95,
+          using_the_linear_factorization_theorem_to_find_polynomials_with_given_zeros: 0.95,
         },
       },
       {
@@ -348,10 +348,10 @@ var courses = [
         topics: "Rational Functions",
         allowRecyle: true,
         learningObjectives: {
-          finding_the_intercepts_of_a_rational_function: 0.95,
           horizontal_asymptotes_of_rational_functions: 0.95,
-          finding_the_domains_of_rational_functions: 0.95,
           rational_functions: 0.95,
+          finding_the_domains_of_rational_functions: 0.95,
+          finding_the_intercepts_of_a_rational_function: 0.95,
         },
       },
       {
@@ -360,15 +360,15 @@ var courses = [
         topics: "Inverses and Radical Functions",
         allowRecyle: true,
         learningObjectives: {
-          finding_the_inverse_of_a_polynomial_function: 0.95,
-          factoring_a_difference_of_squares: 0.95,
-          restricting_the_domain_to_find_the_inverse_of_a_polynomial_function: 0.95,
-          determining_the_domain_of_a_radical_function_composed_with_other_functions: 0.95,
-          factoring_a_sum_of_cubes: 0.95,
           solving_applications_of_radical_functions: 0.95,
-          factoring_an_expression_with_fractional_or_negative_exponents: 0.95,
-          finding_inverses_of_rational_functions: 0.95,
+          determining_the_domain_of_a_radical_function_composed_with_other_functions: 0.95,
+          restricting_the_domain_to_find_the_inverse_of_a_polynomial_function: 0.95,
           factoring_a_difference_of_cubes: 0.95,
+          factoring_a_sum_of_cubes: 0.95,
+          factoring_an_expression_with_fractional_or_negative_exponents: 0.95,
+          finding_the_inverse_of_a_polynomial_function: 0.95,
+          finding_inverses_of_rational_functions: 0.95,
+          factoring_a_difference_of_squares: 0.95,
         },
       },
       {
@@ -377,8 +377,8 @@ var courses = [
         topics: "Modeling Using Variation",
         allowRecyle: true,
         learningObjectives: {
-          solving_problems_involving_joint_variation: 0.95,
           modeling_using_variation: 0.95,
+          solving_problems_involving_joint_variation: 0.95,
           solving_direct_variation_problems: 0.95,
           solving_inverse_variation_problems: 0.95,
         },
@@ -389,15 +389,15 @@ var courses = [
         topics: "Exponential Functions",
         allowRecyle: true,
         learningObjectives: {
-          evaluating_exponential_functions: 0.95,
-          applying_the_compound_interest_formula: 0.95,
-          evaluating_functinos_with_base_e: 0.95,
           applying_the_compoung_interest_formula: 0.95,
-          investigating_continuous_growth: 0.95,
-          identifying_exponential_functions: 0.95,
-          defining_exponential_growth: 0.95,
-          finding_equations_of_exponential_functions: 0.95,
           evaluating_exponential_function: 0.95,
+          defining_exponential_growth: 0.95,
+          evaluating_exponential_functions: 0.95,
+          identifying_exponential_functions: 0.95,
+          finding_equations_of_exponential_functions: 0.95,
+          investigating_continuous_growth: 0.95,
+          evaluating_functinos_with_base_e: 0.95,
+          applying_the_compound_interest_formula: 0.95,
         },
       },
       {
@@ -413,17 +413,17 @@ var courses = [
         topics: "Logarithmic Functions",
         allowRecyle: true,
         learningObjectives: {
+          evaluating_logarithms: 0.95,
+          rewriting_and_solving_a_real_world_exponential_model: 0.95,
           finding_the_value_of_a_common_logarithm_using_a_calculator: 0.95,
           converting_from_logarithmic_to_exponential_form: 0.95,
-          converting_from_exponential_form_to_logarithmic_form: 0.95,
-          converting_from_logarithmic_form_to_exponential_form: 0.95,
-          rewriting_and_solving_a_real_world_exponential_model: 0.95,
-          evaluating_logarithms: 0.95,
-          evaluating_a_natural_logarithm_using_a_calculator: 0.95,
-          solving_logarithms_mentally: 0.95,
-          evaluating_the_logarithm_of_a_reciprocal: 0.95,
-          finding_the_value_of_a_common_logarithm_mentally: 0.95,
           converting_from_exponential_to_logarithmic_form: 0.95,
+          finding_the_value_of_a_common_logarithm_mentally: 0.95,
+          converting_from_exponential_form_to_logarithmic_form: 0.95,
+          solving_logarithms_mentally: 0.95,
+          converting_from_logarithmic_form_to_exponential_form: 0.95,
+          evaluating_a_natural_logarithm_using_a_calculator: 0.95,
+          evaluating_the_logarithm_of_a_reciprocal: 0.95,
         },
       },
       {
@@ -439,14 +439,14 @@ var courses = [
         topics: "Logarithmic Properties",
         allowRecyle: true,
         learningObjectives: {
-          expanding_logarithmic_expressions: 0.95,
           using_the_change_of_base_formula_for_logarithms: 0.95,
-          the_quotient_rule_for_logarithms: 0.95,
-          using_the_power_rule_for_logarithms_to_simplify_the_logarithm_of_a_radical_expression: 0.95,
+          expanding_logarithmic_expressions: 0.95,
           the_product_rule_for_logarithms: 0.95,
-          the_properties_of_logarithms: 0.95,
-          the_power_rule_for_logarithms: 0.95,
           condensing_logarithmic_expressions: 0.95,
+          the_quotient_rule_for_logarithms: 0.95,
+          the_power_rule_for_logarithms: 0.95,
+          using_the_power_rule_for_logarithms_to_simplify_the_logarithm_of_a_radical_expression: 0.95,
+          the_properties_of_logarithms: 0.95,
         },
       },
       {
@@ -455,9 +455,9 @@ var courses = [
         topics: "Exponential and Logarithmic Equations",
         allowRecyle: true,
         learningObjectives: {
+          using_like_bases_to_solve_exponential_equations: 0.95,
           exponential_and_logarithmic_equations: 0.95,
           using_the_definition_of_a_logarithm_to_solve_logarithmic_equations: 0.95,
-          using_like_bases_to_solve_exponential_equations: 0.95,
         },
       },
       {
@@ -466,13 +466,13 @@ var courses = [
         topics: "Exponential and Logarithmic Models",
         allowRecyle: true,
         learningObjectives: {
-          calculating_doubling_time: 0.95,
           "use_newton's_law_of_cooling": 0.95,
-          "using_newton's_law_of_cooling": 0.95,
-          modeling_exponential_growth_and_decay: 0.95,
           logarithmic_application: 0.95,
+          "using_newton's_law_of_cooling": 0.95,
           expressing_an_exponential_model_in_base_e: 0.95,
+          modeling_exponential_growth_and_decay: 0.95,
           using_logistic_growth_models: 0.95,
+          calculating_doubling_time: 0.95,
         },
       },
       {
@@ -481,9 +481,9 @@ var courses = [
         topics: "Fitting Exponential Models to Data",
         allowRecyle: true,
         learningObjectives: {
+          building_a_logistic_model_from_data: 0.95,
           building_an_exponential_model_from_data: 0.95,
           building_a_logarithmic_model_from_data: 0.95,
-          building_a_logistic_model_from_data: 0.95,
         },
       },
       {
@@ -492,8 +492,8 @@ var courses = [
         topics: "Systems of Linear Equations: Two Variables",
         allowRecyle: true,
         learningObjectives: {
-          "systems_of_linear_equations:_two_variables": 0.95,
           "systemeqs_of_linear_equations:_two_variables": 0.95,
+          "systems_of_linear_equations:_two_variables": 0.95,
         },
       },
       {
@@ -502,8 +502,8 @@ var courses = [
         topics: "Systems of Linear Equations: Three Variables",
         allowRecyle: true,
         learningObjectives: {
-          solving_systems_of_three_equations_in_three_variables: 0.95,
           "openstax.org": 0.95,
+          solving_systems_of_three_equations_in_three_variables: 0.95,
           systems_of_linear_equations: 0.95,
         },
       },
@@ -514,8 +514,8 @@ var courses = [
           "Systems of Nonlinear Equations and Inequalities: Two Variables",
         allowRecyle: true,
         learningObjectives: {
-          solving_a_system_of_nonlinear_equations: 0.95,
           solving_a_system_of_nonlinear_equations_using_substitution: 0.95,
+          solving_a_system_of_nonlinear_equations: 0.95,
           solving_a_system_of_nonlinear_equations_using_elimination: 0.95,
         },
       },
@@ -532,12 +532,12 @@ var courses = [
         topics: "Matrices and Matrix Operations",
         allowRecyle: true,
         learningObjectives: {
-          finding_the_product_of_two_matrices: 0.95,
-          finding_scalar_multiples_of_a_matrix: 0.95,
-          matrices_and_matrix_operations: 0.95,
           adding_and_subtracting_matrices: 0.95,
+          finding_scalar_multiples_of_a_matrix: 0.95,
           finding_scalar_mulitples_of_a_matrix: 0.95,
           finding_the_sum_and_difference_of_two_matrices: 0.95,
+          matrices_and_matrix_operations: 0.95,
+          finding_the_product_of_two_matrices: 0.95,
         },
       },
       {
@@ -554,8 +554,8 @@ var courses = [
         allowRecyle: true,
         learningObjectives: {
           solving_a_system_of_linear_equations_using_the_inverse_of_a_matrix: 0.95,
-          finding_the_inverse_of_a_matrix: 0.95,
           "openstax.org": 0.95,
+          finding_the_inverse_of_a_matrix: 0.95,
         },
       },
       {
@@ -564,14 +564,14 @@ var courses = [
         topics: "Solving Systems with Cramer's Rule",
         allowRecyle: true,
         learningObjectives: {
-          understanding_properties_of_determinants: 0.95,
           "using_cramer's_rule_to_solve_a_system_of_two_equations_in_two_variables": 0.95,
           evaluating_the_determinant_of_a_3x3_matrix: 0.95,
+          "using_cramer's_rule_to_solve_a_system_of_three_equations_in_three_variable": 0.95,
+          understanding_properties_of_determinants: 0.95,
+          evaluating_the_determinant_of_a_2x2_matrix: 0.95,
           "using_cramer's_rule_to_solve_a_dependent_system": 0.95,
           "solving_systems_with_cramer's_rule": 0.95,
           "using_cramer's_rule_to_solve_an_inconsistent_system": 0.95,
-          evaluating_the_determinant_of_a_2x2_matrix: 0.95,
-          "using_cramer's_rule_to_solve_a_system_of_three_equations_in_three_variable": 0.95,
         },
       },
     ],
@@ -586,8 +586,8 @@ var courses = [
         allowRecyle: true,
         learningObjectives: {
           use_place_value_with_whole_numbers: 0.95,
-          identify_multiples_and_apply_divisibility_tests: 0.95,
           find_prime_factorizations_and_least_common_multiples: 0.95,
+          identify_multiples_and_apply_divisibility_tests: 0.95,
         },
       },
       {
@@ -596,10 +596,10 @@ var courses = [
         topics: "Use the Language of Algebra",
         allowRecyle: true,
         learningObjectives: {
-          evaluate_an_expression: 0.95,
-          simplify_expressions_using_the_order_of_operations: 0.95,
           use_variables_and_algebraic_symbols: 0.95,
           identify_and_combine_like_terms: 0.95,
+          simplify_expressions_using_the_order_of_operations: 0.95,
+          evaluate_an_expression: 0.95,
         },
       },
       {
@@ -608,8 +608,8 @@ var courses = [
         topics: "Add and Subtract Integers",
         allowRecyle: true,
         learningObjectives: {
-          "simplify:_expressions_with_absolute_value": 0.95,
           use_negatives_and_opposites: 0.95,
+          "simplify:_expressions_with_absolute_value": 0.95,
           add_integers: 0.95,
         },
       },
@@ -619,11 +619,11 @@ var courses = [
         topics: "Multiply and Divide Integers",
         allowRecyle: true,
         learningObjectives: {
-          translate_phrases_to_expressions_with_integers: 0.95,
           simplify_expressions_with_integers: 0.95,
+          translate_phrases_to_expressions_with_integers: 0.95,
           multiply_integers: 0.95,
-          evaluate_variable_expressions_with_integers: 0.95,
           use_integers_in_applications: 0.95,
+          evaluate_variable_expressions_with_integers: 0.95,
           divide_integers: 0.95,
         },
       },
@@ -633,11 +633,11 @@ var courses = [
         topics: "Visualize Fractions",
         allowRecyle: true,
         learningObjectives: {
-          multiply_fractions: 0.95,
-          simplify_expressions_with_a_fraction_bar: 0.95,
           translate_phrases_to_expressions_with_fractions: 0.95,
-          divide_fractions: 0.95,
           simplify_fractions: 0.95,
+          simplify_expressions_with_a_fraction_bar: 0.95,
+          divide_fractions: 0.95,
+          multiply_fractions: 0.95,
         },
       },
       {
@@ -646,10 +646,10 @@ var courses = [
         topics: "Add and Subtract Fractions",
         allowRecyle: true,
         learningObjectives: {
-          add_or_subtract_fractions_with_different_denominators: 0.95,
           evaluate_variable_expressions_with_fractions: 0.95,
-          add_or_subtract_fractions_with_a_common_denominator: 0.95,
+          add_or_subtract_fractions_with_different_denominators: 0.95,
           use_the_order_of_operations_to_simplify_complex_fractions: 0.95,
+          add_or_subtract_fractions_with_a_common_denominator: 0.95,
         },
       },
       {
@@ -658,14 +658,14 @@ var courses = [
         topics: "Decimals",
         allowRecyle: true,
         learningObjectives: {
+          "add_or_subtract_decimals.": 0.95,
           convert_decimals: 0.95,
-          multiply_and_divide_decimals: 0.95,
-          add_and_subtract_decimals: 0.95,
-          name_and_write_decimals: 0.95,
           and_percents: 0.95,
           fractions: 0.95,
+          name_and_write_decimals: 0.95,
           round_decimals: 0.95,
-          "add_or_subtract_decimals.": 0.95,
+          multiply_and_divide_decimals: 0.95,
+          add_and_subtract_decimals: 0.95,
         },
       },
       {
@@ -674,12 +674,12 @@ var courses = [
         topics: "The Real Numbers",
         allowRecyle: true,
         learningObjectives: {
+          identify_integers: 0.95,
+          rational_numbers: 0.95,
           locate_decimals_on_the_number_line: 0.95,
+          and_real_numbers: 0.95,
           irrational_numbers: 0.95,
           simplify_expressions_with_square_roots: 0.95,
-          rational_numbers: 0.95,
-          and_real_numbers: 0.95,
-          identify_integers: 0.95,
         },
       },
       {
@@ -688,10 +688,10 @@ var courses = [
         topics: "Properties of Real Numbers",
         allowRecyle: true,
         learningObjectives: {
-          use_the_commutative_and_associative_properties: 0.95,
-          use_the_properties_of_zero: 0.95,
           simplify_expressions_using_the_distributive_property: 0.95,
+          use_the_commutative_and_associative_properties: 0.95,
           use_the_identity_and_inverse_properties_of_addition_and_multiplication: 0.95,
+          use_the_properties_of_zero: 0.95,
         },
       },
       {
@@ -700,12 +700,12 @@ var courses = [
         topics: "Systems of Measurement",
         allowRecyle: true,
         learningObjectives: {
-          convert_between_fahrenheit_and_celsius_temperatures: 0.95,
-          "make_unit_conversions_in_the_u.s._system": 0.95,
-          "use_mixed_units_of_measurement_in_the_u.s._system": 0.95,
           "convert_between_the_u.s._and_the_metric_systems_of_measurement": 0.95,
-          make_unit_conversions_in_the_metric_system: 0.95,
+          "use_mixed_units_of_measurement_in_the_u.s._system": 0.95,
           use_mixed_units_of_measurement_in_the_metric_system: 0.95,
+          "make_unit_conversions_in_the_u.s._system": 0.95,
+          make_unit_conversions_in_the_metric_system: 0.95,
+          convert_between_fahrenheit_and_celsius_temperatures: 0.95,
         },
       },
       {
@@ -716,8 +716,8 @@ var courses = [
         allowRecyle: true,
         learningObjectives: {
           solve_equations_that_require_simplification: 0.95,
-          solve_equations_using_the_subtraction_and_addition_properties_of_equality: 0.95,
           verify_a_solution_of_an_equation: 0.95,
+          solve_equations_using_the_subtraction_and_addition_properties_of_equality: 0.95,
         },
       },
       {
@@ -727,10 +727,10 @@ var courses = [
           "Solve Equations using the Division and Multiplication Properties of Equality",
         allowRecyle: true,
         learningObjectives: {
-          translate_to_an_equation_and_solve: 0.95,
-          solve_equations_using_the_division_and_multiplication_properties_of_equality: 0.95,
-          translate_and_solve_applications: 0.95,
           solve_equations_that_require_simplification: 0.95,
+          solve_equations_using_the_division_and_multiplication_properties_of_equality: 0.95,
+          translate_to_an_equation_and_solve: 0.95,
+          translate_and_solve_applications: 0.95,
         },
       },
       {
@@ -740,8 +740,8 @@ var courses = [
         allowRecyle: true,
         learningObjectives: {
           solve_equations_with_variables_and_constants_on_both_sides: 0.95,
-          solve_equations_with_variables_on_both_sides: 0.95,
           solve_equations_with_constants_on_both_sides: 0.95,
+          solve_equations_with_variables_on_both_sides: 0.95,
         },
       },
       {
@@ -760,8 +760,8 @@ var courses = [
         topics: "Solve Equations with Fractions or Decimals",
         allowRecyle: true,
         learningObjectives: {
-          solve_equations_with_fraction_coefficients: 0.95,
           solve_equations_with_decimal_coefficients: 0.95,
+          solve_equations_with_fraction_coefficients: 0.95,
         },
       },
       {
@@ -770,10 +770,10 @@ var courses = [
         topics: "Solve a Formula for a Specific Variable",
         allowRecyle: true,
         learningObjectives: {
-          use_the_distance: 0.95,
           and_time_formula: 0.95,
           solve_a_formula_for_a_specific_variable: 0.95,
           rate: 0.95,
+          use_the_distance: 0.95,
         },
       },
       {
@@ -782,8 +782,8 @@ var courses = [
         topics: "Solve Linear Inequalities",
         allowRecyle: true,
         learningObjectives: {
-          solve_inequalities_using_the_subtraction_and_addition_properties_of_inequality: 0.95,
           graph_inequalities_on_the_number_line: 0.95,
+          solve_inequalities_using_the_subtraction_and_addition_properties_of_inequality: 0.95,
           solve_inequalities_using_the_division_and_multiplication_properties_of_inequality: 0.95,
           solve_inequalities_that_require_simplification: 0.95,
         },
@@ -794,8 +794,8 @@ var courses = [
         topics: "Use a Problem-Solving Strategy",
         allowRecyle: true,
         learningObjectives: {
-          solve_number_problems: 0.95,
           use_a_problem_solving_strategy_for_word_problems: 0.95,
+          solve_number_problems: 0.95,
         },
       },
       {
@@ -805,9 +805,9 @@ var courses = [
         allowRecyle: true,
         learningObjectives: {
           solve_applications_of_percent: 0.95,
-          find_percent_increase_and_percent_decrease: 0.95,
           translate_and_solve_basic_percent_equations: 0.95,
           solve_simple_interest_applications: 0.95,
+          find_percent_increase_and_percent_decrease: 0.95,
         },
       },
       {
@@ -859,8 +859,8 @@ var courses = [
         topics: "and Indexing",
         allowRecyle: true,
         learningObjectives: {
-          iteration_and_indexing: 0.95,
           table_functions: 0.95,
+          iteration_and_indexing: 0.95,
         },
       },
       {
@@ -883,11 +883,11 @@ var courses = [
         topics: "Probability",
         allowRecyle: true,
         learningObjectives: {
-          tree_diagrams_and_conditional_probability: 0.95,
           conditional_probability: 0.95,
+          tree_diagrams_and_conditional_probability: 0.95,
+          "independence_and_bayes’_theorem": 0.95,
           tree_diagrams: 0.95,
           calculating_conditional_probability: 0.95,
-          "independence_and_bayes’_theorem": 0.95,
         },
       },
       {
@@ -896,10 +896,10 @@ var courses = [
         topics: "Theorem",
         allowRecyle: true,
         learningObjectives: {
-          "bayes'_theorem": 0.95,
-          conditional_probability: 0.95,
           definition_and_examples: 0.95,
           "bayes’_theorem_problems": 0.95,
+          "bayes'_theorem": 0.95,
+          conditional_probability: 0.95,
         },
       },
       {
@@ -908,18 +908,18 @@ var courses = [
         topics: "Testing",
         allowRecyle: true,
         learningObjectives: {
-          additional_information_and_full_hypothesis_test_examples: 0.95,
-          decision_and_conclusion: 0.95,
-          rare_events: 0.95,
-          null_and_alternative_hypotheses: 0.95,
-          the_sample: 0.95,
           distribution_needed_for_hypothesis_testing: 0.95,
+          the_sample: 0.95,
+          null_and_alternative_hypotheses: 0.95,
+          rare_events: 0.95,
           outcomes_and_the_type_i_and_type_ii_errors: 0.95,
+          decision_and_conclusion: 0.95,
+          additional_information_and_full_hypothesis_test_examples: 0.95,
         },
       },
       {
-        id: "lessonInterpreting",
-        name: "Lesson Interpreting",
+        id: "lesson##Interpreting",
+        name: "Lesson ##Interpreting",
         topics: "P-values",
         allowRecyle: true,
         learningObjectives: {
@@ -950,8 +950,8 @@ var courses = [
         topics: "and Macromolecules",
         allowRecyle: true,
         learningObjectives: {
-          the_chemical_foundation_of_life: 0.95,
           biological_macromolecules: 0.95,
+          the_chemical_foundation_of_life: 0.95,
         },
       },
     ],
@@ -965,11 +965,11 @@ var courses = [
         topics: "",
         allowRecyle: true,
         learningObjectives: {
-          conversion: 0.95,
-          arrays: 0.95,
           using_functions_to_manipulate_tables: 0.95,
-          expressions: 0.95,
           tables: 0.95,
+          arrays: 0.95,
+          conversion: 0.95,
+          expressions: 0.95,
         },
       },
       {
@@ -978,10 +978,10 @@ var courses = [
         topics: "",
         allowRecyle: true,
         learningObjectives: {
-          writing_functions: 0.95,
-          prediction: 0.95,
-          writing_python_expressions: 0.95,
           elements_of_experiments: 0.95,
+          writing_python_expressions: 0.95,
+          prediction: 0.95,
+          writing_functions: 0.95,
         },
       },
     ],
