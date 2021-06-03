@@ -13,9 +13,11 @@ answer_only_operators = ["-"]
 replace = {"⋅" : "*", "−" : "-", "^" : "**", "𝑥" : "x", "𝑎" : "a", "𝑏" : "b", "𝑦" : "y", "–": "-", "≥" : ">=", "≤": "<=", "∪" : "U", "π" : "pi"}
 conditionally_replace = {"[" : "(", "]" : ")"}
 regex = re.compile("|".join(map(re.escape, replace.keys())))
+force_latex = 0.0
 
 #Figure out way to deal with equal signs
 def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, render_latex="TRUE", verbosity=False):
+    global force_latex
     if render_latex == "TRUE":
         render_latex = True
     else:
@@ -26,7 +28,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
         text = regex.sub(lambda match: replace[match.group(0)], text)
         if not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", text): #Checking to see if there are coordinates/intervals before replacing () with []
             text = regex.sub(lambda match: conditionally_replace[match.group(0)], text)
-        
+
         #Account for space in sqrt(x, y)
         text = re.sub(r"sqrt[\s]?\(([^,]+),[\s]+([^\)])\)", r"sqrt(\g<1>,\g<2>)", text)
         text = re.sub(r"sqrt(?:\s*)?\(", r"sqrt(", text)
@@ -35,31 +37,28 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
         text = re.sub("\s\\\\\"\s", " ", text) #To account for quoted LaTeX expressions.
         text = re.sub("\\\\pipe", "|", text) #To account for literal | in mc answers
         text = re.sub(r"\\/", r"\\\\slash\\\\", text) #To account for literal /
-        text = re.sub(r"@{(\d+|\w+)}", r"aaa\g<1>ttt", text)
+        text = re.sub(r"@{(\d+|\w+)}", r"aaa\g<1>ttt", text) #For variabilization
 
         # for operator in supported_operators:
         #     text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
-
 
     words = text.split()
     latex = False
     angle_bracket = False
     for i in list(range(len(words))):
         word = words[i]
-        # if render_latex and (((stepMC or stepAns) and \
-        #     any([op in word for op in answer_only_operators])) or \
-        #     any([op in word for op in supported_operators]) or \
-        #     any([op in word for op in supported_word_operators])):
         if use_latex(word, render_latex, stepMC, stepAns):
-            if not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", word): # only add in space if is not coordinate
+            if not re.findall("[\[|\(][\+\-\*/\(\)\d\s\w]+,[\+\-\*/\(\)\d\s\w]+[\)|\]]", word): # only add in space if is not coordinate
                 word = re.sub(",(\S)", ", \g<1>", word)
 
-            punctuation = re.findall("[\?\.,:]", word) #Capture all the punctuation at the end of the sentence
-            if punctuation:
-                punctuation = punctuation[0]
-            else:
-                punctuation = ""
-            strip_punc = not re.findall("[\d]\.[\d]", word) and not re.findall("[\[|\(][-\d\s\w/]+,[-\d\s\w/]+[\)|\]]", word)
+            # punctuation = re.findall("[\?\.,:]", word) #Capture all the punctuation at the end of the sentence
+            # if punctuation:
+            #     punctuation = punctuation[-1]
+            # else:
+            #     punctuation = ""
+            strip_punc = word[-1] in "?.,:"
+            # strip_punc = not re.findall("[\d]\.[\d]", word) and not \
+            #             re.findall("[\[|\(][\+\-\*/\(\)\d\s\w]+,[\+\-\*/\(\)\d\s\w]+[\)|\]]", word)
             quote = False
             open_braces = closing_braces = False
             # if the word is wrapped in quote.
@@ -68,7 +67,11 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
                 quote = True
             # if the word contains 
             if strip_punc:
-                word = re.sub("[\?\.,:]", "", word)
+                # word = re.sub("[\?\.,:]", "", word)
+                punctuation = word[-1]
+                word = word[:-1]
+            else:
+                punctuation = ""
             # handles braces in LaTeX
             if word[:1] == "{":
                 open_braces = True
@@ -79,6 +82,10 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
             # if the word is forced latex
             if word[:2] == '$$' and word[-2:] == '$$':
                 word = word[2:-2]
+            elif word[:2] == '$$':
+                word = word[2:]
+            elif word[-2:] == '$$':
+                word = word[:-2]
             try:        
                 sides = re.split('(=|U|<=|>=)', word)
                 sides = [handle_word(side) for side in sides]
@@ -111,24 +118,53 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
         # if forced verbatim
         if word[:2] == '##' and word[-2:] == '##':
             words[i] = word[2:-2]
+        elif word[:2] == '##':
+            words[i] = word[2:]
+        elif word[-2:] == '##':
+            words[i] = word[:-2]
     text = " ".join(words)
     text = re.sub(r"\\\\slash\\\\", "/", text)
     text = re.sub(r"aaa(\w+|\d+)ttt", r"@{\g<1>}", text)
     # text = re.sub(r"\n", r"\\\\n", text)
+    force_latex = 0.0
     return text, latex
 
 def use_latex(word, render_latex, stepMC, stepAns):
-    if word[:2] == '$$' or word[-2:] == '$$':
+    global force_latex
+    if word[:2] == '$$' and word[-2:] == '$$':
+        force_latex = 0.0
         return True
-    if word[:2] == '##' or word[-2:] == '##':
+    if word[:2] == '$$':
+        force_latex = True
+        return True
+    if word[-2:] == '$$':
+        force_latex = 0.0
+        return True
+    if word[:2] == '##' and word[-2:] == '##':
+        force_latex = 0.0
+        return False
+    if word[:2] == '##':
+        force_latex = False
+        return False
+    if word[-2:] == '##':
+        force_latex = 0.0
+        return False
+    if type(force_latex) != float and force_latex:
+        return True
+    if type(force_latex) != float and not force_latex:
         return False
     if not render_latex:
         return False
-    if (stepMC or stepAns) and any([op in word for op in answer_only_operators]):
-        return True
-    return any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])
+    parts = word.split('-')
+    for part in parts:
+        if any([op in part for op in supported_operators]) or any([op in part for op in supported_word_operators]) and 'info' not in part:
+            return True
+    return False
+    # if (stepMC or stepAns) and any([op in word for op in answer_only_operators]):
+    #     return True
+    # return any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators]) and 'info' not in word
 
-def handle_word(word):
+def handle_word(word, coord=True):
     latex_dic = {"=": "=", "U": " \cup ", "<=" : " \leq ", ">=" : " \geq "}
     if word in latex_dic:
         return latex_dic[word]
@@ -148,15 +184,29 @@ def handle_word(word):
         return word
 
     if "log{" in word:
-        return re.sub("log{(\d+|\w+)}", r"\\log_{\g<1>}", word)
+        word = re.sub("log{(\d+|\w+)}", r"\\log_{\g<1>}", word)
+        num = re.search('\}\(([\d\D]+)\)', word)
+        num = '}(' + handle_word(num.group(1)) + ')'
+        num = re.sub(r'\\', r'\\\\', num)
+        word = re.sub('\}\(([\d\D]+)\)', num, word)
+        return word
 
     if "ln{" in word:
         return re.sub("ln{", r"\\ln{", word)
-    
-    coordinates = re.findall("[\(|\[][-\d\s\D]+,[-\d\s\D]+[\)|\]]",word)
-    if coordinates:
-        word = re.sub("inf", r"\\infty", word)
-        return word
+        
+    coordinates = re.findall("[\(|\[][\+\-\*/\(\)\d\s\D]+,[\+\-\*/\(\)\d\s\D]+[\)|\]]", word)
+    if coord and coordinates:
+        trailing = ''
+        if word[-1] != ')' and word[-1] != ')':
+            trailing = word[-1]
+            word = word[:-1]
+        first = re.search('(\(|\[)([-\d\s\D]+),', word)
+        second = re.search(',([-\d\s\D]+)(\)|\])', word)
+        xcoord = handle_word(first.group(2), coord=False)
+        ycoord = handle_word(second.group(1), coord=False)
+        new_coord = first.group(1) + xcoord + ',' + ycoord + second.group(2) + trailing
+        new_coord = re.sub(r'\\', r'\\\\', new_coord)
+        return re.sub("[\(|\[][-\d\D]+,[-\d\D]+[\)|\]]", new_coord, word)
     
     word = re.sub("\+/-", "pm(a)", word)
     
@@ -176,8 +226,11 @@ def handle_word(word):
     word = re.sub(r"sqrt\*", r"sqrt", word)
     word = re.sub(r"abs\*", r"abs", word)
     word = re.sub(r"pm\*", r"pm", word)
+    word = re.sub('\*\*\(\-0.', '**(zero', word)
+    word = re.sub('\*\*\(\-.', '**(zero', word)   
     word = re.sub('\(\-', '(negneg', word)
     # word = re.sub('\*\*\(negneg', '\(\-', word)
+
 
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
     
@@ -186,5 +239,5 @@ def handle_word(word):
         word = re.sub(item[0] + "\{" + item[1] + "\}", item[0] + "\\\\times {" + item[1] + "}", word)
     word = re.sub(r"\\operatorname{(\w*|\d*)pm}\\left\(a\\right\)(\\times)?", r"\g<1>\\pm ", word)
     word = re.sub(r"negneg(\d|\w)", r"\\left(-\g<1>\\right)", word) #handles first negative sign following opening parenthesis
-    
+    word = re.sub(r"zero", r"-0.", word)
     return word[2:-2]

@@ -181,7 +181,13 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
                         previous_images = scaff_images
         except Exception as e:
             error = [sheet_name, problem_name, str(e), time.asctime(time.localtime(time.time()))]
-            error_data.append(error)
+            exists = False
+            for past_error in error_data:
+                if error[0] == past_error[0] and error[1] == past_error[1]:
+                    past_error[2] = past_error[2] + '\n' + error[2]
+                    exists = True
+            if not exists:
+                error_data.append(error)
             continue
 
         
@@ -239,8 +245,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         df["mcChoices"] = df["mcChoices"].str.replace("\"", "\\\"")
     except AttributeError:
         pass
-    df["Body Text"] = df["Body Text"].str.replace("\\n", r"\\\\n")
-    df["Title"] = df["Title"].str.replace("\\n", r"\\\\n")
+    df["Body Text"] = df["Body Text"].str.replace("\\n", r" \\\\n ")
+    df["Title"] = df["Title"].str.replace("\\n", r" \\\\n ")
     df["openstax KC"] = df["openstax KC"].str.replace("\'", "\\\'")
     df["KC"] = df["KC"].str.replace("\'", "\\\'")
 
@@ -453,9 +459,14 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     # if len(error_data) > 0:
         # error_data.sort(key=lambda e: int(re.findall('\d+$', e[1])[0])) #sort errors according to problem number
     if write_gc:
-        next_row = next_available_row(error_worksheet)
-        end_row = str(int(next_row) + len(error_data) - 1)
-        error_worksheet.update('A{}:D{}'.format(next_row, end_row), error_data)
+        worksheet.update_cell(1, len(df.columns) + 2, 'Validator Output')
+        for e in error_data:
+            error_row = worksheet.find(e[1]).row
+            worksheet.update_cell(error_row, len(df.columns) + 2, e[2])
+
+        # next_row = next_available_row(error_worksheet)
+        # end_row = str(int(next_row) + len(error_data) - 1)
+        # error_worksheet.update('A{}:D{}'.format(next_row, end_row), error_data)
 
     for e in error_data:
         print("====")
