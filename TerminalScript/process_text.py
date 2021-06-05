@@ -8,7 +8,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
 sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
 
 supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_"]
-supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{"]
+supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{", 'log(']
 answer_only_operators = ["-"]
 replace = {"⋅" : "*", "−" : "-", "^" : "**", "𝑥" : "x", "𝑎" : "a", "𝑏" : "b", "𝑦" : "y", "–": "-", "≥" : ">=", "≤": "<=", "∪" : "U", "π" : "pi"}
 conditionally_replace = {"[" : "(", "]" : ")"}
@@ -51,14 +51,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
             if not re.findall("[\[|\(][\+\-\*/\(\)\d\s\w]+,[\+\-\*/\(\)\d\s\w]+[\)|\]]", word): # only add in space if is not coordinate
                 word = re.sub(",(\S)", ", \g<1>", word)
 
-            # punctuation = re.findall("[\?\.,:]", word) #Capture all the punctuation at the end of the sentence
-            # if punctuation:
-            #     punctuation = punctuation[-1]
-            # else:
-            #     punctuation = ""
             strip_punc = word[-1] in "?.,:"
-            # strip_punc = not re.findall("[\d]\.[\d]", word) and not \
-            #             re.findall("[\[|\(][\+\-\*/\(\)\d\s\w]+,[\+\-\*/\(\)\d\s\w]+[\)|\]]", word)
             quote = False
             open_braces = closing_braces = False
             # if the word is wrapped in quote.
@@ -67,7 +60,6 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
                 quote = True
             # if the word contains 
             if strip_punc:
-                # word = re.sub("[\?\.,:]", "", word)
                 punctuation = word[-1]
                 word = word[:-1]
             else:
@@ -76,7 +68,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
             if word[:1] == "{":
                 open_braces = True
                 word = word[1:]
-            if word[-1:] == "}" and "ln{" not in word and '/mat' not in word: 
+            if word[-1:] == "}" and "ln{" not in word and "log{" not in word and '/mat' not in word: 
                 closing_braces = True
                 word = word[:-1]
             # if the word is forced latex
@@ -184,24 +176,25 @@ def handle_word(word, coord=True):
         return word
 
     if "log{" in word:
-        word = re.sub("log{(\d+|\w+)}", r"\\log_{\g<1>}", word)
-        num = re.search('\}\(([\d\D]+)\)', word)
-        num = '}(' + handle_word(num.group(1)) + ')'
-        num = re.sub(r'\\', r'\\\\', num)
-        word = re.sub('\}\(([\d\D]+)\)', num, word)
+        nums = [a.group(1) for a in re.finditer('log\{[^}]+\}\{([^}]+)\}', word)]
+        latex_nums = [re.sub(r'\\', r'\\\\', handle_word(n)) for n in nums]
+        while re.search('log\{', word):
+            word = re.sub('log\{([^}]+)\}\{[^}]+\}', r'\\log_{\g<1>}\\left(' + latex_nums[0] + r'\\right)', word, count=1)
+            latex_nums.pop(0)
         return word
 
     if "ln{" in word:
         return re.sub("ln{", r"\\ln{", word)
         
-    coordinates = re.findall("[\(|\[][\+\-\*/\(\)\d\s\D]+,[\+\-\*/\(\)\d\s\D]+[\)|\]]", word)
+    coordinates = re.findall("(?<!sqrt)[\(|\[][\+\-\*/\(\)\d\s\D]+,[\+\-\*/\(\)\d\s\D]+[\)|\]]", word)
     if coord and coordinates:
         trailing = ''
-        if word[-1] != ')' and word[-1] != ')':
+        if word[-1] != ')' and word[-1] != ']':
             trailing = word[-1]
             word = word[:-1]
         first = re.search('(\(|\[)([-\d\s\D]+),', word)
-        second = re.search(',([-\d\s\D]+)(\)|\])', word)
+        rest = word[word.index(first.group(0)) + len(first.group(0)) - 1:]
+        second = re.search(',([-\d\s\D]+)(\)|\])', rest)
         xcoord = handle_word(first.group(2), coord=False)
         ycoord = handle_word(second.group(1), coord=False)
         new_coord = first.group(1) + xcoord + ',' + ycoord + second.group(2) + trailing
@@ -227,12 +220,13 @@ def handle_word(word, coord=True):
     word = re.sub(r"abs\*", r"abs", word)
     word = re.sub(r"pm\*", r"pm", word)
     word = re.sub('\*\*\(\-0.', '**(zero', word)
-    word = re.sub('\*\*\(\-.', '**(zero', word)   
+    word = re.sub('\*\*\(\-\.', '**(zero', word)   
     word = re.sub('\(\-', '(negneg', word)
     # word = re.sub('\*\*\(negneg', '\(\-', word)
 
 
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
+
     
     #Here do the substitutions for the things that py2tex can't handle
     for item in scientific_notation:
