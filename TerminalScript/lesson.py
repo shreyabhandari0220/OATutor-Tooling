@@ -14,7 +14,7 @@ def create_lesson_plan(sheet, skills):
     lesson_name = "Lesson " + lesson_number
     learning_objectives = "{"
     for skill in skills:
-        learning_objectives += "\"" + skill + "\": 0.95, "
+        learning_objectives += "\"" + skill + "\": 0.85, "
     # strip the last comma
     if len(learning_objectives) > 1:
         learning_objectives = learning_objectives[:-2]
