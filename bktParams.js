@@ -5,19 +5,31 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  classifying_a_real_number: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   performing_calculations_using_the_order_of_operations: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  using_the_rules_of_exponents: {
+  classifying_a_real_number: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  power_of_a_product_rule: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  zero_exponent_rule: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  product_rule: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -35,19 +47,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  power_of_a_product_rule: {
+  quotient_rule: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  product_rule: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  zero_exponent_rule: {
+  using_the_rules_of_exponents: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -59,19 +65,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  quotient_rule: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   using_scientific_notation: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  evaluating_square_roots: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -83,13 +77,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  multiplying_polynomials: {
+  evaluating_square_roots: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  expanding_polynomials: {
+  multiplying_polynomials: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -101,31 +95,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  factoring_an_expression_with_fractional_or_negative_exponents: {
+  expanding_polynomials: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  factoring_a_sum_of_cubes: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  factoring_the_greatest_common_factor_of_a_polynomial: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  factoring_a_perfect_square_trinomial: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  factoring_a_trinomial_with_leading_coefficient_1: {
+  factoring_a_difference_of_squares: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -143,13 +119,37 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  factoring_a_difference_of_squares: {
+  factoring_the_greatest_common_factor_of_a_polynomial: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  factoring_a_sum_of_cubes: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
   factoring_a_difference_of_cubes: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  factoring_an_expression_with_fractional_or_negative_exponents: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  factoring_a_perfect_square_trinomial: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  factoring_a_trinomial_with_leading_coefficient_1: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -191,7 +191,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  solving_linear_equations_in_one_variable: {
+  solving_a_rational_equation: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -203,7 +203,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  solving_a_rational_equation: {
+  writing_the_equation_of_lines_parallel_or_perpendicular_to_a_given_line: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -215,7 +215,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  writing_the_equation_of_lines_parallel_or_perpendicular_to_a_given_line: {
+  solving_linear_equations_in_one_variable: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -233,25 +233,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  adding_and_subtracting_complex_numbers: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   expressing_square_roots_of_negative_numbers_as_multiples_of_i: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  dividing_complex_numbers: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  simplifying_powers_of_i: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -263,13 +245,19 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  quadratic_equations: {
+  simplifying_powers_of_i: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  solving_quadratics_with_a_leading_coefficient_of_1: {
+  dividing_complex_numbers: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  adding_and_subtracting_complex_numbers: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -281,51 +269,33 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  solving_a_quadratic_equation_by_factoring_when_the_leading_coefficient_is_not_1:
-    { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
-  solving_quadratic_equations_by_factoring: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   using_the_pythagorean_theorem: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  solving_quadratics_with_a_leading_coefficient_of_1: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  quadratic_equations: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  solving_a_quadratic_equation_by_factoring_when_the_leading_coefficient_is_not_1:
+    { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
   using_the_quadratic_formula: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  solving_other_types_of_equations: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  solving_radical_equations: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  solving_an_absolute_value_equation: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  sovling_equations_using_factoring: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  solving_equations_using_factoring: {
+  solving_quadratic_equations_by_factoring: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -337,25 +307,31 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  using_the_properties_of_inequalities: {
+  solving_radical_equations: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  solving_absolute_value_inequalities: {
+  solving_equations_using_factoring: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  using_interval_notation: {
+  sovling_equations_using_factoring: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  understanding_compound_inequalities: {
+  solving_other_types_of_equations: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  solving_an_absolute_value_equation: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -367,7 +343,31 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  finding_input_and_output_values_of_a_function: {
+  solving_absolute_value_inequalities: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  understanding_compound_inequalities: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  using_interval_notation: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  using_the_properties_of_inequalities: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  determining_whether_a_relation_represents_a_function: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -379,7 +379,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  determining_whether_a_relation_represents_a_function: {
+  finding_input_and_output_values_of_a_function: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  graphing_piecewise_defined_functions: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -409,19 +415,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  graphing_piecewise_defined_functions: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  finding_the_average_rate_of_change_of_a_function: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  use_a_graph_to_locate_the_absolute_maximum_and_absolute_minimum: {
+  or_constant: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -433,7 +427,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  or_constant: {
+  use_a_graph_to_locate_the_absolute_maximum_and_absolute_minimum: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  finding_the_average_rate_of_change_of_a_function: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -451,12 +451,6 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  evaluating_composite_functions: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   combining_functions_using_algebraic_operations: {
     probMastery: 0.1,
     probTransit: 0.1,
@@ -469,19 +463,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  graphing_functions_using_reflections_about_the_axes: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  rates_of_change: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  graphing_functions_using_vertical_and_horizontal_shifts: {
+  evaluating_composite_functions: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -493,13 +475,31 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  determining_even_and_odd_functions: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  graphing_functions_using_reflections_about_the_axes: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  graphing_functions_using_vertical_and_horizontal_shifts: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   transformation_of_functions: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  determining_even_and_odd_functions: {
+  rates_of_change: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -523,13 +523,25 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  finding_and_evaluating_inverse_functions: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   verifying_that_two_functions_are_inverse_functions: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  finding_and_evaluating_inverse_functions: {
+  writing_the_equation_for_a_function_from_the_graph_of_a_line: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  linear_functions: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -547,37 +559,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  linear_functions: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   writing_and_interpreting_an_equation_for_a_linear_function: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  writing_the_equation_for_a_function_from_the_graph_of_a_line: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  using_a_given_input_and_output_to_build_a_model: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  modeling_a_set_of_data_with_linear_functions: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  modeling_with_linear_functions: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -589,7 +571,19 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  finding_the_domain_and_range_of_a_quadratic_function: {
+  using_a_given_input_and_output_to_build_a_model: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  modeling_with_linear_functions: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  modeling_a_set_of_data_with_linear_functions: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -601,7 +595,15 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  recognizing_characteristics_of_parabolas: {
+  finding_the_x__and_y_intercepts_of_a_quadratic_function: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  understanding_how_the_graphs_of_parabolas_are_related_to_their_quadratic_functions:
+    { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
+  finding_the_domain_and_range_of_a_quadratic_function: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -613,21 +615,19 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  determining_the_maximum_and_minimum_values_of_quadratic_functions: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  understanding_how_the_graphs_of_parabolas_are_related_to_their_quadratic_functions:
-    { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
   quadratic_functions: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  finding_the_x__and_y_intercepts_of_a_quadratic_function: {
+  determining_the_maximum_and_minimum_values_of_quadratic_functions: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  recognizing_characteristics_of_parabolas: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -645,12 +645,6 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  "power_functions_&_polynomials": {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   writing_formulas_for_polynomial_functions: {
     probMastery: 0.1,
     probTransit: 0.1,
@@ -658,6 +652,12 @@ var bktParams = {
     probGuess: 0.1,
   },
   using_factoring_to_find_zeros_of_polynomial_functions: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  "power_functions_&_polynomials": {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -675,6 +675,12 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  using_long_division_to_divide_polynomials: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   dividing_polynomials: {
     probMastery: 0.1,
     probTransit: 0.1,
@@ -687,25 +693,19 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  using_long_division_to_divide_polynomials: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   using_synthetic_division_to_divide_polynomials: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  using_the_linear_factorization_theorem_to_find_polynomials_with_given_zeros: {
+  using_the_fundamental_theorem_of_algebra: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  "using_descartes’_rule_of_signs": {
+  using_the_linear_factorization_theorem_to_find_polynomials_with_given_zeros: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -723,13 +723,19 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  using_the_factor_theorem_to_solve_a_polynomial_equation: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   solving_real_world_applications: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  using_the_fundamental_theorem_of_algebra: {
+  "using_descartes’_rule_of_signs": {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -741,25 +747,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  using_the_factor_theorem_to_solve_a_polynomial_equation: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  horizontal_asymptotes_of_rational_functions: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   rational_functions: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  finding_the_intercepts_of_a_rational_function: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -771,7 +759,49 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  finding_the_intercepts_of_a_rational_function: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  horizontal_asymptotes_of_rational_functions: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  factoring_a_difference_of_squares: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  solving_applications_of_radical_functions: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   finding_the_inverse_of_a_polynomial_function: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  determining_the_domain_of_a_radical_function_composed_with_other_functions: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  factoring_a_sum_of_cubes: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  factoring_a_difference_of_cubes: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -795,31 +825,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  factoring_a_sum_of_cubes: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  determining_the_domain_of_a_radical_function_composed_with_other_functions: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  solving_applications_of_radical_functions: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  factoring_a_difference_of_squares: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  factoring_a_difference_of_cubes: {
+  solving_problems_involving_joint_variation: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -843,31 +849,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  solving_problems_involving_joint_variation: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  investigating_continuous_growth: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   finding_equations_of_exponential_functions: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  identifying_exponential_functions: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  applying_the_compoung_interest_formula: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -879,7 +861,31 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  investigating_continuous_growth: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  identifying_exponential_functions: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   evaluating_exponential_functions: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  evaluating_exponential_function: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  applying_the_compoung_interest_formula: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -897,37 +903,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  evaluating_exponential_function: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   graphing_exponential_functions: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  evaluating_a_natural_logarithm_using_a_calculator: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  finding_the_value_of_a_common_logarithm_mentally: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  evaluating_logarithms: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  converting_from_logarithmic_form_to_exponential_form: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -939,25 +915,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  rewriting_and_solving_a_real_world_exponential_model: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  converting_from_exponential_form_to_logarithmic_form: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  converting_from_exponential_to_logarithmic_form: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  evaluating_the_logarithm_of_a_reciprocal: {
+  converting_from_logarithmic_form_to_exponential_form: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -969,33 +927,55 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  evaluating_the_logarithm_of_a_reciprocal: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  converting_from_exponential_form_to_logarithmic_form: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  evaluating_logarithms: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   solving_logarithms_mentally: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  rewriting_and_solving_a_real_world_exponential_model: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  finding_the_value_of_a_common_logarithm_mentally: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  evaluating_a_natural_logarithm_using_a_calculator: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  converting_from_exponential_to_logarithmic_form: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   graphs_of_logarithmic_functions: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  using_the_power_rule_for_logarithms_to_simplify_the_logarithm_of_a_radical_expression:
-    { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
-  the_product_rule_for_logarithms: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  the_properties_of_logarithms: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  using_the_change_of_base_formula_for_logarithms: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1013,6 +993,14 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  using_the_power_rule_for_logarithms_to_simplify_the_logarithm_of_a_radical_expression:
+    { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
+  using_the_change_of_base_formula_for_logarithms: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   condensing_logarithmic_expressions: {
     probMastery: 0.1,
     probTransit: 0.1,
@@ -1020,6 +1008,24 @@ var bktParams = {
     probGuess: 0.1,
   },
   expanding_logarithmic_expressions: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  the_properties_of_logarithms: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  the_product_rule_for_logarithms: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  exponential_and_logarithmic_equations: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1037,7 +1043,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  exponential_and_logarithmic_equations: {
+  "using_newton's_law_of_cooling": {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1049,19 +1055,19 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  using_logistic_growth_models: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   "use_newton's_law_of_cooling": {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  "using_newton's_law_of_cooling": {
+  calculating_doubling_time: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  using_logistic_growth_models: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1079,18 +1085,6 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  calculating_doubling_time: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  building_an_exponential_model_from_data: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   building_a_logistic_model_from_data: {
     probMastery: 0.1,
     probTransit: 0.1,
@@ -1098,6 +1092,12 @@ var bktParams = {
     probGuess: 0.1,
   },
   building_a_logarithmic_model_from_data: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  building_an_exponential_model_from_data: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1115,6 +1115,12 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  systems_of_linear_equations: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   "openstax.org": {
     probMastery: 0.1,
     probTransit: 0.1,
@@ -1122,18 +1128,6 @@ var bktParams = {
     probGuess: 0.1,
   },
   solving_systems_of_three_equations_in_three_variables: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  systems_of_linear_equations: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  solving_a_system_of_nonlinear_equations_using_substitution: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1151,7 +1145,25 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  solving_a_system_of_nonlinear_equations_using_substitution: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   partial_fractions: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  finding_the_sum_and_difference_of_two_matrices: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  finding_scalar_multiples_of_a_matrix: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1169,25 +1181,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  adding_and_subtracting_matrices: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  finding_scalar_multiples_of_a_matrix: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  finding_the_sum_and_difference_of_two_matrices: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   finding_the_product_of_two_matrices: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  adding_and_subtracting_matrices: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1199,13 +1199,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  "openstax.org": {
+  solving_a_system_of_linear_equations_using_the_inverse_of_a_matrix: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  solving_a_system_of_linear_equations_using_the_inverse_of_a_matrix: {
+  "openstax.org": {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1217,13 +1217,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  understanding_properties_of_determinants: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  "using_cramer's_rule_to_solve_a_dependent_system": {
+  "using_cramer's_rule_to_solve_an_inconsistent_system": {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1241,27 +1235,27 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  evaluating_the_determinant_of_a_2x2_matrix: {
+  "using_cramer's_rule_to_solve_a_system_of_three_equations_in_three_variable":
+    { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
+  "using_cramer's_rule_to_solve_a_dependent_system": {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  "using_cramer's_rule_to_solve_a_system_of_three_equations_in_three_variable":
-    { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
+  understanding_properties_of_determinants: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   "solving_systems_with_cramer's_rule": {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  "using_cramer's_rule_to_solve_an_inconsistent_system": {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  find_prime_factorizations_and_least_common_multiples: {
+  evaluating_the_determinant_of_a_2x2_matrix: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1273,25 +1267,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  find_prime_factorizations_and_least_common_multiples: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   use_place_value_with_whole_numbers: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  simplify_expressions_using_the_order_of_operations: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  evaluate_an_expression: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  use_variables_and_algebraic_symbols: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1303,7 +1285,19 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  add_integers: {
+  use_variables_and_algebraic_symbols: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  evaluate_an_expression: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  simplify_expressions_using_the_order_of_operations: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1315,25 +1309,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  add_integers: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   use_negatives_and_opposites: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  translate_phrases_to_expressions_with_integers: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  evaluate_variable_expressions_with_integers: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  simplify_expressions_with_integers: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1345,13 +1327,31 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  multiply_integers: {
+  evaluate_variable_expressions_with_integers: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
   divide_integers: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  translate_phrases_to_expressions_with_integers: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  multiply_integers: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  simplify_expressions_with_integers: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1387,13 +1387,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  evaluate_variable_expressions_with_fractions: {
+  add_or_subtract_fractions_with_different_denominators: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  add_or_subtract_fractions_with_different_denominators: {
+  evaluate_variable_expressions_with_fractions: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1411,7 +1411,19 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  name_and_write_decimals: {
+  add_and_subtract_decimals: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  multiply_and_divide_decimals: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  "add_or_subtract_decimals.": {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1429,7 +1441,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  "add_or_subtract_decimals.": {
+  name_and_write_decimals: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1447,13 +1459,25 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  add_and_subtract_decimals: {
+  locate_decimals_on_the_number_line: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  multiply_and_divide_decimals: {
+  rational_numbers: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  simplify_expressions_with_square_roots: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  and_real_numbers: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1471,37 +1495,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  locate_decimals_on_the_number_line: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  simplify_expressions_with_square_roots: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  rational_numbers: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  and_real_numbers: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   use_the_identity_and_inverse_properties_of_addition_and_multiplication: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  use_the_commutative_and_associative_properties: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1519,13 +1513,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  convert_between_fahrenheit_and_celsius_temperatures: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  make_unit_conversions_in_the_metric_system: {
+  use_the_commutative_and_associative_properties: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1537,7 +1525,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  use_mixed_units_of_measurement_in_the_metric_system: {
+  "make_unit_conversions_in_the_u.s._system": {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1549,13 +1537,19 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  "make_unit_conversions_in_the_u.s._system": {
+  make_unit_conversions_in_the_metric_system: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  verify_a_solution_of_an_equation: {
+  convert_between_fahrenheit_and_celsius_temperatures: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  use_mixed_units_of_measurement_in_the_metric_system: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1573,8 +1567,12 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  solve_equations_using_the_division_and_multiplication_properties_of_equality:
-    { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
+  verify_a_solution_of_an_equation: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   translate_and_solve_applications: {
     probMastery: 0.1,
     probTransit: 0.1,
@@ -1593,6 +1591,14 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  solve_equations_using_the_division_and_multiplication_properties_of_equality:
+    { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
+  solve_equations_with_variables_and_constants_on_both_sides: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   solve_equations_with_variables_on_both_sides: {
     probMastery: 0.1,
     probTransit: 0.1,
@@ -1605,19 +1611,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  solve_equations_with_variables_and_constants_on_both_sides: {
+  solve_equations_using_the_general_strategy: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
   classify_equations: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  solve_equations_using_the_general_strategy: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1635,13 +1635,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  rate: { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
   use_the_distance: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  rate: { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
   solve_a_formula_for_a_specific_variable: {
     probMastery: 0.1,
     probTransit: 0.1,
@@ -1654,14 +1654,6 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  solve_inequalities_that_require_simplification: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  solve_inequalities_using_the_subtraction_and_addition_properties_of_inequality:
-    { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
   solve_inequalities_using_the_division_and_multiplication_properties_of_inequality:
     { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
   graph_inequalities_on_the_number_line: {
@@ -1670,7 +1662,9 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  solve_number_problems: {
+  solve_inequalities_using_the_subtraction_and_addition_properties_of_inequality:
+    { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
+  solve_inequalities_that_require_simplification: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1682,13 +1676,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  solve_applications_of_percent: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  find_percent_increase_and_percent_decrease: {
+  solve_number_problems: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1706,6 +1694,24 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  find_percent_increase_and_percent_decrease: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  solve_applications_of_percent: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  solve_coin_word_problems: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   solve_ticket_and_stamp_word_problems: {
     probMastery: 0.1,
     probTransit: 0.1,
@@ -1718,19 +1724,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  solve_coin_word_problems: {
+  solve_applications_using_rectangle_properties: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
   solve_applications_using_properties_of_triangles: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  solve_applications_using_rectangle_properties: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1748,13 +1748,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  table_functions: {
+  iteration_and_indexing: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  iteration_and_indexing: {
+  table_functions: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1767,6 +1767,12 @@ var bktParams = {
     probGuess: 0.1,
   },
   regression: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  tree_diagrams_and_conditional_probability: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1790,25 +1796,7 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  tree_diagrams_and_conditional_probability: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   calculating_conditional_probability: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  conditional_probability: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  definition_and_examples: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1826,19 +1814,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  distribution_needed_for_hypothesis_testing: {
+  conditional_probability: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  outcomes_and_the_type_i_and_type_ii_errors: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  decision_and_conclusion: {
+  definition_and_examples: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1850,13 +1832,37 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
+  the_sample: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  outcomes_and_the_type_i_and_type_ii_errors: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  rare_events: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
   null_and_alternative_hypotheses: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  the_sample: {
+  distribution_needed_for_hypothesis_testing: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  decision_and_conclusion: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1869,12 +1875,6 @@ var bktParams = {
     probGuess: 0.1,
   },
   the_sample: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  rare_events: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1892,19 +1892,13 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  photosynthesis: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
   the_chemistry_of_life: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  the_chemical_foundation_of_life: {
+  photosynthesis: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1916,7 +1910,14 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  expressions: {
+  the_chemical_foundation_of_life: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  tables: { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
+  using_functions_to_manipulate_tables: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1928,21 +1929,8 @@ var bktParams = {
     probSlip: 0.1,
     probGuess: 0.1,
   },
-  using_functions_to_manipulate_tables: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  tables: { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
   arrays: { probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1 },
-  writing_functions: {
-    probMastery: 0.1,
-    probTransit: 0.1,
-    probSlip: 0.1,
-    probGuess: 0.1,
-  },
-  writing_python_expressions: {
+  expressions: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
@@ -1955,6 +1943,18 @@ var bktParams = {
     probGuess: 0.1,
   },
   elements_of_experiments: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  writing_python_expressions: {
+    probMastery: 0.1,
+    probTransit: 0.1,
+    probSlip: 0.1,
+    probGuess: 0.1,
+  },
+  writing_functions: {
     probMastery: 0.1,
     probTransit: 0.1,
     probSlip: 0.1,
