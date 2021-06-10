@@ -16,7 +16,7 @@ regex = re.compile("|".join(map(re.escape, replace.keys())))
 force_latex = 0.0
 
 #Figure out way to deal with equal signs
-def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, render_latex="TRUE", verbosity=False):
+def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="TRUE", verbosity=False):
     global force_latex
     if render_latex == "TRUE":
         render_latex = True
@@ -47,7 +47,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
     angle_bracket = False
     for i in list(range(len(words))):
         word = words[i]
-        if use_latex(word, render_latex, stepMC, stepAns):
+        if use_latex(word, render_latex):
             if not re.findall("[\[|\(][\+\-\*/\(\)\d\s\w]+,[\+\-\*/\(\)\d\s\w]+[\)|\]]", word): # only add in space if is not coordinate
                 word = re.sub(",(\S)", ", \g<1>", word)
 
@@ -121,7 +121,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, stepAns=False, 
     force_latex = 0.0
     return text, latex
 
-def use_latex(word, render_latex, stepMC, stepAns):
+def use_latex(word, render_latex):
     global force_latex
     if word[:2] == '$$' and word[-2:] == '$$':
         force_latex = 0.0
@@ -152,9 +152,6 @@ def use_latex(word, render_latex, stepMC, stepAns):
         if any([op in part for op in supported_operators]) or any([op in part for op in supported_word_operators]) and 'info' not in part:
             return True
     return False
-    # if (stepMC or stepAns) and any([op in word for op in answer_only_operators]):
-    #     return True
-    # return any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators]) and 'info' not in word
 
 def handle_word(word, coord=True):
     latex_dic = {"=": "=", "U": " \cup ", "<=" : " \leq ", ">=" : " \geq "}
@@ -209,7 +206,7 @@ def handle_word(word, coord=True):
     square_roots = re.findall(r"sqrt\(([^,]*)\,([^\)]*)\)", word)
     word = re.sub(",", "", word)
     for root in square_roots:
-        word = re.sub(r"sqrt\("+root[0]+root[1]+"\)", r"sqrt("+root[0]+","+root[1]+")", word)
+        word = re.sub(r"sqrt\("+re.escape(root[0])+re.escape(root[1])+"\)", r"sqrt("+root[0]+","+root[1]+")", word)
     #word = re.sub(r"sqrt\(([^,]*)\,([^\)]*)\)", r"sqrt(\g<1>:\g<2>)", "sqrt(2, 3)")
     word = re.sub(r"([\w])(\(+[\w])", "\g<1>*\g<2>", word)
     word = re.sub(r"(\)+)([\w])", "\g<1>*\g<2>", word)

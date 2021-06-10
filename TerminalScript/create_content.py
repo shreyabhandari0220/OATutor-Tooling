@@ -141,7 +141,8 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
     
     answer_type, problem_type = handle_answer_type(answer_type)
     if answer_type == "arithmetic":
-        answer = re.sub("\*\*", "^", answer)
+        answer = preprocess_text_to_latex(answer, render_latex=latex, verbosity=verbosity)[0]
+        answer = re.sub('sqrt\[([^\]]+)\]\{[\s]*([\d|\D]+)\}', r'sqrt_\g<1>(\g<2>)', answer)
     scaff_ans = "[\"" + str(answer) + "\"]"
 
     
@@ -200,11 +201,12 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
         body += "##" + img + "## "
     if choices:
         choices = json.dumps([preprocess_text_to_latex(mc_answer, True, True, render_latex=latex, verbosity=verbosity)[0] for mc_answer in choices.split("|") if mc_answer])
-        answer = preprocess_text_to_latex(answer, tutoring=True, stepAns=True, render_latex=latex, verbosity=verbosity)[0]
+        answer = preprocess_text_to_latex(answer, tutoring=True, render_latex=latex, verbosity=verbosity)[0]
     
     answer_type, problem_type = handle_answer_type(answer_type)
     if answer_type == "arithmetic":
-        answer = re.sub("\*\*", "^", answer)
+        answer = new_answer
+        answer = re.sub('sqrt\[([^\]]+)\]\{[\s]*([\d|\D]+)\}', r'sqrt_\g<1>(\g<2>)', answer)
 
     step =  "import hints from \"./{0}-index.js\"; const step = ".format(step_id) + "{" + "id: \"{0}\", stepAnswer: [\"{1}\"], problemType: \"{2}\"".format(step_id, answer, problem_type)
     step += ", stepTitle: \"{0}\"".format(title)
