@@ -263,6 +263,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             break_index = line_counter
         skillModelJS_lines.append(line)
         line_counter+=1
+    print('skillmodel_line: ', skillModelJS_lines)
     
     questions = [x for _, x in df.groupby(df['Problem Name'])]
     
@@ -534,8 +535,4 @@ if __name__ == '__main__':
         latex = 'FALSE'
     else:
         latex = 'TRUE'
-    if len(sys.argv) == 5:
-        validator_path = sys.argv[4]
-    else:
-        validator_path = ''
     process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, validator_path='../OpenStax Validator')
