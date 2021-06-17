@@ -2,7 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const process = require('process');
 
-const FOLDER = './OpenStax1'; //'./OpenStax Content';
+if (process.argv.length > 2 && process.argv[2] == 'auto') {
+  var FOLDER = '../OpenStax Validator';
+} else {
+  var FOLDER = './OpenStax1'; //'./OpenStax Content';
+}
 
 process.chdir(FOLDER);
 

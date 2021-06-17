@@ -1,7 +1,11 @@
 import pandas as pd
 import numpy as np
 import gspread 
+from gspread_dataframe import set_with_dataframe
 from oauth2client.service_account import ServiceAccountCredentials
+from Naked.toolshed.shell import muterun_js, execute_js
+from distutils.dir_util import copy_tree
+import shutil
 # import jsbeautifier
 import os
 import urllib.request
@@ -10,6 +14,7 @@ import json
 import re
 import sys
 import time
+import hashlib
 
 pd.options.display.html.use_mathjax = False
 
@@ -82,7 +87,7 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
     previous_images = ""
     hint_dic = {}
     problem_name = question.iloc[0]['Problem Name']
-    error_data = []
+    error_message = ''
 
     if not question['Row Type'].str.contains('problem').any() and not question['Row Type'].str.contains('Problem').any():
         raise Exception("Missing problem row")
@@ -180,14 +185,7 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
                         previous_tutor = row
                         previous_images = scaff_images
         except Exception as e:
-            error = [sheet_name, problem_name, str(e), time.asctime(time.localtime(time.time()))]
-            exists = False
-            for past_error in error_data:
-                if error[0] == past_error[0] and error[1] == past_error[1]:
-                    past_error[2] = past_error[2] + '\n' + error[2]
-                    exists = True
-            if not exists:
-                error_data.append(error)
+            error_message = error_message + str(e) + '\n'
             continue
 
         
@@ -199,9 +197,9 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
     else:
         prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_images,latex=latex,verbosity=verbosity)
     
-    return error_data
+    return error_message[:-1] # get rid of the last newline
 
-def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, write_gc=False, conflict_names=[]):
+def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, conflict_names=[], validator_path=''):
     if is_local == "online":
         book = get_sheet(spreadsheet_key)
         worksheet = book.worksheet(sheet_name) 
@@ -249,14 +247,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     df["Title"] = df["Title"].str.replace("\\n", r" \\\\n ")
     df["openstax KC"] = df["openstax KC"].str.replace("\'", "\\\'")
     df["KC"] = df["KC"].str.replace("\'", "\\\'")
+    
 
-    scope = ['https://spreadsheets.google.com/feeds'] 
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('../sunlit-shelter-282118-8847831293f8.json', scope) 
-    gc = gspread.authorize(credentials)
-    error_book = gc.open_by_key('1-QliKCPEEbq8dNI7IUAkUF_Ws6mbB738g64QaGMdN7o')
-    error_worksheet = error_book.worksheet('Errors')
-    
-    
     skillModelJS_lines = []
     skills = []
     skills_unformatted = []
@@ -265,6 +257,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     break_index = 0
     line_counter = 0
     error_data = []
+    error_df = pd.DataFrame(index=range(len(df)), columns=['Check 1', 'Check 2'])
     for line in skillModelJS_file:
         if "Start Inserting" in line:
             break_index = line_counter
@@ -282,14 +275,19 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
         # validate all fields that relate to this problem
         try:
-            question_error_data = validate_question(sheet_name, question, variabilization, latex, verbosity)
-            if question_error_data:
-                error_data.extend(validate_question(sheet_name, question, variabilization, latex, verbosity))
+            question_error_message = validate_question(sheet_name, question, variabilization, latex, verbosity)
+            if question_error_message:
+                error_row = (df[df['Problem Name'] == problem_name].index)[0]
+                # error_row = worksheet.find(problem_name).row
+                error_df.at[error_row, 'Check 1'] = question_error_message
+                error_df.at[error_row, 'Check 2'] = 'UNCHECKED'
                 raise Exception("Error encountered in validator")
         except Exception as e:
             if str(e) != "Error encountered in validator":
-                error = [sheet_name, problem_name, str(e), time.asctime(time.localtime(time.time()))]
-                error_data.append(error)
+                error_row = (df[df['Problem Name'] == problem_name].index)[0]
+                # error_row = worksheet.find(problem_name).row
+                error_df.at[error_row, 'Check 1'] = str(e)
+                error_df.at[error_row, 'Check 2'] = 'UNCHECKED'
             continue
 
         #gets the initial name through the first row problem name 
@@ -301,7 +299,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                 print("Problem skills empty for: ", problem_name)
             raise Exception("Problem Skills broken")
         result_problems = ""
-        problem_name, path, problem_js  = create_problem_dir(sheet_name, problem_name, default_path, verbosity, conflict_names)
+        problem_name, path, problem_js = create_problem_dir(sheet_name, problem_name, default_path, verbosity, conflict_names)
         step_count = tutor_count = 0
         current_step_path = current_step_name = step_reg_js = step_index_js = default_pathway_js = ""
         images = False
@@ -448,6 +446,9 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         file = open(problem_js, "w")
         file.write(prob_js)
         file.close()
+        if validator_path:
+            val_path = create_validator_dir(problem_name, validator_path)
+            copy_tree(path, val_path)
 
     new_skillModelJS_lines = skillModelJS_lines[0:break_index] + skills + skillModelJS_lines[break_index:]
     with open(skillModelJS_path, 'w') as f:
@@ -456,17 +457,60 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     skills_unformatted = ["_".join(skill.lower().split()) for skill in skills_unformatted]
 
     # Update errors on the error sheet
-    # if len(error_data) > 0:
-        # error_data.sort(key=lambda e: int(re.findall('\d+$', e[1])[0])) #sort errors according to problem number
-    if write_gc:
-        worksheet.update_cell(1, len(df.columns) + 2, 'Validator Output')
-        for e in error_data:
-            error_row = worksheet.find(e[1]).row
-            worksheet.update_cell(error_row, len(df.columns) + 2, e[2])
 
-        # next_row = next_available_row(error_worksheet)
-        # end_row = str(int(next_row) + len(error_data) - 1)
-        # error_worksheet.update('A{}:D{}'.format(next_row, end_row), error_data)
+    # for each sheet, do:
+    #   1. run tinna's script, update check 1 column of error_df
+    #   2. write json files to both OpenStax/ and OpenStax1/
+    #   3. run matthew's index and validator script on OpenStax1/
+    #   4. use validator output to update check 2 column of error_df
+    #   5. write check 1 and check 2 to google spreadsheet
+    #   6. remove Openstax1/
+
+    if validator_path and os.path.isdir(validator_path):
+        try:
+            # runs postScriptValidator.js
+            execute_js('../util/indexGenerator.js', 'auto')
+            response = muterun_js('../.postScriptValidator.js', 'auto')
+            if response.exitcode == 0:
+                post_script_errors = response.stdout.decode("utf-8").split('\n')
+                for error in post_script_errors:
+                    if error:
+                        row_id, error_message = error.split(': ')
+                        # determine problem_name and row
+                        if row_id[1:7] == hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6]: #case 1 of name conflict
+                            problem_name = re.search('[\D]*\d', row_id[7:]).group(0)
+                        elif row_id[0] == 'a' and row_id[1].isnumeric():  #case 2 of name conflict
+                            problem_name = re.search('(?<=a\d)([\D]*\d)', row_id).group(0)
+                        else: #case without name conflict
+                            problem_name = re.search('[\D]*\d', row_id).group(0)
+                        if '-h' not in row_id:
+                            ord_step = ord(row_id[-1]) - 97
+                            error_row = (df[df['Problem Name'] == problem_name].index & df[df['Row Type'] == 'step'].index)[ord_step]
+                        elif '-h' in row_id:
+                            ord_step = ord(re.search('\d([\D]+)\-h', row_id).group(1)) - 97
+                            hint_num = re.search('-(h[\d]+)', row_id).group(1)
+                            step_row = (df[df['Problem Name'] == problem_name].index & df[df['Row Type'] == 'step'].index)[ord_step]
+                            all_hints = df[df['Problem Name'] == problem_name].index & df[df['HintID'] == hint_num].index
+                            error_row = min(r for r in all_hints if r > step_row)
+                        else:
+                            error_row = (df[df['Problem Name'] == problem_name].index)[0]
+
+                        # add error message
+                        if not pd.isna(error_df.at[error_row, 'Check 2']):
+                            error_message = str(error_df.at[error_row, 'Check 2']) + '\n' + error_message
+                        error_df.at[error_row, 'Check 2'] = error_message
+                
+            else:
+                sys.stderr.write(response.stderr.decode("utf-8"))
+            #remove validator directory
+            shutil.rmtree(validator_path)
+
+        except Exception as e:
+            print(e)
+            pass
+
+        set_with_dataframe(worksheet, error_df, col=len(df.columns)+2)
+
 
     for e in error_data:
         print("====")
@@ -474,24 +518,24 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         print('Problem name:', e[1])
         print('Error type:', e[2])
         print()
+    
+    
 
     return list(set(skills_unformatted))
 
 if __name__ == '__main__':
     # when calling:
     # if stored locally: python3 final.py "local" <filename> <sheet_names>
-    # if store on google sheet: python3 final.py "online" <sheet_key> <sheet_names> <latex (TRUE or FALSE)> <verbosity TRUE or FALSE>
+    # if store on google sheet: python3 final.py online <sheet_key> <sheet_names> <verbosity (true or false)>
     is_local = sys.argv[1]
     sheet_key = sys.argv[2]
     sheet_name = sys.argv[3]
-    latex = sys.argv[4]
-    latex = latex.upper()
-    if len(sys.argv) == 6:
-        verbosity = sys.argv[5]
-        if verbosity.upper() == 'TRUE':
-            verbosity = True
-        else:
-            verbosity = False
+    if sheet_name[:2] == '##':
+        latex = 'FALSE'
     else:
-        verbosity = False
-    process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, verbosity, write_gc=True)
+        latex = 'TRUE'
+    if len(sys.argv) == 5:
+        validator_path = sys.argv[4]
+    else:
+        validator_path = ''
+    process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, validator_path='../OpenStax Validator')

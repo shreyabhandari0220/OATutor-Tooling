@@ -11,7 +11,6 @@ if __name__ == '__main__':
     # if stored locally: python3 final.py "local" <filename.xlsx> <sheet_names>
     # if store on google sheet: python3 final.py "online" <url> <sheet_names>
     is_local = sys.argv[1]
-
     get_all_in_dir = sys.argv[2]
     sheet_keys = []
     if get_all_in_dir == '..' and is_local == 'local':

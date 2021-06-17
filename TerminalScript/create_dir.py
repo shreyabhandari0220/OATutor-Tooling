@@ -10,22 +10,21 @@ def create_problem_dir(sheet_name, name, path, verbosity, conflict_names):
         print(path, name)
     # handle namespace collision
     tailing = 1
-    once = False
+    case = False
     if name in conflict_names:
-        name = hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6] + name
+        name = 'a' + hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6] + name
     target = path + "/" + name
 
     # most likely will not use this, but this is an additional catch for namespace error
     if os.path.exists(target):
-        target = path + "/a" + str(tailing) + name
-        once = True 
+        target = path + "/b" + str(tailing) + name
+        case = True 
     while os.path.exists(target):
-        once = False
+        case = True
         tailing += 1
-        target = path + "/a" + str(tailing) + name
-        name = "a" + str(tailing) + name
-    if once:
-        name = "a1" + name
+        target = path + "/b" + str(tailing) + name
+    if case:
+        name = "b" + str(tailing) + name
 
     os.makedirs(target)
     os.mkdir(target + "/steps")
@@ -49,3 +48,8 @@ def create_step_dir(name, path, verbosity):
     open(reg_js, "x")
     open(default_pathway,"x")
     return target, reg_js, default_pathway
+
+def create_validator_dir(name, path):
+    target = path + "/" + name
+    os.makedirs(target)
+    return target
