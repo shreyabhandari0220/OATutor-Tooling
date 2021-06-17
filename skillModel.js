@@ -1,13 +1,3 @@
-/* Format: 
-    problemID1a: []
-    problemID1b: []
-    ...
-    problemID1z: []
-    
-    problemID9a: []
-    ...
-    problemID9z: []
-*/
 const skillModel = {
 
     real1a: ['classifying_a_real_number'],
@@ -1330,16 +1320,16 @@ const skillModel = {
     systemeqs7a: ['systemeqs_of_linear_equations:_two_variables'],
     systemeqs8a: ['systemeqs_of_linear_equations:_two_variables'],
     systemeqs9a: ['systemeqs_of_linear_equations:_two_variables'],
-    b8b840systems1a: ['systems_of_linear_equations:_two_variables'],
-    b8b840systems10a: ['systems_of_linear_equations:_two_variables'],
-    b8b840systems2a: ['systems_of_linear_equations:_two_variables'],
-    b8b840systems3a: ['systems_of_linear_equations:_two_variables'],
-    b8b840systems4a: ['systems_of_linear_equations:_two_variables'],
-    b8b840systems5a: ['systems_of_linear_equations:_two_variables'],
-    b8b840systems6a: ['systems_of_linear_equations:_two_variables'],
-    b8b840systems7a: ['systems_of_linear_equations:_two_variables'],
-    b8b840systems8a: ['systems_of_linear_equations:_two_variables'],
-    b8b840systems9a: ['systems_of_linear_equations:_two_variables'],
+    ab8b840systems1a: ['systems_of_linear_equations:_two_variables'],
+    ab8b840systems10a: ['systems_of_linear_equations:_two_variables'],
+    ab8b840systems2a: ['systems_of_linear_equations:_two_variables'],
+    ab8b840systems3a: ['systems_of_linear_equations:_two_variables'],
+    ab8b840systems4a: ['systems_of_linear_equations:_two_variables'],
+    ab8b840systems5a: ['systems_of_linear_equations:_two_variables'],
+    ab8b840systems6a: ['systems_of_linear_equations:_two_variables'],
+    ab8b840systems7a: ['systems_of_linear_equations:_two_variables'],
+    ab8b840systems8a: ['systems_of_linear_equations:_two_variables'],
+    ab8b840systems9a: ['systems_of_linear_equations:_two_variables'],
     threevar1a: ['solving_systems_of_three_equations_in_three_variables'],
     threevar10a: ['solving_systems_of_three_equations_in_three_variables'],
     threevar11a: ['openstax.org'],
@@ -1368,8 +1358,8 @@ const skillModel = {
     threevar7a: ['solving_systems_of_three_equations_in_three_variables'],
     threevar8a: ['solving_systems_of_three_equations_in_three_variables'],
     threevar9a: ['solving_systems_of_three_equations_in_three_variables'],
-    c561a1systems1a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
-    c561a1systems10a: ['solving_a_system_of_nonlinear_equations_using_substitution'],
+    ac561a1systems1a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
+    ac561a1systems10a: ['solving_a_system_of_nonlinear_equations_using_substitution'],
     systems11a: ['solving_a_system_of_nonlinear_equations_using_substitution'],
     systems12a: ['solving_a_system_of_nonlinear_equations_using_substitution'],
     systems13a: ['solving_a_system_of_nonlinear_equations_using_substitution'],
@@ -1379,7 +1369,7 @@ const skillModel = {
     systems17a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
     systems18a: ['solving_a_system_of_nonlinear_equations_using_substitution'],
     systems19a: ['solving_a_system_of_nonlinear_equations_using_substitution'],
-    c561a1systems2a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
+    ac561a1systems2a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
     systems20a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
     systems21a: ['solving_a_system_of_nonlinear_equations'],
     systems22a: ['solving_a_system_of_nonlinear_equations'],
@@ -1391,13 +1381,13 @@ const skillModel = {
     systems27b: ['solving_a_system_of_nonlinear_equations'],
     systems28a: ['solving_a_system_of_nonlinear_equations'],
     systems29a: ['solving_a_system_of_nonlinear_equations'],
-    c561a1systems3a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
-    c561a1systems4a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
-    c561a1systems5a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
-    c561a1systems6a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
-    c561a1systems7a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
-    c561a1systems8a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
-    c561a1systems9a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
+    ac561a1systems3a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
+    ac561a1systems4a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
+    ac561a1systems5a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
+    ac561a1systems6a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
+    ac561a1systems7a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
+    ac561a1systems8a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
+    ac561a1systems9a: ['solving_a_system_of_nonlinear_equations_using_elimination'],
     partfrac1a: ['partial_fractions'],
     partfrac10a: ['partial_fractions'],
     partfrac11a: ['partial_fractions'],
@@ -2652,7 +2642,7 @@ const skillModel = {
     nums2a: ['writing_python_expressions'],
     random1a: ['elements_of_experiments'],
     treat1a: ['elements_of_experiments'],
-        //Start Inserting
+    // Start Inserting
 
 }
 
