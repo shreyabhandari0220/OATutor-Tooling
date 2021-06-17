@@ -1,4 +1,5 @@
 import sys
+import os
 import pandas as pd
 import time
 from process_sheet import process_sheet, get_all_url, get_sheet
@@ -90,6 +91,9 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
     '''if sheet_names is not provided, default to run all sheets'''
     course_plan = []
     bkt_params = []
+    skillModelJS_path = os.path.join("..","skillModel1.js")
+    if os.path.exists(skillModelJS_path):
+        os.remove(skillModelJS_path)
     if is_local == 'local':
         excel_path = "../Excel/"
         for sheet_key in sheet_keys:
@@ -117,10 +121,10 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
                 start = time.time()
                 if sheet[:2] == '##':
                     skills = process_sheet(book_url, sheet, default_path, 'online','FALSE',
-                                            conflict_names=conflict_names,validator_path='../OpenStax Validator')
+                                            conflict_names=conflict_names,validator_path='../.OpenStax Validator')
                 else:
                     skills = process_sheet(book_url, sheet, default_path, 'online','TRUE',
-                                            conflict_names=conflict_names,validator_path='../OpenStax Validator')
+                                            conflict_names=conflict_names,validator_path='../.OpenStax Validator')
                 lesson_plan.append(create_lesson_plan(sheet, skills))
                 for skill in skills:
                     bkt_params.append(create_bkt_params(skill))
@@ -132,11 +136,11 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
     course_plan[-1] = course_plan[-1][:-1]
 
     # open("../lessonPlans1.js", "x")
-    file = open("../coursePlans1.js", "a")
+    file = open("../coursePlans1.js", "w")
     finish_course_plan(course_plan, file)
     
     # open("../bktParams1.js", "x")
-    file = open("../bktParams1.js", "a")
+    file = open("../bktParams1.js", "w")
     finish_bkt_params(bkt_params, file)
     
     file.close()

@@ -3,7 +3,7 @@ const path = require('path');
 const process = require('process');
 
 if (process.argv.length > 2 && process.argv[2] == 'auto') {
-  var FOLDER = '../OpenStax Validator';
+  var FOLDER = '../.OpenStax Validator';
 } else {
   var FOLDER = './OpenStax1'; //'./OpenStax Content';
 }
