@@ -253,6 +253,10 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     skills = []
     skills_unformatted = []
     skillModelJS_path = os.path.join("..","skillModel1.js")
+    if not os.path.exists(skillModelJS_path):
+        skillModelJS_file = open(skillModelJS_path, "a")
+        skillModelJS_file.write("const skillModel = {\n\n    // Start Inserting\n\n}\n\nexport default skillModel;")
+        skillModelJS_file.close()
     skillModelJS_file = open(skillModelJS_path,"r")
     break_index = 0
     line_counter = 0
@@ -263,7 +267,6 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             break_index = line_counter
         skillModelJS_lines.append(line)
         line_counter+=1
-    print('skillmodel_line: ', skillModelJS_lines)
     
     questions = [x for _, x in df.groupby(df['Problem Name'])]
     
@@ -480,8 +483,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                         # determine problem_name and row
                         if row_id[1:7] == hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6]: #case 1 of name conflict
                             problem_name = re.search('[\D]*\d', row_id[7:]).group(0)
-                        elif row_id[0] == 'a' and row_id[1].isnumeric():  #case 2 of name conflict
-                            problem_name = re.search('(?<=a\d)([\D]*\d)', row_id).group(0)
+                        elif row_id[0] == 'b' and row_id[1].isnumeric():  #case 2 of name conflict
+                            problem_name = re.search('(?<=b\d)([\D]*\d)', row_id).group(0)
                         else: #case without name conflict
                             problem_name = re.search('[\D]*\d', row_id).group(0)
                         if '-h' not in row_id:
@@ -535,4 +538,4 @@ if __name__ == '__main__':
         latex = 'FALSE'
     else:
         latex = 'TRUE'
-    process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, validator_path='../OpenStax Validator')
+    process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, validator_path='../.OpenStax Validator')
