@@ -116,9 +116,11 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
             for sheet in sheet_names:
                 start = time.time()
                 if sheet[:2] == '##':
-                    skills = process_sheet(book_url, sheet, default_path, 'online','FALSE',conflict_names=conflict_names)
+                    skills = process_sheet(book_url, sheet, default_path, 'online','FALSE',
+                                            conflict_names=conflict_names,validator_path='../OpenStax Validator')
                 else:
-                    skills = process_sheet(book_url, sheet, default_path, 'online','TRUE',conflict_names=conflict_names)
+                    skills = process_sheet(book_url, sheet, default_path, 'online','TRUE',
+                                            conflict_names=conflict_names,validator_path='../OpenStax Validator')
                 lesson_plan.append(create_lesson_plan(sheet, skills))
                 for skill in skills:
                     bkt_params.append(create_bkt_params(skill))
