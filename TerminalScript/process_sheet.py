@@ -13,8 +13,9 @@ import requests
 import json
 import re
 import sys
-import time
 import hashlib
+from datetime import datetime
+import time
 
 pd.options.display.html.use_mathjax = False
 
@@ -261,7 +262,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     break_index = 0
     line_counter = 0
     error_data = []
-    error_df = pd.DataFrame(index=range(len(df)), columns=['Check 1', 'Check 2'])
+    error_df = pd.DataFrame(index=range(len(df)), columns=['Check 1', 'Check 2', 'Time Last Checked'])
+    error_df.at[0, 'Time Last Checked'] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     for line in skillModelJS_file:
         if "Start Inserting" in line:
             break_index = line_counter
@@ -486,7 +488,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                         elif row_id[0] == 'b' and row_id[1].isnumeric():  #case 2 of name conflict
                             problem_name = re.search('(?<=b\d)([\D]*\d)', row_id).group(0)
                         else: #case without name conflict
-                            problem_name = re.search('[\D]*\d', row_id).group(0)
+                            problem_name = re.search('[\D]*[\d]+', row_id).group(0)
                         if '-h' not in row_id:
                             ord_step = ord(row_id[-1]) - 97
                             error_row = (df[df['Problem Name'] == problem_name].index & df[df['Row Type'] == 'step'].index)[ord_step]
@@ -512,8 +514,12 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         except Exception as e:
             print(e)
             pass
-
-        set_with_dataframe(worksheet, error_df, col=len(df.columns)+2)
+        try:
+            set_with_dataframe(worksheet, error_df, col=len(df.columns)+2)
+        except Exception as e:
+            print('Fail to write to google sheet. Waiting...')
+            print('sheetname:', sheet_name, e)
+            time.sleep(40)
 
 
     for e in error_data:
