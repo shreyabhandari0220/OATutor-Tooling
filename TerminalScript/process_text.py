@@ -8,7 +8,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
 sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
 
 supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_"]
-supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{", 'log(']
+supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{", 'log(', 'sum{']
 answer_only_operators = ["-"]
 replace = {"⋅" : "*", "−" : "-", "^" : "**", "𝑥" : "x", "𝑎" : "a", "𝑏" : "b", "𝑦" : "y", "–": "-", "≥" : ">=", "≤": "<=", "∪" : "U", "π" : "pi"}
 conditionally_replace = {"[" : "(", "]" : ")"}
@@ -68,7 +68,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
             if word[:1] == "{":
                 open_braces = True
                 word = word[1:]
-            if word[-1:] == "}" and "ln{" not in word and "log{" not in word and '/mat' not in word: 
+            if word[-1:] == "}" and "ln{" not in word and "log{" not in word and '/mat' not in word and 'sum{' not in word: 
                 closing_braces = True
                 word = word[:-1]
             # if the word is forced latex
@@ -79,7 +79,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
             elif word[-2:] == '$$':
                 word = word[:-2]
             try:        
-                sides = re.split('(=|U|<=|>=)', word)
+                sides = re.split('((?<!\\\\)=|U|<=|>=)', word)
                 sides = [handle_word(side) for side in sides]
                 new_word = ""
                 if tutoring and stepMC:
@@ -220,7 +220,16 @@ def handle_word(word, coord=True):
     word = re.sub('\*\*\(\-\.', '**(zero', word)   
     word = re.sub('\(\-', '(negneg', word)
     # word = re.sub('\*\*\(negneg', '\(\-', word)
-
+    word = re.sub(r'\\=', '=', word)
+    sum_match = re.search('sum{([^}]+)}{([^}]+)}{([^}]+)}', word)
+    sum_var, sum_lower = sum_match.group(1).split('=')
+    sum_upper_num = True
+    if sum_match.group(2).isnumeric():
+        sum_upper = str(int(sum_match.group(2)) + 1)
+    else:
+        sum_upper = sum_match.group(2)
+        sum_upper_num = False
+    word = 'sum([' + sum_match.group(3) + ' for ' + sum_var + ' in range(' + sum_lower + ',' + sum_upper + ')])'
 
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
 
@@ -231,4 +240,6 @@ def handle_word(word, coord=True):
     word = re.sub(r"\\operatorname{(\w*|\d*)pm}\\left\(a\\right\)(\\times)?", r"\g<1>\\pm ", word)
     word = re.sub(r"negneg(\d|\w)", r"\\left(-\g<1>\\right)", word) #handles first negative sign following opening parenthesis
     word = re.sub(r"zero", r"-0.", word)
+    if not sum_upper_num:
+        word = re.sub(sum_upper + '-1', sum_upper, word)
     return word[2:-2]
