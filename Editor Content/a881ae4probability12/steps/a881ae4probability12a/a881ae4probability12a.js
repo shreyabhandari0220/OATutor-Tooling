@@ -1,0 +1,1 @@
+import hints from "./a881ae4probability12a-index.js"; const step = {id: "a881ae4probability12a", stepAnswer: ["$$\\frac{1}{4}$$"], problemType: "TextBox", stepTitle: "For the following exercises, one card is drawn from a standard deck of 52 cards.", stepBody: "Find the probability of drawing a club.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import steps from "./aadda69probability8-index.js"; const problem = {id: "aadda69probability8", title: "Using the Complement Rule to Calculate Probabilities", body: "", steps: steps, variabilization: {}}; export { problem };

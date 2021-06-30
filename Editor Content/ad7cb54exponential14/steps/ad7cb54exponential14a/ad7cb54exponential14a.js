@@ -1,0 +1,1 @@
+import hints from "./ad7cb54exponential14a-index.js"; const step = {id: "ad7cb54exponential14a", stepAnswer: ["-0.2707"], problemType: "TextBox", stepTitle: "$$f(x)=-\\left(2\\right) e^{x-\\left(1\\right)}$$, for f(-1)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

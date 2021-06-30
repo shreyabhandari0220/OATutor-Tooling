@@ -1,0 +1,1 @@
+import hints from "./a719226sequences8c-index.js"; const step = {id: "a719226sequences8c", stepAnswer: ["6"], problemType: "TextBox", stepTitle: "Write the third term of the sequence defined by the explicit formula $$a_n={\\left(2\\right)}^n-\\left(2\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

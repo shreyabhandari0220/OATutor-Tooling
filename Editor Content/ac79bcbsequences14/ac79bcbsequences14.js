@@ -1,0 +1,1 @@
+import steps from "./ac79bcbsequences14-index.js"; const problem = {id: "ac79bcbsequences14", title: "Finding First N Terms of a Sequence", body: "", steps: steps, variabilization: {}}; export { problem };

@@ -1,0 +1,1 @@
+import steps from "./ser22-index.js"; const problem = {id: "ser22", title: "Determine whether the $$infinite$$ series has a sum. If so, write the formula for the sum.", body: "", steps: steps, variabilization: {}}; export { problem };

@@ -1,0 +1,1 @@
+import steps from "./a719226sequences10-index.js"; const problem = {id: "a719226sequences10", title: "Writing the Terms of a Sequence", body: "", steps: steps, variabilization: {}}; export { problem };

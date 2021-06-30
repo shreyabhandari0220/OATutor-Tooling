@@ -1,0 +1,1 @@
+import hints from "./a9227d4exponential27c-index.js"; const step = {id: "a9227d4exponential27c", stepAnswer: ["74"], problemType: "TextBox", stepTitle: "To the nearest degree, what will the temperature be after 2 and a half hours?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

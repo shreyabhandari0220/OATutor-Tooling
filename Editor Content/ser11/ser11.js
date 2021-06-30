@@ -1,0 +1,1 @@
+import steps from "./ser11-index.js"; const problem = {id: "ser11", title: "Use the formula for the sum of the first n terms of a geometric series to find the partial sum. Round to 3 decimal places.", body: "", steps: steps, variabilization: {}}; export { problem };

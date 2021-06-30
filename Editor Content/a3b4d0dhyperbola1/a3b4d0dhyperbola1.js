@@ -1,0 +1,1 @@
+import steps from "./a3b4d0dhyperbola1-index.js"; const problem = {id: "a3b4d0dhyperbola1", title: "", body: "", steps: steps, variabilization: {}}; export { problem };

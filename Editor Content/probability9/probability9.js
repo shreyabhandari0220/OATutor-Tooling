@@ -1,0 +1,1 @@
+import steps from "./probability9-index.js"; const problem = {id: "probability9", title: "Computing the Probability of an Event", body: "\n##figure1.gif", steps: steps, variabilization: {}}; export { problem };

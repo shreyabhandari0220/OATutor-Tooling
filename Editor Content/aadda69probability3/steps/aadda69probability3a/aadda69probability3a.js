@@ -1,0 +1,1 @@
+import hints from "./aadda69probability3a-index.js"; const step = {id: "aadda69probability3a", stepAnswer: ["$$\\frac{4}{13}$$"], problemType: "TextBox", stepTitle: "A card is drawn from a standard deck. Find the probability of drawing a heart or a 7.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

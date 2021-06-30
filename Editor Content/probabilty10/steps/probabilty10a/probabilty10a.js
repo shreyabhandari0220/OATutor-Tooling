@@ -1,0 +1,1 @@
+import hints from "./probabilty10a-index.js"; const step = {id: "probabilty10a", stepAnswer: ["$$\\frac{1}{26}$$"], problemType: "TextBox", stepTitle: "For the following exercises, one card is drawn from a standard deck of 52 cards.", stepBody: "Find the probability of drawing a red six.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

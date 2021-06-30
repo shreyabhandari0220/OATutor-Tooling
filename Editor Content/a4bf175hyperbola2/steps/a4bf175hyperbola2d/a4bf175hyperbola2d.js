@@ -1,0 +1,1 @@
+import hints from "./a4bf175hyperbola2d-index.js"; const step = {id: "a4bf175hyperbola2d", stepAnswer: ["$$y=\\operatorname{invert}\\left(\\frac{3}{10}\\right) x$$"], problemType: "TextBox", stepTitle: "Identify Asymptotes", stepBody: "Write equations of asymptotes of the hyperbola.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

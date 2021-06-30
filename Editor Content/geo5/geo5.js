@@ -1,0 +1,1 @@
+import steps from "./geo5-index.js"; const problem = {id: "geo5", title: "Find the specified term for the geometric sequence, given the first four terms.", body: "", steps: steps, variabilization: {}}; export { problem };

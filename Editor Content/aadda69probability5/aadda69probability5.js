@@ -1,0 +1,1 @@
+import steps from "./aadda69probability5-index.js"; const problem = {id: "aadda69probability5", title: "Computing the Probability of the Union of Mutually Exclusive Events", body: "", steps: steps, variabilization: {}}; export { problem };

@@ -1,0 +1,1 @@
+import steps from "./ser30-index.js"; const problem = {id: "ser30", title: "Find the sum of the $$infinite$$ geometric series.", body: "", steps: steps, variabilization: {}}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./a4bf175hyperbola5a-index.js"; const step = {id: "a4bf175hyperbola5a", stepAnswer: ["$$y=~x$$"], problemType: "TextBox", stepTitle: "Finding Asymptotes", stepBody: "Find the equations of the asymptotes for each hyperbola.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
