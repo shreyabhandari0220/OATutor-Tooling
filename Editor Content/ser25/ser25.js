@@ -1,0 +1,1 @@
+import steps from "./ser25-index.js"; const problem = {id: "ser25", title: "Find the sum of the $$infinite$$ geometric series if it exisits.", body: "", steps: steps, variabilization: {}}; export { problem };

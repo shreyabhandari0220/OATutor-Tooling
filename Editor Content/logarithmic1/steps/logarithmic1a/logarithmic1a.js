@@ -1,0 +1,1 @@
+import hints from "./logarithmic1a-index.js"; const step = {id: "logarithmic1a", stepAnswer: ["$$ln \\left(3\\right)+ln a+ln b+ln \\left(5\\right)+ln c$$"], problemType: "TextBox", stepTitle: "$$ln \\left(3\\right) a b \\left(5\\right) c$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

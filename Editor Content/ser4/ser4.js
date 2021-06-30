@@ -1,0 +1,1 @@
+import steps from "./ser4-index.js"; const problem = {id: "ser4", title: "Use the formula for the sum of the first n terms of an arithmetic series to find the sum.", body: "", steps: steps, variabilization: {}}; export { problem };

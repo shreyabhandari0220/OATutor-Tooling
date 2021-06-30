@@ -1,0 +1,1 @@
+import steps from "./ser18-index.js"; const problem = {id: "ser18", title: "Determine whether the sum of each $$infinite$$ series is defined.", body: "", steps: steps, variabilization: {}}; export { problem };

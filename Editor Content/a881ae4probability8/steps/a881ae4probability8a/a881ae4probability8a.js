@@ -1,0 +1,1 @@
+import hints from "./a881ae4probability8a-index.js"; const step = {id: "a881ae4probability8a", stepAnswer: ["$$\\frac{5}{8}$$"], problemType: "TextBox", stepTitle: "For the following exercises, four coins are tossed.", stepBody: "Find the probability of tossing either two heads or three heads.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

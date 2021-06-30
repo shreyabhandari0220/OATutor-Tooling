@@ -1,0 +1,1 @@
+import steps from "./ac79bcbsequences8-index.js"; const problem = {id: "ac79bcbsequences8", title: "Finding Explicit Formula", body: "", steps: steps, variabilization: {}}; export { problem };

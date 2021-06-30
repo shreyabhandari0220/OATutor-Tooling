@@ -1,0 +1,1 @@
+import hints from "./probabilty9a-index.js"; const step = {id: "probabilty9a", stepAnswer: ["$$\\frac{1}{13}$$"], problemType: "TextBox", stepTitle: "For the following exercises, one card is drawn from a standard deck of 52 cards.", stepBody: "Find the probability of drawing a two.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./logarithmic9a-index.js"; const step = {id: "logarithmic9a", stepAnswer: ["$$\\frac{ln \\left(15\\right)}{ln} \\left(7\\right)$$"], problemType: "TextBox", stepTitle: "$$log(7,15)$$ to base e", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

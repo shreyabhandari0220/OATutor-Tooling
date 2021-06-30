@@ -1,0 +1,1 @@
+import hints from "./a719226sequences9a-index.js"; const step = {id: "a719226sequences9a", stepAnswer: ["-8"], problemType: "TextBox", stepTitle: "Write the first term of the sequence defined by the explicit formula $$a_n=\\frac{\\left(-1\\right)6}{n+\\left(1\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

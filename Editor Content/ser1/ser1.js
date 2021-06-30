@@ -1,0 +1,1 @@
+import steps from "./ser1-index.js"; const problem = {id: "ser1", title: "Use the formula for the sum of the first n terms of each arithmetic sequence.", body: "", steps: steps, variabilization: {}}; export { problem };

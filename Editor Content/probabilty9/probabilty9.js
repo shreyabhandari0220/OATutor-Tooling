@@ -1,0 +1,1 @@
+import steps from "./probabilty9-index.js"; const problem = {id: "probabilty9", title: "Computing Probabilities of Equally Likely Outcomes", body: "", steps: steps, variabilization: {}}; export { problem };

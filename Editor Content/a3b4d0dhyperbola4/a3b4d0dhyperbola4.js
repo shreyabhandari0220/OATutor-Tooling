@@ -1,0 +1,1 @@
+import steps from "./a3b4d0dhyperbola4-index.js"; const problem = {id: "a3b4d0dhyperbola4", title: "Finding the Equation of a Hyperbola Centered at (0,0) given its Foci and Vertices", body: "", steps: steps, variabilization: {}}; export { problem };

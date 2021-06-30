@@ -1,0 +1,1 @@
+import steps from "./a719226sequences3-index.js"; const problem = {id: "a719226sequences3", title: "Writing the Terms of an Alternating Sequence Defined by an Explicit Formula", body: "", steps: steps, variabilization: {}}; export { problem };

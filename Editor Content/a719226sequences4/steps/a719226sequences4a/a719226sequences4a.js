@@ -1,0 +1,1 @@
+import hints from "./a719226sequences4a-index.js"; const step = {id: "a719226sequences4a", stepAnswer: ["-2"], problemType: "TextBox", stepTitle: "Write the first term of the sequence defined by the explicit formula $$a_n=\\frac{\\left(4\\right) n}{{\\left(-2\\right)}^n}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

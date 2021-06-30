@@ -1,0 +1,1 @@
+import hints from "./geo5a-index.js"; const step = {id: "geo5a", stepAnswer: ["2048"], problemType: "TextBox", stepTitle: "$$a_n={-1, 2, -4, 8, ...$$.} Find $$a_{12}$$.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

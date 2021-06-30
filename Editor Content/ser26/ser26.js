@@ -1,0 +1,1 @@
+import steps from "./ser26-index.js"; const problem = {id: "ser26", title: "Find the sum of the $$infinite$$ geometric series if it exist. Round to the first decimal place.", body: "", steps: steps, variabilization: {}}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./partfrac26a-index.js"; const step = {id: "partfrac26a", stepAnswer: ["$$\\frac{2}{x-\\left(1\\right)}+\\frac{\\left(2\\right) x-\\left(1\\right)}{x^2+\\left(6\\right) x+\\left(11\\right)}$$"], problemType: "TextBox", stepTitle: "", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

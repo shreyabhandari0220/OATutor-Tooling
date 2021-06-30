@@ -1,0 +1,1 @@
+import hints from "./a9227d4exponential28b-index.js"; const step = {id: "a9227d4exponential28b", stepAnswer: ["134"], problemType: "TextBox", stepTitle: "To the nearest degree, what will the temperature be after 50 minutes?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

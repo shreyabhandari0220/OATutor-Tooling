@@ -1,0 +1,1 @@
+import steps from "./geo10-index.js"; const problem = {id: "geo10", title: "Write a recursive formula for each geometric sequence.", body: "", steps: steps, variabilization: {}}; export { problem };
