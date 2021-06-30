@@ -51,5 +51,5 @@ def create_step_dir(name, path, verbosity):
 
 def create_validator_dir(name, path):
     target = path + "/" + name
-    os.makedirs(target)
+    # os.makedirs(target)
     return target

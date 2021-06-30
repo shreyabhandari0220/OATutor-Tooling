@@ -1,3 +1,4 @@
+from typing import Collection
 import pandas as pd
 import numpy as np
 import gspread 
@@ -60,7 +61,7 @@ def get_all_url():
     worksheet = book.worksheet('URLs')
     table = worksheet.get_all_values()
     df = pd.DataFrame(table[1:], columns=table[0])
-    df = df[["Book","URL"]]
+    df = df[["Book","URL","Editor Sheet"]]
     df = df.astype(str)
     df.replace('', 0.0, inplace = True)
     return df
@@ -200,18 +201,37 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
     
     return error_message[:-1] # get rid of the last newline
 
-def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, conflict_names=[], validator_path=''):
+def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, conflict_names=[], validator_path='', editor=False):
     if is_local == "online":
         book = get_sheet(spreadsheet_key)
         worksheet = book.worksheet(sheet_name) 
         table = worksheet.get_all_values()
-        df = pd.DataFrame(table[1:], columns=table[0]) 
+        try:
+            df = pd.DataFrame(table[1:], columns=table[0]) 
+        except:
+            return
         ##Only keep columns we need 
         variabilization = 'Variabilization' in df.columns
-        if variabilization:
-            df = df[["Problem Name","Row Type","Variabilization","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
-        else:
-            df = df[["Problem Name","Row Type","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
+        try:
+            if variabilization:
+                df = df[["Problem Name","Row Type","Variabilization","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
+            else:
+                df = df[["Problem Name","Row Type","Title","Body Text","Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)","Parent","OER src","openstax KC", "KC","Taxonomy"]]
+        except KeyError as e:
+            error_df = pd.DataFrame(index=range(len(df)), columns=['Check 1', 'Check 2', 'Time Last Checked'])
+            error_df.at[0, 'Time Last Checked'] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+            error_df.at[0, 'Check 1'] = str(e)
+            error_df.at[0, 'Check 2'] = 'UNCHECKED'
+            try:
+                if variabilization:
+                    set_with_dataframe(worksheet, error_df, col=18)
+                else:
+                    set_with_dataframe(worksheet, error_df, col=17)
+            except Exception as e:
+                print('Fail to write to google sheet. Waiting...')
+                print('sheetname:', sheet_name, e)
+                time.sleep(40)
+            return
         df = df.astype(str)
         df.replace('', 0.0, inplace = True)
         df.replace(' ', 0.0, inplace = True)
@@ -253,28 +273,30 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     skillModelJS_lines = []
     skills = []
     skills_unformatted = []
-    skillModelJS_path = os.path.join("..","skillModel1.js")
-    if not os.path.exists(skillModelJS_path):
-        skillModelJS_file = open(skillModelJS_path, "a")
-        skillModelJS_file.write("const skillModel = {\n\n    // Start Inserting\n\n}\n\nexport default skillModel;")
-        skillModelJS_file.close()
-    skillModelJS_file = open(skillModelJS_path,"r")
-    break_index = 0
-    line_counter = 0
+    if not editor:
+        skillModelJS_path = os.path.join("..","skillModel.js")
+        if not os.path.exists(skillModelJS_path):
+            skillModelJS_file = open(skillModelJS_path, "a")
+            skillModelJS_file.write("const skillModel = {\n\n    // Start Inserting\n\n}\n\nexport default skillModel;")
+            skillModelJS_file.close()
+        skillModelJS_file = open(skillModelJS_path,"r")
+        break_index = 0
+        line_counter = 0
+        for line in skillModelJS_file:
+            if "Start Inserting" in line:
+                break_index = line_counter
+            skillModelJS_lines.append(line)
+            line_counter+=1
+    
     error_data = []
     error_df = pd.DataFrame(index=range(len(df)), columns=['Check 1', 'Check 2', 'Time Last Checked'])
     error_df.at[0, 'Time Last Checked'] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    for line in skillModelJS_file:
-        if "Start Inserting" in line:
-            break_index = line_counter
-        skillModelJS_lines.append(line)
-        line_counter+=1
     
     questions = [x for _, x in df.groupby(df['Problem Name'])]
     
     for question in questions:
         problem_name = question.iloc[0]['Problem Name']
-        
+
         # skip empty rows
         if type(problem_name) != str:
             continue
@@ -284,18 +306,16 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             question_error_message = validate_question(sheet_name, question, variabilization, latex, verbosity)
             if question_error_message:
                 error_row = (df[df['Problem Name'] == problem_name].index)[0]
-                # error_row = worksheet.find(problem_name).row
                 error_df.at[error_row, 'Check 1'] = question_error_message
                 error_df.at[error_row, 'Check 2'] = 'UNCHECKED'
                 raise Exception("Error encountered in validator")
         except Exception as e:
             if str(e) != "Error encountered in validator":
                 error_row = (df[df['Problem Name'] == problem_name].index)[0]
-                # error_row = worksheet.find(problem_name).row
                 error_df.at[error_row, 'Check 1'] = str(e)
                 error_df.at[error_row, 'Check 2'] = 'UNCHECKED'
             continue
-
+        
         #gets the initial name through the first row problem name 
         try:
             problem_skills = re.split("\||,", question.iloc[0]["openstax KC"])
@@ -322,7 +342,6 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                 result_problems += ", "
             result_problems += "'{0}'".format(problem_skills[i])
             skills_unformatted.extend(problem_skills)
-
 
         for index, row in question.iterrows():
             #checks row type 
@@ -431,7 +450,6 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                         previous_images = scaff_images
 
 
-
         to_write = create_default_pathway(tutoring)
         default_pathway = open(default_pathway_js, "w")
         default_pathway.write(to_write)
@@ -454,12 +472,25 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         file.close()
         if validator_path:
             val_path = create_validator_dir(problem_name, validator_path)
-            copy_tree(path, val_path)
+            try:
+                shutil.copytree(path, val_path)
+            except Exception as e:
+                if os.path.isdir(val_path):
+                    shutil.rmtree(val_path)
+                os.mkdir(val_path)
+                try:
+                    copy_tree(path, val_path)
+                except:
+                    print("error with inner copy_tree")
+                print("For problem:", problem_name)
+                print("Encountered error when copying to validator folder")
+                print(str(e))
 
-    new_skillModelJS_lines = skillModelJS_lines[0:break_index] + skills + skillModelJS_lines[break_index:]
-    with open(skillModelJS_path, 'w') as f:
-        for item in new_skillModelJS_lines:
-            f.write(item)
+    if not editor:
+        new_skillModelJS_lines = skillModelJS_lines[0:break_index] + skills + skillModelJS_lines[break_index:]
+        with open(skillModelJS_path, 'w') as f:
+            for item in new_skillModelJS_lines:
+                f.write(item)
     skills_unformatted = ["_".join(skill.lower().split()) for skill in skills_unformatted]
 
     # Update errors on the error sheet
@@ -510,10 +541,15 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                 sys.stderr.write(response.stderr.decode("utf-8"))
             #remove validator directory
             shutil.rmtree(validator_path)
+            for col in ['Check 1', 'Check 2']:
+                if error_df[col].isnull().values.all():
+                    error_df.at[0, col] = "No errors found"
 
         except Exception as e:
-            print(e)
+            print("For sheet:", sheet_name)
+            print("Encountered error during Check 2:", e)
             pass
+
         try:
             set_with_dataframe(worksheet, error_df, col=len(df.columns)+2)
         except Exception as e:
@@ -521,6 +557,13 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             print('sheetname:', sheet_name, e)
             time.sleep(40)
 
+    elif validator_path:
+        try:
+            set_with_dataframe(worksheet, error_df, col=len(df.columns)+2)
+        except Exception as e:
+            print('Fail to write to google sheet. Waiting...')
+            print('sheetname:', sheet_name, e)
+            time.sleep(40)
 
     for e in error_data:
         print("====")
@@ -529,7 +572,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         print('Error type:', e[2])
         print()
     
-    
+    if os.path.isdir(validator_path):
+        shutil.rmtree(validator_path)
 
     return list(set(skills_unformatted))
 
