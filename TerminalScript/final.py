@@ -17,9 +17,9 @@ if __name__ == '__main__':
         for f in os.listdir("../Excel"):
             if not f.startswith('~$') and f.endswith(".xlsx"):
                 sheet_keys.append(f)
-        create_total('../OpenStax', is_local, sheet_keys)
+        create_total('../OpenStax Content', is_local, sheet_keys)
     elif get_all_in_dir == '..' and is_local == 'online':
-        create_total('../OpenStax', is_local)
+        create_total('../OpenStax Content', is_local)
     else:
         sheet_keys = sys.argv[2:]
-        create_total('../OpenStax', is_local, sheet_keys)
+        create_total('../OpenStax Content', is_local, sheet_keys)

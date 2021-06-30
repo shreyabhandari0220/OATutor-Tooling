@@ -222,14 +222,15 @@ def handle_word(word, coord=True):
     # word = re.sub('\*\*\(negneg', '\(\-', word)
     word = re.sub(r'\\=', '=', word)
     sum_match = re.search('sum{([^}]+)}{([^}]+)}{([^}]+)}', word)
-    sum_var, sum_lower = sum_match.group(1).split('=')
-    sum_upper_num = True
-    if sum_match.group(2).isnumeric():
-        sum_upper = str(int(sum_match.group(2)) + 1)
-    else:
-        sum_upper = sum_match.group(2)
-        sum_upper_num = False
-    word = 'sum([' + sum_match.group(3) + ' for ' + sum_var + ' in range(' + sum_lower + ',' + sum_upper + ')])'
+    if sum_match:
+        sum_var, sum_lower = sum_match.group(1).split('=')
+        sum_upper_num = True
+        if sum_match.group(2).isnumeric():
+            sum_upper = str(int(sum_match.group(2)) + 1)
+        else:
+            sum_upper = sum_match.group(2)
+            sum_upper_num = False
+        word = 'sum([' + sum_match.group(3) + ' for ' + sum_var + ' in range(' + sum_lower + ',' + sum_upper + ')])'
 
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
 
@@ -240,6 +241,7 @@ def handle_word(word, coord=True):
     word = re.sub(r"\\operatorname{(\w*|\d*)pm}\\left\(a\\right\)(\\times)?", r"\g<1>\\pm ", word)
     word = re.sub(r"negneg(\d|\w)", r"\\left(-\g<1>\\right)", word) #handles first negative sign following opening parenthesis
     word = re.sub(r"zero", r"-0.", word)
-    if not sum_upper_num:
-        word = re.sub(sum_upper + '-1', sum_upper, word)
+    if sum_match:
+        if not sum_upper_num:
+            word = re.sub(sum_upper + '-1', sum_upper, word)
     return word[2:-2]
