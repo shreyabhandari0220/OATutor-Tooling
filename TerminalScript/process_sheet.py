@@ -71,8 +71,11 @@ def next_available_row(worksheet):
     return str(len(str_list)+1)
 
 def validate_image(image):
+    print('debug:', image)
     try:
-        requests.get(image)
+        images = image.split(" ")
+        for i in images: 
+            requests.get(i)
     except:
         raise Exception("Image retrieval error")
 
@@ -256,18 +259,17 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     elif is_local != "local" and is_local != "online":
         raise NameError('Please enter either \'local\' to indicate a locally stored file, or \'online\' to indicate a file stored as a google sheet.')
-
-    df["Body Text"] = df["Body Text"].str.replace("\"", "\\\"")
-    df["Title"] = df["Title"].str.replace("\"", "\\\"")
-    df["Answer"] = df["Answer"].str.replace("\"", "\\\"")
     try:
+        df["Body Text"] = df["Body Text"].str.replace("\"", "\\\"")
+        df["Title"] = df["Title"].str.replace("\"", "\\\"")
+        df["Answer"] = df["Answer"].str.replace("\"", "\\\"")
         df["mcChoices"] = df["mcChoices"].str.replace("\"", "\\\"")
+        df["Body Text"] = df["Body Text"].str.replace("\\n", r" \\\\n ")
+        df["Title"] = df["Title"].str.replace("\\n", r" \\\\n ")
+        df["openstax KC"] = df["openstax KC"].str.replace("\'", "\\\'")
+        df["KC"] = df["KC"].str.replace("\'", "\\\'")
     except AttributeError:
         pass
-    df["Body Text"] = df["Body Text"].str.replace("\\n", r" \\\\n ")
-    df["Title"] = df["Title"].str.replace("\\n", r" \\\\n ")
-    df["openstax KC"] = df["openstax KC"].str.replace("\'", "\\\'")
-    df["KC"] = df["KC"].str.replace("\'", "\\\'")
     
 
     skillModelJS_lines = []
