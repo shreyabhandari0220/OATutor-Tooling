@@ -1,0 +1,1 @@
+import hints from "./a81e159exponential12a-index.js"; const step = {id: "a81e159exponential12a", stepAnswer: ["@{ans}"], problemType: "TextBox", stepTitle: "Find f(0). Round to the nearest whole number.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

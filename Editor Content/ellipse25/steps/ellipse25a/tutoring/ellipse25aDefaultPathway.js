@@ -1,0 +1,1 @@
+var hints = [{id: "ellipse25a-h1", type: "hint", dependencies: [], title: "It's important to notice that nothing is being subtracted or added to the x term while 1 is being added to the y term. This means that the center is (0,-1)", text: "", variabilization: {}}, ]; export {hints};

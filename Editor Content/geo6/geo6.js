@@ -1,1 +1,1 @@
-import steps from "./geo6-index.js"; const problem = {id: "geo6", title: "Find the specified term for the geometric sequence, given the first four terms.", body: "", steps: steps, variabilization: {}}; export { problem };
+import steps from "./geo6-index.js"; const problem = {id: "geo6", title: "Finding the Specified Term for the Geometric Sequence", body: "Find the specified term for the geometric sequence, given the first four terms.", steps: steps, variabilization: {}}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./rectangular8c-index.js"; const step = {id: "rectangular8c", stepAnswer: ["7"], problemType: "TextBox", stepTitle: "$$y=-x+\\left(5\\right)$$", stepBody: "If $$x=-2$$, what is y?", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

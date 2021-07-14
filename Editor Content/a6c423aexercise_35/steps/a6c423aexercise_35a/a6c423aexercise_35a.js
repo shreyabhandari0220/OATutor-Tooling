@@ -1,0 +1,1 @@
+import hints from "./a6c423aexercise_35a-index.js"; const step = {id: "a6c423aexercise_35a", stepAnswer: ["$$\\left(35\\right) x^3 y^4$$"], problemType: "TextBox", stepTitle: "$${\\left(x-y\\right)}^7$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

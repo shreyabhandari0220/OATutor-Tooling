@@ -1,1 +1,0 @@
-import steps from "./a719226sequences5-index.js"; const problem = {id: "a719226sequences5", title: "Writing an Explicit Formula for the nth Term of a Sequence", body: "", steps: steps, variabilization: {}}; export { problem };

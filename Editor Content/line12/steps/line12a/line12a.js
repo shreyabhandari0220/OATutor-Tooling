@@ -1,0 +1,1 @@
+import hints from "./line12a-index.js"; const step = {id: "line12a", stepAnswer: ["$$y=x+\\left(5\\right)$$"], problemType: "MultipleChoice", stepTitle: "(2,7) and (3,8)", stepBody: "", choices: ["$$y=2x-5Iy=x+\\left(5\\right) Iy=3x-2Iy=x-5$$"], answerType: "string", hints: hints, variabilization: {}}; export {step};

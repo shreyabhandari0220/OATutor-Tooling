@@ -1,0 +1,1 @@
+var hints = [{id: "exercise_28a-h_1", type: "hint", dependencies: [], title: "Finding a Recursive Formula", text: "We can use the common difference to create a recursive formula. d $$=$$ 20. So, $$a_{} \\left(n+\\left(1\\right)\\right)$$ $$=$$ $$a_n$$ + 20, $$a_1$$ $$=$$ 40", variabilization: {}}, ]; export {hints};

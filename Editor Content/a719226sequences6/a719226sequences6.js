@@ -1,1 +1,0 @@
-import steps from "./a719226sequences6-index.js"; const problem = {id: "a719226sequences6", title: "Writing the Terms of a Sequence Defined by a Recursive Formula", body: "", steps: steps, variabilization: {}}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./a6c423aexercise_32a-index.js"; const step = {id: "a6c423aexercise_32a", stepAnswer: ["$$\\left(1469664\\right) x^5 y^2$$"], problemType: "TextBox", stepTitle: "$${\\left(\\left(6\\right) x-\\left(3\\right) y\\right)}^7$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

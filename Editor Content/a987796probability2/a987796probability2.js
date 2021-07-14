@@ -1,0 +1,1 @@
+import steps from "./a987796probability2-index.js"; const problem = {id: "a987796probability2", title: "Computing the Probability of an Event with Equally Likely Outcomes", body: "A 6-sided cube is rolled.", steps: steps, variabilization: {}}; export { problem };

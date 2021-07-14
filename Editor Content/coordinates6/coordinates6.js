@@ -1,0 +1,1 @@
+import steps from "./coordinates6-index.js"; const problem = {id: "coordinates6", title: "Verify Ordered Pairs as Solutions", body: "Determine if the following point is a valid solution to the equation.", steps: steps, variabilization: {}}; export { problem };

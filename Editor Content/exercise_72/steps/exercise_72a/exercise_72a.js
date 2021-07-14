@@ -1,0 +1,1 @@
+import hints from "./exercise_72a-index.js"; const step = {id: "exercise_72a", stepAnswer: ["$$\\frac{1}{3}$$"], problemType: "TextBox", stepTitle: "What is the slope of $$y=\\frac{1}{3} x-\\left(1\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

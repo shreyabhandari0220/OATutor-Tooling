@@ -1,0 +1,1 @@
+import steps from "./ae0f06fprobability13-index.js"; const problem = {id: "ae0f06fprobability13", title: "Computing Probabilities of Equally Likely Outcomes", body: "For the following exercises, one card is drawn from a standard deck of 52 cards.", steps: steps, variabilization: {}}; export { problem };

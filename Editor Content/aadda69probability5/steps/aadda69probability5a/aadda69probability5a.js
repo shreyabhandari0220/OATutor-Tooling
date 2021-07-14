@@ -1,1 +1,0 @@
-import hints from "./aadda69probability5a-index.js"; const step = {id: "aadda69probability5a", stepAnswer: ["$$\\frac{1}{2}$$"], problemType: "TextBox", stepTitle: "A card is drawn from a standard deck. Find the probability of drawing a heart or a spade.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

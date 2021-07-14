@@ -1,0 +1,1 @@
+var hints = [{id: "exercise_75a-h1", type: "hint", dependencies: [], title: "The form of a linear equation is $$y=mx+b$$. According ot this, the slope is $$m=\\frac{-\\left(2\\right)}{5}$$.", text: "", variabilization: {}}, ]; export {hints};

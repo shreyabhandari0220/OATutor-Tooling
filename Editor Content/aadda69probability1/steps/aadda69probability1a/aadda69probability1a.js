@@ -1,1 +1,0 @@
-import hints from "./aadda69probability1a-index.js"; const step = {id: "aadda69probability1a", stepAnswer: ["$$\\frac{1}{2}$$"], problemType: "TextBox", stepTitle: "A six-sided number cube is rolled. Find the probability of rolling an odd number.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

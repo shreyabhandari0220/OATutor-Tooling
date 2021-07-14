@@ -1,1 +1,0 @@
-import steps from "./ab64c01conic5-index.js"; const problem = {id: "ab64c01conic5", title: "Finding the Polar Form of a Horizontal Conic Given a Focus at the Origin and the Eccentricity and Directrix", body: "", steps: steps, variabilization: {}}; export { problem };

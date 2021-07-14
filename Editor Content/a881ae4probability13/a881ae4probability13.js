@@ -1,1 +1,0 @@
-import steps from "./a881ae4probability13-index.js"; const problem = {id: "a881ae4probability13", title: "Computing Probabilities of Equally Likely Outcomes", body: "", steps: steps, variabilization: {}}; export { problem };

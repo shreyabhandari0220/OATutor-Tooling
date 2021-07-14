@@ -1,1 +1,0 @@
-import steps from "./aadda69probability1-index.js"; const problem = {id: "aadda69probability1", title: "Computing the Probability of an Event with Equally Likely Outcomes", body: "", steps: steps, variabilization: {}}; export { problem };

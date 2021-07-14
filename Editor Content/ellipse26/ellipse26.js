@@ -1,0 +1,1 @@
+import steps from "./ellipse26-index.js"; const problem = {id: "ellipse26", title: "Finding the Area of an Ellipse", body: "Find the area of the ellipse:", steps: steps, variabilization: {}}; export { problem };

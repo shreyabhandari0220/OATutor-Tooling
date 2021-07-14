@@ -1,1 +1,0 @@
-import hints from "./aadda69probability6a-index.js"; const step = {id: "aadda69probability6a", stepAnswer: ["$$\\frac{2}{13}$$"], problemType: "TextBox", stepTitle: "A card is drawn from a standard deck. Find the probability of drawing an ace or a king.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

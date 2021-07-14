@@ -1,1 +1,0 @@
-import steps from "./a719226sequences13-index.js"; const problem = {id: "a719226sequences13", title: "Writing the Terms of an Alternating Sequence Defined by a Formula", body: "", steps: steps, variabilization: {}}; export { problem };

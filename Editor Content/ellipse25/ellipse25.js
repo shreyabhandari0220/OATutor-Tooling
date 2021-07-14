@@ -1,0 +1,1 @@
+import steps from "./ellipse25-index.js"; const problem = {id: "ellipse25", title: "Finding the Center of an Ellipse", body: "Find the center of the following ellipse:", steps: steps, variabilization: {}}; export { problem };

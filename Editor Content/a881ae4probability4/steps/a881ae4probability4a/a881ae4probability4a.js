@@ -1,1 +1,0 @@
-import hints from "./a881ae4probability4a-index.js"; const step = {id: "a881ae4probability4a", stepAnswer: ["$$\\frac{3}{4}$$"], problemType: "TextBox", stepTitle: "For the following exercises, two coins are tossed.", stepBody: "Find the probability of tossing at least one tail.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

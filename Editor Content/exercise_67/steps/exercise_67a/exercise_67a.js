@@ -1,0 +1,1 @@
+import hints from "./exercise_67a-index.js"; const step = {id: "exercise_67a", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "What is the slope of $$y=2x$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

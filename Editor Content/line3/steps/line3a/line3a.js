@@ -1,0 +1,1 @@
+import hints from "./line3a-index.js"; const step = {id: "line3a", stepAnswer: ["$$y=6x-4$$"], problemType: "MultipleChoice", stepTitle: "slope 6 and y-intercept (0,-4)", stepBody: "", choices: ["$$y=\\left(6\\right) x+\\left(4\\right) Iy=\\left(4\\right) x+\\left(1\\right) Iy=6x-4Iy=2x-1$$"], answerType: "string", hints: hints, variabilization: {}}; export {step};
