@@ -1,0 +1,1 @@
+import steps from "./ellipse20-index.js"; const problem = {id: "ellipse20", title: "Finding Ellipse Characteristics", body: "Find the foci of the ellipse. If the equation is not of an ellipse, enter DNE.", steps: steps, variabilization: {}}; export { problem };

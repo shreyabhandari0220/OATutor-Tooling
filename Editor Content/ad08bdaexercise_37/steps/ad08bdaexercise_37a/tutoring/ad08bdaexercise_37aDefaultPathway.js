@@ -1,0 +1,1 @@
+var hints = [{id: "ad08bdaexercise_37a-h_1", type: "hint", dependencies: [], title: "Finding a Recursive Formula", text: "Common difference is $$\\frac{-\\left(13\\right)}{12}$$, $$a_n+\\left(1\\right)$$ $$=$$ $$\\frac{-\\left(13\\right)}{12}$$ + $$a_n$$, $$a_1$$ $$=$$ $$\\frac{1}{6}$$", variabilization: {}}, ]; export {hints};

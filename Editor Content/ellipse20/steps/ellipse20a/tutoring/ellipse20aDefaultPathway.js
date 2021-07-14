@@ -1,0 +1,1 @@
+var hints = [{id: "ellipse20a-h1", type: "hint", dependencies: [], title: "Equation is a Circle", text: "Since $$a=b$$ in this equation, it represents a circle. Thus, the answer is DNE.", variabilization: {}}, ]; export {hints};

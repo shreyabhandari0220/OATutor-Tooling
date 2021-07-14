@@ -1,1 +1,0 @@
-var hints = [{id: "a719226sequences6a-h1", type: "hint", dependencies: [], title: "Indicated Answer", text: "The first term $$a_1$$ is given in the formula.", variabilization: {}}, ]; export {hints};

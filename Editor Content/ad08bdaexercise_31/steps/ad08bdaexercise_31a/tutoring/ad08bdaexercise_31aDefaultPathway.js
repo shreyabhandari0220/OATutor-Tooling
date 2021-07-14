@@ -1,0 +1,1 @@
+var hints = [{id: "ad08bdaexercise_31a-h_1", type: "hint", dependencies: [], title: "Finding a Recursive Formula", text: "We can use the common difference to create a recursive formula. d $$=$$ 5. So, $$a_n+\\left(1\\right)$$ $$=$$ 5 + $$a_n$$, $$a_1$$ $$=$$ 12", variabilization: {}}, ]; export {hints};

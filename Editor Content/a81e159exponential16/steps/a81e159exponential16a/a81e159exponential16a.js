@@ -1,0 +1,1 @@
+import hints from "./a81e159exponential16a-index.js"; const step = {id: "a81e159exponential16a", stepAnswer: ["1.4"], problemType: "TextBox", stepTitle: "What is the doubling time to the nearest tenth?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

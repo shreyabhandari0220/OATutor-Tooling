@@ -1,0 +1,1 @@
+import hints from "./a6c423aexercise_30a-index.js"; const step = {id: "a6c423aexercise_30a", stepAnswer: ["$$\\left(216\\right) {xy}^3$$"], problemType: "TextBox", stepTitle: "$${\\left(\\left(2\\right) x-\\left(3\\right) y\\right)}^4$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

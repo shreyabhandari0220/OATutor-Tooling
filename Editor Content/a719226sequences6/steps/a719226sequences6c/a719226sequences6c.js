@@ -1,1 +1,0 @@
-import hints from "./a719226sequences6c-index.js"; const step = {id: "a719226sequences6c", stepAnswer: ["1"], problemType: "TextBox", stepTitle: "Write the third term of the sequence defined by the recursive formula. $$a_1=9$$, $$a_n=\\left(3\\right) a_n-\\left(20\\right)$$ for $$a_n>1$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

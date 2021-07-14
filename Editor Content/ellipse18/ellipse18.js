@@ -1,0 +1,1 @@
+import steps from "./ellipse18-index.js"; const problem = {id: "ellipse18", title: "Finding Ellipse Characteristics", body: "Find the foci of the ellipse.", steps: steps, variabilization: {}}; export { problem };

@@ -1,1 +1,0 @@
-import steps from "./a881ae4probability1-index.js"; const problem = {id: "a881ae4probability1", title: "Construction Probability Models", body: "", steps: steps, variabilization: {}}; export { problem };

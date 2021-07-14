@@ -1,0 +1,1 @@
+import hints from "./ellipse25a-index.js"; const step = {id: "ellipse25a", stepAnswer: ["(0,-1)"], problemType: "MultipleChoice", stepTitle: "$$\\frac{x^2}{2}+\\frac{{\\left(y+\\left(1\\right)\\right)}^2}{5}=1$$", stepBody: "", choices: ["(0,-1)", "(0,-2)", "(0,-3)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import steps from "./a8841c6exercise_35-index.js"; const problem = {id: "a8841c6exercise_35", title: "Rotating Equations Through Angles", body: "Rotate the equation through the angle 45 degrees.", steps: steps, variabilization: {}}; export { problem };

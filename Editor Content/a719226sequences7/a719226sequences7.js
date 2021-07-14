@@ -1,1 +1,0 @@
-import steps from "./a719226sequences7-index.js"; const problem = {id: "a719226sequences7", title: "Writing the Terms of a Sequence Using Factorials", body: "", steps: steps, variabilization: {}}; export { problem };

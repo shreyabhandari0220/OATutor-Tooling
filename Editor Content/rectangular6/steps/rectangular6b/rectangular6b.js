@@ -1,0 +1,1 @@
+import hints from "./rectangular6b-index.js"; const step = {id: "rectangular6b", stepAnswer: ["0"], problemType: "TextBox", stepTitle: "$$y=2x-4$$", stepBody: "If $$x=2$$, what is y?", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import steps from "./rectangular3-index.js"; const problem = {id: "rectangular3", title: "Verify Solutions to an Equation in Two Variables", body: "In the following exercises, which ordered pairs are solutions to the given equations?", steps: steps, variabilization: {}}; export { problem };

@@ -1,0 +1,1 @@
+import steps from "./a6c423aexercise_17-index.js"; const problem = {id: "a6c423aexercise_17", title: "Binomial Expansion", body: "Expand the following.", steps: steps, variabilization: {}}; export { problem };

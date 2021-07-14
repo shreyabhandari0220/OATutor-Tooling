@@ -1,1 +1,0 @@
-import hints from "./a881ae4probability2a-index.js"; const step = {id: "a881ae4probability2a", stepAnswer: ["$$\\frac{1}{4}$$"], problemType: "TextBox", stepTitle: "For the following exercises, two coins are tossed.", stepBody: "Find the probability of tossing two heads.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

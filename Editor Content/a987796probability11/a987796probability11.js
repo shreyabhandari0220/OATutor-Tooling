@@ -1,0 +1,1 @@
+import steps from "./a987796probability11-index.js"; const problem = {id: "a987796probability11", title: "Computing the Probability of an Event", body: "Refer to the image.\n##figure1.gif", steps: steps, variabilization: {}}; export { problem };

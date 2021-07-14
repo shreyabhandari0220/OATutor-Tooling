@@ -1,0 +1,1 @@
+import hints from "./rectangular9b-index.js"; const step = {id: "rectangular9b", stepAnswer: ["-1"], problemType: "TextBox", stepTitle: "$$y=-x+\\left(2\\right)$$", stepBody: "If $$x=3$$, what is y?", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

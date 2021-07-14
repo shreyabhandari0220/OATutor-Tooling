@@ -1,1 +1,0 @@
-import steps from "./ab64c01conic3-index.js"; const problem = {id: "ab64c01conic3", title: "Finding the Polar Form of a Vertical Conic Given a Focus at the Origin and the Eccentricity and Directrix", body: "", steps: steps, variabilization: {}}; export { problem };

@@ -1,1 +1,0 @@
-import steps from "./a719226sequences9-index.js"; const problem = {id: "a719226sequences9", title: "More Practice Writing the Terms of a Sequence Defined by a Formula", body: "", steps: steps, variabilization: {}}; export { problem };

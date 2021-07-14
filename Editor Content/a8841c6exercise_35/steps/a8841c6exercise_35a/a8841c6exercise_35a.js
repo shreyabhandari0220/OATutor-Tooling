@@ -1,0 +1,1 @@
+import hints from "./a8841c6exercise_35a-index.js"; const step = {id: "a8841c6exercise_35a", stepAnswer: ["(x'+y')**2/2-(x'-y')**2/2=1"], problemType: "TextBox", stepTitle: "$$y^2-x^2=1$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import steps from "./exercise_76-index.js"; const problem = {id: "exercise_76", title: "Finding the Slope of a Linear Equation", body: "0.0", steps: steps, variabilization: {}}; export { problem };

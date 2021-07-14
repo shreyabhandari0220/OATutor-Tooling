@@ -1,1 +1,0 @@
-import hints from "./a719226sequences14a-index.js"; const step = {id: "a719226sequences14a", stepAnswer: ["$$\\frac{1}{3}$$"], problemType: "TextBox", stepTitle: "Write the first term of the sequence defined by the explicit formula $$a_n=\\frac{n^2}{\\left(2\\right) n+\\left(1\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

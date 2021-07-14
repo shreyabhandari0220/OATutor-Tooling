@@ -1,0 +1,1 @@
+import hints from "./rectangular7a-index.js"; const step = {id: "rectangular7a", stepAnswer: ["-1"], problemType: "TextBox", stepTitle: "$$y=3x-1$$", stepBody: "If $$x=0$$, what is y?", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

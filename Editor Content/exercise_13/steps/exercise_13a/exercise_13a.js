@@ -1,0 +1,1 @@
+import hints from "./exercise_13a-index.js"; const step = {id: "exercise_13a", stepAnswer: ["$$\\left(64\\right) a^3-\\left(48\\right) a^2 b+\\left(12\\right) {ab}^2-b^3$$"], problemType: "TextBox", stepTitle: "$${\\left(\\left(4\\right) a-b\\right)}^3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

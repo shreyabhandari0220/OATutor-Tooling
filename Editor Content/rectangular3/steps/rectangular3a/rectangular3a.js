@@ -1,0 +1,1 @@
+import hints from "./rectangular3a-index.js"; const step = {id: "rectangular3a", stepAnswer: ["(0,-5),(1/2,-4)"], problemType: "MultipleChoice", stepTitle: "$$y=2x-5$$", stepBody: "", choices: ["(0,-5),(2,1)I(0,-5),(1/2,-4)I(1/2,-4),(2,1)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

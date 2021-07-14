@@ -1,0 +1,1 @@
+import steps from "./a6c423aexercise_31-index.js"; const problem = {id: "a6c423aexercise_31", title: "Binomial Expansion", body: "Find the fourth term:", steps: steps, variabilization: {}}; export { problem };

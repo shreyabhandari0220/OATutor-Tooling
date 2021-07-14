@@ -1,0 +1,1 @@
+import hints from "./a6c423aexercise_39a-index.js"; const step = {id: "a6c423aexercise_39a", stepAnswer: ["$$\\frac{\\left(1152\\right) y^2}{x^7}$$"], problemType: "TextBox", stepTitle: "(y/2 + 2/x)**9", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

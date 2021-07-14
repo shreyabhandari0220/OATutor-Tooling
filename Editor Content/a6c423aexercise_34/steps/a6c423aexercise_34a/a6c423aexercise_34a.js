@@ -1,0 +1,1 @@
+import hints from "./a6c423aexercise_34a-index.js"; const step = {id: "a6c423aexercise_34a", stepAnswer: ["$$\\left(462\\right) a^5 b^6$$"], problemType: "TextBox", stepTitle: "$${\\left(a+b\\right)}^{11}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

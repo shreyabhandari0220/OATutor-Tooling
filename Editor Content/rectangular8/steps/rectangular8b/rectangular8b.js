@@ -1,0 +1,1 @@
+import hints from "./rectangular8b-index.js"; const step = {id: "rectangular8b", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "$$y=-x+\\left(5\\right)$$", stepBody: "If $$x=3$$, what is y?", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

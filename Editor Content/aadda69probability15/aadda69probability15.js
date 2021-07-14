@@ -1,1 +1,0 @@
-import steps from "./aadda69probability15-index.js"; const problem = {id: "aadda69probability15", title: "Computing the Probability of an Event", body: "\n##figure1.gif", steps: steps, variabilization: {}}; export { problem };

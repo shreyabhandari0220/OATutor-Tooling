@@ -1,0 +1,1 @@
+import steps from "./ad08bdaexercise_30-index.js"; const problem = {id: "ad08bdaexercise_30", title: "Finding a Recursive Formula", body: "Find the recursive formula using the given information.", steps: steps, variabilization: {}}; export { problem };

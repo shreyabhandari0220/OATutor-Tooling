@@ -1,0 +1,1 @@
+import hints from "./exercise_73a-index.js"; const step = {id: "exercise_73a", stepAnswer: ["$$\\frac{4}{3}$$"], problemType: "TextBox", stepTitle: "What is the slope of $$y=\\frac{4}{3} x-\\left(5\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

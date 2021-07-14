@@ -1,0 +1,1 @@
+import steps from "./a81e159exponential16-index.js"; const problem = {id: "a81e159exponential16", title: "Fish Population", body: "$$P(t)=\\frac{1000}{\\left(1\\right)+\\left(9\\right) e^{-0.6 t}}$$ represents the population of fish as a function of time, t.", steps: steps, variabilization: {}}; export { problem };
