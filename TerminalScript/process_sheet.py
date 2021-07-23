@@ -43,6 +43,7 @@ def save_images(images,path, num):
         num += 1
         name = "figure" + str(num) + ".gif"
         names.append(name)
+        i = re.sub(r"https://imgur\.com/([\d\w]+)", r"https://i.imgur.com/\g<1>.png", i)
         r = requests.get(i)
         with open(path + "/" + name, 'wb') as outfile:
             outfile.write(r.content)
@@ -71,7 +72,7 @@ def next_available_row(worksheet):
     return str(len(str_list)+1)
 
 def validate_image(image):
-    print('debug:', image)
+    # print('debug:', image)
     try:
         images = image.split(" ")
         for i in images: 

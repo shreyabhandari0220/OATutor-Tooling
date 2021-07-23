@@ -91,6 +91,25 @@ def check_names_online():
             if end - start < 3:
                 time.sleep(3 - (end - start))
 
+def check_names_repeat():
+    global all_problem_names
+    global conflict_names
+    count = 0
+    success = False
+    while count < 5 and not success:
+        try:
+            check_names_online()
+            success = True
+            count += 1
+        except Exception:
+            all_problem_names = []
+            conflict_names = []
+            count += 1
+            time.sleep(20)
+    if not success:
+        raise Exception("Failed to read sheet names from google sheet. Try again later.")
+        
+        
 def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
     '''if sheet_names is not provided, default to run all sheets'''
     global all_problem_names
@@ -124,7 +143,9 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
             course_plan.append(create_course_plan(course_name, lesson_plan))
     elif is_local == 'online':
         # checks for problem name conflicts. Conflicted names are stored in conflict_names in conflict_names.py
-        check_names_online()
+        
+        check_names_repeat()
+
         url_df = get_all_url()
         for index, row in url_df.iterrows():
             lesson_plan = []
