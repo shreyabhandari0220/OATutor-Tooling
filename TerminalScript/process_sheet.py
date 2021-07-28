@@ -102,7 +102,10 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
         problem_skills = re.split("\||,", question.iloc[0]["openstax KC"])
         problem_skills = ["_".join(skill.lower().split()).replace("-", "_") for skill in problem_skills]
     except:
-        raise Exception("Problem Skills broken")
+        error_message = error_message + "Problem Skills broken" + '\n'
+
+    if type(problem_row["OER src"]) != str:
+        error_message = error_message + "Problem OER src missing" + '\n'
 
     if not question['Row Type'].str.contains('step').any() and not question['Row Type'].str.contains('Step').any():
         raise Exception("Problem does not have step(s)")
@@ -199,9 +202,9 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
     if type(problem_row["Images (space delimited)"]) == str:
         validate_image(problem_row["Images (space delimited)"])
     if variabilization:
-        prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_images, variabilization=problem_row["Variabilization"],latex=latex,verbosity=verbosity)
+        prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_row["OER src"], problem_images, variabilization=problem_row["Variabilization"],latex=latex,verbosity=verbosity)
     else:
-        prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_images,latex=latex,verbosity=verbosity)
+        prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_row["OER src"], problem_images,latex=latex,verbosity=verbosity)
     
     return error_message[:-1] # get rid of the last newline
 
@@ -466,9 +469,9 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             problem_images, num = save_images(problem_row["Images (space delimited)"], figure_path, int(images))
             images += num
         if variabilization:
-            prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_images, variabilization=problem_row["Variabilization"],latex=latex,verbosity=verbosity)
+            prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_row["OER src"], problem_images, variabilization=problem_row["Variabilization"],latex=latex,verbosity=verbosity)
         else:
-            prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_images,latex=latex,verbosity=verbosity)
+            prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_row["OER src"], problem_images,latex=latex,verbosity=verbosity)
         re.sub("[\.js]{2,}", ".js", prob_js)
         file = open(problem_js, "w")
         file.write(prob_js)
