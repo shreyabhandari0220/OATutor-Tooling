@@ -1,0 +1,1 @@
+import steps from "./graph6-index.js"; const problem = {id: "graph6", title: "Determining the X- and Y-Intercepts to the Equation $$y=-\\left(2\\right) x+\\left(4\\right)$$", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

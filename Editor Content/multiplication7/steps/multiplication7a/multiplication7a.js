@@ -1,0 +1,1 @@
+import hints from "./multiplication7a-index.js"; const step = {id: "multiplication7a", stepAnswer: ["$$\\left(81\\right) d^2$$"], problemType: "TextBox", stepTitle: "$${\\left(\\left(-9\\right) d\\right)}^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

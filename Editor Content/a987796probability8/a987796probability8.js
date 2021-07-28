@@ -1,1 +1,0 @@
-import steps from "./a987796probability8-index.js"; const problem = {id: "a987796probability8", title: "Using the Complement Rule to Calculate Probabilities", body: "Two number cubes are rolled.", steps: steps, variabilization: {}}; export { problem };

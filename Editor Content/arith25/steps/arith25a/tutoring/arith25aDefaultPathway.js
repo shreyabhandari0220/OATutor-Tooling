@@ -1,0 +1,1 @@
+var hints = [{id: "arith25a-h_1", type: "hint", dependencies: [], title: "Finding a Recursive Formula", text: "Common difference is 0.5. $$a_n+\\left(1\\right)$$ $$=$$ $$a_n$$ + 0.5, $$a_1$$ $$=$$ -0.52", variabilization: {}}, ]; export {hints};

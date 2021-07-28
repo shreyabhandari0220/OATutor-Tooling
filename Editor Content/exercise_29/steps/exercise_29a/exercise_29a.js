@@ -1,1 +1,0 @@
-import hints from "./exercise_29a-index.js"; const step = {id: "exercise_29a", stepAnswer: ["$$a_n+\\left(1\\right)$$ $$=$$ $$a_n$$ + 9, $$a_1$$ $$=$$ 17"], problemType: "TextBox", stepTitle: "Find the recursive formula for a $$=$$ {17, 26, 35 ...}", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

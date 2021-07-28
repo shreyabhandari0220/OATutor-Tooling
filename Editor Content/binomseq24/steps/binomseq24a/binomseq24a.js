@@ -1,0 +1,1 @@
+import hints from "./binomseq24a-index.js"; const step = {id: "binomseq24a", stepAnswer: ["$$\\left(1082565\\right) a^3 b^{16}$$"], problemType: "TextBox", stepTitle: "$${\\left(a-\\left(3\\right) b^2\\right)}^{11}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

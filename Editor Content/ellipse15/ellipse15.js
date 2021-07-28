@@ -1,1 +1,0 @@
-import steps from "./ellipse15-index.js"; const problem = {id: "ellipse15", title: "Finding Ellipse Characteristics", body: "Find the major axes endpoints, minor axes endpoints, and foci endpoints of the ellipse:", steps: steps, variabilization: {}}; export { problem };

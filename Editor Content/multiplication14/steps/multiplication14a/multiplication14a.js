@@ -1,0 +1,1 @@
+import hints from "./multiplication14a-index.js"; const step = {id: "multiplication14a", stepAnswer: ["$$\\left(54\\right) b^9$$"], problemType: "TextBox", stepTitle: "$$\\left(-6\\right) b^4 \\left(-9\\right) b^5$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+var hints = [{id: "exercise_132a-h1", type: "hint", dependencies: [], title: "Cancelling and Solving", text: "We can cancel the y by adding the two equations. We get $$2x=10, x=5$$. Plugging this back in, we get $$y=7$$. $$\\left(5\\right)+\\left(7\\right)=12$$.", variabilization: {}}, ]; export {hints};

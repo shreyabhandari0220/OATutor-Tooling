@@ -1,0 +1,1 @@
+import hints from "./add8a-index.js"; const step = {id: "add8a", stepAnswer: ["$$\\left(12\\right) x^2$$"], problemType: "TextBox", stepTitle: "$$\\left(7\\right) x^2+\\left(5\\right) x^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

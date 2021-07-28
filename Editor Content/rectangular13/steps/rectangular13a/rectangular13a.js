@@ -1,1 +1,0 @@
-import hints from "./rectangular13a-index.js"; const step = {id: "rectangular13a", stepAnswer: ["-1"], problemType: "TextBox", stepTitle: "$$y=\\frac{\\left(-2\\right) x}{3}-\\left(1\\right)$$", stepBody: "If $$x=0$$, what is y?", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

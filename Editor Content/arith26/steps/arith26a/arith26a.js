@@ -1,0 +1,1 @@
+import hints from "./arith26a-index.js"; const step = {id: "arith26a", stepAnswer: ["$$a_n+\\left(1\\right)$$ $$=$$ $$a_n$$ + 0.25, $$a_1$$ $$=$$ 0.2"], problemType: "TextBox", stepTitle: "Find the recursive formula for a $$=$$ {$$\\frac{1}{5}$$, $$\\frac{9}{20}$$, $$\\frac{7}{10}$$}", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,1 @@
-import steps from "./theparabola20-index.js"; const problem = {id: "theparabola20", title: "Finding Parabola Characteristics", body: "", steps: steps, variabilization: {}}; export { problem };
+import steps from "./theparabola20-index.js"; const problem = {id: "theparabola20", title: "Finding Parabola Characteristics", body: "", steps: steps, variabilization: {}, oer: "openstax.org"}; export { problem };

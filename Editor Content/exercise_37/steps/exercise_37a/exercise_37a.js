@@ -1,0 +1,1 @@
+import hints from "./exercise_37a-index.js"; const step = {id: "exercise_37a", stepAnswer: ["sqrt(3)/2*x'-0.5y'=(0.4x'+sqrt(3)/2*y-1)**2"], problemType: "TextBox", stepTitle: "$$x={\\left(y-\\left(1\\right)\\right)}^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./graph5a-index.js"; const step = {id: "graph5a", stepAnswer: ["$$\\frac{3}{2}$$"], problemType: "TextBox", stepTitle: "What is the x-value for the x-intercept to the equation $$y=2x-3$$?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

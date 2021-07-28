@@ -1,1 +1,0 @@
-import steps from "./rectangular8-index.js"; const problem = {id: "rectangular8", title: "Find Solutions to a Linear Equation", body: "In the following exercise, find y given the equation and the value of x.", steps: steps, variabilization: {}}; export { problem };

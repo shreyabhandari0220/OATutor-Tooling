@@ -1,1 +1,0 @@
-import steps from "./rectangular14-index.js"; const problem = {id: "rectangular14", title: "Find Solutions to a Linear Equation", body: "In the following exercise, find the other variable given the equation and the value of another variable.", steps: steps, variabilization: {}}; export { problem };

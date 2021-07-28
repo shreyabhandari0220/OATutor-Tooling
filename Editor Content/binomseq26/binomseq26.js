@@ -1,0 +1,1 @@
+import steps from "./binomseq26-index.js"; const problem = {id: "binomseq26", title: "Binomial Expansion", body: "Find the eighth term of:", steps: steps, variabilization: {}, oer: "openstax.org"}; export { problem };

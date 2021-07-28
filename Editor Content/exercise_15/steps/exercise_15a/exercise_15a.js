@@ -1,1 +1,0 @@
-import hints from "./exercise_15a-index.js"; const step = {id: "exercise_15a", stepAnswer: ["$$\\left(27\\right) a^3+\\left(54\\right) a^2 b+\\left(36\\right) {ab}^2+\\left(8\\right) b^3$$"], problemType: "TextBox", stepTitle: "$${\\left(\\left(3\\right) a+\\left(2\\right) b\\right)}^3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

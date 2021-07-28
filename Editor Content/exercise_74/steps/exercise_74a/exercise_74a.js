@@ -1,1 +1,0 @@
-import hints from "./exercise_74a-index.js"; const step = {id: "exercise_74a", stepAnswer: ["$$\\frac{3}{2}$$"], problemType: "TextBox", stepTitle: "What is the slope of $$y=\\frac{3}{2} x-\\left(3\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

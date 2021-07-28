@@ -1,1 +1,0 @@
-import hints from "./a8841c6exercise_38a-index.js"; const step = {id: "a8841c6exercise_38a", stepAnswer: ["(sqrt(3)/2*x'-y'/2)**2/9+(x'/2+y'*sqrt(3)/2)**2/4=1"], problemType: "TextBox", stepTitle: "$$\\frac{x^2}{9}+\\frac{y^2}{4}=1$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

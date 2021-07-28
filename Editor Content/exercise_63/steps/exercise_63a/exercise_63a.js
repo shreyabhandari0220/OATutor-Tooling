@@ -1,1 +1,0 @@
-import hints from "./exercise_63a-index.js"; const step = {id: "exercise_63a", stepAnswer: ["1"], problemType: "TextBox", stepTitle: "What is the slope of $$y=x+\\left(1\\right)$$?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

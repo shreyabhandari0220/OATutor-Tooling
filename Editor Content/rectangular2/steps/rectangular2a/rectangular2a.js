@@ -1,1 +1,0 @@
-import hints from "./rectangular2a-index.js"; const step = {id: "rectangular2a", stepAnswer: ["(-1,-1),(1/2,5)"], problemType: "MultipleChoice", stepTitle: "$$y=\\left(4\\right) x+\\left(3\\right)$$", stepBody: "", choices: ["(4,3),(-1,-1)I(1/2,5),(4,3)I(-1,-1),(1/2,5)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

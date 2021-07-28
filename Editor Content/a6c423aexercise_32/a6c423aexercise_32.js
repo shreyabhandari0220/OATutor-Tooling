@@ -1,1 +1,0 @@
-import steps from "./a6c423aexercise_32-index.js"; const problem = {id: "a6c423aexercise_32", title: "Binomial Expansion", body: "Find the third term of the binomial expansion.", steps: steps, variabilization: {}}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./multiplication6a-index.js"; const step = {id: "multiplication6a", stepAnswer: ["$$b^{35}$$"], problemType: "TextBox", stepTitle: "$${\\left(b^7\\right)}^5$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

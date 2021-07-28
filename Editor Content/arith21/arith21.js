@@ -1,0 +1,1 @@
+import steps from "./arith21-index.js"; const problem = {id: "arith21", title: "Finding a Recursive Formula", body: "Find the recursive formula using the given information.", steps: steps, variabilization: {}, oer: "openstax.org"}; export { problem };

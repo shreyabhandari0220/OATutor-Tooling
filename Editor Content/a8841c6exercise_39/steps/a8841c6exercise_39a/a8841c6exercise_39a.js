@@ -1,1 +1,0 @@
-import hints from "./a8841c6exercise_39a-index.js"; const step = {id: "a8841c6exercise_39a", stepAnswer: ["(sqrt(2)*x/2-y'sqrt(2)/2)*(x'sqrt(2)/2+y'sqrt(2)/2)=9"], problemType: "TextBox", stepTitle: "$$xy=9$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

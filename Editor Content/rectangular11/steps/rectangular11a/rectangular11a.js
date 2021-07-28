@@ -1,1 +1,0 @@
-import hints from "./rectangular11a-index.js"; const step = {id: "rectangular11a", stepAnswer: ["4"], problemType: "TextBox", stepTitle: "$$y=\\frac{x}{2}+\\left(4\\right)$$", stepBody: "If $$x=0$$, what is y?", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

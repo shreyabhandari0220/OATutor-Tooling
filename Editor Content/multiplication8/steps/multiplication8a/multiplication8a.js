@@ -1,0 +1,1 @@
+import hints from "./multiplication8a-index.js"; const step = {id: "multiplication8a", stepAnswer: ["$$\\left(144\\right) y^2$$"], problemType: "TextBox", stepTitle: "$${\\left(\\left(-1\\right)2 y\\right)}^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

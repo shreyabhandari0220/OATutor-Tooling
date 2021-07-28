@@ -1,0 +1,1 @@
+import hints from "./graph1d-index.js"; const step = {id: "graph1d", stepAnswer: ["Yes"], problemType: "MultipleChoice", stepTitle: "(-1,-5)", stepBody: "", choices: ["Yes", "No"], answerType: "string", hints: hints, variabilization: {}}; export {step};

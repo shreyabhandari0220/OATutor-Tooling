@@ -1,1 +1,0 @@
-import steps from "./ae0f06fprobability6-index.js"; const problem = {id: "ae0f06fprobability6", title: "Computing Probabilities of Equally Likely Outcomes", body: "For the following exercises, four coins are tossed.", steps: steps, variabilization: {}}; export { problem };

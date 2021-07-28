@@ -1,1 +1,0 @@
-import hints from "./geo1a-index.js"; const step = {id: "geo1a", stepAnswer: ["1,2,4,8,16"], problemType: "MultipleChoice", stepTitle: "$$a_7=64$$, $$a_{10}=512$$", stepBody: "", choices: ["16,8,4,2,1", "1,2,4,8,16", "0,1,2,4,8"], answerType: "string", hints: hints, variabilization: {}}; export {step};

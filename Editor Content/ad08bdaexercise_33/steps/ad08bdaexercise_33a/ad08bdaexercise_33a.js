@@ -1,1 +1,0 @@
-import hints from "./ad08bdaexercise_33a-index.js"; const step = {id: "ad08bdaexercise_33a", stepAnswer: ["$$a_n+\\left(1\\right)$$ $$=$$ $$a_n$$ + 1.4, $$a_1$$ $$=$$ 8.9"], problemType: "TextBox", stepTitle: "Find the recursive formula for a $$=$$ {8.9, 10.3, 11.7}", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

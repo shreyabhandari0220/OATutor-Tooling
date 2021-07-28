@@ -1,0 +1,1 @@
+import hints from "./graph15c-index.js"; const step = {id: "graph15c", stepAnswer: ["No"], problemType: "MultipleChoice", stepTitle: "(-3,2)", stepBody: "", choices: ["Yes", "No"], answerType: "string", hints: hints, variabilization: {}}; export {step};

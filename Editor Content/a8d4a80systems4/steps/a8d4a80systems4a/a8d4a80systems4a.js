@@ -1,0 +1,1 @@
+import hints from "./a8d4a80systems4a-index.js"; const step = {id: "a8d4a80systems4a", stepAnswer: ["42000"], problemType: "TextBox", stepTitle: "A married couple together earns $110,000 a year. The wife earns $16,000 less than twice what her husband earns. What does the husband earn?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./add4c-index.js"; const step = {id: "add4c", stepAnswer: ["polynomial"], problemType: "MultipleChoice", stepTitle: "$$\\left(6\\right) x^2-\\left(3\\right) xy+\\left(4\\right) x-\\left(2\\right) y+y^2$$", stepBody: "", choices: ["monomial", "binomial", "trinomial", "polynomial"], answerType: "string", hints: hints, variabilization: {}}; export {step};

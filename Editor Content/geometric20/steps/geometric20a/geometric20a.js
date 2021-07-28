@@ -1,0 +1,1 @@
+import hints from "./geometric20a-index.js"; const step = {id: "geometric20a", stepAnswer: ["2048"], problemType: "TextBox", stepTitle: "$$a_n={-1, 2, -4, 8, ...$$.} Find $$a_{12}$$.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./rectangular14a-index.js"; const step = {id: "rectangular14a", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "$$x+\\left(3\\right) y=6$$", stepBody: "If $$x=0$$, what is y?", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

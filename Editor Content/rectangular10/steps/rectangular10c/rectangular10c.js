@@ -1,1 +1,0 @@
-import hints from "./rectangular10c-index.js"; const step = {id: "rectangular10c", stepAnswer: ["3"], problemType: "TextBox", stepTitle: "$$y=\\frac{x}{3}+\\left(1\\right)$$", stepBody: "If $$x=6$$, what is y?", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

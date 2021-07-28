@@ -1,1 +1,0 @@
-import steps from "./geo4-index.js"; const problem = {id: "geo4", title: "Finding the Specified Term for the Geometric Sequence", body: "Find the specified term for the geometric sequence, given the first term and common ratio.", steps: steps, variabilization: {}}; export { problem };

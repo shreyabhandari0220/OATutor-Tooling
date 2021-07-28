@@ -1,0 +1,1 @@
+var hints = [{id: "arith16a-h_1", type: "hint", dependencies: [], title: "Setting up an Arithmetic Sequence", text: "$$a_n$$ $$=$$ $$a_1$$ + (n-1)d. $$a_n$$ $$=$$ 5 + 6(n-1), $$n=8$$. $$a_8$$ $$=$$ 47", variabilization: {}}, ]; export {hints};
