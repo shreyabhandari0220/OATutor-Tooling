@@ -1,1 +1,0 @@
-var hints = [{id: "ellipse26a-h1", type: "hint", dependencies: [], title: "Using the Area Formula", text: "The area of an ellipse is given by $$a b \\pi$$. Since $$a=4$$ and $$b=3$$, the area of the ellipse is $$\\left(12\\right) \\pi$$", variabilization: {}}, ]; export {hints};

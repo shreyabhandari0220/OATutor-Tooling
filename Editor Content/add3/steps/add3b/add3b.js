@@ -1,0 +1,1 @@
+import hints from "./add3b-index.js"; const step = {id: "add3b", stepAnswer: ["polynomial"], problemType: "MultipleChoice", stepTitle: "$$y^3-\\left(8\\right) y^2+\\left(2\\right) y-\\left(16\\right)$$", stepBody: "", choices: ["monomial", "binomial", "trinomial", "polynomial"], answerType: "string", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./rectangular9a-index.js"; const step = {id: "rectangular9a", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "$$y=-x+\\left(2\\right)$$", stepBody: "If $$x=0$$, what is y?", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

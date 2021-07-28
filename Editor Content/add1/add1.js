@@ -1,0 +1,1 @@
+import steps from "./add1-index.js"; const problem = {id: "add1", title: "Identify Polynomials, Monomials, Binomials and Trinomials", body: "Determine if each of the following polynomials is a monomial, binomial, trinomial, or other polynomial.", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

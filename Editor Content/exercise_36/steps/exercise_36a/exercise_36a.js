@@ -1,0 +1,1 @@
+import hints from "./exercise_36a-index.js"; const step = {id: "exercise_36a", stepAnswer: ["x'/2+sqrt(3)/2*y'=(x'*sqrt(3)/2-y'/2)**2"], problemType: "TextBox", stepTitle: "$$y=\\frac{x^2}{2}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

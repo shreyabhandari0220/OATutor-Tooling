@@ -1,0 +1,1 @@
+import steps from "./solve9-index.js"; const problem = {id: "solve9", title: "Solve Applications of Systems of Equations by Elimination with 37 Being the Sum of Two Numbers", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

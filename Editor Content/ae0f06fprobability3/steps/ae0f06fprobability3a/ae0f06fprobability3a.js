@@ -1,1 +1,0 @@
-import hints from "./ae0f06fprobability3a-index.js"; const step = {id: "ae0f06fprobability3a", stepAnswer: ["$$\\frac{1}{2}$$"], problemType: "TextBox", stepTitle: "Find the probability of tossing exactly one tail.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

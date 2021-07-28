@@ -1,0 +1,1 @@
+import hints from "./binomseq18a-index.js"; const step = {id: "binomseq18a", stepAnswer: ["$$-\\left(720\\right) x^2 y^3$$"], problemType: "TextBox", stepTitle: "$${\\left(\\left(3\\right) x-\\left(2\\right) y\\right)}^5$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

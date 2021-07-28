@@ -1,1 +1,0 @@
-import steps from "./a6c423aexercise_35-index.js"; const problem = {id: "a6c423aexercise_35", title: "Binomial Expansion", body: "Find the fifth term of:", steps: steps, variabilization: {}}; export { problem };

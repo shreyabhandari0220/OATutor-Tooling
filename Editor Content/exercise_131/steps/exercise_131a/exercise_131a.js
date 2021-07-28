@@ -1,0 +1,1 @@
+import hints from "./exercise_131a-index.js"; const step = {id: "exercise_131a", stepAnswer: ["-8"], problemType: "TextBox", stepTitle: "Solve the given system of equations and enter the sum of x and y. $$x+y=-8, x-y=-6$$.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

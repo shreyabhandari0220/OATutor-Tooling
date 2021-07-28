@@ -1,0 +1,1 @@
+var hints = [{id: "exercise_130a-h1", type: "hint", dependencies: [], title: "Cancelling and Solving", text: "We can just add the two equations to cancel y. We get $$2x=-6, x=-3$$. Plugging this back into equation 1, we get $$y=2$$. $$-\\left(3\\right)+\\left(2\\right)=-1$$", variabilization: {}}, ]; export {hints};

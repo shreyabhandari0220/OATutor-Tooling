@@ -1,0 +1,1 @@
+import hints from "./add1b-index.js"; const step = {id: "add1b", stepAnswer: ["polynomial"], problemType: "MultipleChoice", stepTitle: "$$\\left(5\\right) c^3+\\left(11\\right) c^2-c-\\left(8\\right)$$", stepBody: "", choices: ["monomial", "binomial", "trinomial", "polynomial"], answerType: "string", hints: hints, variabilization: {}}; export {step};

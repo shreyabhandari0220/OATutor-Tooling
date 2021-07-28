@@ -1,0 +1,1 @@
+import hints from "./multiplication3a-index.js"; const step = {id: "multiplication3a", stepAnswer: ["$$d^{11}$$"], problemType: "TextBox", stepTitle: "$$d^4 d^5 d^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

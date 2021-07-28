@@ -1,0 +1,1 @@
+import hints from "./binomseq19a-index.js"; const step = {id: "binomseq19a", stepAnswer: ["$$\\left(1469664\\right) x^5 y^2$$"], problemType: "TextBox", stepTitle: "$${\\left(\\left(6\\right) x-\\left(3\\right) y\\right)}^7$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

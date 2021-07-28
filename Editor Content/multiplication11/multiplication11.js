@@ -1,0 +1,1 @@
+import steps from "./multiplication11-index.js"; const problem = {id: "multiplication11", title: "Simplify Expressions by Applying Several Properties", body: "Simplify the following expressions", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

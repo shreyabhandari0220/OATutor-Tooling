@@ -1,0 +1,1 @@
+import hints from "./exercise_133a-index.js"; const step = {id: "exercise_133a", stepAnswer: ["-6"], problemType: "TextBox", stepTitle: "Solve the given system of equations and enter the sum of x and y. $$-\\left(7\\right) x+\\left(6\\right) y=-10, x-6y=22$$.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./rectangular12b-index.js"; const step = {id: "rectangular12b", stepAnswer: ["-5"], problemType: "TextBox", stepTitle: "$$y=-\\left(\\frac{\\left(3\\right) x}{2}\\right)-\\left(2\\right)$$", stepBody: "If $$x=2$$, what is y?", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

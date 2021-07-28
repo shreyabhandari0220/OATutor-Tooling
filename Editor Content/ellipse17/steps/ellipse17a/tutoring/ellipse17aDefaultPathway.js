@@ -1,1 +1,0 @@
-var hints = [{id: "ellipse17a-h1", type: "hint", dependencies: [], title: "Not an Ellipse", text: "Since $$a=b$$, this is a circle of radius 7. This means that there are no $$\\frac{major}{minor}$$ axes or foci. DNE.", variabilization: {}}, ]; export {hints};

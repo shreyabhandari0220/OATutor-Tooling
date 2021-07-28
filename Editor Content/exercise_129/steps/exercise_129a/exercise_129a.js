@@ -1,0 +1,1 @@
+import hints from "./exercise_129a-index.js"; const step = {id: "exercise_129a", stepAnswer: ["-1"], problemType: "TextBox", stepTitle: "Solve the given system of equations and enter the sum of x and y. 6x-5y=-1,2x+y=13", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

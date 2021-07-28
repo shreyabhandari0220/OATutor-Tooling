@@ -1,1 +1,0 @@
-import hints from "./ellipse23a-index.js"; const step = {id: "ellipse23a", stepAnswer: ["(2,4)"], problemType: "MultipleChoice", stepTitle: "$$\\frac{{\\left(x-\\left(2\\right)\\right)}^2}{64}+\\frac{{\\left(y-\\left(4\\right)\\right)}^2}{16}=1$$", stepBody: "", choices: ["(0,0)", "(1,1)", "(2,4)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

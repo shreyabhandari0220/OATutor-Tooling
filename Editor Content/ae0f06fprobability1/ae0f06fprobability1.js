@@ -1,1 +1,0 @@
-import steps from "./ae0f06fprobability1-index.js"; const problem = {id: "ae0f06fprobability1", title: "Construction Probability Models", body: "For the following exercises, two coins are tossed.", steps: steps, variabilization: {}}; export { problem };

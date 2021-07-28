@@ -1,1 +1,0 @@
-import steps from "./a6c423aexercise_36-index.js"; const problem = {id: "a6c423aexercise_36", title: "Binomial Expansion", body: "Find the tenth term of:", steps: steps, variabilization: {}}; export { problem };

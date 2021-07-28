@@ -1,1 +1,0 @@
-import hints from "./ad08bdaexercise_31a-index.js"; const step = {id: "ad08bdaexercise_31a", stepAnswer: ["$$a_n+\\left(1\\right)$$ $$=$$ 5 + $$a_n$$, $$a_1$$ $$=$$ 12"], problemType: "TextBox", stepTitle: "Find the recursive formula for a $$=$$ {12, 17, 22,...}", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

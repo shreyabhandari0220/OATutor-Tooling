@@ -1,1 +1,0 @@
-import steps from "./geo1-index.js"; const problem = {id: "geo1", title: "Writing the First Five Terms of the Geometric Sequence", body: "Write the first five terms of the geometric sequence, given any two terms.", steps: steps, variabilization: {}}; export { problem };

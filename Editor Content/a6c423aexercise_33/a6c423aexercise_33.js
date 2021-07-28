@@ -1,1 +1,0 @@
-import steps from "./a6c423aexercise_33-index.js"; const problem = {id: "a6c423aexercise_33", title: "Binomial Expansion", body: "Find the eighth term of:", steps: steps, variabilization: {}}; export { problem };

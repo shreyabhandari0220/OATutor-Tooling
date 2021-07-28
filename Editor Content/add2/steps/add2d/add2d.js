@@ -1,0 +1,1 @@
+import hints from "./add2d-index.js"; const step = {id: "add2d", stepAnswer: ["trinomial"], problemType: "MultipleChoice", stepTitle: "$$x^2 y^2-\\left(2\\right) xy+\\left(8\\right)$$", stepBody: "", choices: ["monomial", "binomial", "trinomial", "polynomial"], answerType: "string", hints: hints, variabilization: {}}; export {step};

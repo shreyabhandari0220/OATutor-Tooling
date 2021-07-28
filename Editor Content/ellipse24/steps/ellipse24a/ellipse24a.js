@@ -1,1 +1,0 @@
-import hints from "./ellipse24a-index.js"; const step = {id: "ellipse24a", stepAnswer: ["(-3,3)"], problemType: "MultipleChoice", stepTitle: "$$\\frac{{\\left(x+\\left(3\\right)\\right)}^2}{9}+\\frac{{\\left(y-\\left(3\\right)\\right)}^2}{9}=1$$", stepBody: "", choices: ["(-1,1)", "(-3,3)", "(-5,5)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

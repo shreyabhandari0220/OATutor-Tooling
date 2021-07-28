@@ -1,0 +1,1 @@
+import hints from "./exercise_132a-index.js"; const step = {id: "exercise_132a", stepAnswer: ["12"], problemType: "TextBox", stepTitle: "Solve the given system of equations and enter the sum of x and y. $$3x-2y=\\left(1\\right)-x+\\left(2\\right) y=9$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./multiplication10a-index.js"; const step = {id: "multiplication10a", stepAnswer: ["$$y^{38}$$"], problemType: "TextBox", stepTitle: "$${\\left(y^3\\right)}^6 {\\left(y^5\\right)}^4$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

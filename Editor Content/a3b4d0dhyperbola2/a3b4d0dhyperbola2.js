@@ -1,1 +1,1 @@
-import steps from "./a3b4d0dhyperbola2-index.js"; const problem = {id: "a3b4d0dhyperbola2", title: "Locating a Hyperbola's Vertices and Foci", body: "", steps: steps, variabilization: {}}; export { problem };
+import steps from "./a3b4d0dhyperbola2-index.js"; const problem = {id: "a3b4d0dhyperbola2", title: "Locating a Hyperbola's Vertices and Foci", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

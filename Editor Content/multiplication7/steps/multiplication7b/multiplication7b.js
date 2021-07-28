@@ -1,0 +1,1 @@
+import hints from "./multiplication7b-index.js"; const step = {id: "multiplication7b", stepAnswer: ["$$\\left(27\\right) m^3 n^3$$"], problemType: "TextBox", stepTitle: "$${\\left(\\left(3\\right) m n\\right)}^3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

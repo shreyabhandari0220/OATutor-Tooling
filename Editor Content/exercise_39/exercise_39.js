@@ -1,0 +1,1 @@
+import steps from "./exercise_39-index.js"; const problem = {id: "exercise_39", title: "Finding Rotated Equations without the x'y' Term", body: "Find the equation relative to the x'y' system in which the equation has no x'y'term:", steps: steps, variabilization: {}, oer: "openstax.org"}; export { problem };

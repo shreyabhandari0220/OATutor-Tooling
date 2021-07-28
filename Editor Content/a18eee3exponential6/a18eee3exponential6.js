@@ -1,0 +1,1 @@
+import steps from "./a18eee3exponential6-index.js"; const problem = {id: "a18eee3exponential6", title: "Finding Equations of Exponential Functions", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

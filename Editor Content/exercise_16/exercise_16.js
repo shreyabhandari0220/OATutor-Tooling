@@ -1,1 +1,0 @@
-import steps from "./exercise_16-index.js"; const problem = {id: "exercise_16", title: "Finding the Term of an Arithmetic Series", body: "Find the term using the given information.", steps: steps, variabilization: {}}; export { problem };

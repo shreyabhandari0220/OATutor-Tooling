@@ -1,1 +1,0 @@
-import hints from "./exercise_65a-index.js"; const step = {id: "exercise_65a", stepAnswer: ["1"], problemType: "TextBox", stepTitle: "What is the slope of $$y=-x-3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

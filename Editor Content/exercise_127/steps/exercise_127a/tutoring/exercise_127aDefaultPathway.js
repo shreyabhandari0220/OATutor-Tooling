@@ -1,0 +1,1 @@
+var hints = [{id: "exercise_127a-h1", type: "hint", dependencies: [], title: "Cancelling and Solving", text: "We can multiply the second equation by 3 to cancel out x. We get $$-5y=-45$$, so $$y=9$$. Plugging this back in, we get $$x=6$$. $$\\left(6\\right)+\\left(9\\right)=15$$", variabilization: {}}, ]; export {hints};

@@ -1,0 +1,1 @@
+import hints from "./binomseq25a-index.js"; const step = {id: "binomseq25a", stepAnswer: ["$$-\\left(15\\right) x^{21}$$"], problemType: "TextBox", stepTitle: "$${\\left(x^3-\\frac{1}{2}\\right)}^{10}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

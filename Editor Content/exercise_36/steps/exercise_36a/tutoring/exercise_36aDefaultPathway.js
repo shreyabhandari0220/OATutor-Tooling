@@ -1,0 +1,1 @@
+var hints = [{id: "exercise_36a-h1", type: "hint", dependencies: [], title: "Subsituting x and y", text: "We can substitute $$x=x'cos(theta)-y'sin(theta)$$ and y=x'sin(theta)+y'cos(theta) into the equation. If we do this, we'll get an equation that can be simplified to x'/2+sqrt(3)/2*y'=(x'*sqrt(3)/2-y'/2)**2", variabilization: {}}, ]; export {hints};

@@ -1,0 +1,1 @@
+import hints from "./multiplication13a-index.js"; const step = {id: "multiplication13a", stepAnswer: ["$$-\\left(35\\right) y^{11}$$"], problemType: "TextBox", stepTitle: "$$\\left(5\\right) y^7 \\left(-7\\right) y^4$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

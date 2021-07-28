@@ -1,1 +1,0 @@
-import hints from "./exercise_71a-index.js"; const step = {id: "exercise_71a", stepAnswer: ["$$\\frac{1}{2}$$"], problemType: "TextBox", stepTitle: "What is the slope of $$y=\\frac{1}{2} x+\\left(2\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

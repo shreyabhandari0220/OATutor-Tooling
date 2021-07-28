@@ -1,1 +1,0 @@
-import steps from "./probabilty9-index.js"; const problem = {id: "probabilty9", title: "Computing Probabilities of Equally Likely Outcomes", body: "For the following exercises, one card is drawn from a standard deck of 52 cards.", steps: steps, variabilization: {}}; export { problem };

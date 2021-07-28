@@ -1,0 +1,1 @@
+import hints from "./add14a-index.js"; const step = {id: "add14a", stepAnswer: ["$$-\\left(4\\right) a^2+b^2$$"], problemType: "TextBox", stepTitle: "$$\\left(2\\right) a^2+b^2-\\left(6\\right) a^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

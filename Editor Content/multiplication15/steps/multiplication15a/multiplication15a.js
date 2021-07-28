@@ -1,0 +1,1 @@
+import hints from "./multiplication15a-index.js"; const step = {id: "multiplication15a", stepAnswer: ["$$\\left(10\\right) x^4 y^3$$"], problemType: "TextBox", stepTitle: "$$\\frac{5}{6} x^3 y \\left(12\\right) x y^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

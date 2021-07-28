@@ -1,0 +1,1 @@
+import hints from "./add2b-index.js"; const step = {id: "add2b", stepAnswer: ["monomial"], problemType: "MultipleChoice", stepTitle: "$$-\\left(13\\right) c^4$$", stepBody: "", choices: ["monomial", "binomial", "trinomial", "polynomial"], answerType: "string", hints: hints, variabilization: {}}; export {step};

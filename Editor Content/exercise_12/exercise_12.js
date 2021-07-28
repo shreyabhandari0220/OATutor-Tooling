@@ -1,1 +1,0 @@
-import steps from "./exercise_12-index.js"; const problem = {id: "exercise_12", title: "Evaluating the Binomial Coefficient", body: "Evaluate the binomial coefficient:", steps: steps, variabilization: {}}; export { problem };

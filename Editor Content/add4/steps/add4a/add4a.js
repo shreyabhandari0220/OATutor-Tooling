@@ -1,0 +1,1 @@
+import hints from "./add4a-index.js"; const step = {id: "add4a", stepAnswer: ["monomial"], problemType: "MultipleChoice", stepTitle: "$$\\left(11\\right) y^2$$", stepBody: "", choices: ["monomial", "binomial", "trinomial", "polynomial"], answerType: "string", hints: hints, variabilization: {}}; export {step};
