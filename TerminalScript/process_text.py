@@ -69,7 +69,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
             if word[:1] == "{":
                 open_braces = True
                 word = word[1:]
-            if word[-1:] == "}" and "ln{" not in word and "log{" not in word and '/mat' not in word and 'sum{' not in word: 
+            if word[-1:] == "}" and "ln{" not in word and "log{" not in word and '/mat' not in word and 'sum{' not in word and '_{' not in word: 
                 closing_braces = True
                 word = word[:-1]
             # if the word is forced latex
@@ -160,14 +160,9 @@ def handle_word(word, coord=True):
         return latex_dic[word]
 
     if r'/mat' in word:
-        word = re.findall('/mat{(.+?)}', word)[0]
-        word = re.sub(r'\),\(', r' \\\\ ', word)
-        word = re.sub('[\(|\)]', '', word)
-        word = re.sub(',', ' & ', word)
-        elements = word.split()
-        elements = [handle_word(e) for e in elements]
-        word = ' '.join(elements)
-        word = r"\begin{bmatrix} " + word + r" \end{bmatrix}"
+        matches = re.finditer('/mat{.+?}', word)
+        for mat in matches:
+            word = re.sub(re.escape(mat.group(0)), handle_single_matrix(mat.group(0)), word)
         return word
     
     if not (any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])):
@@ -208,18 +203,16 @@ def handle_word(word, coord=True):
     word = re.sub(",", "", word)
     for root in square_roots:
         word = re.sub(r"sqrt\("+re.escape(root[0])+re.escape(root[1])+"\)", r"sqrt("+root[0]+","+root[1]+")", word)
-    #word = re.sub(r"sqrt\(([^,]*)\,([^\)]*)\)", r"sqrt(\g<1>:\g<2>)", "sqrt(2, 3)")
     word = re.sub(r"([\w])(\(+[\w])", "\g<1>*\g<2>", word)
     word = re.sub(r"(\)+)([\w])", "\g<1>*\g<2>", word)
     word = re.sub(r"(\))(\()", "\g<1>*\g<2>", word)
     word = re.sub(r"([0-9]+)([a-zA-Z])", "\g<1>*\g<2>", word)
-    #word = re.sub( r"([a-zA-Z])(?=[a-zA-Z])" , r"\1*" , word)
     word = re.sub(r"sqrt\*", r"sqrt", word)
     word = re.sub(r"abs\*", r"abs", word)
     word = re.sub(r"pm\*", r"pm", word)
     word = re.sub('\*\*\(\-0.', '**(zero', word)
     word = re.sub('\*\*\(\-\.', '**(zero', word) 
-    word = re.sub('\(\-', '(negneg', word)
+    word = re.sub('(?<!(abs)|(log)|(qrt))\(\-', 'negneg(', word)
     word = re.sub(r'\\=', '=', word)
     sum_match = re.search('sum{([^}]+)}{([^}]+)}{([^}]+)}', word)
     if sum_match:
@@ -232,17 +225,13 @@ def handle_word(word, coord=True):
             sum_upper_num = False
         word = 'sum([' + sum_match.group(3) + ' for ' + sum_var + ' in range(' + sum_lower + ',' + sum_upper + ')])'
 
-    print('debug1:', word)
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
 
     
     #Here do the substitutions for the things that py2tex can't handle
     for item in scientific_notation:
         word = re.sub(item[0] + "\{" + item[1] + "\}", item[0] + "\\\\times {" + item[1] + "}", word)
-    word = re.sub(r"\\operatorname{(\w*|\d*)pm}\\left\(a\\right\)(\\times)?", r"\g<1>\\pm ", word)
-    word = re.sub(r"negneg([\d|\w])+", r"\\left(-\g<1>\\right)", word) #handles first negative sign following opening parenthesis
-    print('debug2:', word)
-    # word = re.sub(r"\+\\operatorname{negneg}\\left\(", r"\\left(-", word)
+    word = re.sub(r"\\operatorname{negneg}\\left\(", r"\\left(-", word)
     word = re.sub(r"zero", r"-0.", word)
     word = re.sub("_{2,}", r"\\rule{2cm}{0.15mm}", word)
     if sum_match:
@@ -261,3 +250,14 @@ def find_matching(word, char, idx):
         elif word[idx] == match[char]:
             r_count += 1
     raise Exception("unmatched" + char)
+
+def handle_single_matrix(mat):
+    mat = re.findall('/mat{(.+?)}', mat)[0]
+    mat = re.sub(r'\),[\s]*\(', r' \\\\\\\\ ', mat)
+    mat = re.sub('[\(|\)]', '', mat)
+    mat = re.sub('\s*,\s*', ' & ', mat)
+    elements = mat.split()
+    elements = [handle_word(e) for e in elements]
+    mat = ' '.join(elements)
+    mat = r"\\begin{bmatrix} " + mat + r" \\end{bmatrix}"
+    return mat
