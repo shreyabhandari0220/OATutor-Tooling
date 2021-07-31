@@ -14,6 +14,7 @@ replace = {"⋅" : "*", "−" : "-", "^" : "**", "𝑥" : "x", "𝑎" : "a", "�
 conditionally_replace = {"[" : "(", "]" : ")"}
 regex = re.compile("|".join(map(re.escape, replace.keys())))
 force_latex = 0.0
+match = {'(': ')', '{': '}', '[': ']', '\\left(': '\\right)'}
 
 #Figure out way to deal with equal signs
 def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="TRUE", verbosity=False):
@@ -217,9 +218,8 @@ def handle_word(word, coord=True):
     word = re.sub(r"abs\*", r"abs", word)
     word = re.sub(r"pm\*", r"pm", word)
     word = re.sub('\*\*\(\-0.', '**(zero', word)
-    word = re.sub('\*\*\(\-\.', '**(zero', word)   
+    word = re.sub('\*\*\(\-\.', '**(zero', word) 
     word = re.sub('\(\-', '(negneg', word)
-    # word = re.sub('\*\*\(negneg', '\(\-', word)
     word = re.sub(r'\\=', '=', word)
     sum_match = re.search('sum{([^}]+)}{([^}]+)}{([^}]+)}', word)
     if sum_match:
@@ -232,6 +232,7 @@ def handle_word(word, coord=True):
             sum_upper_num = False
         word = 'sum([' + sum_match.group(3) + ' for ' + sum_var + ' in range(' + sum_lower + ',' + sum_upper + ')])'
 
+    print('debug1:', word)
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
 
     
@@ -239,9 +240,24 @@ def handle_word(word, coord=True):
     for item in scientific_notation:
         word = re.sub(item[0] + "\{" + item[1] + "\}", item[0] + "\\\\times {" + item[1] + "}", word)
     word = re.sub(r"\\operatorname{(\w*|\d*)pm}\\left\(a\\right\)(\\times)?", r"\g<1>\\pm ", word)
-    word = re.sub(r"negneg(\d|\w)", r"\\left(-\g<1>\\right)", word) #handles first negative sign following opening parenthesis
+    word = re.sub(r"negneg([\d|\w])+", r"\\left(-\g<1>\\right)", word) #handles first negative sign following opening parenthesis
+    print('debug2:', word)
+    # word = re.sub(r"\+\\operatorname{negneg}\\left\(", r"\\left(-", word)
     word = re.sub(r"zero", r"-0.", word)
+    word = re.sub("_{2,}", r"\\rule{2cm}{0.15mm}", word)
     if sum_match:
         if not sum_upper_num:
             word = re.sub(sum_upper + '-1', sum_upper, word)
     return word[2:-2]
+
+def find_matching(word, char, idx):
+    l_count = r_count = 0
+    idx += 1
+    while idx < len(word):
+        if r_count > l_count:
+            return idx
+        if word[idx] == char:
+            l_count += 1
+        elif word[idx] == match[char]:
+            r_count += 1
+    raise Exception("unmatched" + char)
