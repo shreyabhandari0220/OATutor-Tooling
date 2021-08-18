@@ -1,0 +1,1 @@
+import hints from "./afaa296systemeq1a-index.js"; const step = {id: "afaa296systemeq1a", stepAnswer: ["No solution"], problemType: "MultipleChoice", stepTitle: "", stepBody: "", choices: ["$$x=5$$, $$y=1$$", "$$x=2, y=5$$", "No solution"], answerType: "string", hints: hints, variabilization: {}}; export {step};

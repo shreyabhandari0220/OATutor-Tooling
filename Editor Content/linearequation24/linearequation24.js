@@ -1,0 +1,1 @@
+import steps from "./linearequation24-index.js"; const problem = {id: "linearequation24", title: "Determining the X- and Y-Intercepts to the Equation $$\\left(4\\right) x+y=-3$$.", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

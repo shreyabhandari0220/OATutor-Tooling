@@ -1,1 +1,0 @@
-import hints from "./graph6b-index.js"; const step = {id: "graph6b", stepAnswer: ["4"], problemType: "TextBox", stepTitle: "What is the y-value for the y-intercept to the equation $$y=-\\left(2\\right) x+\\left(4\\right)$$?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

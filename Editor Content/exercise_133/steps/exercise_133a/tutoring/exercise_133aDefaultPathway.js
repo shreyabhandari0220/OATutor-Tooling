@@ -1,1 +1,0 @@
-var hints = [{id: "exercise_133a-h1", type: "hint", dependencies: [], title: "Cancelling and Solving", text: "We can cancel y by adding the two equations. $$-6x=12, x=-2$$. Plugging this back in, we get $$y=-4$$. $$-2-4=-6$$", variabilization: {}}, ]; export {hints};

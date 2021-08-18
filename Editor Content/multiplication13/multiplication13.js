@@ -1,1 +1,0 @@
-import steps from "./multiplication13-index.js"; const problem = {id: "multiplication13", title: "Multiply Monomials", body: "Multiply the following expression", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

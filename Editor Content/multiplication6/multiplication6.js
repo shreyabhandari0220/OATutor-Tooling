@@ -1,1 +1,0 @@
-import steps from "./multiplication6-index.js"; const problem = {id: "multiplication6", title: "Simplify Expressions Using the Power Property for Exponents", body: "Simplify the following expressions", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

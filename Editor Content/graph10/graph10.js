@@ -1,1 +1,0 @@
-import steps from "./graph10-index.js"; const problem = {id: "graph10", title: "Determining the X- and Y-Intercepts to the Equation $$\\left(3\\right) x+y=1$$", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

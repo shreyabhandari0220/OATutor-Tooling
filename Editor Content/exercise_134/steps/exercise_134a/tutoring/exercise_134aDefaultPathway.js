@@ -1,1 +1,0 @@
-var hints = [{id: "exercise_134a-h1", type: "hint", dependencies: [], title: "Cancelling and Solving", text: "We can cancel y by adding the two equations. $$2x=-22, x=-11$$. Plugging this back in, we get $$y=15$$. $$15-11=4$$", variabilization: {}}, ]; export {hints};

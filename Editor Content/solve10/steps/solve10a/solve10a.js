@@ -1,1 +1,0 @@
-import hints from "./solve10a-index.js"; const step = {id: "solve10a", stepAnswer: ["16 and -43"], problemType: "MultipleChoice", stepTitle: "The sum of two numbers is -27. Their difference is -59. Find the numbers.", stepBody: "", choices: ["16 and 43", "-16 and -43", "16 and -43", "-16 and 43"], answerType: "string", hints: hints, variabilization: {}}; export {step};

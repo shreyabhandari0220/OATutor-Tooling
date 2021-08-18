@@ -1,1 +1,0 @@
-import hints from "./graph14a-index.js"; const step = {id: "graph14a", stepAnswer: ["Horizontal"], problemType: "MultipleChoice", stepTitle: "Is $$y=-4$$ a vertical or horizontal line?", stepBody: "", choices: ["Vertical", "Horizontal"], answerType: "string", hints: hints, variabilization: {}}; export {step};

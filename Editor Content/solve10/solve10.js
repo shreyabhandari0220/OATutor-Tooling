@@ -1,1 +1,0 @@
-import steps from "./solve10-index.js"; const problem = {id: "solve10", title: "Solve Applications of Systems of Equations by Elimination with -27 Being the Sum of Two Numbers", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

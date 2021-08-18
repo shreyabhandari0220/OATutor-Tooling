@@ -1,1 +1,0 @@
-import steps from "./graph3-index.js"; const problem = {id: "graph3", title: "More Practice Identifying Solutions to Graphs", body: "The graph of $$y=3x-1$$ is shown. For each ordered pair, decide whether the ordered pair is a solution to the equation.\n##figure1.gif", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

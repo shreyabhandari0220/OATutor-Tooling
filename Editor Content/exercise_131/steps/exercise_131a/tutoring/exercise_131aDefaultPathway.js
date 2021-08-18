@@ -1,1 +1,0 @@
-var hints = [{id: "exercise_131a-h1", type: "hint", dependencies: [], title: "Cancelling and Solving", text: "We can cancel y by adding the two equations together. We get $$2x=-14$$, $$x=-7$$. Plugging this back in, we get $$y=-1$$. $$-1-7=-8$$", variabilization: {}}, ]; export {hints};
