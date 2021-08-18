@@ -1,1 +1,0 @@
-import hints from "./multiplication2a-index.js"; const step = {id: "multiplication2a", stepAnswer: ["$$b^{17}$$"], problemType: "TextBox", stepTitle: "$$b^9 b^8$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

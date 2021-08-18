@@ -1,0 +1,1 @@
+import hints from "./linearequation21a-index.js"; const step = {id: "linearequation21a", stepAnswer: ["-6"], problemType: "TextBox", stepTitle: "What is the x-value for the x-intercept to the equation $$y=\\frac{1}{2} x+\\left(3\\right)$$?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

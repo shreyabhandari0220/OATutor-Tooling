@@ -1,1 +1,0 @@
-import hints from "./multiplication1a-index.js"; const step = {id: "multiplication1a", stepAnswer: ["$$y^{11}$$"], problemType: "TextBox", stepTitle: "$${\\left(y^5\\right)}^{y^6}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import steps from "./a2c4035systems11-index.js"; const problem = {id: "a2c4035systems11", title: "Solving a System of Nonlinear Equations Representing a Parabola and a Line #1", body: "Solve the system of equations.", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

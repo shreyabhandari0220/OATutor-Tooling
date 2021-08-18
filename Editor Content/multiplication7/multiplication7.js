@@ -1,1 +1,0 @@
-import steps from "./multiplication7-index.js"; const problem = {id: "multiplication7", title: "Simplify Expressions Using the Product to a Power Property", body: "Simplify the following expressions", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

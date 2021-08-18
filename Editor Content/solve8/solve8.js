@@ -1,1 +1,0 @@
-import steps from "./solve8-index.js"; const problem = {id: "solve8", title: "Solve Applications of Systems of Equations by Elimination with 65 Being the Sum of Two Numbers", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

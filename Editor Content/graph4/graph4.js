@@ -1,1 +1,0 @@
-import steps from "./graph4-index.js"; const problem = {id: "graph4", title: "Determining the X- and Y-Intercepts to an Equation", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

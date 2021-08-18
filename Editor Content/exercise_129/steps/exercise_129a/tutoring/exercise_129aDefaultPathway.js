@@ -1,1 +1,0 @@
-var hints = [{id: "exercise_129a-h1", type: "hint", dependencies: [], title: "Cancelling and Solving", text: "We can multiply the first equation by 2 to cancel y. $$10x=-20, x=-2$$. Plugging this back in, we get $$y=1$$. $$-\\left(2\\right)+\\left(1\\right)=-1$$.", variabilization: {}}, ]; export {hints};

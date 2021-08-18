@@ -1,1 +1,0 @@
-import steps from "./graph13-index.js"; const problem = {id: "graph13", title: "Identifying whether the expression $$x=2$$ represents a vertical or horizontal line", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

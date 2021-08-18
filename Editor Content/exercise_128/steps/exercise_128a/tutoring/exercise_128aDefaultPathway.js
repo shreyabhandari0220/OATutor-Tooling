@@ -1,1 +1,0 @@
-var hints = [{id: "exercise_128a-h1", type: "hint", dependencies: [], title: "Cancelling and Solving", text: "We can multiply the second equation by 5 t ocancel out y. We have $$16x=64$$, $$x=4$$. Plugging this back in, we get $$y=5$$. 4 + 5 $$=9$$", variabilization: {}}, ]; export {hints};
