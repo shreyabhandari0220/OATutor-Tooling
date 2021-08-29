@@ -1,0 +1,1 @@
+import hints from "./a5b6bfafactor5a-index.js"; const step = {id: "a5b6bfafactor5a", stepAnswer: ["(5a-6)(2a-1)"], problemType: "TextBox", stepTitle: "$$\\left(10\\right) a^2-\\left(17\\right) a+\\left(6\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

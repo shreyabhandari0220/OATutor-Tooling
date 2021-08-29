@@ -1,0 +1,1 @@
+import hints from "./poly16a-index.js"; const step = {id: "poly16a", stepAnswer: ["$$y^2+\\left(3\\right)$$"], problemType: "TextBox", stepTitle: "Find the quotient: $$\\frac{\\left(7\\right) y^2+\\left(21\\right)}{7}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

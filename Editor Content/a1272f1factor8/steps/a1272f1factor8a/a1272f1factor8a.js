@@ -1,0 +1,1 @@
+import hints from "./a1272f1factor8a-index.js"; const step = {id: "a1272f1factor8a", stepAnswer: ["$$\\left(\\left(4\\right) p-\\left(3\\right)\\right) \\left(p+\\left(5\\right)\\right)$$"], problemType: "TextBox", stepTitle: "$$\\left(4\\right) p^2+\\left(17\\right) p-\\left(15\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./a1272f1factor6a-index.js"; const step = {id: "a1272f1factor6a", stepAnswer: ["(3p-2)(2p-5)"], problemType: "TextBox", stepTitle: "$$\\left(6\\right) p^2-\\left(19\\right) p+\\left(10\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
