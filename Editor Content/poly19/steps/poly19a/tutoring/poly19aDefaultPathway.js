@@ -1,0 +1,1 @@
+var hints = [{id: "poly19a-h1", type: "hint", dependencies: [], title: "We must divide each term in the numerator by 6x, so we get $$\\left(3\\right) x^2-\\left(6\\right) x$$", text: "", variabilization: {}}, ]; export {hints};

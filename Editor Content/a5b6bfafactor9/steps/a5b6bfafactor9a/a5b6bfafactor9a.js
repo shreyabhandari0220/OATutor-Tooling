@@ -1,0 +1,1 @@
+import hints from "./a5b6bfafactor9a-index.js"; const step = {id: "a5b6bfafactor9a", stepAnswer: ["$$\\left(3\\right) \\left(\\left(9\\right) y^2+\\left(16\\right)\\right)$$"], problemType: "TextBox", stepTitle: "$$\\left(27\\right) y^2+\\left(48\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

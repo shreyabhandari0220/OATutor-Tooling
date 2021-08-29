@@ -1,0 +1,1 @@
+import steps from "./poly15-index.js"; const problem = {id: "poly15", title: "Divide Polynomials", body: "Divide each polynomial by the binomial.", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

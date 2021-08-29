@@ -1,0 +1,1 @@
+import steps from "./a1272f1factor14-index.js"; const problem = {id: "a1272f1factor14", title: "Factor Trinomials Using the 'ac' Method", body: "Factor the expression below", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };
