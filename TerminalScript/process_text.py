@@ -214,6 +214,13 @@ def handle_word(word, coord=True):
     word = re.sub('\*\*\(\-\.', '**(zero', word) 
     word = re.sub('(?<!(abs)|(log)|(qrt))\(\-', 'negneg(', word)
     word = re.sub(r'\\=', '=', word)
+    # to handle -(.....) missing parenthesis instance
+    while re.search("-\(", word):
+        open_par_miss = re.search("-\(", word).start() + 1
+        close_par_miss = find_matching(word, '(', open_par_miss)
+        word = word[:close_par_miss] + '+rightt' + word[close_par_miss + 1:]
+        word = word[:open_par_miss] + 'leftt+' + word[open_par_miss + 1:]
+    
     sum_match = re.search('sum{([^}]+)}{([^}]+)}{([^}]+)}', word)
     if sum_match:
         sum_var, sum_lower = sum_match.group(1).split('=')
@@ -226,7 +233,6 @@ def handle_word(word, coord=True):
         word = 'sum([' + sum_match.group(3) + ' for ' + sum_var + ' in range(' + sum_lower + ',' + sum_upper + ')])'
 
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
-
     
     #Here do the substitutions for the things that py2tex can't handle
     for item in scientific_notation:
@@ -234,6 +240,8 @@ def handle_word(word, coord=True):
     word = re.sub(r"\\operatorname{negneg}\\left\(", r"\\left(-", word)
     word = re.sub(r"zero", r"-0.", word)
     word = re.sub("_{2,}", r"\\rule{2cm}{0.15mm}", word)
+    word = re.sub('leftt\+', '\\\\left(', word)
+    word = re.sub('\+rightt', '\\\\right)', word)
     if sum_match:
         if not sum_upper_num:
             word = re.sub(sum_upper + '-1', sum_upper, word)
@@ -243,12 +251,13 @@ def find_matching(word, char, idx):
     l_count = r_count = 0
     idx += 1
     while idx < len(word):
-        if r_count > l_count:
-            return idx
         if word[idx] == char:
             l_count += 1
         elif word[idx] == match[char]:
             r_count += 1
+        if r_count > l_count:
+            return idx
+        idx += 1
     raise Exception("unmatched" + char)
 
 def handle_single_matrix(mat):
