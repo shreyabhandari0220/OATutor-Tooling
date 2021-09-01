@@ -1,1 +1,1 @@
-import steps from "./a4bf175hyperbola2-index.js"; const problem = {id: "a4bf175hyperbola2", title: "The Hyperbola", body: "$$\\frac{x^2}{100}-\\frac{y^2}{9}=1$$", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };
+import steps from "./a4bf175hyperbola2-index.js"; const problem = {id: "a4bf175hyperbola2", title: "The Hyperbola", body: "$$\\frac{x^2}{100}-\\left(\\frac{y^2}{9}\\right)=1$$", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };
