@@ -1,6 +1,7 @@
 import re
 
 def generate_script(selector, answer):
+    answer = re.sub('\'', '\\\'', answer)
     selector = re.sub(r"\"", "\\\"", selector)
     script = "document = new Document();\n"
     script += "ans = document.evaluate(\"{}\", document, null, 9, null).singleNodeValue;\n".format(selector)
