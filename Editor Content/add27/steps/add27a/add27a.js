@@ -1,0 +1,1 @@
+import hints from "./add27a-index.js"; const step = {id: "add27a", stepAnswer: ["$$-\\left(5\\right) c^2+\\left(7\\right) d^2$$"], problemType: "TextBox", stepTitle: "Simplify $$c^2+\\left(7\\right) d^2-\\left(6\\right) c^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

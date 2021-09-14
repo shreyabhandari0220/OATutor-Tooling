@@ -1,0 +1,1 @@
+import hints from "./a732b8brational11a-index.js"; const step = {id: "a732b8brational11a", stepAnswer: ["$$\\frac{-\\left(5\\right)}{9}$$"], problemType: "TextBox", stepTitle: "$$\\frac{-\\left(45\\right)}{81}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

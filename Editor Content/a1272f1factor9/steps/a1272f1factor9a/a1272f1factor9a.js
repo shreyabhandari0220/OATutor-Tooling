@@ -1,1 +1,0 @@
-import hints from "./a1272f1factor9a-index.js"; const step = {id: "a1272f1factor9a", stepAnswer: ["16(x-1)(x-1)"], problemType: "TextBox", stepTitle: "$$\\left(16\\right) x^2-\\left(32\\right) x+\\left(16\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

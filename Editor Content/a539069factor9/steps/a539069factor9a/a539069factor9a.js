@@ -1,1 +1,0 @@
-import hints from "./a539069factor9a-index.js"; const step = {id: "a539069factor9a", stepAnswer: ["$${\\left(\\left(8\\right) m+\\left(7\\right) n\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$\\left(64\\right) m^2+\\left(112\\right) m n+\\left(49\\right) n^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

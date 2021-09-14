@@ -1,0 +1,1 @@
+import steps from "./a22d1f4gaussian7-index.js"; const problem = {id: "a22d1f4gaussian7", title: "Solving a Dependent System", body: "Solve the system of equations.", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

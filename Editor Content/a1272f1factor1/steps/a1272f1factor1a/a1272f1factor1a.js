@@ -1,1 +1,0 @@
-import hints from "./a1272f1factor1a-index.js"; const step = {id: "a1272f1factor1a", stepAnswer: ["3m(m-5)(m-2)"], problemType: "TextBox", stepTitle: "$$\\left(3\\right) m^3-\\left(21\\right) m^2+\\left(30\\right) m$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

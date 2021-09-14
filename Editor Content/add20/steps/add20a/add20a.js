@@ -1,0 +1,1 @@
+import hints from "./add20a-index.js"; const step = {id: "add20a", stepAnswer: ["Monomial"], problemType: "MultipleChoice", stepTitle: "q", stepBody: "", choices: ["Monomial", "Binomial", "Trinomial", "Other"], answerType: "string", hints: hints, variabilization: {}}; export {step};

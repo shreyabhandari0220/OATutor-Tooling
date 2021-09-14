@@ -1,0 +1,1 @@
+import steps from "./add16-index.js"; const problem = {id: "add16", title: "Identifying Polynomial Type", body: "Identify the type of the polynomial:", steps: steps, variabilization: {}, oer: "openstax.org"}; export { problem };

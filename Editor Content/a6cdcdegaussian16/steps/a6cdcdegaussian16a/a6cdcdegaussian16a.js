@@ -1,0 +1,1 @@
+import hints from "./a6cdcdegaussian16a-index.js"; const step = {id: "a6cdcdegaussian16a", stepAnswer: ["-1.75"], problemType: "TextBox", stepTitle: "$$\\left(4\\right) b^2+\\left(7\\right) b=-3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

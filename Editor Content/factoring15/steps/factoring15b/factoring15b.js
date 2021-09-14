@@ -1,0 +1,1 @@
+import hints from "./factoring15b-index.js"; const step = {id: "factoring15b", stepAnswer: ["$$\\left(\\left(3\\right) y+\\left(5\\right)\\right) \\left(\\left(2\\right) y-\\left(3\\right)\\right)$$"], problemType: "TextBox", stepTitle: "$$\\left(6\\right) y^2+y-\\left(15\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

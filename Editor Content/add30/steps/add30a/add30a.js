@@ -1,0 +1,1 @@
+import hints from "./add30a-index.js"; const step = {id: "add30a", stepAnswer: ["$$m^2 n^2-\\left(8\\right) m^2+\\left(4\\right) n^2$$"], problemType: "TextBox", stepTitle: "Simplify $$m^2 n^2-\\left(8\\right) m^2+\\left(4\\right) n^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

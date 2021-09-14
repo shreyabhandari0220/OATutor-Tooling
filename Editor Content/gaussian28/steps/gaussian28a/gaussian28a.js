@@ -1,0 +1,1 @@
+import hints from "./gaussian28a-index.js"; const step = {id: "gaussian28a", stepAnswer: ["$$\\frac{1}{2}$$"], problemType: "TextBox", stepTitle: "$$\\left(\\left(2\\right) x+\\left(1\\right)\\right) \\left(x-\\left(3\\right)\\right)=-4x$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

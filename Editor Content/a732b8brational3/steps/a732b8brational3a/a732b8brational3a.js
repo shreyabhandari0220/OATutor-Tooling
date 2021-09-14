@@ -1,0 +1,1 @@
+import hints from "./a732b8brational3a-index.js"; const step = {id: "a732b8brational3a", stepAnswer: ["$$\\frac{-\\left(1\\right)}{3}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\left(8\\right) n-\\left(5\\right)}{\\left(3\\right) n+\\left(1\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

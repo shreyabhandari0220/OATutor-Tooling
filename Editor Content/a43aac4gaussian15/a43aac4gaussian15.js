@@ -1,0 +1,1 @@
+import steps from "./a43aac4gaussian15-index.js"; const problem = {id: "a43aac4gaussian15", title: "Solving Systems with Gaussian Elimination", body: "For the following exercises, write the linear system from the augmented matrix.", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

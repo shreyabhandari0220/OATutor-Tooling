@@ -1,0 +1,1 @@
+import hints from "./a0faf35exa6a-index.js"; const step = {id: "a0faf35exa6a", stepAnswer: ["$$d^2-\\left(11\\right) d$$"], problemType: "TextBox", stepTitle: "d(d-11)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

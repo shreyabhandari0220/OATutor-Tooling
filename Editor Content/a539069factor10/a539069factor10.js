@@ -1,1 +1,0 @@
-import steps from "./a539069factor10-index.js"; const problem = {id: "a539069factor10", title: "Factor Special Products", body: "Factor the trinomial.", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

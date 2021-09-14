@@ -1,0 +1,1 @@
+import hints from "./proportion5a-index.js"; const step = {id: "proportion5a", stepAnswer: ["39"], problemType: "TextBox", stepTitle: "$$\\frac{d}{d-\\left(48\\right)}=\\left(-\\frac{13}{3}\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

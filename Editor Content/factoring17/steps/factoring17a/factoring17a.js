@@ -1,0 +1,1 @@
+import hints from "./factoring17a-index.js"; const step = {id: "factoring17a", stepAnswer: ["$$\\left(\\left(4\\right) q+\\left(1\\right)\\right) \\left(q-\\left(2\\right)\\right)$$"], problemType: "TextBox", stepTitle: "$$\\left(4\\right) q^2-\\left(7\\right) q-\\left(2\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./a539069factor7a-index.js"; const step = {id: "a539069factor7a", stepAnswer: ["$${\\left(\\left(6\\right) x+\\left(7\\right) y\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$\\left(36\\right) x^2+\\left(84\\right) x y+\\left(49\\right) y^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

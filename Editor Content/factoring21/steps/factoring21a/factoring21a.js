@@ -1,0 +1,1 @@
+import hints from "./factoring21a-index.js"; const step = {id: "factoring21a", stepAnswer: ["$$\\left(\\left(5\\right) n+\\left(1\\right)\\right) \\left(n+\\left(4\\right)\\right)$$"], problemType: "TextBox", stepTitle: "$$\\left(5\\right) n^2+\\left(21\\right) n+\\left(4\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
