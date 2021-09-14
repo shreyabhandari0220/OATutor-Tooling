@@ -1,0 +1,1 @@
+import steps from "./a22d1f4gaussian10-index.js"; const problem = {id: "a22d1f4gaussian10", title: "Solving a Dependent System of Linear Equations Using Matrices", body: "Solve the following system of linear equations using matrices.", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

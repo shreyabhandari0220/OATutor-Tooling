@@ -1,0 +1,1 @@
+import hints from "./a0fa162slope16a-index.js"; const step = {id: "a0fa162slope16a", stepAnswer: ["0"], problemType: "TextBox", stepTitle: "$$y=7$$", stepBody: "##figure1.gif## ", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

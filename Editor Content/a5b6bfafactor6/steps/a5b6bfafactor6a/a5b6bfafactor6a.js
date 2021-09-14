@@ -1,1 +1,0 @@
-import hints from "./a5b6bfafactor6a-index.js"; const step = {id: "a5b6bfafactor6a", stepAnswer: ["(4x-3)(2x-3)"], problemType: "TextBox", stepTitle: "$$\\left(8\\right) x^2-\\left(\\left(18\\right) x\\right)+\\left(9\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

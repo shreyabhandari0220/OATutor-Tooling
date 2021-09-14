@@ -1,0 +1,1 @@
+import hints from "./proportion3a-index.js"; const step = {id: "proportion3a", stepAnswer: ["63"], problemType: "TextBox", stepTitle: "$$\\frac{b}{b-\\left(16\\right)}=\\frac{11}{9}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./a435fe9rational1a-index.js"; const step = {id: "a435fe9rational1a", stepAnswer: ["$$\\left(8\\right) t$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\left(8\\right) t^2}{t+\\left(4\\right)}+\\frac{\\left(32\\right) t}{t+\\left(4\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

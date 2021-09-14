@@ -1,0 +1,1 @@
+import hints from "./a647839rational3a-index.js"; const step = {id: "a647839rational3a", stepAnswer: ["$$\\frac{2}{5}$$"], problemType: "TextBox", stepTitle: "$$\\frac{3}{10}+\\frac{1}{10}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

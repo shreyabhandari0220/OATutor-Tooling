@@ -1,1 +1,0 @@
-import hints from "./a5b6bfafactor11a-index.js"; const step = {id: "a5b6bfafactor11a", stepAnswer: ["$$\\left(6\\right) p^3 \\left(\\left(3\\right) p^3+\\left(4\\right)\\right)$$"], problemType: "TextBox", stepTitle: "$$\\left(18\\right) p^6+{\\left(24\\right)}^{p^3}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

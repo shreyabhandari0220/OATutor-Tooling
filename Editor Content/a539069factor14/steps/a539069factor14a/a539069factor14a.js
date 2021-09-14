@@ -1,1 +1,0 @@
-import hints from "./a539069factor14a-index.js"; const step = {id: "a539069factor14a", stepAnswer: ["$${\\left(\\left(6\\right) s+\\left(7\\right)\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$\\left(36\\right) s^2+\\left(84\\right) s+\\left(49\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

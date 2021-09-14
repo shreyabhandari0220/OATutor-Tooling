@@ -1,1 +1,0 @@
-import hints from "./a539069factor13a-index.js"; const step = {id: "a539069factor13a", stepAnswer: ["$${\\left(\\left(5\\right) v+\\left(2\\right)\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$\\left(25\\right) v^2+\\left(20\\right) v+\\left(4\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

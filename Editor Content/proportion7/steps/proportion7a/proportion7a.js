@@ -1,0 +1,1 @@
+import hints from "./proportion7a-index.js"; const step = {id: "proportion7a", stepAnswer: ["10"], problemType: "TextBox", stepTitle: "$$\\frac{n+\\left(10\\right)}{4}=\\frac{\\left(40\\right)-n}{6}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

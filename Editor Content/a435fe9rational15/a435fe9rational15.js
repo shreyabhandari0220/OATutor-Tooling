@@ -1,0 +1,1 @@
+import steps from "./a435fe9rational15-index.js"; const problem = {id: "a435fe9rational15", title: "Subtract Rational Expressions with a Common Denominator", body: "In the folloing exercise, subtract:", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

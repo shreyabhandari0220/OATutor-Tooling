@@ -1,0 +1,1 @@
+import hints from "./add25a-index.js"; const step = {id: "add25a", stepAnswer: ["$$-\\left(10\\right) z^3$$"], problemType: "TextBox", stepTitle: "Subtract $$-\\left(15\\right) z^3-\\left(-\\left(5\\right) z^3\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

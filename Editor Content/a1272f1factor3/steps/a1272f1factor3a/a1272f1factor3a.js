@@ -1,1 +1,0 @@
-import hints from "./a1272f1factor3a-index.js"; const step = {id: "a1272f1factor3a", stepAnswer: ["$$\\left(\\left(2\\right) t+\\left(5\\right)\\right) \\left(t+\\left(1\\right)\\right)$$"], problemType: "TextBox", stepTitle: "$$\\left(2\\right) t^2+\\left(7\\right) t+\\left(5\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import steps from "./a732b8brational9-index.js"; const problem = {id: "a732b8brational9", title: "Simplify Rational Expressions", body: "Evaluate $$\\frac{x^2+\\left(8\\right) x+\\left(7\\right)}{x^2-\\left(4\\right)}$$ for each value. If the value is undefined write \"UND\".", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

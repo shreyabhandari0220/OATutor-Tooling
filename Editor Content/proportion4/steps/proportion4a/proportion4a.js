@@ -1,0 +1,1 @@
+import hints from "./proportion4a-index.js"; const step = {id: "proportion4a", stepAnswer: ["43"], problemType: "TextBox", stepTitle: "$$\\frac{c}{c-\\left(104\\right)}=\\left(-\\frac{5}{8}\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

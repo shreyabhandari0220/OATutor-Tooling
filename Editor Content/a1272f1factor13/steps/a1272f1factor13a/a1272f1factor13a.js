@@ -1,1 +1,0 @@
-import hints from "./a1272f1factor13a-index.js"; const step = {id: "a1272f1factor13a", stepAnswer: ["(2k-3)(2k-5)"], problemType: "TextBox", stepTitle: "$$\\left(4\\right) k^2-\\left(16\\right) k+\\left(15\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

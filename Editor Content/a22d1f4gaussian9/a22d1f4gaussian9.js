@@ -1,0 +1,1 @@
+import steps from "./a22d1f4gaussian9-index.js"; const problem = {id: "a22d1f4gaussian9", title: "Solving a System of Linear Equations Using Matrices", body: "Solve the system of linear equations using matrices. If the equation has no solution, enter \"No Solution\" as your answer.", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };
