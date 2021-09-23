@@ -10,7 +10,20 @@ sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
 supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_"]
 supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{", 'log(', 'sum{']
 answer_only_operators = ["-"]
-replace = {"⋅" : "*", "−" : "-", "^" : "**", "𝑥" : "x", "𝑎" : "a", "𝑏" : "b", "𝑦" : "y", "–": "-", "≥" : ">=", "≤": "<=", "∪" : "U", "π" : "pi"}
+replace = {"⋅" : "*", 
+            "−" : "-", 
+            "^" : "**", 
+            "𝑥" : "x", 
+            "𝑎" : "a", 
+            "𝑏" : "b", 
+            "𝑦" : "y", 
+            "–": "-", 
+            "≥" : ">=", 
+            "≤": "<=", 
+            "∪" : "U", 
+            "π" : "pi", 
+            "𝜃": "\\theta", 
+            "°": "\\degree" }
 conditionally_replace = {"[" : "(", "]" : ")"}
 regex = re.compile("|".join(map(re.escape, replace.keys())))
 force_latex = 0.0
@@ -118,7 +131,6 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
     text = " ".join(words)
     text = re.sub(r"\\\\slash\\\\", "/", text)
     text = re.sub(r"aaa(\w+|\d+)ttt", r"@{\g<1>}", text)
-    # text = re.sub(r"\n", r"\\\\n", text)
     force_latex = 0.0
     return text, latex
 
