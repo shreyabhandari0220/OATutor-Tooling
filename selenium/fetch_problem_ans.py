@@ -31,6 +31,8 @@ def fetch_problem_ans_info(problem_name, verbose=False):
             data = step_file.read()
             step_type = re.search('problemType:\s*\"(.*)\",\s*stepTitle:', data).group(1)
             step_ans = re.search('stepAnswer:\s*\[\"(.*)\"\],\s*problemType:', data).group(1)
+            if step_type == "TextBox":
+                step_type += " " + re.search('answerType:\s*\"(.*)\",\s*hints:', data).group(1)
             # print(data)
             # print(step_ans)
             step_ans = step_ans.replace('\\\\', '\\')
@@ -46,4 +48,4 @@ if __name__ == '__main__':
         verbosity = eval(sys.argv[2])
     else:
         verbosity = False
-    fetch_problem_ans_info(problem_name, verbose=verbosity)
+    print(fetch_problem_ans_info(problem_name, verbose=verbosity))
