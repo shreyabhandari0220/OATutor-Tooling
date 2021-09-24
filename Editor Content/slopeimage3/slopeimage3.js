@@ -1,0 +1,1 @@
+import steps from "./slopeimage3-index.js"; const problem = {id: "slopeimage3", title: "Calculating the Slope of a Line", body: "Use the image to answer the question.", steps: steps, variabilization: {}, oer: "openstax.org"}; export { problem };

@@ -1,1 +1,0 @@
-import hints from "./a727307slope11a-index.js"; const step = {id: "a727307slope11a", stepAnswer: ["$$-1/2;(0,3)$$"], problemType: "MultipleChoice", stepTitle: "$$x+\\left(2\\right) y=6$$", stepBody: "", choices: ["$$-1/2;(3,0)$$", "$$3;(0,\\frac{-\\left(1\\right)}{2})$$", "$$-1/2;(0,3)$$"], answerType: "string", hints: hints, variabilization: {}}; export {step};

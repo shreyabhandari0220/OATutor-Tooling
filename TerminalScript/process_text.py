@@ -21,9 +21,7 @@ replace = {"⋅" : "*",
             "≥" : ">=", 
             "≤": "<=", 
             "∪" : "U", 
-            "π" : "pi", 
-            "𝜃": "\\theta", 
-            "°": "\\degree" }
+            "π" : "pi"}
 conditionally_replace = {"[" : "(", "]" : ")"}
 regex = re.compile("|".join(map(re.escape, replace.keys())))
 force_latex = 0.0
@@ -52,6 +50,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
         text = re.sub("\\\\pipe", "|", text) #To account for literal | in mc answers
         text = re.sub(r"\\/", r"\\\\slash\\\\", text) #To account for literal /
         text = re.sub(r"@{(\d+|\w+)}", r"aaa\g<1>ttt", text) #For variabilization
+        text = re.sub(r"_\{([\w]+),([\w]+)\}", r"_\g<1>\g<2>", text) #To account for subscript in form of A_{i,j} (change to A_ij)
 
         # for operator in supported_operators:
         #     text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
@@ -92,6 +91,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
                 word = word[2:]
             elif word[-2:] == '$$':
                 word = word[:-2]
+            word = re.sub("𝜃", "\\\\theta", word)
             try:        
                 sides = re.split('((?<!\\\\)=|U|<=|>=)', word)
                 sides = [handle_word(side) for side in sides]

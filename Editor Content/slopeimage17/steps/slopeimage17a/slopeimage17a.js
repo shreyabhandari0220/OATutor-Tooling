@@ -1,0 +1,1 @@
+import hints from "./slopeimage17a-index.js"; const step = {id: "slopeimage17a", stepAnswer: ["$$\\frac{2}{5}$$"], problemType: "TextBox", stepTitle: "What is the slope of the line on the graph shown?", stepBody: "##figure1.gif## ", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
