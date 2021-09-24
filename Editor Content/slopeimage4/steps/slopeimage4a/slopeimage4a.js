@@ -1,0 +1,1 @@
+import hints from "./slopeimage4a-index.js"; const step = {id: "slopeimage4a", stepAnswer: ["$$\\frac{-\\left(1\\right)}{3}$$"], problemType: "TextBox", stepTitle: "What is the slope of the line on the geoboard shown?", stepBody: "##figure1.gif## ", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import steps from "./slopeimage17-index.js"; const problem = {id: "slopeimage17", title: "Calculating the Slope of a Line From a Graph", body: "Use the image to answer the question.", steps: steps, variabilization: {}, oer: "openstax.org"}; export { problem };
