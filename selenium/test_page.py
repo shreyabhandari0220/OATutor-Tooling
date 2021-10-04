@@ -6,6 +6,7 @@ from selenium.common.exceptions import NoSuchElementException, InvalidSessionIdE
 import time
 import sys
 import os
+import re
 
 from generate_script import generate_script_arithmetic
 
@@ -27,22 +28,25 @@ def test_page(problem_name, ans_and_type, driver):
 
 def test_step(problem_name, driver, problem_index, correct_answer, problem_type):
 
+    if problem_type.split()[0] == "MultipleChoice":
+        return
     # Enter step answer
     if problem_type.split()[0] == "TextBox":
         enter_text_answer(problem_name, driver, problem_index, correct_answer, problem_type.split()[1])
     elif problem_type.split()[0] == "MultipleChoice":
-        enter_mc_answer(problem_name, driver, problem_index, correct_answer)
+        pass
+        # enter_mc_answer(problem_name, driver, problem_index, correct_answer)
     else:
         print('{0}: Wrong answer type for step {1}: {2}'.format(problem_name, problem_index - 1, problem_type))
         problem_index += 1
 
     # click submit and check correctness  
     try:
-        submit_selector = "//*[@id=\"root\"]/div/div/div/div[{}]/div/div[2]/div/div[3]/center/button".format(problem_index)
-        icon_selector = "//*[@id=\"root\"]/div/div/div/div[{}]/div/div[2]/div/div[4]/div/img".format(problem_index)
+        submit_selector = "//*[@id=\"root\"]/div[1]/div/div/div[{}]/div/div[2]/div/div[3]/center/button".format(problem_index)
+        icon_selector = "//*[@id=\"root\"]/div[1]/div/div/div[{}]/div/div[2]/div/div[4]/div/img".format(problem_index)
         submit = driver.find_element_by_xpath(submit_selector)
         submit.click()
-        time.sleep(0.2)
+        time.sleep(0.4)
         icon = driver.find_element_by_xpath(icon_selector)
         if icon.get_attribute("src") != CORRECT:
             print("{0}: Invalid answer for step {1}: {2}".format(problem_name, problem_index - 1, correct_answer))
@@ -50,44 +54,78 @@ def test_step(problem_name, driver, problem_index, correct_answer, problem_type)
         print("{0}: step {1} submit does not exist.".format(problem_name, problem_index - 1))
 
     # click through hints
-    try:
-        raise_hand_button_xpath = "//*[@id=\"root\"]/div[1]/div/div/div[{}]/div/div[2]/div/div[2]/center/button".format(problem_index)
-        raise_hand_button = driver.find_element_by_xpath(raise_hand_button_xpath)
-        raise_hand_button.click()
-        time.sleep(0.2)
-        hint_idx = 1
-        while True:
-            hint_xpath = "//*[@id=\"root\"]/div[1]/div/div/div[{0}]/div/div[1]/div[2]/div/div[{1}]".format(problem_index, hint_idx)
-            hint_expand_button = driver.find_element_by_xpath(hint_xpath)
-            hint_expand_button.click()
-            time.sleep(0.2)
-            # try:
-            #     scaffold_hint_xpath = "//*[@id=\"panel1a-content\"]/div/span/div/div/div[1]/div[2]/center/span"
-            #     scaffold_hint = driver.find_element_by_xpath(scaffold_hint_xpath)
+    # try:
+    #     raise_hand_button_xpath = "//*[@id=\"root\"]/div[1]/div/div/div[{}]/div/div[2]/div/div[2]/center/button".format(problem_index)
+    #     raise_hand_button = driver.find_element_by_xpath(raise_hand_button_xpath)
+    #     raise_hand_button.click()
+    #     time.sleep(0.2)
+    #     hint_idx = 1
+    #     while True:
+    #         hint_xpath = "//*[@id=\"root\"]/div[1]/div/div/div[{0}]/div/div[1]/div[2]/div/div[{1}]".format(problem_index, hint_idx)
+    #         hint_expand_button = driver.find_element_by_xpath(hint_xpath)
+    #         hint_expand_button.click()
+    #         time.sleep(0.2)
+    #         # try:
+    #         #     scaffold_hint_xpath = "//*[@id=\"panel1a-content\"]/div/span/div/div/div[1]/div[2]/center/span"
+    #         #     scaffold_hint = driver.find_element_by_xpath(scaffold_hint_xpath)
 
             
-            # except NoSuchElementException:
-            #     pass
+    #         # except NoSuchElementException:
+    #         #     pass
 
-            hint_idx += 1
-            
-    except Exception as e:
-        if type(e) == NoSuchElementException:
-            return
-        print(e)
+    #         hint_idx += 1
+
+    # except Exception as e:
+    #     if type(e) == NoSuchElementException:
+    #         return
+    #     print(e)
 
 def enter_text_answer(problem_name, driver, problem_index, correct_answer, answer_type):
     """
     Enters type TextBox answers into text box.
     """
-    if answer_type == "arithmetic":
+    
+    if answer_type == "arithmetic" and "begin{bmatrix}" in correct_answer: 
+        try:
+            # Enter matrix dimension
+            row_count = correct_answer.count('\\\\') + 1
+            col_count = re.search(r'begin\{bmatrix\}([^\\]+)\\\\', correct_answer).group(1).count('&') + 1
+            row_selector = "//*[@id=\"root\"]/div[1]/div/div/div[{}]/div/div[1]/div[2]/div/div[2]/div/form/div/div[1]/div[1]/div/input".format(problem_index)
+            row = driver.find_element_by_xpath(row_selector)
+            row.send_keys(row_count)
+            col_selector = "//*[@id=\"root\"]/div[1]/div/div/div[{}]/div/div[1]/div[2]/div/div[2]/div/form/div/div[1]/div[2]/div/input".format(problem_index)
+            col = driver.find_element_by_xpath(col_selector)
+            col.send_keys(col_count)
+            next_button_selector = "//*[@id=\"root\"]/div[1]/div/div/div[{}]/div/div[1]/div[2]/div/div[2]/div/form/div/div[2]/button".format(problem_index)
+            next_button = driver.find_element_by_xpath(next_button_selector)
+            next_button.click()
+            # time.sleep(0.2)
+
+            # Enter matrix elements
+            matrix_latex = re.search(r"\\begin\{bmatrix\}.+\\end\{bmatrix\}", correct_answer).group(0)
+            answer_iter = re.finditer(r"\s([^\s]+)\s", matrix_latex)
+            matrix_elements = [elem.group(1) for elem in answer_iter]
+            for i in range(1, row_count * col_count + 1):
+                ans_selector = "//*[@id=\"root\"]/div[1]/div/div/div[{0}]/div/div[1]/div[2]/div/div[2]/div/div/div[2]/div[2]/center[{1}]/span".format(problem_index, i)
+                ans = driver.find_element_by_xpath(ans_selector)
+                script = generate_script_arithmetic(ans_selector, matrix_elements[i - 1])
+                driver.execute_script(script, ans)
+
+        except NoSuchElementException:
+            print("{0}: step {1} matrix dimension or answer input box does not exist.".format(problem_name, problem_index - 1))
+            return
+        except AttributeError:
+            print("{0}: step {1} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index - 1))
+            return
+
+    
+    elif answer_type == "arithmetic":
         ans_selector = "//*[@id=\"root\"]/div[1]/div/div/div[{}]/div/div[1]/div[2]/div/div[2]/center/span".format(problem_index)
         try:
             ans = driver.find_element_by_xpath(ans_selector)
             script = generate_script_arithmetic(ans_selector, correct_answer)
             driver.execute_script(script, ans)
         except NoSuchElementException:
-            print(ans_selector)
             print("{0}: step {1} arithmetic answer box does not exist.".format(problem_name, problem_index - 1))
             return
 
@@ -111,7 +149,6 @@ def enter_mc_answer(problem_name, driver, problem_index, correct_answer):
     Clicks the correct answer for multiple choice questions
     Note: within the function, correct_answer involving LaTeX are stripped of $$
     """
-
 
     choice_idx = 1
     all_choices = []  # checkes if the same answer appears multiple times
@@ -176,5 +213,9 @@ if __name__ == '__main__':
     # # test_step("real2", driver, 2, "\\frac{24}{5}", "arithmetic")
 
 
-# python3 test_page.py real2 "\\frac{24}{5}" TextBox "\\frac{25}{6}" TextBox
-# python3 test_page.py factor11 "(2x-5)(4x**2 + 10x + 25)" TextBox
+# python3 test_page.py real2 "\\frac{24}{5}" "TextBox arithmetic" "\\frac{25}{6}" "TextBox arithmetic"
+# python3 test_page.py matrices3 "$$\\begin{bmatrix} 1 & 14 \\\\ 86 & 109 \\\\ 27 & 10 \\end{bmatrix}$$" "TextBox arithmetic"
+# python3 test_page.py matrices4 "$$\\begin{bmatrix} -64 & -12 & -28 & -72 \\\\ -360 & -20 & -12 & -116 \\end{bmatrix}$$" "TextBox arithmetic"
+# python3 test_page.py matrices14 "$$\\begin{bmatrix} a+e & b+f \\\\ c+g \\\\ d+h \\end{bmatrix}$$" "TextBox arithmetic"
+
+
