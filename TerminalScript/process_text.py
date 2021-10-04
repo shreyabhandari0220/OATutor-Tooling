@@ -91,7 +91,6 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
                 word = word[2:]
             elif word[-2:] == '$$':
                 word = word[:-2]
-            word = re.sub("𝜃", "\\\\theta", word)
             try:        
                 sides = re.split('((?<!\\\\)=|U|<=|>=)', word)
                 sides = [handle_word(side) for side in sides]
@@ -176,8 +175,10 @@ def handle_word(word, coord=True):
         for mat in matches:
             word = re.sub(re.escape(mat.group(0)), handle_single_matrix(mat.group(0)), word)
         return word
-    
+
     if not (any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])):
+        word = re.sub("𝜃", "\\\\theta", word)
+        word = re.sub("°", "\\\\degree", word)
         return word
 
     if "log{" in word:
@@ -226,6 +227,7 @@ def handle_word(word, coord=True):
     word = re.sub('\*\*\(\-\.', '**(zero', word) 
     word = re.sub('(?<!(abs)|(log)|(qrt))\(\-', 'negneg(', word)
     word = re.sub(r'\\=', '=', word)
+    word = re.sub(r'\'', r"primesymbol", word)
     # to handle -(.....) missing parenthesis instance
     while re.search("-\(", word):
         open_par_miss = re.search("-\(", word).start() + 1
@@ -254,6 +256,9 @@ def handle_word(word, coord=True):
     word = re.sub("_{2,}", r"\\rule{2cm}{0.15mm}", word)
     word = re.sub('leftt\+', '\\\\left(', word)
     word = re.sub('\+rightt', '\\\\right)', word)
+    word = re.sub("primesymbol", "\'", word)
+    word = re.sub("°", "\\\\degree", word)
+    word = re.sub("𝜃", "\\\\theta", word)
     if sum_match:
         if not sum_upper_num:
             word = re.sub(sum_upper + '-1', sum_upper, word)
