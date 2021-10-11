@@ -279,11 +279,11 @@ def find_matching(word, char, idx):
 
 def handle_single_matrix(mat):
     mat = re.findall('/mat{(.+?)}', mat)[0]
-    mat = re.sub(r'\),[\s]*\(', r' \\\\\\\\ ', mat)
+    mat = re.sub(r'\),[\s]*\(', r' \\\\ ', mat)
     mat = re.sub('[\(|\)]', '', mat)
     mat = re.sub('\s*,\s*', ' & ', mat)
     elements = mat.split()
-    elements = [handle_word(e) for e in elements]
+    elements = [re.sub("\\\\", r"\\\\", handle_word(e)) for e in elements]
     mat = ' '.join(elements)
     mat = r"\\begin{bmatrix} " + mat + r" \\end{bmatrix}"
     return mat
