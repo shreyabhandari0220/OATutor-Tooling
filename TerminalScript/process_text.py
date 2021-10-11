@@ -216,7 +216,7 @@ def handle_word(word, coord=True):
     word = re.sub(",", "", word)
     for root in square_roots:
         word = re.sub(r"sqrt\("+re.escape(root[0])+re.escape(root[1])+"\)", r"sqrt("+root[0]+","+root[1]+")", word)
-    word = re.sub(r"([\w])(\(+[\w])", "\g<1>*\g<2>", word)
+    word = re.sub(r"(^ln[\w])(\(+[\w])", "\g<1>*\g<2>", word)
     word = re.sub(r"(\)+)([\w])", "\g<1>*\g<2>", word)
     word = re.sub(r"(\))(\()", "\g<1>*\g<2>", word)
     word = re.sub(r"([0-9]+)([a-zA-Z])", "\g<1>*\g<2>", word)
@@ -229,8 +229,8 @@ def handle_word(word, coord=True):
     word = re.sub(r'\\=', '=', word)
     word = re.sub(r'\'', r"primesymbol", word)
     # to handle -(.....) missing parenthesis instance
-    while re.search("-\(", word):
-        open_par_miss = re.search("-\(", word).start() + 1
+    while re.search("-\([^\w\d\(]", word):
+        open_par_miss = re.search("-\([^\w\d]", word).start() + 1
         close_par_miss = find_matching(word, '(', open_par_miss)
         word = word[:close_par_miss] + '+rightt' + word[close_par_miss + 1:]
         word = word[:open_par_miss] + 'leftt+' + word[open_par_miss + 1:]
@@ -247,11 +247,13 @@ def handle_word(word, coord=True):
         word = 'sum([' + sum_match.group(3) + ' for ' + sum_var + ' in range(' + sum_lower + ',' + sum_upper + ')])'
 
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
+
     
     #Here do the substitutions for the things that py2tex can't handle
     for item in scientific_notation:
         word = re.sub(item[0] + "\{" + item[1] + "\}", item[0] + "\\\\times {" + item[1] + "}", word)
     word = re.sub(r"\\operatorname{negneg}\\left\(", r"\\left(-", word)
+    word = re.sub(r"\\operatorname{invert}", r"\\pm ", word)
     word = re.sub(r"zero", r"-0.", word)
     word = re.sub("_{2,}", r"\\rule{2cm}{0.15mm}", word)
     word = re.sub('leftt\+', '\\\\left(', word)

@@ -222,9 +222,9 @@ class LatexVisitor(ast.NodeVisitor):
             return self.sqrt(args)
         # by default log refers to log10 in Python. Unless people import it as
         # ln
-        elif func in ['log', 'ln']:
+        elif func in ['ln']:
             return r'\ln(%s)' % args
-        elif func in ['log10']:
+        elif func in ['log']:
             return r'\log(%s)' % args
         elif func in ['arccos', 'acos']:
             return r'\arccos(%s)' % args
