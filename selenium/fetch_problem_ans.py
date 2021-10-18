@@ -11,7 +11,7 @@ def get_all_content_filename(content_path=CONTENT_PATH):
     Returns a list of all directory names under "OpenStax Content"
     Ex. ['quadratic17', 'IneqApp2', 'line14', 'partfrac26', 'uni27',...]
     """
-    return os.listdir(content_path)
+    return [direc for direc in os.listdir(content_path) if direc != "stepfiles.txt"]
 
 def fetch_problem_ans_info(problem_name, verbose=False):
     """
@@ -35,6 +35,12 @@ def fetch_problem_ans_info(problem_name, verbose=False):
                 step_type += " " + re.search('answerType:\s*\"(.*)\",\s*hints:', data).group(1)
             # print(data)
             # print(step_ans)
+            if "@" in step_ans:
+                variabilization = re.search('variabilization: {([^}]+)}', data).group(1)
+                var_dict = dict(re.findall('([^,:\s]+)+:\s(\[[^]]+\])', variabilization))
+                for k, v in var_dict.items():
+                    var_dict[k] = re.search("\[\"(\w+)\",", v).group(1)
+                step_ans = re.sub("@{(\w+)}", lambda m: var_dict.get(m.group(1), m.group(1)), step_ans)
             step_ans = step_ans.replace('\\\\', '\\')
             problem_info.append([step_ans, step_type])
     if verbose:
