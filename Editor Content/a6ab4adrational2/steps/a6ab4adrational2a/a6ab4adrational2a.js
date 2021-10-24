@@ -1,0 +1,1 @@
+import hints from "./a6ab4adrational2a-index.js"; const step = {id: "a6ab4adrational2a", stepAnswer: ["-2 or -3"], problemType: "MultipleChoice", stepTitle: "$$\\frac{x+\\left(4\\right)}{x^2+\\left(5\\right) x+\\left(6\\right)}$$", stepBody: "", choices: ["-2 or -3I5 or 6I-5 or 2I1 or -6"], answerType: "string", hints: hints, variabilization: {}}; export {step};

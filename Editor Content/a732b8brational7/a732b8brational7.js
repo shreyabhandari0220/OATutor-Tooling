@@ -1,1 +1,0 @@
-import steps from "./a732b8brational7-index.js"; const problem = {id: "a732b8brational7", title: "Simplify Rational Expressions", body: "Evaluate $$\\frac{y+\\left(1\\right)}{\\left(2\\right) y-\\left(3\\right)}$$ for each value:", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

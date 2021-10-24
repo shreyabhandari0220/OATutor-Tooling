@@ -1,1 +1,0 @@
-import hints from "./a732b8brational12a-index.js"; const step = {id: "a732b8brational12a", stepAnswer: ["$$\\frac{7}{9}$$"], problemType: "TextBox", stepTitle: "$$\\frac{-\\left(42\\right)}{54}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

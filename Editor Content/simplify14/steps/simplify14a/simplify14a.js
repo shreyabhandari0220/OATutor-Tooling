@@ -1,0 +1,1 @@
+import hints from "./simplify14a-index.js"; const step = {id: "simplify14a", stepAnswer: ["$$\\frac{\\left(2\\right) p-\\left(5\\right)}{5}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\left(2\\right)+\\frac{1}{p-\\left(3\\right)}}{\\frac{5}{p-\\left(3\\right)}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

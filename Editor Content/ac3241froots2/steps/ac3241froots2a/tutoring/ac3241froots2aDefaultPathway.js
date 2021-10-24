@@ -1,0 +1,1 @@
+var hints = [{id: "ac3241froots2a-h1", type: "hint", dependencies: [], title: "Identifying Square Root", text: "$${\\left(8\\right)}^2=64$$", variabilization: {}}, {id: "ac3241froots2a-h2", type: "hint", dependencies: ["ac3241froots2a-h1"], title: "Simplifying Expression", text: "What is the simplified expression?", variabilization: {}}, ]; export {hints};

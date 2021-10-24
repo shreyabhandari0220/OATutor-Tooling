@@ -1,0 +1,1 @@
+import hints from "./a898897roots8a-index.js"; const step = {id: "a898897roots8a", stepAnswer: ["$$\\left(12\\right) \\sqrt{n}$$"], problemType: "TextBox", stepTitle: "$$\\left(9\\right) \\sqrt{n}+\\left(3\\right) \\sqrt{n}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

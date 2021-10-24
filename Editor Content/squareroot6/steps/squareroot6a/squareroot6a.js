@@ -1,0 +1,1 @@
+import hints from "./squareroot6a-index.js"; const step = {id: "squareroot6a", stepAnswer: ["-1"], problemType: "TextBox", stepTitle: "$$-\\sqrt{1}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./SimplifyRads12a-index.js"; const step = {id: "SimplifyRads12a", stepAnswer: ["$$\\left(2\\right)+\\left(7\\right) \\sqrt{2}$$"], problemType: "TextBox", stepTitle: "Simplify $$\\left(2\\right)+\\sqrt{98}$$", stepBody: "Write your answer in radical form.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

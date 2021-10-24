@@ -1,0 +1,1 @@
+import hints from "./solverat4a-index.js"; const step = {id: "solverat4a", stepAnswer: ["$$n=-2$$"], problemType: "TextBox", stepTitle: "$$\\frac{3}{\\left(5\\right) n+\\left(1\\right)}=\\frac{2}{\\left(3\\right) n}$$", stepBody: "Solve for n. Please input the answer as $$variable=answer$$.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

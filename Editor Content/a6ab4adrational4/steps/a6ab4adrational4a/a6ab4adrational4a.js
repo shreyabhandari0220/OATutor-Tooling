@@ -1,0 +1,1 @@
+import hints from "./a6ab4adrational4a-index.js"; const step = {id: "a6ab4adrational4a", stepAnswer: ["-1 or -3"], problemType: "MultipleChoice", stepTitle: "$$\\frac{a+\\left(10\\right)}{a^2+\\left(4\\right) a+\\left(3\\right)}$$", stepBody: "", choices: ["4 or 2", "-1 or -3", "-10", "-1 or -4"], answerType: "string", hints: hints, variabilization: {}}; export {step};

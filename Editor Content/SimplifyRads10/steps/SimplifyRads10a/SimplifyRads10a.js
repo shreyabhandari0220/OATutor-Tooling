@@ -1,0 +1,1 @@
+import hints from "./SimplifyRads10a-index.js"; const step = {id: "SimplifyRads10a", stepAnswer: ["$$\\left(5\\right) a^4 \\sqrt{\\left(3\\right) a}$$"], problemType: "TextBox", stepTitle: "Simplify $$\\sqrt{\\left(75\\right) a^9}$$", stepBody: "Write your answer in radical form.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

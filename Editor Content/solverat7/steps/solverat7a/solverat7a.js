@@ -1,0 +1,1 @@
+import hints from "./solverat7a-index.js"; const step = {id: "solverat7a", stepAnswer: ["$$x=-2$$, $$x=-1$$"], problemType: "TextBox", stepTitle: "$$\\frac{2}{x+\\left(5\\right)}-\\frac{1}{x-\\left(1\\right)}=1$$", stepBody: "Solve for x. Please input the answer as $$variable=answer$$.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

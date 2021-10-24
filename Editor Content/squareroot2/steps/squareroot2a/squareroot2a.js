@@ -1,0 +1,1 @@
+import hints from "./squareroot2a-index.js"; const step = {id: "squareroot2a", stepAnswer: ["10"], problemType: "TextBox", stepTitle: "$$\\sqrt{100}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

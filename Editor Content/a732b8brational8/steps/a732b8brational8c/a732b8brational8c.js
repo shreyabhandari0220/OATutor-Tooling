@@ -1,1 +1,0 @@
-import hints from "./a732b8brational8c-index.js"; const step = {id: "a732b8brational8c", stepAnswer: ["$$\\frac{-\\left(1\\right)}{3}$$"], problemType: "TextBox", stepTitle: "$$x=0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./Solvingsqrt3a-index.js"; const step = {id: "Solvingsqrt3a", stepAnswer: ["$$x=14$$"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{\\left(5\\right) x-\\left(6\\right)}=8$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

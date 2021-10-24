@@ -1,0 +1,1 @@
+import steps from "./simplify5-index.js"; const problem = {id: "simplify5", title: "Simplify a Complex Rational Expression by Writing It as Division", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

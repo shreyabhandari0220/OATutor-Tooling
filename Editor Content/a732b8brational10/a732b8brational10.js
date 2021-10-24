@@ -1,1 +1,0 @@
-import steps from "./a732b8brational10-index.js"; const problem = {id: "a732b8brational10", title: "Simplify Rational Expressions", body: "Simplify the following fraction:", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

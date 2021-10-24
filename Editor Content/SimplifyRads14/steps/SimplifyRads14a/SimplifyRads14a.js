@@ -1,0 +1,1 @@
+import hints from "./SimplifyRads14a-index.js"; const step = {id: "SimplifyRads14a", stepAnswer: ["$$\\left(2\\right)-\\sqrt{5}$$"], problemType: "TextBox", stepTitle: "Simplify $$\\frac{\\left(6\\right)-\\sqrt{45}}{3}$$", stepBody: "Write your answer in radical form.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

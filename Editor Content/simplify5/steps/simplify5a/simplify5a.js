@@ -1,0 +1,1 @@
+import hints from "./simplify5a-index.js"; const step = {id: "simplify5a", stepAnswer: ["$$\\frac{4}{a+\\left(1\\right)}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\left(2\\right)-\\frac{2}{a+\\left(3\\right)}}{\\frac{1}{a}+\\left(3\\right)+\\frac{a}{2}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
