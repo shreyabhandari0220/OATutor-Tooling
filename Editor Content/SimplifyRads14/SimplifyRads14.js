@@ -1,0 +1,1 @@
+import steps from "./SimplifyRads14-index.js"; const problem = {id: "SimplifyRads14", title: "Simplifying Square Roots", body: "Simplify: $$\\frac{\\left(6\\right)-\\sqrt{45}}{3}$$", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/9-2-simplify-square-roots"}; export { problem };

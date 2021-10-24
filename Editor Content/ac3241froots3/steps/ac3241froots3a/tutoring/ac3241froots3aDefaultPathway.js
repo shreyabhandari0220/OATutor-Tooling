@@ -1,0 +1,1 @@
+var hints = [{id: "ac3241froots3a-h1", type: "hint", dependencies: [], title: "Identifying Square Root", text: "$$\\sqrt{-\\left(169\\right)}$$ is not a real number", variabilization: {}}, ]; export {hints};

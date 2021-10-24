@@ -1,0 +1,1 @@
+import hints from "./solverat24a-index.js"; const step = {id: "solverat24a", stepAnswer: ["$$m=4$$, $$m=-2$$"], problemType: "TextBox", stepTitle: "$$\\left(1\\right)-\\frac{2}{m}=\\frac{8}{m^2}$$", stepBody: "Solve for m. Please input the answer as $$variable=answer$$.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

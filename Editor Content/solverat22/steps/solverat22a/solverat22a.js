@@ -1,0 +1,1 @@
+import hints from "./solverat22a-index.js"; const step = {id: "solverat22a", stepAnswer: ["$$x=-9$$"], problemType: "TextBox", stepTitle: "$$\\frac{7}{9}+\\frac{1}{x}=\\frac{2}{3}$$", stepBody: "Solve for x. Please input the answer as $$variable=answer$$.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

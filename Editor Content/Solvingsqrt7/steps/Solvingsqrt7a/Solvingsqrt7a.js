@@ -1,0 +1,1 @@
+import hints from "./Solvingsqrt7a-index.js"; const step = {id: "Solvingsqrt7a", stepAnswer: ["$$v=17$$"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{\\left(6\\right) v-\\left(2\\right)}=10$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

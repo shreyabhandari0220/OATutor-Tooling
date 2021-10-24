@@ -1,0 +1,1 @@
+import hints from "./SolvingRats8a-index.js"; const step = {id: "SolvingRats8a", stepAnswer: ["$$t=2$$ hours 6 minutes"], problemType: "TextBox", stepTitle: "Carrie can weed the garden in 7 hours, while her mother can do it in 3. How long will it take the two of them working together?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

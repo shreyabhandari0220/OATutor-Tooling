@@ -1,0 +1,1 @@
+import steps from "./SimplifyRads13-index.js"; const problem = {id: "SimplifyRads13", title: "Simplifying Square Roots", body: "Simplify: (10-sqrt(75))/5)", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/9-2-simplify-square-roots"}; export { problem };

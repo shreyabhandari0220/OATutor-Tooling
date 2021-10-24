@@ -1,0 +1,1 @@
+import hints from "./solverat3a-index.js"; const step = {id: "solverat3a", stepAnswer: ["$$x=-2$$"], problemType: "TextBox", stepTitle: "$$\\frac{1}{x-\\left(1\\right)}=\\frac{2}{\\left(3\\right) x}$$", stepBody: "Solve for x. Please input the answer as $$variable=answer$$.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

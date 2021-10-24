@@ -1,0 +1,1 @@
+import steps from "./a6ab4adrational6-index.js"; const problem = {id: "a6ab4adrational6", title: "Simplify Rational Expressions", body: "Evaluate $$\\frac{\\left(2\\right) x+\\left(3\\right)}{\\left(3\\right) x-\\left(5\\right)}$$ for each value:", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

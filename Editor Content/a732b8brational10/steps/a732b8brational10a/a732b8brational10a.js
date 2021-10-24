@@ -1,1 +1,0 @@
-import hints from "./a732b8brational10a-index.js"; const step = {id: "a732b8brational10a", stepAnswer: ["$$\\frac{-\\left(4\\right)}{7}$$"], problemType: "TextBox", stepTitle: "$$\\frac{-\\left(36\\right)}{63}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

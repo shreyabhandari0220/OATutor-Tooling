@@ -1,0 +1,1 @@
+import hints from "./squareroot4a-index.js"; const step = {id: "squareroot4a", stepAnswer: ["-2"], problemType: "TextBox", stepTitle: "$$-\\sqrt{4}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

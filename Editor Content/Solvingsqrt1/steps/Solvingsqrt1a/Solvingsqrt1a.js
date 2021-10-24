@@ -1,0 +1,1 @@
+import hints from "./Solvingsqrt1a-index.js"; const step = {id: "Solvingsqrt1a", stepAnswer: ["$$y=3$$"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{\\left(5\\right) y+\\left(1\\right)}=4$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

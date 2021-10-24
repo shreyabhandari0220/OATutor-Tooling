@@ -1,0 +1,1 @@
+import steps from "./simplify10-index.js"; const problem = {id: "simplify10", title: "Simplify a Complex Rational Expression by Using the LCD", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./a898897roots15a-index.js"; const step = {id: "a898897roots15a", stepAnswer: ["$$\\left(5\\right) \\sqrt{m}+\\sqrt{n}$$"], problemType: "TextBox", stepTitle: "$$\\left(5\\right) \\sqrt{m}+\\sqrt{n}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

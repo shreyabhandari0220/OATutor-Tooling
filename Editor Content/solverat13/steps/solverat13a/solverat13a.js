@@ -1,0 +1,1 @@
+import hints from "./solverat13a-index.js"; const step = {id: "solverat13a", stepAnswer: ["$$L=\\frac{A}{W}$$"], problemType: "TextBox", stepTitle: "$$\\frac{A}{L}=W$$", stepBody: "Solve for L in terms of A and W", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
