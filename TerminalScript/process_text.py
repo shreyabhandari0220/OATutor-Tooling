@@ -262,6 +262,8 @@ def handle_word(word, coord=True):
     word = re.sub("primesymbol", "\'", word)
     word = re.sub("°", "\\\\degree", word)
     word = re.sub("𝜃", "\\\\theta", word)
+    word = re.sub("ε", "\\\\varepsilon", word)
+
     if sum_match:
         if not sum_upper_num:
             word = re.sub(sum_upper + '-1', sum_upper, word)

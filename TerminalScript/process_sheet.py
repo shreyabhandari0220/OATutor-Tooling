@@ -280,7 +280,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     skills = []
     skills_unformatted = []
     if not editor:
-        skillModelJS_path = os.path.join("..","skillModel.js")
+        skillModelJS_path = os.path.join("..","skillModel1.js")
         if not os.path.exists(skillModelJS_path):
             skillModelJS_file = open(skillModelJS_path, "a")
             skillModelJS_file.write("const skillModel = {\n\n    // Start Inserting\n\n}\n\nexport default skillModel;")
