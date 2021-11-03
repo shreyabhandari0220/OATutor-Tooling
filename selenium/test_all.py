@@ -11,11 +11,11 @@ from fetch_problem_ans import *
 from alert_error import alert
 
 
-def test_all_content():
+def test_all_content(url_prefix):
     # sets up selenium driver with correct Chrome headless version
     os.environ['WDM_LOG_LEVEL'] = '0'  # suppress logs from ChromeDriverManager install
     options = webdriver.ChromeOptions()
-    options.headless = True
+    # options.headless = True
     driver = webdriver.Chrome(ChromeDriverManager(version="94.0.4606.41").install(), options=options)
 
     all_files = get_all_content_filename()
@@ -24,7 +24,7 @@ def test_all_content():
     for problem_name in all_files:
         try:
             problem_ans_info = fetch_problem_ans_info(problem_name, verbose=False)
-            alert_df = test_page(problem_name, problem_ans_info, driver, alert_df)
+            alert_df = test_page(url_prefix, problem_name, problem_ans_info, driver, alert_df)
         except Exception as e:
             err = "Exception on problem {0}: {1}".format(problem_name, e)
             alert_df = alert_df.append({"Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
@@ -40,4 +40,9 @@ def test_all_content():
         print("Error encounted when alerting error")
 
 if __name__ == '__main__':
-    test_all_content()
+    if len(sys.argv) == 2:
+        url_prefix = sys.argv[1]
+    else:
+        url_prefix = "https://cahlr.github.io/OATutor-Staging/#/debug/"
+    
+    test_all_content(url_prefix)

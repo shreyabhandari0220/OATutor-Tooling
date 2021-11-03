@@ -1,0 +1,74 @@
+poly31: Invalid answer for step 1: $$a^4+\left(4\right) a^3 c-\left(16\right) {ac}^3-\left(16\right) c^4$$
+rotation18: Invalid answer for step 2: (21x'**2)+(9y'**2)+(4x')-(4sqrt(3)y')-6=0
+rotation16: Invalid answer for step 1: (3+2sqrt(3))(x'**2)+(1-2sqrt(3))(y'**2)+(4-2sqrt(3))(x'y')-1=0
+Exception on problem matrices14: list index out of range
+partfrac11: Invalid answer for step 1: (1/(x-2)+(2/(x-2)**2)
+rotation17: Invalid answer for step 2: (11x'**2)-(y'**2)+(sqrt(3)x')+y'-4=0
+rotation19: Invalid answer for step 2: (21x'**2)+(9y'**2)+(4x')-(4sqrt(3)y')-6=0
+whole2: Invalid answer for step 1: 104,000
+whole2: Invalid answer for step 2: 104,000
+whole5: Invalid answer for step 1: 468,800
+exponents6: Invalid answer for step 1: $$\frac{1}{{mn}^5}$$
+rates6: step 2 submit does not exist.
+composition21: Invalid answer for step 1: $$\frac{\sqrt{x} |x-\left(3\right)|}{x}$$
+inv15: Invalid answer for step 1: $$/mat{(2,-7),(-9,-3)/(-69)$$
+inv12: Invalid answer for step 1: /mat{(8/25,-1/5,-3/35),(17/10,1/10,-1/35),(-2/7,0,-1/7)}
+a0cc26bpoly9: Invalid answer for step 1: $$\left(9\right) x^2-\left(48\right) x+\left(64\right)$$.
+transformation1: Invalid answer for step 1: b(t) $$=$$ $$-\left(4.9\right) t^2$$ $$\left(+30\right) t+\left(10\right)$$
+exponents24: Invalid answer for step 1: $$-\left(\left(40\right) n^3+\frac{rightt}{m}$$
+exponents23: Invalid answer for step 1: $$-\left(\left(14\right) k^5+\frac{rightt}{j^3}$$
+explog7: Invalid answer for step 1: $$-\left(ln \frac{38}{3}-\left(8\right)+\frac{rightt}{3}$$
+DivMul38: Invalid answer for step 1: $1.79
+hyperbola24: Invalid answer for step 1: ((x-6)**2)/25)-((y-1)**2)/11)=1
+hyperbola15: Invalid answer for step 4: $$y=\operatorname{invert}\left(\frac{3}{10}\right) x$$
+parabola6: Invalid answer for step 1: (-3,1)
+Exception on problem stepfiles.txt: 
+hyperbola14: step 4 submit does not exist.
+SolveGeometry9: Invalid answer for step 1: 14,12
+DivMul39: Invalid answer for step 1: $0.39
+SolveMixture2: Invalid answer for step 1: 330,367
+expolog13: Invalid answer for step 1: @{ans}
+partfract13: Invalid answer for step 1: -(1/(x-7)-2/(x-7)**2
+expolog14: Invalid answer for step 1: @{numerator}
+SolveMixture4: Invalid answer for step 1: 615,195
+SolveMixture3: Invalid answer for step 1: 80,135
+partfract12: Invalid answer for step 1: -(6/(4x+5))+(3/(4x+5)**2
+expolog12: Invalid answer for step 1: @{ans}
+whole7: Invalid answer for step 1: 785,000
+whole7: Invalid answer for step 2: 785,000
+whole7: Invalid answer for step 3: 780,000
+rotation15: Invalid answer for step 1: (3x'**2)+(2x'y')-(5y'**2)+1=0
+partfrac14: Invalid answer for step 1: (4/x)-(3/(2(x+1))+7/(2*(3x+2)**2)
+whole6: Invalid answer for step 1: 207,000
+whole6: Invalid answer for step 2: 207,000
+whole6: Invalid answer for step 3: 210,000
+partfrac15: Invalid answer for step 1: (4/x)+(2/x**2)-(3/(3x+2))+(7/(2*(3x+2)**2)
+rotation13: Invalid answer for step 1: (7x'**2)+(9y'**2)-4=0
+rotation14: Invalid answer for step 1: (7x'**2)+(5y'**2)-5=0
+partfrac24: Invalid answer for step 1: 1/5x-1/(3(3x-5)+20/(3(3x+5)**2)
+inv11: Invalid answer for step 1: /mat{(-1/8,0,3/8),(-25/16,1,19/16),(3/16,0,-1/16)}
+inv16: Invalid answer for step 1: $$/mat{(8,3),(5,-4)/(-17)$$
+matrices5: Invalid answer for step 1: $$\begin{bmatrix} 8 & rac{3}{2} & rac{7}{2} & 9 \\ 45 & rac{5}{2} & rac{3}{2} & rac{29}{2} \end{bmatrix}$$
+inv19: Invalid answer for step 1: (-4/7)/mat{(-1/2,-3/2),(-1,1/2)}
+geometric5: Invalid answer for step 1: 18,6,2,2/3
+exponents16: Invalid answer for step 2: $$-\left(x^3 y^6+\frac{rightt}{27}$$
+logarithmic9: Invalid answer for step 1: $$\frac{ln \left(15\right)}{ln} \left(7\right)$$
+hyperbola18: Invalid answer for step 1: $$y=~x$$
+hyperbola20: Invalid answer for step 1: $$y=\operatorname{invert}\left(\frac{1}{2}\right) \left(x+\left(5\right)\right)+\left(3\right)$$
+acf3da9gaussian3: Invalid answer for step 1: $$x-3y-5z=-2$$ $$2x-5y-4z=5$$ $$-\left(3\right) x+\left(5\right) y+\left(4\right) z=6$$
+hyperbola21: Invalid answer for step 1: $$\frac{{\left(x-\left(1\right)\right)}^2}{{\left(4\right)}^2}-\left(y-\left(1\right)+\frac{{rightt}^2}{{\left(3\right)}^2}=1$$
+hyperbola21: Invalid answer for step 2: $$y=\operatorname{invert}\left(\frac{3}{4}\right) \left(x-\left(1\right)\right)+\left(1\right)$$
+hyperbola19: Invalid answer for step 1: $$y=\operatorname{invert}\left(\frac{2}{5}\right) \left(x+\left(3\right)\right)+\left(4\right)$$
+acf3da9gaussian4: Invalid answer for step 1: $$x-y+z=5$$ $$\left(2\right) x-y+\left(3\right) z=1$$ $$y+z=-9$$
+expolog19: Invalid answer for step 1: @{numerator}
+acf3da9gaussian10: Invalid answer for step 1: $$(\frac{x \left(\left(2\right)-\left(2\right) x\right)}{3},\frac{\left(1\right)-x}{3})$$
+decimals22: Invalid answer for step 3: 8.30%
+exp3: Invalid answer for step 3: $${\operatorname{zsqrt}\left(2\right)}^4$$
+exp4: Invalid answer for step 3: $${\left({ef}^2\right)}^2$$
+partfrac9: Invalid answer for step 1: (9/(5*(x+2))+(11/(5*(x-3)))
+a5991b4add15: Invalid answer for step 1: $${xy}^2-\left(5\right) x-\left(5\right) y^2$$
+logarithmic10: Invalid answer for step 1: $$\frac{log \left(55.875\right)}{log} \left(14\right)$$
+SolveMixture1: Invalid answer for step 1: 42,136
+expolog11: Invalid answer for step 1: @{ans}
+MoApp3: step 5 submit does not exist.
+clt2: Invalid answer for step 1: 0.62%
