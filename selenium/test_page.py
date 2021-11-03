@@ -12,13 +12,13 @@ import pandas as pd
 from generate_script import generate_script_arithmetic
 from alert_error import alert
 
-URL_PREFIX = "https://cahlr.github.io/OATutor-Staging/#/debug/"
+# URL_PREFIX = "https://cahlr.github.io/OATutor-Staging/#/debug/"
 CORRECT = "https://image.flaticon.com/icons/svg/148/148767.svg"
 WRONG = "https://image.flaticon.com/icons/svg/148/148766.svg"
 
 
-def test_page(problem_name, ans_and_type, driver, alert_df):
-    url = URL_PREFIX + problem_name
+def test_page(url_prefix, problem_name, ans_and_type, driver, alert_df):
+    url = url_prefix + problem_name
     driver.get(url)
 
     problem_index = 2
@@ -202,12 +202,20 @@ if __name__ == '__main__':
     # calling syntax:
     # python3 test_page.py <problem_name> <ans1> <type1> <ans2> <type2> ...
     # type is either TextBox or MultipleChoice
-    problem_name = sys.argv[1]
+    if len(sys.argv) % 2 == 1:
+        url_prefix = sys.argv[1]
+        i = 2
+    else:
+        url_prefix = "https://cahlr.github.io/OATutor-Staging/#/debug/"
+        i = 1
+    
+    problem_name = sys.argv[i]
     info_list = []
-    i = 2
+    i += 1
     while i < len(sys.argv) - 1:
         info_list.append([sys.argv[i], sys.argv[i + 1]])
         i += 2
+    print(info_list)
 
     # sets up selenium driver with correct Chrome headless version
     os.environ['WDM_LOG_LEVEL'] = '0'  # suppress logs from ChromeDriverManager install
@@ -215,7 +223,7 @@ if __name__ == '__main__':
     # options.headless = True
     driver = webdriver.Chrome(ChromeDriverManager(version="94.0.4606.41").install(), options=options)
     alert_df = pd.DataFrame(columns=["Error Log", "Issue Type", "Status", "Comment"])
-    alert_df = test_page(problem_name, info_list, driver, alert_df)
+    alert_df = test_page(url_prefix, problem_name, info_list, driver, alert_df)
     alert(alert_df)
 
 
@@ -223,16 +231,6 @@ if __name__ == '__main__':
     #     driver.close()
     # except InvalidSessionIdException:
     #     pass
-
-    # # sets up selenium driver with correct Chrome headless version
-    # os.environ['WDM_LOG_LEVEL'] = '0'  # suppress logs from ChromeDriverManager install
-    # options = webdriver.ChromeOptions()
-    # # options.headless = True
-    # driver = webdriver.Chrome(ChromeDriverManager(version="94.0.4606.41").install(), options=options)
-    # url = URL_PREFIX + "real2"
-    # driver.get(url)
-    # # enter_text_answer("real1", driver, 2, "3", "arithmetic")
-    # # test_step("real2", driver, 2, "\\frac{24}{5}", "arithmetic")
 
 
 # python3 test_page.py real2 "\\frac{24}{5}" "TextBox arithmetic" "\\frac{25}{6}" "TextBox arithmetic"
