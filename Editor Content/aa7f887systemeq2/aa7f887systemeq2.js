@@ -1,1 +1,1 @@
-import steps from "./aa7f887systemeq2-index.js"; const problem = {id: "aa7f887systemeq2", title: "Solve Mixture Applications", body: "Translate to a system of equations and solve", steps: steps, variabilization: {}, oer: "openstax.org"}; export { problem };
+import steps from "./aa7f887systemeq2-index.js"; const problem = {id: "aa7f887systemeq2", title: "Solve Mixture Applications", body: "Translate to a system of equations and solve", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

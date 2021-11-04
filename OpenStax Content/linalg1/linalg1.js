@@ -1,1 +1,1 @@
-import steps from "./linalg1-index.js"; const problem = {id: "linalg1", title: "Linear Algebra: True or False Sample", body: "Consider whether the following statements are true or false.", steps: steps, variabilization: {}, oer: "SLC"}; export { problem };
+import steps from "./linalg1-index.js"; const problem = {id: "linalg1", title: "Linear Algebra: True or False Sample", body: "Consider whether the following statements are true or false.", steps: steps, variabilization: {}, oer: "SLC", courseName: "Math 54 Demo"}; export { problem };

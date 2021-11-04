@@ -1,1 +1,1 @@
-import steps from "./ac3241froots3-index.js"; const problem = {id: "ac3241froots3", title: "Simplify and Use Square Roots", body: "Simplify the following exercises:", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };
+import steps from "./ac3241froots3-index.js"; const problem = {id: "ac3241froots3", title: "Simplify and Use Square Roots", body: "Simplify the following exercises:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

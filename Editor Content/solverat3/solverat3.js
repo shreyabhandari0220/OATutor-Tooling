@@ -1,1 +1,1 @@
-import steps from "./solverat3-index.js"; const problem = {id: "solverat3", title: "Solving a Rational Equation", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/8-6-solve-rational-equations"}; export { problem };
+import steps from "./solverat3-index.js"; const problem = {id: "solverat3", title: "Solving a Rational Equation", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/8-6-solve-rational-equations", courseName: ""}; export { problem };

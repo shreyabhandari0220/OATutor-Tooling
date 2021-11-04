@@ -1,1 +1,1 @@
-import steps from "./squareroot1-index.js"; const problem = {id: "squareroot1", title: "Finding the Square Root of a Number", body: "Solve the following expression.", steps: steps, variabilization: {}, oer: "openstax.org"}; export { problem };
+import steps from "./squareroot1-index.js"; const problem = {id: "squareroot1", title: "Finding the Square Root of a Number", body: "Solve the following expression.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

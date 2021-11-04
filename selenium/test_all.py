@@ -19,15 +19,15 @@ def test_all_content(url_prefix):
     driver = webdriver.Chrome(ChromeDriverManager(version="94.0.4606.41").install(), options=options)
 
     all_files = get_all_content_filename()
-    alert_df = pd.DataFrame(columns=["Error Log", "Issue Type", "Status", "Comment"])
+    alert_df = pd.DataFrame(columns=["Book Name", "Error Log", "Issue Type", "Status", "Comment"])
 
     for problem_name in all_files:
         try:
-            problem_ans_info = fetch_problem_ans_info(problem_name, verbose=False)
-            alert_df = test_page(url_prefix, problem_name, problem_ans_info, driver, alert_df)
+            book_name, problem_ans_info = fetch_problem_ans_info(problem_name, verbose=False)
+            alert_df = test_page(url_prefix, problem_name, problem_ans_info, driver, alert_df, book_name)
         except Exception as e:
             err = "Exception on problem {0}: {1}".format(problem_name, e)
-            alert_df = alert_df.append({"Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
 
     try:
         driver.close()

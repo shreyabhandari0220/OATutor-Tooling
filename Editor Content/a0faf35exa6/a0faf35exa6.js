@@ -1,1 +1,1 @@
-import steps from "./a0faf35exa6-index.js"; const problem = {id: "a0faf35exa6", title: "Multiply a Polynomial by a Monomial", body: "Multiply:", steps: steps, variabilization: {}, oer: "openstax.org"}; export { problem };
+import steps from "./a0faf35exa6-index.js"; const problem = {id: "a0faf35exa6", title: "Multiply a Polynomial by a Monomial", body: "Multiply:", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

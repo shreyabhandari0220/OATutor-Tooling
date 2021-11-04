@@ -1,1 +1,1 @@
-import steps from "./poly11-index.js"; const problem = {id: "poly11", title: "Divide Polynomials", body: "Divide each polynomial by the monomial.", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };
+import steps from "./poly11-index.js"; const problem = {id: "poly11", title: "Divide Polynomials", body: "Divide each polynomial by the monomial.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

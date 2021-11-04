@@ -208,7 +208,7 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
     
     return error_message[:-1] # get rid of the last newline
 
-def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, conflict_names=[], validator_path='', editor=False):
+def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, conflict_names=[], validator_path='', editor=False, skill_model="skillModel.js", course_name=""):
     if is_local == "online":
         book = get_sheet(spreadsheet_key)
         worksheet = book.worksheet(sheet_name) 
@@ -280,7 +280,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     skills = []
     skills_unformatted = []
     if not editor:
-        skillModelJS_path = os.path.join("..","skillModel1.js")
+        skillModelJS_path = os.path.join("..",skill_model)
         if not os.path.exists(skillModelJS_path):
             skillModelJS_file = open(skillModelJS_path, "a")
             skillModelJS_file.write("const skillModel = {\n\n    // Start Inserting\n\n}\n\nexport default skillModel;")
@@ -469,9 +469,9 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             problem_images, num = save_images(problem_row["Images (space delimited)"], figure_path, int(images))
             images += num
         if variabilization:
-            prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_row["OER src"], problem_images, variabilization=problem_row["Variabilization"],latex=latex,verbosity=verbosity)
+            prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_row["OER src"], problem_images, variabilization=problem_row["Variabilization"],latex=latex,verbosity=verbosity,course_name=course_name)
         else:
-            prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_row["OER src"], problem_images,latex=latex,verbosity=verbosity)
+            prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"], problem_row["OER src"], problem_images,latex=latex,verbosity=verbosity,course_name=course_name)
         re.sub("[\.js]{2,}", ".js", prob_js)
         file = open(problem_js, "w")
         file.write(prob_js)
@@ -594,4 +594,4 @@ if __name__ == '__main__':
         latex = 'FALSE'
     else:
         latex = 'TRUE'
-    process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, validator_path='../.OpenStax Validator')
+    process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, validator_path='../.OpenStax Validator', skill_model="skillModel1.js", course_name="")

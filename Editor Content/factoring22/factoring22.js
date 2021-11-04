@@ -1,1 +1,1 @@
-import steps from "./factoring22-index.js"; const problem = {id: "factoring22", title: "Factor Trinomials Using the 'ac' Method", body: "Factor the expression below", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };
+import steps from "./factoring22-index.js"; const problem = {id: "factoring22", title: "Factor Trinomials Using the 'ac' Method", body: "Factor the expression below", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };
