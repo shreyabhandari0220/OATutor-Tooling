@@ -1,1 +1,1 @@
-import steps from "./geometric24-index.js"; const problem = {id: "geometric24", title: "Write a recursive formula for each geometric sequence.", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };
+import steps from "./geometric24-index.js"; const problem = {id: "geometric24", title: "Write a recursive formula for each geometric sequence.", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,1 +1,1 @@
-import steps from "./a4bf175hyperbola10-index.js"; const problem = {id: "a4bf175hyperbola10", title: "The Hyperbola", body: "Vertices at (0,6) and (0,-6) and one focus at (0,-8).", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };
+import steps from "./a4bf175hyperbola10-index.js"; const problem = {id: "a4bf175hyperbola10", title: "The Hyperbola", body: "Vertices at (0,6) and (0,-6) and one focus at (0,-8).", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

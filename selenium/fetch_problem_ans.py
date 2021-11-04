@@ -11,7 +11,7 @@ def get_all_content_filename(content_path=CONTENT_PATH):
     Returns a list of all directory names under "OpenStax Content"
     Ex. ['quadratic17', 'IneqApp2', 'line14', 'partfrac26', 'uni27',...]
     """
-    return [direc for direc in os.listdir(content_path) if direc != "stepfiles.txt"]
+    return [direc for direc in os.listdir(content_path) if direc != "stepfiles.txt" and direc != ".DS_Store"]
 
 def fetch_problem_ans_info(problem_name, verbose=False):
     """
@@ -20,7 +20,17 @@ def fetch_problem_ans_info(problem_name, verbose=False):
     """
     if verbose:
         print("testing {}".format(problem_name))
+    
+    # fetch book name
+    problem_path = os.path.join(CONTENT_PATH, problem_name, problem_name + '.js')
+    with open(problem_path) as problem_file:
+        data = problem_file.read()
+        try:
+            book_name = re.search(",\scourseName:\s\"([^\"]+)\"", data).group(1)
+        except AttributeError:
+            book_name = ""
         
+    # fetch ans and type
     all_steps_dir = os.path.join(CONTENT_PATH, problem_name, "steps")
     step_name_list = sorted([x for x in next(os.walk(all_steps_dir))][1]) # gives a list of subdirectory names
     problem_info = []
@@ -44,8 +54,8 @@ def fetch_problem_ans_info(problem_name, verbose=False):
             step_ans = step_ans.replace('\\\\', '\\')
             problem_info.append([step_ans, step_type])
     if verbose:
-        print(problem_info)
-    return problem_info
+        print(book_name, problem_info)
+    return [book_name, problem_info]
 
 
 if __name__ == '__main__':

@@ -1,1 +1,1 @@
-var hints = [{id: "arith17a-h_1", type: "hint", dependencies: [], title: "Setting up an Arithmetic Sequence", text: "$$a_n$$ $$=$$ $$a_1$$ + (n-1)d, $$a_n$$ $$=$$ 6 + 7(n-1), $$n=6$$. $$a_6$$ $$=$$ 41", variabilization: {}}, ]; export {hints};
+var hints = [{id: "arith17a-h1", type: "hint", dependencies: [], title: "Setting up an Arithmetic Sequence", text: "$$a_n$$ $$=$$ $$a_1$$ + (n-1)d, $$a_n$$ $$=$$ 6 + 7(n-1), $$n=6$$. $$a_6$$ $$=$$ 41", variabilization: {}}, ]; export {hints};

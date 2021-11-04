@@ -9,6 +9,7 @@ import os
 import re
 import pandas as pd
 
+from fetch_problem_ans import fetch_problem_ans_info
 from generate_script import generate_script_arithmetic
 from alert_error import alert
 
@@ -17,31 +18,31 @@ CORRECT = "https://image.flaticon.com/icons/svg/148/148767.svg"
 WRONG = "https://image.flaticon.com/icons/svg/148/148766.svg"
 
 
-def test_page(url_prefix, problem_name, ans_and_type, driver, alert_df):
+def test_page(url_prefix, problem_name, ans_and_type, driver, alert_df, book_name):
     url = url_prefix + problem_name
     driver.get(url)
 
     problem_index = 2
 
     for correct_answer, problem_type in ans_and_type:
-        alert_df = test_step(problem_name, driver, problem_index, correct_answer, problem_type, alert_df)
+        alert_df = test_step(problem_name, driver, problem_index, correct_answer, problem_type, alert_df, book_name)
         problem_index += 1
     return alert_df
 
 
-def test_step(problem_name, driver, problem_index, correct_answer, problem_type, alert_df):
+def test_step(problem_name, driver, problem_index, correct_answer, problem_type, alert_df, book_name):
 
     if problem_type.split()[0] == "MultipleChoice":
         return alert_df
     # Enter step answer
     if problem_type.split()[0] == "TextBox":
-        alert_df = enter_text_answer(problem_name, driver, problem_index, correct_answer, problem_type.split()[1], alert_df)
+        alert_df = enter_text_answer(problem_name, driver, problem_index, correct_answer, problem_type.split()[1], alert_df, book_name)
     elif problem_type.split()[0] == "MultipleChoice":
         pass
         # enter_mc_answer(problem_name, driver, problem_index, correct_answer)
     else:
         err = '{0}: Wrong answer type for step {1}: {2}'.format(problem_name, problem_index - 1, problem_type)
-        alert_df = alert_df.append({"Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+        alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         # print('{0}: Wrong answer type for step {1}: {2}'.format(problem_name, problem_index - 1, problem_type))
         problem_index += 1
 
@@ -51,15 +52,15 @@ def test_step(problem_name, driver, problem_index, correct_answer, problem_type,
         icon_selector = "//*[@id=\"root\"]/div[1]/div/div/div[{}]/div/div[2]/div/div[4]/div/img".format(problem_index)
         submit = driver.find_element_by_xpath(submit_selector)
         submit.click()
-        time.sleep(0.4)
+        time.sleep(0.45)
         icon = driver.find_element_by_xpath(icon_selector)
         if icon.get_attribute("src") != CORRECT:
             err = "{0}: Invalid answer for step {1}: {2}".format(problem_name, problem_index - 1, correct_answer)
-            alert_df = alert_df.append({"Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             # print("{0}: Invalid answer for step {1}: {2}".format(problem_name, problem_index - 1, correct_answer))
     except NoSuchElementException:
         err = "{0}: step {1} submit does not exist.".format(problem_name, problem_index - 1)
-        alert_df = alert_df.append({"Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+        alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         # print("{0}: step {1} submit does not exist.".format(problem_name, problem_index - 1))
 
     # click through hints
@@ -90,7 +91,7 @@ def test_step(problem_name, driver, problem_index, correct_answer, problem_type,
     #     print(e)
     return alert_df
 
-def enter_text_answer(problem_name, driver, problem_index, correct_answer, answer_type, alert_df):
+def enter_text_answer(problem_name, driver, problem_index, correct_answer, answer_type, alert_df, book_name):
     """
     Enters type TextBox answers into text box.
     """
@@ -123,11 +124,11 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
 
         except NoSuchElementException:
             err = "{0}: step {1} matrix dimension or answer input box does not exist.".format(problem_name, problem_index - 1)
-            alert_df = alert_df.append({"Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             # print("{0}: step {1} matrix dimension or answer input box does not exist.".format(problem_name, problem_index - 1))
         except AttributeError:
             err = "{0}: step {1} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index - 1)
-            alert_df = alert_df.append({"Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             # print("{0}: step {1} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index - 1))
     
     elif answer_type == "arithmetic":
@@ -138,7 +139,7 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
             driver.execute_script(script, ans)
         except NoSuchElementException:
             err = "{0}: step {1} arithmetic answer box does not exist.".format(problem_name, problem_index - 1)
-            alert_df = alert_df.append({"Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             # print("{0}: step {1} arithmetic answer box does not exist.".format(problem_name, problem_index - 1))
 
     elif answer_type == "string":
@@ -148,12 +149,12 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
             ans.send_keys(correct_answer)
         except NoSuchElementException:
             err = "{0}: step {1} string answer box does not exist.".format(problem_name, problem_index - 1)
-            alert_df = alert_df.append({"Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             # print("{0}: step {1} string answer box does not exist.".format(problem_name, problem_index - 1))
 
     else:
         err = "{0}: step {1} string answer box does not exist.".format(problem_name, problem_index - 1)
-        alert_df = alert_df.append({"Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+        alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         # print("{0}: step {1} answer box type not defined: {2}".format(problem_name, problem_index - 1, answer_type))
     return alert_df
 
@@ -182,7 +183,7 @@ def enter_mc_answer(problem_name, driver, problem_index, correct_answer, alert_d
 
             if ans in all_choices:
                 err = "{0}: Answer choice appears more than once: {1}".format(problem_name, ans)
-                alert_df = alert_df.append({"Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                 # print("{0}: Answer choice appears more than once: {1}".format(problem_name, ans))
             else:
                 all_choices.append(ans)
@@ -202,28 +203,37 @@ if __name__ == '__main__':
     # calling syntax:
     # python3 test_page.py <problem_name> <ans1> <type1> <ans2> <type2> ...
     # type is either TextBox or MultipleChoice
-    if len(sys.argv) % 2 == 1:
-        url_prefix = sys.argv[1]
-        i = 2
+    # python3 test_page.py <problem_name> <url_prefix>
+    problem_name = sys.argv[1]
+    if len(sys.argv) == 3:
+        url_prefix = sys.argv[2]
     else:
         url_prefix = "https://cahlr.github.io/OATutor-Staging/#/debug/"
-        i = 1
     
-    problem_name = sys.argv[i]
-    info_list = []
-    i += 1
-    while i < len(sys.argv) - 1:
-        info_list.append([sys.argv[i], sys.argv[i + 1]])
-        i += 2
-    print(info_list)
+    book_name, info_list = fetch_problem_ans_info(problem_name)
+
+    # if len(sys.argv) % 2 == 1:
+    #     url_prefix = sys.argv[1]
+    #     i = 2
+    # else:
+    #     url_prefix = "https://cahlr.github.io/OATutor-Staging/#/debug/"
+    #     i = 1
+    
+    # problem_name = sys.argv[i]
+    # info_list = []
+    # i += 1
+    # while i < len(sys.argv) - 1:
+    #     info_list.append([sys.argv[i], sys.argv[i + 1]])
+    #     i += 2
+    # print(info_list)
 
     # sets up selenium driver with correct Chrome headless version
     os.environ['WDM_LOG_LEVEL'] = '0'  # suppress logs from ChromeDriverManager install
     options = webdriver.ChromeOptions()
     # options.headless = True
     driver = webdriver.Chrome(ChromeDriverManager(version="94.0.4606.41").install(), options=options)
-    alert_df = pd.DataFrame(columns=["Error Log", "Issue Type", "Status", "Comment"])
-    alert_df = test_page(url_prefix, problem_name, info_list, driver, alert_df)
+    alert_df = pd.DataFrame(columns=["Book Name", "Error Log", "Issue Type", "Status", "Comment"])
+    alert_df = test_page(url_prefix, problem_name, info_list, driver, alert_df, book_name)
     alert(alert_df)
 
 

@@ -156,10 +156,10 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
                 start = time.time()
                 if sheet[:2] == '##':
                     skills = process_sheet(book_url, sheet, default_path, 'online','FALSE',
-                                            conflict_names=conflict_names,validator_path=validator_path)
+                                            conflict_names=conflict_names,validator_path=validator_path, course_name=course_name)
                 else:
                     skills = process_sheet(book_url, sheet, default_path, 'online','TRUE',
-                                            conflict_names=conflict_names,validator_path=validator_path)
+                                            conflict_names=conflict_names,validator_path=validator_path, course_name=course_name)
                 lesson_plan.append(create_lesson_plan(sheet, skills))
                 if skills:
                     for skill in skills:
@@ -188,10 +188,10 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
                     start = time.time()
                     if sheet[:2] == '##':
                         process_sheet(editor_url, sheet, editor_content_path, 'online','FALSE',
-                                            conflict_names=conflict_names,validator_path=validator_path,editor=True)
+                                            conflict_names=conflict_names,validator_path=validator_path,editor=True,course_name="")
                     else:
                         process_sheet(editor_url, sheet, editor_content_path, 'online','TRUE',
-                                            conflict_names=conflict_names,validator_path=validator_path,editor=True)
+                                            conflict_names=conflict_names,validator_path=validator_path,editor=True,course_name="")
                     end = time.time()
                     if end - start < 4:
                         time.sleep(4 - (end - start))

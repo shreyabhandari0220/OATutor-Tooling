@@ -18,23 +18,30 @@ def alert(alert_df):
     try:
         original_df = pd.DataFrame(table[1:], columns=table[0])
     except Exception as e:
-        original_df = pd.DataFrame(columns=["Error Log", "Issue Type", "Status", "Comment"])
-        # print("Error when retrieving original df")
-        # print(e)
-        # return
+        original_df = pd.DataFrame(columns=["Book Name", "Error Log", "Issue Type", "Status", "Comment"])
+
+    check_df = original_df.merge(alert_df[["Error Log", "Status"]], how="left", left_on="Error Log", right_on="Error Log")
+    original_df.at[(check_df["Status_x"] == "resolved") & (check_df["Status_y"] == "open"), "Status"] = "open"
+
     original_df = original_df.set_index("Error Log")
     alert_df = alert_df.set_index("Error Log")
     missing_rows = alert_df.index.difference(original_df.index)
     new_df = original_df.append(alert_df.loc[missing_rows])
+
+
+
+
+    new_df = new_df.reset_index()
+    new_df = new_df.reindex(columns=['Book Name', 'Error Log', 'Issue Type', 'Status', 'Comment'])
     try:
-        set_with_dataframe(worksheet, new_df, include_index=True)
+        set_with_dataframe(worksheet, new_df, include_index=False)
     except Exception as e:
         print('Fail to write to google sheet.')
         print(e)
     
 
 if __name__ == '__main__':
-    df = pd.DataFrame([["hie", "bcd", "cde", "asdf"], 
-                       ["def", 'efg', 'ghi', 'sfad']], 
-                      columns = ['Error Log', 'Issue Type', 'Status', 'Comment'])
+    df = pd.DataFrame([["hie", "bcd", "cde", "asdf", "asdf"], 
+                       ["def", 'efg', 'ghi', 'sfad', '8r9']], 
+                      columns = ['Book Name', 'Error Log', 'Issue Type', 'Status', 'Comment'])
     alert(df)

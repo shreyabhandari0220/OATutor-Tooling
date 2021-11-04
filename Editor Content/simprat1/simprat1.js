@@ -1,1 +1,1 @@
-import steps from "./simprat1-index.js"; const problem = {id: "simprat1", title: "Simplify Rational Expressions", body: "Determine the value(s) for which the rational expression is undefined:", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };
+import steps from "./simprat1-index.js"; const problem = {id: "simprat1", title: "Simplify Rational Expressions", body: "Determine the value(s) for which the rational expression is undefined:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

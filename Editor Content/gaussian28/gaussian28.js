@@ -1,1 +1,1 @@
-import steps from "./gaussian28-index.js"; const problem = {id: "gaussian28", title: "Solving Quadratic Equations by Factoring", body: "Find the sum of the following equation's solutions by factoring:", steps: steps, variabilization: {}, oer: "openstax.org"}; export { problem };
+import steps from "./gaussian28-index.js"; const problem = {id: "gaussian28", title: "Solving Quadratic Equations by Factoring", body: "Find the sum of the following equation's solutions by factoring:", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

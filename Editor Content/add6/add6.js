@@ -1,1 +1,1 @@
-import steps from "./add6-index.js"; const problem = {id: "add6", title: "Determine the Degree of Polynomials", body: "Determine the degree of each polynomial.", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };
+import steps from "./add6-index.js"; const problem = {id: "add6", title: "Determine the Degree of Polynomials", body: "Determine the degree of each polynomial.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

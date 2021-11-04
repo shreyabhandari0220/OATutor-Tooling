@@ -1,1 +1,1 @@
-import steps from "./a9227d4exponential29-index.js"; const problem = {id: "a9227d4exponential29", title: "Logarithmic Application", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/"}; export { problem };
+import steps from "./a9227d4exponential29-index.js"; const problem = {id: "a9227d4exponential29", title: "Logarithmic Application", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };
