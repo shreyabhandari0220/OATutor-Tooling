@@ -15,7 +15,7 @@ def test_all_content(url_prefix):
     # sets up selenium driver with correct Chrome headless version
     os.environ['WDM_LOG_LEVEL'] = '0'  # suppress logs from ChromeDriverManager install
     options = webdriver.ChromeOptions()
-    # options.headless = True
+    options.headless = True
     driver = webdriver.Chrome(ChromeDriverManager(version="94.0.4606.41").install(), options=options)
 
     all_files = get_all_content_filename()
