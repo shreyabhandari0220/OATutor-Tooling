@@ -3,25 +3,25 @@
 ## Our project
 This repository is meant to store content curated for the OpenITS system developed by Computational Approaches to Human Learning at UC Berkeley. The OpenITS system was developed to make learning more accessible and provide an open-source tutoring system for researchers, teachers, and students to access, disseminate, and better understand learning materials. The purpose of this README is to provide better understanding of how to structure content such that it can be read into the OpenITS system.
 
-## How to use the script
+## Structure of README
+The README of the repository is composed of two main parts. The first part explains the usage and structure of the content generation script, which is located under the TerminalScript directory, and the second part explains the usage of the Selenium testing and answer validation script, which is located under the selenium directory.
+
+## Content Script General Usage
 To run script on one sheet, change directory into TerminalScript, and use the command: 
 ```
-python3 process_sheet.py online <sheet_key> <sheet_name> <latex>
+python3 process_sheet.py online <sheet_key> <sheet_name>
 ```
-where sheet_key is part of the google sheet URL, and sheet name is the name of Google sheet tab to be run on. latex should be true if the content generated requires LaTeX rendering, false otherwise.
+where `sheet_key` is part of the google sheet URL, and `sheet_name` is the name of Google sheet tab to be run on. The generated content will appear under OpenITS-content/OpenStax1, and the corresponding skillModel will be in the file skillModel1.js.
+Note: sheet with name that starts with "##" will not run in LaTeX mode by default. However, users are able to wrap desired LaTeX content within "$$" on content Googlesheet to force LaTeX generation.
 
-If verbosity is desired, run the command:
+To run script on all content, use the command:
 ```
-python3 process_sheet.py online <sheet_key> <sheet_name> <latex> TRUE
+python3 final.py online
 ```
-To run script on all content created so far, use the command:
-```
-python3 final.py online ..
-```
-Note that verbosity would be False when running final.py.
+This will regenerate content for all books listed in Problem Bank URL (https://docs.google.com/spreadsheets/d/1yyeDxm52Zd__56Y0T3CdoeyXvxHVt0ITDKNKWIoIMkU). As the script runs, content feedback will be directly updated onto the original Google sheets. Content for the Editor Sheet will also be regenerated, but it is currently not deployed to frontend. The main purpose for Editor Sheet content generation is to provide content feedback directly onto the Editor Sheet. 
 
 ## How to structure content
-The script in this repo reads in Google Sheets and outputs JS files ready to be processed by the system. For every sheet procesed by the system, there are some requirements for headers and notation that ensure the script is read properly. Every sheet must have: "Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", and "Taxonomy". 
+The script in this repo reads in Google Sheets and outputs JS files ready to be processed by the system. For every sheet procesed by the system, there are some requirements for headers and notation that ensure the script is read properly. Every sheet must have: "Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", and "Taxonomy", and may optionally include "Variabilization".
 
 ## Content Organization
 The content in OpenITS is organized into different lessons. On a Google Sheets Document, each lesson should have its own sheet. Each lesson has different KC's, or knowledge components, associated with it, and the OpenITS system attempts to ensure that a student has only finished the lesson after demonstrating mastery of each KC within the lesson.
@@ -63,6 +63,8 @@ KC: A name for the KC. Every problem row must have this field filled in. Questio
 
 Taxonomy: If it exists, a link to the skill taxonomy which specifies the order of the KC's. This field is optional.
 
+Variabilization: If it exists, each cell in this column will contain group(s) of variable-value matching. Variable that appears in problem or answer text will have one of its possible values selected at random, which will replace the variable name in the problem text. This field is optional.
+
 
 ## Text Formatting
 OpenITS supports mathematical notation so that questions can render properly and more easily for students to see. There are two options when it comes to math notation. First, content creators can use OpenITS' mathematical notation itself, but this math notation has specific formatting rules and only supports a limited amount of math operations, which will be explained below. For broader math/symbol support, content creators can write their content directly in LaTex and wrap the LaTex portions of their content in "$$" which tells the system to process it as LaTex. 
@@ -100,3 +102,26 @@ Greater than: >
 Less than or equal to: <=
 
 Greater than or equal to: >=
+
+## Selenium Script Intro
+The Selenium script is developed with the purpose of answer validation testing. The script connects to the debug tool in the staging server and simulates user's behavior of inputting answers, and checks for the correctness of each answer. There are two modes for which the script could be run: testing one problem, or testing all problem contents. For both modes, errors are summarized in a Pandas DataFrame, and reported to the feedback Google sheet. 
+
+## Selenium Script Usage
+To test all steps of a particular problem, change directory to selenium, and run the following command:
+```
+python3 test_page.py <problem_name> <ans1> <type1> <ans2> <type2> ...
+```
+or
+```
+python3 test_page.py <url_prefix> <problem_name> <ans1> <type1> <ans2> <type2> ...
+```
+problem_name: the name of problem that you are testing, ex. "real1".
+`ans`: answer of a particular step, in order of steps.
+`type`: type of the previous answer. Can be one of "TextBox arithmetic", "TextBox string", "MultipleChoice".
+`url_prefix`: the script tests the webpage with the full URL: `url_prefix + problem_name`. If `url_prefix` is not specified in the function call, it will be default to the CAHLR staging URL "https://cahlr.github.io/OATutor-Staging/#/debug/". 
+
+To test answer for all problems, change directory to selenium, and run the following command:
+```
+python3 test_all.py <url_prefix>
+```
+This command loops through the collection of all problems under OpenStax Content, fetches the step answers and types for each problem from the content js files, and runs UI testing for each problem.
