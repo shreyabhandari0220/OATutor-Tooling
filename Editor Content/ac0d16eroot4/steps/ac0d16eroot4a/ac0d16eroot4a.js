@@ -1,0 +1,1 @@
+import hints from "./ac0d16eroot4a-index.js"; const step = {id: "ac0d16eroot4a", stepAnswer: ["$$144x^3 \\sqrt{10}$$"], problemType: "TextBox", stepTitle: "$$6\\sqrt{2x^2}\\times8 \\sqrt{45x^4}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,1 @@
-import hints from "./gaussian30a-index.js"; const step = {id: "gaussian30a", stepAnswer: ["3"], problemType: "TextBox", stepTitle: "$$\\left(20\\right) x^2-\\left(60\\right) x=-45$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./gaussian30a-index.js"; const step = {id: "gaussian30a", stepAnswer: ["3"], problemType: "TextBox", stepTitle: "$$20x^2-60x=-45$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

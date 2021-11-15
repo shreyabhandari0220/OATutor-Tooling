@@ -1,1 +1,0 @@
-import hints from "./SimplifyRads7a-index.js"; const step = {id: "SimplifyRads7a", stepAnswer: ["$$\\left(4\\right) x^3 \\sqrt{x}$$"], problemType: "TextBox", stepTitle: "Simplify $$\\sqrt{\\left(16\\right) x^7}$$", stepBody: "Write your answer in radical form.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

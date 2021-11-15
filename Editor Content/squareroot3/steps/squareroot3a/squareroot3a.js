@@ -1,1 +1,0 @@
-import hints from "./squareroot3a-index.js"; const step = {id: "squareroot3a", stepAnswer: ["12"], problemType: "TextBox", stepTitle: "$$\\sqrt{144}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

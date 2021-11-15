@@ -1,0 +1,1 @@
+import hints from "./Square7a-index.js"; const step = {id: "Square7a", stepAnswer: ["$${\\left(d+5\\right)}^2=16$$"], problemType: "TextBox", stepTitle: "$$d^2+10d=-9$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

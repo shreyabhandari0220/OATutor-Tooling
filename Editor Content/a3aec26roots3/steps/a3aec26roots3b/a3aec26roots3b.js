@@ -1,0 +1,1 @@
+import hints from "./a3aec26roots3b-index.js"; const step = {id: "a3aec26roots3b", stepAnswer: ["-8"], problemType: "MultipleChoice", stepTitle: "$$-\\sqrt{64}$$", stepBody: "", choices: ["-16I-12I-8Inot real number"], answerType: "string", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+var hints = [{id: "exercise_234aa-h1", type: "hint", dependencies: [], title: "Multiplying Each Root", text: "$$\\sqrt{6} \\sqrt{6}=\\sqrt{36}$$", variabilization: {}}, {id: "exercise_234aa-h2", type: "hint", dependencies: ["exercise_234aa-h1"], title: "Simplifying the Product", text: "$$\\sqrt{36}$$ can be simplified to 6", variabilization: {}}, ]; export {hints};

@@ -1,1 +1,0 @@
-import hints from "./a6ab4adrational13a-index.js"; const step = {id: "a6ab4adrational13a", stepAnswer: ["$$\\frac{1}{\\left(6\\right) x y}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\left(3\\right) x y}{\\left(18\\right) x^2 y^2}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

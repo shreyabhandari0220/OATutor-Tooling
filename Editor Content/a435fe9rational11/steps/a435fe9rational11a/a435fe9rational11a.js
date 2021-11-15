@@ -1,1 +1,0 @@
-import hints from "./a435fe9rational11a-index.js"; const step = {id: "a435fe9rational11a", stepAnswer: ["$$d+\\left(3\\right)$$"], problemType: "TextBox", stepTitle: "$$\\frac{d^2}{d-\\left(9\\right)}-\\frac{\\left(6\\right) d+\\left(27\\right)}{d-\\left(9\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

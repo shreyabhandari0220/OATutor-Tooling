@@ -1,1 +1,0 @@
-import hints from "./a435fe9rational14a-index.js"; const step = {id: "a435fe9rational14a", stepAnswer: ["$$\\frac{q-\\left(8\\right)}{q+\\left(4\\right)}$$"], problemType: "TextBox", stepTitle: "(((5*q**2)+(3*q)-9)/((q**2)+(6*q)+8))-(((4*q**1)+(9*q)+7)/((q**2)+(6*q)+8)))", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

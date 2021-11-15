@@ -1,1 +1,0 @@
-import hints from "./ac3241froots8a-index.js"; const step = {id: "ac3241froots8a", stepAnswer: ["17"], problemType: "TextBox", stepTitle: "$$\\sqrt{\\left(64\\right)+\\left(225\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

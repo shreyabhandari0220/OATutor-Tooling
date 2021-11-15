@@ -1,1 +1,0 @@
-import steps from "./a6ab4adrational2-index.js"; const problem = {id: "a6ab4adrational2", title: "Simplify Rational Expressions", body: "Attempt to solve the problem without resorting to the multiple choice. Determine the value(s) for which the rational expression is undefined:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

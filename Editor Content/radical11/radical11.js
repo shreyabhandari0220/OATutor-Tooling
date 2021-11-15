@@ -1,0 +1,1 @@
+import steps from "./radical11-index.js"; const problem = {id: "radical11", title: "Simplifying Square Roots", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/9-2-simplify-square-roots", courseName: ""}; export { problem };

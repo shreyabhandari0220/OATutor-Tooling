@@ -1,0 +1,1 @@
+import steps from "./roots17-index.js"; const problem = {id: "roots17", title: "Adding and Subtracting Like Square Roots", body: "Simplify the expression.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

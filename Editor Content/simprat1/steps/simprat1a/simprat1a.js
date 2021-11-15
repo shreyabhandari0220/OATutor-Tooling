@@ -1,1 +1,0 @@
-import hints from "./simprat1a-index.js"; const step = {id: "simprat1a", stepAnswer: ["$$\\frac{-\\left(5\\right)}{2}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\left(4\\right) b-\\left(3\\right)}{\\left(2\\right) b+\\left(5\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

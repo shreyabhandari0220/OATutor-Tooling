@@ -1,1 +1,0 @@
-import steps from "./SimplifyRads10-index.js"; const problem = {id: "SimplifyRads10", title: "Simplifying Square Roots", body: "Simplify: $$\\sqrt{\\left(75\\right) a^9}$$", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/9-2-simplify-square-roots", courseName: ""}; export { problem };

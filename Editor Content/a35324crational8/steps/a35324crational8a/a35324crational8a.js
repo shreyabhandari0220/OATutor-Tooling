@@ -1,0 +1,1 @@
+import hints from "./a35324crational8a-index.js"; const step = {id: "a35324crational8a", stepAnswer: ["$$\\frac{3y+7}{4y-3}$$"], problemType: "TextBox", stepTitle: "$$\\frac{3y}{4y-3}+\\frac{7}{4y-3}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

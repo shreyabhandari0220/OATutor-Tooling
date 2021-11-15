@@ -1,1 +1,1 @@
-import hints from "./gaussian29a-index.js"; const step = {id: "gaussian29a", stepAnswer: ["-3"], problemType: "TextBox", stepTitle: "$$\\left(x+\\left(6\\right)\\right) \\left(x-\\left(3\\right)\\right)=-8$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./gaussian29a-index.js"; const step = {id: "gaussian29a", stepAnswer: ["-3"], problemType: "TextBox", stepTitle: "$$\\left(x+6\\right) \\left(x-3\\right)=-8$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

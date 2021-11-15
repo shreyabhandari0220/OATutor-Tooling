@@ -1,1 +1,0 @@
-import hints from "./a435fe9rational3a-index.js"; const step = {id: "a435fe9rational3a", stepAnswer: ["$$\\left(6\\right) v$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\left(6\\right) v^2}{v+\\left(5\\right)}+\\frac{\\left(30\\right) v}{v+\\left(5\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

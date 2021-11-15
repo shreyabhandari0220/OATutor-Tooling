@@ -1,1 +1,0 @@
-var hints = [{id: "squareroot15a-h1", type: "hint", dependencies: [], title: "Square and Square Root of a Number", text: "If $$n^2=m$$, then m is the square of n. For example, $${\\left(10\\right)}^2=100$$, so 100 is the square of 10. Alternatively, $$\\sqrt{100}=10$$.", variabilization: {}}, ]; export {hints};

@@ -1,0 +1,1 @@
+import hints from "./a0500edrational13a-index.js"; const step = {id: "a0500edrational13a", stepAnswer: ["x"], problemType: "TextBox", stepTitle: "Simplify: $${\\left(r^6\\right)}^{\\frac{5}{3}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

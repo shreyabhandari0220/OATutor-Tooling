@@ -1,1 +1,1 @@
-import hints from "./a6cdcdegaussian19a-index.js"; const step = {id: "a6cdcdegaussian19a", stepAnswer: ["-1"], problemType: "TextBox", stepTitle: "$$\\left(7\\right) a^2+\\left(14\\right) a=7a$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./a6cdcdegaussian19a-index.js"; const step = {id: "a6cdcdegaussian19a", stepAnswer: ["-1"], problemType: "TextBox", stepTitle: "$$7a^2+14a=7a$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

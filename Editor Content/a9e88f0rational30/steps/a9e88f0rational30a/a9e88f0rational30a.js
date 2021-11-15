@@ -1,0 +1,1 @@
+import hints from "./a9e88f0rational30a-index.js"; const step = {id: "a9e88f0rational30a", stepAnswer: ["$$\\frac{p+3}{p+5}$$"], problemType: "TextBox", stepTitle: "$$\\frac{6p^2+3p+4}{p^2+4p-5}-\\frac{5p^2+p+7}{p^2+4p-5}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./a9e88f0rational20a-index.js"; const step = {id: "a9e88f0rational20a", stepAnswer: ["$$\\frac{7x}{x-3}$$"], problemType: "TextBox", stepTitle: "$$\\frac{7x^2}{x^2-9}+\\frac{21x}{x^2-9}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

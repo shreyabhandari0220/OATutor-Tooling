@@ -1,1 +1,0 @@
-import hints from "./a6ab4adrational7c-index.js"; const step = {id: "a6ab4adrational7c", stepAnswer: ["$$\\frac{-\\left(1\\right)}{3}$$"], problemType: "TextBox", stepTitle: "$$y=0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

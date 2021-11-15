@@ -1,0 +1,1 @@
+import hints from "./rationaldenom12a-index.js"; const step = {id: "rationaldenom12a", stepAnswer: ["$$\\frac{4mn+7}{8m^2 n}$$"], problemType: "TextBox", stepTitle: "$$\\frac{1}{2m}+\\frac{7}{8m^2 n}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

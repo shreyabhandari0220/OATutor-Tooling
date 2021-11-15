@@ -1,1 +1,1 @@
-import hints from "./factoring19a-index.js"; const step = {id: "factoring19a", stepAnswer: ["16(x-1)(x-1)"], problemType: "TextBox", stepTitle: "$$\\left(16\\right) x^2-\\left(32\\right) x+\\left(16\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./factoring19a-index.js"; const step = {id: "factoring19a", stepAnswer: ["16(x-1)(x-1)"], problemType: "TextBox", stepTitle: "$$16x^2-32x+16$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

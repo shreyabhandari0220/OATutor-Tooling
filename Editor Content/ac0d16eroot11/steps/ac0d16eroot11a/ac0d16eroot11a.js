@@ -1,0 +1,1 @@
+import hints from "./ac0d16eroot11a-index.js"; const step = {id: "ac0d16eroot11a", stepAnswer: ["$$4+25m+20\\sqrt{m}$$"], problemType: "TextBox", stepTitle: "$${\\left(2+5\\sqrt{m}\\right)}^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./squareroot8a-index.js"; const step = {id: "squareroot8a", stepAnswer: ["Undefined"], problemType: "MultipleChoice", stepTitle: "$$\\sqrt{-\\left(121\\right)}$$", stepBody: "", choices: ["-11", "11", "10", "Undefined"], answerType: "string", hints: hints, variabilization: {}}; export {step};

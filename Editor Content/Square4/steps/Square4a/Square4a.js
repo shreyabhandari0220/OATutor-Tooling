@@ -1,0 +1,1 @@
+import hints from "./Square4a-index.js"; const step = {id: "Square4a", stepAnswer: ["$${\\left(u-\\frac{9}{2}\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$u^2-9u$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

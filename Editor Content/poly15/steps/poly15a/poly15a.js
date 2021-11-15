@@ -1,1 +1,1 @@
-import hints from "./poly15a-index.js"; const step = {id: "poly15a", stepAnswer: ["$$d+\\left(6\\right)$$"], problemType: "TextBox", stepTitle: "$$\\frac{d^2+\\left(8\\right) d+\\left(12\\right)}{d+\\left(2\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./poly15a-index.js"; const step = {id: "poly15a", stepAnswer: ["$$d+6$$"], problemType: "TextBox", stepTitle: "$$\\frac{d^2+8d+12}{d+2}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

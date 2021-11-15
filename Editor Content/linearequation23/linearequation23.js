@@ -1,1 +1,1 @@
-import steps from "./linearequation23-index.js"; const problem = {id: "linearequation23", title: "Determining the X- and Y-Intercepts to the Equation $$\\left(3\\right) x+y=1$$", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };
+import steps from "./linearequation23-index.js"; const problem = {id: "linearequation23", title: "Determining the X- and Y-Intercepts to the Equation $$3x+y=1$$", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

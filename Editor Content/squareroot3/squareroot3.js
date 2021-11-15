@@ -1,1 +1,0 @@
-import steps from "./squareroot3-index.js"; const problem = {id: "squareroot3", title: "Finding the Square Root of a Number", body: "Solve the following expression.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./a9e88f0rational27a-index.js"; const step = {id: "a9e88f0rational27a", stepAnswer: ["$$\\frac{m-2}{2}$$"], problemType: "TextBox", stepTitle: "$$\\frac{3m^2}{6m-30}-\\frac{21m-30}{6m-30}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

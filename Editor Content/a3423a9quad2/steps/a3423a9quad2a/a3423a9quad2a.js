@@ -1,0 +1,1 @@
+import hints from "./a3423a9quad2a-index.js"; const step = {id: "a3423a9quad2a", stepAnswer: ["(-0.25,-1.125)"], problemType: "MultipleChoice", stepTitle: "$$y=2x^2+x-1$$", stepBody: "", choices: ["(-0.5,1)I(-0.25,-1.125)I(0.75,2)I(1,-0.25)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

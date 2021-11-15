@@ -1,0 +1,1 @@
+import hints from "./rationaldenom17a-index.js"; const step = {id: "rationaldenom17a", stepAnswer: ["$$\\frac{57}{60}$$"], problemType: "TextBox", stepTitle: "Add $$\\frac{11}{30}+\\frac{7}{12}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./root18a-index.js"; const step = {id: "root18a", stepAnswer: ["-1"], problemType: "TextBox", stepTitle: "Solve the following expression.", stepBody: "$$-\\sqrt{1}$$", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

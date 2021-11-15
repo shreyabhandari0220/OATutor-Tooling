@@ -1,1 +1,0 @@
-import hints from "./ac3241froots5b-index.js"; const step = {id: "ac3241froots5b", stepAnswer: ["not real number"], problemType: "MultipleChoice", stepTitle: "$$\\sqrt{-\\left(121\\right)}$$", stepBody: "", choices: ["-10I-11I-12Inot real number"], answerType: "string", hints: hints, variabilization: {}}; export {step};

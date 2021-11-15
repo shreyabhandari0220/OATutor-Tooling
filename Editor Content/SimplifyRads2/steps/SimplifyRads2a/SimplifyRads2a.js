@@ -1,1 +1,0 @@
-import hints from "./SimplifyRads2a-index.js"; const step = {id: "SimplifyRads2a", stepAnswer: ["$$\\left(3\\right) \\sqrt{5}$$"], problemType: "TextBox", stepTitle: "Simplify $$\\sqrt{45}$$", stepBody: "Write your answer in radical form.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./quad10a-index.js"; const step = {id: "quad10a", stepAnswer: ["-3 and 9"], problemType: "MultipleChoice", stepTitle: "$$p^2-6p-27=0$$", stepBody: "", choices: ["2 and -5I-3 and 9I4 and $$\\frac{1}{2} I-5$$ and 2"], answerType: "string", hints: hints, variabilization: {}}; export {step};

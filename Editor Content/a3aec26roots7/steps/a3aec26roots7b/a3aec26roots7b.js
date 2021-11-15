@@ -1,0 +1,1 @@
+import hints from "./a3aec26roots7b-index.js"; const step = {id: "a3aec26roots7b", stepAnswer: ["5"], problemType: "TextBox", stepTitle: "What is the simplified expression?", stepBody: "$$\\sqrt{9+16}$$", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

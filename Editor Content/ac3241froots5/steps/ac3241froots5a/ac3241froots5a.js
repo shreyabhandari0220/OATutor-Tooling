@@ -1,1 +1,0 @@
-import hints from "./ac3241froots5a-index.js"; const step = {id: "ac3241froots5a", stepAnswer: ["-7"], problemType: "MultipleChoice", stepTitle: "$$-\\sqrt{49}$$", stepBody: "", choices: ["-4I-7I-9Inot real number"], answerType: "string", hints: hints, variabilization: {}}; export {step};

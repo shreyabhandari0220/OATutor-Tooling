@@ -1,0 +1,1 @@
+import hints from "./a3aec26roots1a-index.js"; const step = {id: "a3aec26roots1a", stepAnswer: ["-7"], problemType: "MultipleChoice", stepTitle: "$$-\\sqrt{49}$$", stepBody: "", choices: ["-7", "6", "7", "not real number"], answerType: "string", hints: hints, variabilization: {}}; export {step};

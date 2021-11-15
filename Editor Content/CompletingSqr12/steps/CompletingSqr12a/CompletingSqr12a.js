@@ -1,0 +1,1 @@
+import hints from "./CompletingSqr12a-index.js"; const step = {id: "CompletingSqr12a", stepAnswer: ["5 or -13"], problemType: "MultipleChoice", stepTitle: "$$w^2+8w=65$$", stepBody: "", choices: ["-5 or -13", "5 or -13", "5 or 13"], answerType: "string", hints: hints, variabilization: {}}; export {step};

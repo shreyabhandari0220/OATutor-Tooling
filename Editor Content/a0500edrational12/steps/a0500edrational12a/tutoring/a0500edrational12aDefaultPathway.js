@@ -1,0 +1,1 @@
+var hints = [{id: "a0500edrational12a-h1", type: "hint", dependencies: [], title: "Exponent Multiplication", text: "To raise a power to a power, we multiply the exponents.", variabilization: {}}, {id: "a0500edrational12a-h2", type: "hint", dependencies: ["a0500edrational12a-h1"], title: "Simplify", text: "Simply the whole expression", variabilization: {}}, ]; export {hints};

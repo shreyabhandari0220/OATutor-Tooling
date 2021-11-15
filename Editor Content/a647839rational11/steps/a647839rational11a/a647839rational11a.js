@@ -1,1 +1,0 @@
-import hints from "./a647839rational11a-index.js"; const step = {id: "a647839rational11a", stepAnswer: ["$$x+\\left(4\\right)$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\left(7\\right) x+\\left(12\\right)}{x+\\left(3\\right)}+\\frac{x^2}{x+\\left(3\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

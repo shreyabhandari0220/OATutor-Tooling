@@ -1,1 +1,1 @@
-import hints from "./solverat1a-index.js"; const step = {id: "solverat1a", stepAnswer: ["a=5, a=-3"], problemType: "TextBox", stepTitle: "$$\\left(1\\right)-\\frac{2}{a}=\\frac{-\\left(15\\right)}{a^2}$$", stepBody: "", answerType: "string", hints: hints, variabilization: {}}; export {step};
+import hints from "./solverat1a-index.js"; const step = {id: "solverat1a", stepAnswer: ["a=5, a=-3"], problemType: "TextBox", stepTitle: "$$1-\\frac{2}{a}=\\frac{-15}{a^2}$$", stepBody: "", answerType: "string", hints: hints, variabilization: {}}; export {step};
