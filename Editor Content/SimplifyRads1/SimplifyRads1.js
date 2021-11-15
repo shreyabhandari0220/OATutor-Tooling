@@ -1,1 +1,0 @@
-import steps from "./SimplifyRads1-index.js"; const problem = {id: "SimplifyRads1", title: "Simplifying Square Roots", body: "Simplify: $$\\sqrt{48}$$", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/9-2-simplify-square-roots", courseName: ""}; export { problem };

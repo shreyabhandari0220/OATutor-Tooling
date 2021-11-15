@@ -1,1 +1,0 @@
-import steps from "./SimplifyRads7-index.js"; const problem = {id: "SimplifyRads7", title: "Simplifying Square Roots", body: "Simplify: $$\\sqrt{\\left(16\\right) x^7}$$", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/9-2-simplify-square-roots", courseName: ""}; export { problem };

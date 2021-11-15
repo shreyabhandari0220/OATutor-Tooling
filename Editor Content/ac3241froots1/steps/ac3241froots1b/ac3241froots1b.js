@@ -1,1 +1,0 @@
-import hints from "./ac3241froots1b-index.js"; const step = {id: "ac3241froots1b", stepAnswer: ["15"], problemType: "MultipleChoice", stepTitle: "$$\\sqrt{225}$$", stepBody: "", choices: ["25I15I-20Inot real number"], answerType: "string", hints: hints, variabilization: {}}; export {step};

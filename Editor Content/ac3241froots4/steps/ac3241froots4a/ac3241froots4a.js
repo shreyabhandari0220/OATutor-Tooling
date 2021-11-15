@@ -1,1 +1,0 @@
-import hints from "./ac3241froots4a-index.js"; const step = {id: "ac3241froots4a", stepAnswer: ["not real number"], problemType: "MultipleChoice", stepTitle: "$$\\sqrt{-\\left(196\\right)}$$", stepBody: "", choices: ["-13I-14I-15Inot real number"], answerType: "string", hints: hints, variabilization: {}}; export {step};

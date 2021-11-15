@@ -1,1 +1,1 @@
-import hints from "./a6cdcdegaussian20a-index.js"; const step = {id: "a6cdcdegaussian20a", stepAnswer: ["$$\\frac{1}{2}$$"], problemType: "TextBox", stepTitle: "$$\\left(12\\right) b^2-\\left(15\\right) b=-9b$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./a6cdcdegaussian20a-index.js"; const step = {id: "a6cdcdegaussian20a", stepAnswer: ["$$\\frac{1}{2}$$"], problemType: "TextBox", stepTitle: "$$12b^2-15b=-9b$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

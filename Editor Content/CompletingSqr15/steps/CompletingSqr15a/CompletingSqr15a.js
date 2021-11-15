@@ -1,0 +1,1 @@
+import hints from "./CompletingSqr15a-index.js"; const step = {id: "CompletingSqr15a", stepAnswer: ["$${\\left(m-12\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$m^2-24m$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,1 @@
-import hints from "./add6c-index.js"; const step = {id: "add6c", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "$$a^2+\\left(9\\right) a+\\left(18\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./add6c-index.js"; const step = {id: "add6c", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "$$a^2+9a+18$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./ab24738root15a-index.js"; const step = {id: "ab24738root15a", stepAnswer: ["12"], problemType: "TextBox", stepTitle: "Solve the following expression.", stepBody: "$$\\sqrt{144}$$", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./a647839rational10a-index.js"; const step = {id: "a647839rational10a", stepAnswer: ["$$\\frac{x+\\left(1\\right)}{x-\\left(2\\right)}$$"], problemType: "TextBox", stepTitle: "$$\\frac{x}{x-\\left(2\\right)}+\\frac{1}{x-\\left(2\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import steps from "./root23-index.js"; const problem = {id: "root23", title: "Finding the Square Root of a Number", body: "", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

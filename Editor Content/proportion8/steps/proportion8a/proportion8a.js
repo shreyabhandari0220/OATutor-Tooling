@@ -1,1 +1,1 @@
-import hints from "./proportion8a-index.js"; const step = {id: "proportion8a", stepAnswer: ["30"], problemType: "TextBox", stepTitle: "$$\\frac{\\left(2\\right) p+\\left(4\\right)}{8}=\\frac{p+\\left(18\\right)}{6}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./proportion8a-index.js"; const step = {id: "proportion8a", stepAnswer: ["30"], problemType: "TextBox", stepTitle: "$$\\frac{2p+4}{8}=\\frac{p+18}{6}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

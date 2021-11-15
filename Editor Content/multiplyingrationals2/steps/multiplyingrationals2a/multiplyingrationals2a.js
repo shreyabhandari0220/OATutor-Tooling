@@ -1,0 +1,1 @@
+import hints from "./multiplyingrationals2a-index.js"; const step = {id: "multiplyingrationals2a", stepAnswer: ["$$\\frac{3}{4}$$"], problemType: "TextBox", stepTitle: "Multiply $$\\frac{15\\frac{6}{10}}{12}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

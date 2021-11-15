@@ -1,0 +1,1 @@
+import hints from "./a9e88f0rational18a-index.js"; const step = {id: "a9e88f0rational18a", stepAnswer: ["$$6v$$"], problemType: "TextBox", stepTitle: "$$\\frac{6v^2}{v+5}+\\frac{30v}{v+5}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

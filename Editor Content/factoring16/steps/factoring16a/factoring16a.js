@@ -1,1 +1,1 @@
-import hints from "./factoring16a-index.js"; const step = {id: "factoring16a", stepAnswer: ["(3p-2)(2p-5)"], problemType: "TextBox", stepTitle: "$$\\left(6\\right) p^2-\\left(19\\right) p+\\left(10\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./factoring16a-index.js"; const step = {id: "factoring16a", stepAnswer: ["(3p-2)(2p-5)"], problemType: "TextBox", stepTitle: "$$6p^2-19p+10$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import steps from "./rationals3-index.js"; const problem = {id: "rationals3", title: "Simplify Rational Expressions", body: "Determine the value(s) for which the rational expression is undefined:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

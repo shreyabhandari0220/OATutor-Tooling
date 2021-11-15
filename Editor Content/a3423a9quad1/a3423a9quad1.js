@@ -1,0 +1,1 @@
+import steps from "./a3423a9quad1-index.js"; const problem = {id: "a3423a9quad1", title: "Graphing Quadratic Equations in Two Variables", body: "$$y=-\\left(x^2\\right)-14x-49$$", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

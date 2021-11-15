@@ -1,0 +1,1 @@
+import steps from "./rationaldenom14-index.js"; const problem = {id: "rationaldenom14", title: "Adding Rational Expressions", body: "Simplify the following expression.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

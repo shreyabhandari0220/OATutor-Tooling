@@ -1,1 +1,0 @@
-import hints from "./a6ab4adrational5a-index.js"; const step = {id: "a6ab4adrational5a", stepAnswer: ["$$\\frac{-\\left(2\\right)}{3}$$"], problemType: "TextBox", stepTitle: "$$\\frac{y-\\left(1\\right)}{\\left(3\\right) y+\\left(2\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

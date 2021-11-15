@@ -1,1 +1,1 @@
-import hints from "./gaussian23a-index.js"; const step = {id: "gaussian23a", stepAnswer: ["5"], problemType: "TextBox", stepTitle: "$$\\left(y-\\left(3\\right)\\right) \\left(y+\\left(2\\right)\\right)=4y$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./gaussian23a-index.js"; const step = {id: "gaussian23a", stepAnswer: ["5"], problemType: "TextBox", stepTitle: "$$\\left(y-3\\right) \\left(y+2\\right)=4y$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

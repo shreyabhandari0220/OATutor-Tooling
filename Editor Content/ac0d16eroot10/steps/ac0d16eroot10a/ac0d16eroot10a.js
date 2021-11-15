@@ -1,0 +1,1 @@
+import hints from "./ac0d16eroot10a-index.js"; const step = {id: "ac0d16eroot10a", stepAnswer: ["$$1+9x+6\\sqrt{x}$$"], problemType: "TextBox", stepTitle: "$${\\left(1+3\\sqrt{x}\\right)}^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

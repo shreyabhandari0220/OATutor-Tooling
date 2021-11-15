@@ -1,0 +1,1 @@
+import hints from "./ad79b4eroots15a-index.js"; const step = {id: "ad79b4eroots15a", stepAnswer: ["$$5\\sqrt{m}+\\sqrt{n}$$"], problemType: "TextBox", stepTitle: "$$5\\sqrt{m}+\\sqrt{n}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

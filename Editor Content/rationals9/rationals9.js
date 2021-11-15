@@ -1,0 +1,1 @@
+import steps from "./rationals9-index.js"; const problem = {id: "rationals9", title: "Simplify Rational Expressions", body: "Evaluate $$\\frac{x^2+8x+7}{x^2-4}$$ for each value value of x.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

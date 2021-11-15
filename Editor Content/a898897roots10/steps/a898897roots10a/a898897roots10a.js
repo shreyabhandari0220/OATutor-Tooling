@@ -1,1 +1,0 @@
-import hints from "./a898897roots10a-index.js"; const step = {id: "a898897roots10a", stepAnswer: ["$$-\\left(5\\right) \\sqrt{b}$$"], problemType: "TextBox", stepTitle: "$$\\sqrt{b}-\\left(6\\right) \\sqrt{b}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

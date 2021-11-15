@@ -1,1 +1,1 @@
-import hints from "./binomseq26a-index.js"; const step = {id: "binomseq26a", stepAnswer: ["$$\\frac{\\left(1152\\right) y^2}{x^7}$$"], problemType: "TextBox", stepTitle: "(y/2 + 2/x)**9", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./binomseq26a-index.js"; const step = {id: "binomseq26a", stepAnswer: ["$$\\frac{1152y^2}{x^7}$$"], problemType: "TextBox", stepTitle: "(y/2 + 2/x)**9", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

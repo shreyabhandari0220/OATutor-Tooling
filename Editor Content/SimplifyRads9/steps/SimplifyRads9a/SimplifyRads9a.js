@@ -1,1 +1,0 @@
-import hints from "./SimplifyRads9a-index.js"; const step = {id: "SimplifyRads9a", stepAnswer: ["$$\\left(4\\right) y^2 \\sqrt{\\left(2\\right) y}$$"], problemType: "TextBox", stepTitle: "Simplify $$\\sqrt{\\left(32\\right) y^5}$$", stepBody: "Write your answer in radical form.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./a0500edrational4c-index.js"; const step = {id: "a0500edrational4c", stepAnswer: ["4"], problemType: "TextBox", stepTitle: "Simplify: $${256}^{\\frac{1}{4}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

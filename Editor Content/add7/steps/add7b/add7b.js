@@ -1,1 +1,1 @@
-import hints from "./add7b-index.js"; const step = {id: "add7b", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "$$z^2-\\left(5\\right) z-\\left(6\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./add7b-index.js"; const step = {id: "add7b", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "$$z^2-5z-6$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

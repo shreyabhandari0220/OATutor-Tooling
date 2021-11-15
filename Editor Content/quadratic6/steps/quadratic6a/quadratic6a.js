@@ -1,0 +1,1 @@
+import hints from "./quadratic6a-index.js"; const step = {id: "quadratic6a", stepAnswer: ["35"], problemType: "TextBox", stepTitle: "The length of a rectangular driveway is five feet more than three times the width. The area is 350 square feet. Find the length of the driveway in feet.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

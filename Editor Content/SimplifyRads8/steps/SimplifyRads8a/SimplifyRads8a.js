@@ -1,1 +1,0 @@
-import hints from "./SimplifyRads8a-index.js"; const step = {id: "SimplifyRads8a", stepAnswer: ["$$\\left(7\\right) v^4 \\sqrt{v}$$"], problemType: "TextBox", stepTitle: "Simplify $$\\sqrt{\\left(49\\right) v^9}$$", stepBody: "Write your answer in radical form.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

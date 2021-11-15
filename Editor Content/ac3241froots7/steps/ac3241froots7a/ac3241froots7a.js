@@ -1,1 +1,0 @@
-import hints from "./ac3241froots7a-index.js"; const step = {id: "ac3241froots7a", stepAnswer: ["7"], problemType: "TextBox", stepTitle: "$$\\sqrt{9}+\\sqrt{16}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

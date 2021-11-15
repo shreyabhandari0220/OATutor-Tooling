@@ -1,1 +1,0 @@
-import hints from "./a647839rational1a-index.js"; const step = {id: "a647839rational1a", stepAnswer: ["$$\\frac{2}{3}$$"], problemType: "TextBox", stepTitle: "$$\\frac{5}{18}+\\frac{7}{18}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

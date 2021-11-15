@@ -1,1 +1,0 @@
-import hints from "./ac3241froots10a-index.js"; const step = {id: "ac3241froots10a", stepAnswer: ["$$y^4$$"], problemType: "TextBox", stepTitle: "$$\\sqrt{y^8}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

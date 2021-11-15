@@ -1,1 +1,0 @@
-import steps from "./a647839rational2-index.js"; const problem = {id: "a647839rational2", title: "Add the following expression", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

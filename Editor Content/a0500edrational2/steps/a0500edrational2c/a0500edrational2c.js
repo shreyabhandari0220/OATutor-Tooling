@@ -1,0 +1,1 @@
+import hints from "./a0500edrational2c-index.js"; const step = {id: "a0500edrational2c", stepAnswer: ["$$z^{\\frac{1}{4}}$$"], problemType: "TextBox", stepTitle: "Wrtie with a rational exponent: $$\\sqrt{4, z}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

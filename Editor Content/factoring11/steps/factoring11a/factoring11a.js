@@ -1,1 +1,1 @@
-import hints from "./factoring11a-index.js"; const step = {id: "factoring11a", stepAnswer: ["3m(m-5)(m-2)"], problemType: "TextBox", stepTitle: "$$\\left(3\\right) m^3-\\left(21\\right) m^2+\\left(30\\right) m$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./factoring11a-index.js"; const step = {id: "factoring11a", stepAnswer: ["3m(m-5)(m-2)"], problemType: "TextBox", stepTitle: "$$3m^3-21m^2+30m$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

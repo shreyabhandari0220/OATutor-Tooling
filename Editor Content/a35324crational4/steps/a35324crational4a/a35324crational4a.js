@@ -1,0 +1,1 @@
+import hints from "./a35324crational4a-index.js"; const step = {id: "a35324crational4a", stepAnswer: ["$$\\frac{3}{5}$$"], problemType: "TextBox", stepTitle: "$$\\frac{2}{15}+\\frac{7}{15}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

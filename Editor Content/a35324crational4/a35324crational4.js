@@ -1,0 +1,1 @@
+import steps from "./a35324crational4-index.js"; const problem = {id: "a35324crational4", title: "Adding Rational Expressions.", body: "Find the value of the expression.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };
