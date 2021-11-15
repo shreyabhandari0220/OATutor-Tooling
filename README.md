@@ -125,3 +125,10 @@ To test answer for all problems, change directory to selenium, and run the follo
 python3 test_all.py <url_prefix>
 ```
 This command loops through the collection of all problems under OpenStax Content, fetches the step answers and types for each problem from the content js files, and runs UI testing for each problem.
+
+## Feedback Submission Check
+To test whether feedback submitted through the frontend platform reaches Google firestore, run the file check_feedback.py under selenium with the following command:
+```
+python3 check_feedback.py <url_prefix>
+```
+url_prefix: an optional argument that specifies the url domain that the feedback will be submitted from. If not present, we default to the staging branch. 
