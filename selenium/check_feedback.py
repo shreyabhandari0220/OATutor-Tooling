@@ -12,6 +12,9 @@ import time
 import random
 import sys
 from datetime import datetime
+import slack
+from pathlib import Path
+from dotenv import load_dotenv
 
 from fetch_problem_ans import get_all_content_filename
 
@@ -19,7 +22,7 @@ def submit_feedback(url_prefix):
     # sets up selenium driver with correct Chrome headless version
     os.environ['WDM_LOG_LEVEL'] = '0'  # suppress logs from ChromeDriverManager install
     options = webdriver.ChromeOptions()
-    options.headless = True
+    # options.headless = True
     driver = webdriver.Chrome(ChromeDriverManager(version="94.0.4606.41").install(), options=options)
 
     problem_names = random.sample(get_all_content_filename(), 5)
@@ -99,3 +102,9 @@ if __name__ == '__main__':
         print("Feedback successful")
     else:
         print("Feedback Unsuccessful")
+
+        # Slack Bot
+        env_path = Path('.') / '.env'
+        load_dotenv(dotenv_path=env_path)
+        client = slack.WebClient(token=os.environ['SLACK_TOKEN'])
+        client.chat_postMessage(channel='#openits', text='Hello World!')
