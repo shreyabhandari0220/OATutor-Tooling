@@ -1,0 +1,1 @@
+import steps from "./a2c372bexponents12-index.js"; const problem = {id: "a2c372bexponents12", title: "Convert to Scientific Notation", body: "Write the integer in scientific notation.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

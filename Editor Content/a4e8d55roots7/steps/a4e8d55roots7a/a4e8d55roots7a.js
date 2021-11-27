@@ -1,0 +1,1 @@
+import hints from "./a4e8d55roots7a-index.js"; const step = {id: "a4e8d55roots7a", stepAnswer: ["$$y^2 \\sqrt{3}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\sqrt{6y^5}}{\\sqrt{2y}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

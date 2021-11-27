@@ -1,0 +1,1 @@
+import hints from "./ad08bdaarith20a-index.js"; const step = {id: "ad08bdaarith20a", stepAnswer: ["a_n+1=a_n+9,a_1=17"], problemType: "TextBox", stepTitle: "Find the recursive formula for a $$=$$ {17, 26, 35 ...}", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

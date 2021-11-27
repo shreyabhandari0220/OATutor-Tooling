@@ -1,0 +1,1 @@
+import hints from "./af80deesubsitution12a-index.js"; const step = {id: "af80deesubsitution12a", stepAnswer: ["$$(2,\\frac{3}{2})$$"], problemType: "MultipleChoice", stepTitle: "$$x-4y=-4$$, $$-3x+4y=0$$", stepBody: "", choices: ["$$(5,\\frac{3}{2})$$", "$$(2,\\frac{3}{2})$$", "$$(4,\\frac{1}{2})$$"], answerType: "string", hints: hints, variabilization: {}}; export {step};

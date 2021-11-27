@@ -1,1 +1,0 @@
-import steps from "./SolvingRats8-index.js"; const problem = {id: "SolvingRats8", title: "Weeding the Garden", body: "Solve the following problem", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/8-8-solve-uniform-motion-and-work-applications", courseName: ""}; export { problem };

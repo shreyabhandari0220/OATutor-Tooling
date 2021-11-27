@@ -1,1 +1,0 @@
-import steps from "./solverat21-index.js"; const problem = {id: "solverat21", title: "Solving a Rational Equation", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/8-6-solve-rational-equations", courseName: ""}; export { problem };

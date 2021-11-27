@@ -208,7 +208,7 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
     
     return error_message[:-1] # get rid of the last newline
 
-def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, conflict_names=[], validator_path='', editor=False, skill_model="skillModel.js", course_name=""):
+def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, validator_path='', editor=False, skill_model="skillModel.js", course_name=""):
     if is_local == "online":
         book = get_sheet(spreadsheet_key)
         worksheet = book.worksheet(sheet_name) 
@@ -331,7 +331,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                 print("Problem skills empty for: ", problem_name)
             raise Exception("Problem Skills broken")
         result_problems = ""
-        problem_name, path, problem_js = create_problem_dir(sheet_name, problem_name, default_path, verbosity, conflict_names)
+        problem_name, path, problem_js = create_problem_dir(sheet_name, problem_name, default_path, verbosity)
         step_count = tutor_count = 0
         current_step_path = current_step_name = step_reg_js = step_index_js = default_pathway_js = ""
         images = False
@@ -520,11 +520,13 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                     if error:
                         row_id, error_message = error.split(': ')
                         # determine problem_name and row
-                        if row_id[1:7] == hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6]: #case 1 of name conflict
-                            problem_name = re.search('[\D]*\d', row_id[7:]).group(0)
-                        elif row_id[0] == 'b' and row_id[1].isnumeric():  #case 2 of name conflict
-                            problem_name = re.search('(?<=b\d)([\D]*\d)', row_id).group(0)
-                        else: #case without name conflict
+                        sha = hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6]
+                        if row_id[1:7] == sha: #using sha1 only
+                            problem_name = re.search('[\D]*\d+', row_id[7:]).group(0)
+                        elif row_id[0] == 'b' and row_id[1].isnumeric():  #using b# and sha1
+                            problem_name = re.search('[\D]*\d+', row_id[re.search(sha, row_id).end(0):]).group(0)
+                            # problem_name = re.search('(?<=b\d)([\D]*\d)', row_id).group(0)
+                        else: #shouldn't need to use this
                             problem_name = re.search('[\D]*[\d]+', row_id).group(0)
                         if '-h' not in row_id:
                             ord_step = ord(row_id[-1]) - 97

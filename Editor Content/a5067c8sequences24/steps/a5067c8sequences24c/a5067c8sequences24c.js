@@ -1,0 +1,1 @@
+import hints from "./a5067c8sequences24c-index.js"; const step = {id: "a5067c8sequences24c", stepAnswer: ["-4"], problemType: "TextBox", stepTitle: "Write the third term of the sequence defined by the explicit formula $$a_n=\\frac{\\left(-16\\right)}{n+1}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

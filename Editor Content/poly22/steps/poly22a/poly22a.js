@@ -1,1 +1,0 @@
-import hints from "./poly22a-index.js"; const step = {id: "poly22a", stepAnswer: ["$$3d^2+4d$$"], problemType: "TextBox", stepTitle: "Find the quotient: $$\\frac{12d^2-16d}{\\left(-4\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

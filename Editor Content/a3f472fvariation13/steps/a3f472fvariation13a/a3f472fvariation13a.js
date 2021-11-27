@@ -1,0 +1,1 @@
+import hints from "./a3f472fvariation13a-index.js"; const step = {id: "a3f472fvariation13a", stepAnswer: ["$$p=\\frac{360}{q}$$"], problemType: "TextBox", stepTitle: "If 𝑝 varies inversely with 𝑞 and $$𝑝=30$$ when $$𝑞=12$$ find the equation that relates 𝑝 and 𝑞 (in the form $$p=?)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./a79da15powers21a-index.js"; const step = {id: "a79da15powers21a", stepAnswer: ["$$b^{35}$$"], problemType: "TextBox", stepTitle: "$${\\left(b^7\\right)}^5$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

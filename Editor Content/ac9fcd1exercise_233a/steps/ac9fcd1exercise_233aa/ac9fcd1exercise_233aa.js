@@ -1,0 +1,1 @@
+import hints from "./ac9fcd1exercise_233aa-index.js"; const step = {id: "ac9fcd1exercise_233aa", stepAnswer: ["4"], problemType: "TextBox", stepTitle: "$$\\sqrt{2} \\sqrt{8}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

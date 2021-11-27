@@ -1,0 +1,1 @@
+import hints from "./ae369bflog6a-index.js"; const step = {id: "ae369bflog6a", stepAnswer: ["$$\\frac{1}{2}$$"], problemType: "TextBox", stepTitle: "y=log{121}(11)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

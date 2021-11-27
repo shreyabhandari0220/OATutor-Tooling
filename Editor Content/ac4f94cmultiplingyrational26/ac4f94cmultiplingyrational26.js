@@ -1,0 +1,1 @@
+import steps from "./ac4f94cmultiplingyrational26-index.js"; const problem = {id: "ac4f94cmultiplingyrational26", title: "Dividing Rational Expressions", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

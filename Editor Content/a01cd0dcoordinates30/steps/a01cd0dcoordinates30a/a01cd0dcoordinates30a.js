@@ -1,0 +1,1 @@
+import hints from "./a01cd0dcoordinates30a-index.js"; const step = {id: "a01cd0dcoordinates30a", stepAnswer: ["4"], problemType: "TextBox", stepTitle: "$$x+2y=8;$$ If $$x=0$$, what is y?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

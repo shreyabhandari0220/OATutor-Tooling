@@ -1,0 +1,1 @@
+import hints from "./a427045gre22a-index.js"; const step = {id: "a427045gre22a", stepAnswer: ["$$p^2$$"], problemType: "TextBox", stepTitle: "$$27p^2$$, $$45p^3$$, $$9p^4$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

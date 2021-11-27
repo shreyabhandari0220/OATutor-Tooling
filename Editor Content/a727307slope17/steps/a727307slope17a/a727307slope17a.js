@@ -1,0 +1,1 @@
+import hints from "./a727307slope17a-index.js"; const step = {id: "a727307slope17a", stepAnswer: ["Parallel"], problemType: "MultipleChoice", stepTitle: "$$2x-5y=-3$$, $$y=\\frac{2}{5} x+1$$", stepBody: "", choices: ["Parallel", "Not Parallel"], answerType: "string", hints: hints, variabilization: {}}; export {step};

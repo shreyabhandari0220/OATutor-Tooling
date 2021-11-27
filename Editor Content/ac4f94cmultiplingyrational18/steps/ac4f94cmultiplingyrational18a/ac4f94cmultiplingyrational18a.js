@@ -1,0 +1,1 @@
+import hints from "./ac4f94cmultiplingyrational18a-index.js"; const step = {id: "ac4f94cmultiplingyrational18a", stepAnswer: ["(x**3)/(8y)"], problemType: "TextBox", stepTitle: "Multiply", stepBody: "(5x**2y**4/12xy**3)*(6x**2/20y**2", answerType: "string", hints: hints, variabilization: {}}; export {step};

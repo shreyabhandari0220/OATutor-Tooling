@@ -1,0 +1,1 @@
+import steps from "./aaffbe2graphlog3-index.js"; const problem = {id: "aaffbe2graphlog3", title: "Domain, range, and asymptotes of log functions", body: "What is the domain, range, and asymptote of the function log{3}(x+4)?", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

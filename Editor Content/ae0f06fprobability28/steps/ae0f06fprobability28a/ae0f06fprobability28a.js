@@ -1,0 +1,1 @@
+import hints from "./ae0f06fprobability28a-index.js"; const step = {id: "ae0f06fprobability28a", stepAnswer: ["$$\\frac{2}{13}$$"], problemType: "TextBox", stepTitle: "Find the probability of drawing a six or seven.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

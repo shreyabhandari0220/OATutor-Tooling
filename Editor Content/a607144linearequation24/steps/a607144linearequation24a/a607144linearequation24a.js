@@ -1,0 +1,1 @@
+import hints from "./a607144linearequation24a-index.js"; const step = {id: "a607144linearequation24a", stepAnswer: ["$$\\frac{-3}{4}$$"], problemType: "TextBox", stepTitle: "What is the x-value for the x-intercept to the equation $$4x+y=-3$$?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

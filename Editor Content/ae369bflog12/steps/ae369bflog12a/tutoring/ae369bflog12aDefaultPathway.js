@@ -1,0 +1,1 @@
+var hints = [{id: "ae369bflog12a-h1", type: "hint", dependencies: [], title: "Calculator", text: "Type the expression into a calculator.", variabilization: {}}, ]; export {hints};

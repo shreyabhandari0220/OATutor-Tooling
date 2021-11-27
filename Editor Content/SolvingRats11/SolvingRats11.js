@@ -1,1 +1,0 @@
-import steps from "./SolvingRats11-index.js"; const problem = {id: "SolvingRats11", title: "Mary's Helicopter", body: "Solve the following problem.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/8-8-solve-uniform-motion-and-work-applications", courseName: ""}; export { problem };

@@ -1,1 +1,0 @@
-import hints from "./solverat4a-index.js"; const step = {id: "solverat4a", stepAnswer: ["$$n=-2$$"], problemType: "TextBox", stepTitle: "$$\\frac{3}{5n+1}=\\frac{2}{3n}$$", stepBody: "Solve for n. Please input the answer as $$variable=answer$$.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

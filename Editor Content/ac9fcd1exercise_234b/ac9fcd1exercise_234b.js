@@ -1,0 +1,1 @@
+import steps from "./ac9fcd1exercise_234b-index.js"; const problem = {id: "ac9fcd1exercise_234b", title: "Multiplying Square Roots", body: "Simplify the following square roots.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

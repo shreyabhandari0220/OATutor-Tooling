@@ -1,1 +1,0 @@
-var hints = [{id: "a3aec26roots4a-h1", type: "hint", dependencies: [], title: "Identifying Square Root", text: "$$\\sqrt{-196}$$ is not a real number", variabilization: {}}, ]; export {hints};

@@ -1,0 +1,1 @@
+import hints from "./aecbc44divmonomial3b-index.js"; const step = {id: "aecbc44divmonomial3b", stepAnswer: ["$${10}^8$$"], problemType: "TextBox", stepTitle: "$$\\frac{{10}^{15}}{{10}^7}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

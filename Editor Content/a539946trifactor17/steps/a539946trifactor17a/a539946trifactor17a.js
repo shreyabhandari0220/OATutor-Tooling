@@ -1,0 +1,1 @@
+import hints from "./a539946trifactor17a-index.js"; const step = {id: "a539946trifactor17a", stepAnswer: ["$${\\left(5v+2\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$25v^2+20v+4$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

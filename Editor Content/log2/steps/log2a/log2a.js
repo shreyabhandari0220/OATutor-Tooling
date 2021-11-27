@@ -1,1 +1,0 @@
-import hints from "./log2a-index.js"; const step = {id: "log2a", stepAnswer: ["$${10}^6$$ $$=$$ 1000000"], problemType: "TextBox", stepTitle: "log{10}(1000000) $$=$$ 6", stepBody: "", choices: ["$$6^{10}=100000$$", "$${10}^6$$ $$=$$ 1000000", "$${1000000}^{\\frac{1}{6}}=10$$", "None of the above"], answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

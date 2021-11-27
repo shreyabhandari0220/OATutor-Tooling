@@ -1,0 +1,1 @@
+var hints = [{id: "a95d3c7poly24a-h1", type: "hint", dependencies: [], title: "We must divide each term in the numerator by -6, so we get $$-8b^2+3b$$", text: "", variabilization: {}}, ]; export {hints};

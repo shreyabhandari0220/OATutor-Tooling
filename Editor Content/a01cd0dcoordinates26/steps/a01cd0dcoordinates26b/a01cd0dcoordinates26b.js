@@ -1,0 +1,1 @@
+import hints from "./a01cd0dcoordinates26b-index.js"; const step = {id: "a01cd0dcoordinates26b", stepAnswer: ["5"], problemType: "TextBox", stepTitle: "$$y=\\frac{x}{2}+4$$", stepBody: "If $$x=2$$, what is y?", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

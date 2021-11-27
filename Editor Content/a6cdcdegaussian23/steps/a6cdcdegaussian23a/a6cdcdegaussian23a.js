@@ -1,0 +1,1 @@
+import hints from "./a6cdcdegaussian23a-index.js"; const step = {id: "a6cdcdegaussian23a", stepAnswer: ["5"], problemType: "TextBox", stepTitle: "$$\\left(y-3\\right) \\left(y+2\\right)=4y$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./exercise_235aa-index.js"; const step = {id: "exercise_235aa", stepAnswer: ["$$7\\sqrt{2}$$"], problemType: "TextBox", stepTitle: "$$\\sqrt{7} \\sqrt{14}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

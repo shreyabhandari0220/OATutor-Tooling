@@ -1,0 +1,1 @@
+import steps from "./ac0d1f7cou3-index.js"; const problem = {id: "ac0d1f7cou3", title: "Multiplication Principle", body: "Using the Multiplication Principle", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

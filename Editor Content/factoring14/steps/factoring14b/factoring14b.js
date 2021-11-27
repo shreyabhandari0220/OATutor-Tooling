@@ -1,1 +1,0 @@
-import hints from "./factoring14b-index.js"; const step = {id: "factoring14b", stepAnswer: ["(5s-4)(s-1)"], problemType: "TextBox", stepTitle: "$$5s^2-9s+4$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

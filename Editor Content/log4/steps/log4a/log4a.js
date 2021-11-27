@@ -1,1 +1,0 @@
-import hints from "./log4a-index.js"; const step = {id: "log4a", stepAnswer: ["log{3}(9) $$=2$$"], problemType: "MultipleChoice", stepTitle: "$$3^2$$ $$=$$ 9", stepBody: "", choices: ["log{9}(3)=2", "log{3}(9) $$=2$$", "log{2}(3}=9", "None of the above"], answerType: "string", hints: hints, variabilization: {}}; export {step};

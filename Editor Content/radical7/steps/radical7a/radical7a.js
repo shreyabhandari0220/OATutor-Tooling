@@ -1,1 +1,0 @@
-import hints from "./radical7a-index.js"; const step = {id: "radical7a", stepAnswer: ["$$4x^3 \\sqrt{x}$$"], problemType: "TextBox", stepTitle: "Simplify $$\\sqrt{16x^7}$$", stepBody: "Write your answer in radical form.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

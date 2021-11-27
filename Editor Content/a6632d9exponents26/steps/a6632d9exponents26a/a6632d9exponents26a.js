@@ -1,0 +1,1 @@
+import hints from "./a6632d9exponents26a-index.js"; const step = {id: "a6632d9exponents26a", stepAnswer: ["$$\\frac{4}{p^{10}}$$"], problemType: "TextBox", stepTitle: "$${\\left(2p^{-5}\\right)}^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

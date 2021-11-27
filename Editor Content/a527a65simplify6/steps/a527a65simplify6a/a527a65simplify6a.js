@@ -1,0 +1,1 @@
+import hints from "./a527a65simplify6a-index.js"; const step = {id: "a527a65simplify6a", stepAnswer: ["$$\\frac{11}{8}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\frac{1}{3}+\\frac{1}{8}}{\\frac{1}{4}+\\frac{1}{12}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

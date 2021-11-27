@@ -1,0 +1,1 @@
+import steps from "./a6cf09cmatrices15-index.js"; const problem = {id: "a6cf09cmatrices15", title: "Finding the Sum of Two Matrices", body: "Find the sum of matrices A and B.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

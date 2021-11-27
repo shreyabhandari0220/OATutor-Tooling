@@ -1,0 +1,1 @@
+import hints from "./a7c816bCombiningTrms6a-index.js"; const step = {id: "a7c816bCombiningTrms6a", stepAnswer: ["-92x"], problemType: "TextBox", stepTitle: "$$39x+\\left(-92x\\right)+\\left(-39x\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

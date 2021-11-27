@@ -1,0 +1,1 @@
+import hints from "./a39d6f7rationaldenom22a-index.js"; const step = {id: "a39d6f7rationaldenom22a", stepAnswer: ["$$\\frac{3\\left(x-2\\right)+2\\left(x-3\\right)}{\\left(x-3\\right) \\left(x-2\\right)}$$"], problemType: "TextBox", stepTitle: "Add $$\\frac{3}{x-3}+2\\left(x-2\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

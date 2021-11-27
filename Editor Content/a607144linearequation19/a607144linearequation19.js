@@ -1,0 +1,1 @@
+import steps from "./a607144linearequation19-index.js"; const problem = {id: "a607144linearequation19", title: "Determining the X- and Y-Intercepts to the Equation $$y=-2x+4$$", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

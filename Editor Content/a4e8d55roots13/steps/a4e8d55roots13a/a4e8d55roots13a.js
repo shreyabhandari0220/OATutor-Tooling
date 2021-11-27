@@ -1,0 +1,1 @@
+import hints from "./a4e8d55roots13a-index.js"; const step = {id: "a4e8d55roots13a", stepAnswer: ["$$\\frac{\\sqrt{77}}{14}$$"], problemType: "TextBox", stepTitle: "$$\\sqrt{\\frac{11}{28}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

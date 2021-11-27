@@ -1,1 +1,0 @@
-import hints from "./geometric21a-index.js"; const step = {id: "geometric21a", stepAnswer: ["$$\\frac{-2}{729}$$"], problemType: "TextBox", stepTitle: "a_n={-2,2/3,-2/9,2/27,...}. Find $$a_7$$.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

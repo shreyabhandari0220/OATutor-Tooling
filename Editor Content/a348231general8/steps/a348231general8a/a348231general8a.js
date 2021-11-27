@@ -1,0 +1,1 @@
+import hints from "./a348231general8a-index.js"; const step = {id: "a348231general8a", stepAnswer: ["$$3\\left(n+4\\right) \\left(n+6\\right)$$"], problemType: "TextBox", stepTitle: "$$3n^2+30n+72$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

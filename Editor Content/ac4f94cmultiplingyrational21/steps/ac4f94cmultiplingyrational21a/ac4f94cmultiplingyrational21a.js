@@ -1,0 +1,1 @@
+import hints from "./ac4f94cmultiplingyrational21a-index.js"; const step = {id: "ac4f94cmultiplingyrational21a", stepAnswer: ["p(p−4)/2(p−9)"], problemType: "TextBox", stepTitle: "Multiply", stepBody: "$$\\left(\\frac{5p^2}{p^2}-5p-36\\right) \\left(p^2-\\frac{16}{10} p\\right)$$", answerType: "string", hints: hints, variabilization: {}}; export {step};

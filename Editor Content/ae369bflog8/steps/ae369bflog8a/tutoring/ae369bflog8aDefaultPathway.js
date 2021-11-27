@@ -1,0 +1,1 @@
+var hints = [{id: "ae369bflog8a-h1", type: "hint", dependencies: [], title: "Rethink", text: "Think of it like $$2^y$$ $$=$$ $$\\frac{1}{32}$$.", variabilization: {}}, ]; export {hints};

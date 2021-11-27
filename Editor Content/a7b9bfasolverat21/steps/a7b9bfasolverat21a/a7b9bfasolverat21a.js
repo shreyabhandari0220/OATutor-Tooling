@@ -1,0 +1,1 @@
+import hints from "./a7b9bfasolverat21a-index.js"; const step = {id: "a7b9bfasolverat21a", stepAnswer: ["$$w=\\frac{21}{23}$$"], problemType: "TextBox", stepTitle: "$$\\frac{3}{7}+\\frac{2}{3}=\\frac{1}{w}$$", stepBody: "Solve for w. Please input the answer as $$variable=answer$$.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

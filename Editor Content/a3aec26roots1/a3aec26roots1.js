@@ -1,1 +1,0 @@
-import steps from "./a3aec26roots1-index.js"; const problem = {id: "a3aec26roots1", title: "Simplify and Use Square Roots", body: "Simplify the following exercises (if it can not be simplified then state \"none\"):", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

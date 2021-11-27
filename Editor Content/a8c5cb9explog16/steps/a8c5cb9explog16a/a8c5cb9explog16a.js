@@ -1,0 +1,1 @@
+import hints from "./a8c5cb9explog16a-index.js"; const step = {id: "a8c5cb9explog16a", stepAnswer: ["$$\\frac{3}{4}$$"], problemType: "TextBox", stepTitle: "$$ln(3)-ln(3-3x)=ln(4)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

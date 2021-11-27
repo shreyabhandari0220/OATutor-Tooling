@@ -1,0 +1,1 @@
+import steps from "./ae369bflog8-index.js"; const problem = {id: "ae369bflog8", title: "Evaluating the Logarithm of a Reciprocal", body: "Solve the expression without a calculator.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

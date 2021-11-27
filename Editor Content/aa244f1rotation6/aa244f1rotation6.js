@@ -1,0 +1,1 @@
+import steps from "./aa244f1rotation6-index.js"; const problem = {id: "aa244f1rotation6", title: "Identifying the Conic without Rotating Axes", body: "Identify the conic for each of the following without rotating axes.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./a01cd0dcoordinates29a-index.js"; const step = {id: "a01cd0dcoordinates29a", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "$$x+3y=6;$$ If $$x=0$$, what is y?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

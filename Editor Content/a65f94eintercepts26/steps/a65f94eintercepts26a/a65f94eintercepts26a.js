@@ -1,0 +1,1 @@
+import hints from "./a65f94eintercepts26a-index.js"; const step = {id: "a65f94eintercepts26a", stepAnswer: ["8"], problemType: "TextBox", stepTitle: "Find the sum of the x-value of the x-intercept and the y-value of the y-intercept of the following equation: $$3x+y=6$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+var hints = [{id: "a5067c8sequences16e-h1", type: "hint", dependencies: [], title: "Substitution", text: "Substitute $$n=5$$ into the formula", variabilization: {}}, {id: "a5067c8sequences16e-h2", type: "hint", dependencies: ["a5067c8sequences16e-h1"], title: "Simplification", text: "Calculate the expression $$5\\left(-3\\right)+8$$", variabilization: {}}, ]; export {hints};

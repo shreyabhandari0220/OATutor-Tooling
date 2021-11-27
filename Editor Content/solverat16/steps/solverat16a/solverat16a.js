@@ -1,1 +1,0 @@
-import hints from "./solverat16a-index.js"; const step = {id: "solverat16a", stepAnswer: ["$$a=10$$"], problemType: "TextBox", stepTitle: "$$\\frac{1}{a}+\\frac{2}{5}=\\frac{1}{2}$$", stepBody: "Solve for a. Please input the answer as $$variable=answer$$.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

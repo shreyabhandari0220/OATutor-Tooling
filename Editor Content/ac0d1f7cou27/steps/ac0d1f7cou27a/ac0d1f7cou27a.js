@@ -1,0 +1,1 @@
+import hints from "./ac0d1f7cou27a-index.js"; const step = {id: "ac0d1f7cou27a", stepAnswer: ["4096"], problemType: "TextBox", stepTitle: "A set containing 5 distinct numbers, 4 distinct letters, and 3 distinct symbols", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

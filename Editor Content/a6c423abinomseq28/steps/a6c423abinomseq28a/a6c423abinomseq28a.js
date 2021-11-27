@@ -1,0 +1,1 @@
+import hints from "./a6c423abinomseq28a-index.js"; const step = {id: "a6c423abinomseq28a", stepAnswer: ["$$27a^3+54a^2 b+36{ab}^2+8b^3$$"], problemType: "TextBox", stepTitle: "$${\\left(3a+2b\\right)}^3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

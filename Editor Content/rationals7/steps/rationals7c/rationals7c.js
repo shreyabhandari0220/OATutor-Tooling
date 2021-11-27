@@ -1,1 +1,0 @@
-import hints from "./rationals7c-index.js"; const step = {id: "rationals7c", stepAnswer: ["$$\\frac{-1}{3}$$"], problemType: "TextBox", stepTitle: "$$y=0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

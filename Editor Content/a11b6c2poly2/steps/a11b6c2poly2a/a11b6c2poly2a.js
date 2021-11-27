@@ -1,0 +1,1 @@
+import hints from "./a11b6c2poly2a-index.js"; const step = {id: "a11b6c2poly2a", stepAnswer: ["$$23x+19$$"], problemType: "TextBox", stepTitle: "$$\\frac{46x^3+38x^2}{2x^2}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

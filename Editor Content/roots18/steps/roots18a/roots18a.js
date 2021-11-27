@@ -1,1 +1,0 @@
-import hints from "./roots18a-index.js"; const step = {id: "roots18a", stepAnswer: ["$$-4\\sqrt{3}$$"], problemType: "TextBox", stepTitle: "$$5\\sqrt{3}-9\\sqrt{3}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./aecbc44divmonomial7a-index.js"; const step = {id: "aecbc44divmonomial7a", stepAnswer: ["$$\\frac{1}{a^4}$$"], problemType: "TextBox", stepTitle: "$$\\frac{a^5}{a^9}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import steps from "./a7197e6logarithmsandlogistic4-index.js"; const problem = {id: "a7197e6logarithmsandlogistic4", title: "Solving Logistic Equations #3", body: "The population P of a koi pond over x months is modeled by the function $$P(x)=1+16e^{-0.28 x}$$.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

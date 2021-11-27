@@ -4,15 +4,14 @@ import hashlib
 BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 
 
-def create_problem_dir(sheet_name, name, path, verbosity, conflict_names):
+def create_problem_dir(sheet_name, name, path, verbosity):
     #creates directory for problem
     if verbosity:
         print(path, name)
     # handle namespace collision
     tailing = 1
     case = False
-    if name in conflict_names:
-        name = 'a' + hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6] + name
+    name = 'a' + hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6] + name
     target = path + "/" + name
 
     # most likely will not use this, but this is an additional catch for namespace error

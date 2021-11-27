@@ -1,1 +1,0 @@
-import hints from "./exercise_234ba-index.js"; const step = {id: "exercise_234ba", stepAnswer: ["48"], problemType: "TextBox", stepTitle: "$$3\\sqrt{2}\\times2 \\sqrt{32}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

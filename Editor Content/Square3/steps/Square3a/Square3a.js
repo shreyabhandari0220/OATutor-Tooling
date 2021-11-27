@@ -1,1 +1,0 @@
-import hints from "./Square3a-index.js"; const step = {id: "Square3a", stepAnswer: ["$${\\left(a-10\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$a^2-20a$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

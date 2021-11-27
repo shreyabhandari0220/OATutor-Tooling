@@ -1,0 +1,1 @@
+import hints from "./aaffbe2graphlog12a-index.js"; const step = {id: "aaffbe2graphlog12a", stepAnswer: ["$$x=-3$$"], problemType: "TextBox", stepTitle: "", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

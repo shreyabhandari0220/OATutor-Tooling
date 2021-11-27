@@ -1,0 +1,1 @@
+import steps from "./add506clang5-index.js"; const problem = {id: "add506clang5", title: "Simplify Expressions Using the Order of Operations", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

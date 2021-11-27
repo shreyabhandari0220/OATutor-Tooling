@@ -1,0 +1,1 @@
+import hints from "./a5067c8sequences28b-index.js"; const step = {id: "a5067c8sequences28b", stepAnswer: ["-5"], problemType: "TextBox", stepTitle: "Write the second term of the sequence defined by the explicit formula $$a_n=1.25{\\left(-4\\right)}^{n-1}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

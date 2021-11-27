@@ -1,0 +1,1 @@
+import steps from "./a74ab1ebinomseq15-index.js"; const problem = {id: "a74ab1ebinomseq15", title: "Writing a Given Term of a Binomial Expansion", body: "Find the tenth term of $${\\left(3x-y\\right)}^9$$ without fully expanding the binomial", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

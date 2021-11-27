@@ -1,0 +1,1 @@
+import hints from "./a95211arotation15a-index.js"; const step = {id: "a95211arotation15a", stepAnswer: ["$$3{x'}^2+2x'y'-5{y'}^2+1=0$$"], problemType: "TextBox", stepTitle: "Finding a New Representation of the Given Equation after Rotating through a Given Angle", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

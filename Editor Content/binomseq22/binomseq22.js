@@ -1,1 +1,0 @@
-import steps from "./binomseq22-index.js"; const problem = {id: "binomseq22", title: "Binomial Expansion", body: "Find the fifth term of:", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

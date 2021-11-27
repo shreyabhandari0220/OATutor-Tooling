@@ -1,0 +1,1 @@
+import hints from "./a0faf35exa15a-index.js"; const step = {id: "a0faf35exa15a", stepAnswer: ["$$12x^3-20x^2+12x$$"], problemType: "TextBox", stepTitle: "$$4x\\left(3x^2-5x+3\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

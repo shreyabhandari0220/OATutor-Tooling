@@ -1,0 +1,1 @@
+import hints from "./a11b6c2poly9a-index.js"; const step = {id: "a11b6c2poly9a", stepAnswer: ["$$2w+1-\\frac{5}{2w}$$"], problemType: "TextBox", stepTitle: "$$\\frac{4w^2+2w-5}{2w}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

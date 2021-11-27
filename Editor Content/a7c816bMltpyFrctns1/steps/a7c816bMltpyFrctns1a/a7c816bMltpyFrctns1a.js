@@ -1,0 +1,1 @@
+import hints from "./a7c816bMltpyFrctns1a-index.js"; const step = {id: "a7c816bMltpyFrctns1a", stepAnswer: ["$$\\frac{8}{23}$$"], problemType: "TextBox", stepTitle: "$$\\frac{15\\frac{8\\frac{7}{15}}{23}}{17}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

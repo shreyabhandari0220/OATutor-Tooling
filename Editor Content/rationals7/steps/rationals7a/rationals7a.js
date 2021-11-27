@@ -1,1 +1,0 @@
-import hints from "./rationals7a-index.js"; const step = {id: "rationals7a", stepAnswer: ["-2"], problemType: "TextBox", stepTitle: "$$y=1$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

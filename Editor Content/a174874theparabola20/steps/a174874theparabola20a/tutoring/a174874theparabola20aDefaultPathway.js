@@ -1,0 +1,1 @@
+var hints = [{id: "a174874theparabola20a-h1", type: "hint", dependencies: [], title: "Finding The Characteristics", text: "", variabilization: {}}, ]; export {hints};

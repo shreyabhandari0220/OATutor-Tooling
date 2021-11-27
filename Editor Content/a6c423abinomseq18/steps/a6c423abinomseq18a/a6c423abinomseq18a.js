@@ -1,0 +1,1 @@
+import hints from "./a6c423abinomseq18a-index.js"; const step = {id: "a6c423abinomseq18a", stepAnswer: ["$$-720x^2 y^3$$"], problemType: "TextBox", stepTitle: "$${\\left(3x-2y\\right)}^5$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

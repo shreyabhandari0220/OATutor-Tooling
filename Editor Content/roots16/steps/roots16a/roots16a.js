@@ -1,1 +1,0 @@
-import hints from "./roots16a-index.js"; const step = {id: "roots16a", stepAnswer: ["$$-5\\sqrt{2}$$"], problemType: "TextBox", stepTitle: "$$2\\sqrt{2}-7\\sqrt{2}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

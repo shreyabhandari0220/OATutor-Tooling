@@ -1,0 +1,1 @@
+import steps from "./a6c423abinomseq23-index.js"; const problem = {id: "a6c423abinomseq23", title: "Binomial Expansion", body: "Find the tenth term of:", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

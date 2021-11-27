@@ -1,0 +1,1 @@
+import steps from "./a4cd9dfgeometric18-index.js"; const problem = {id: "a4cd9dfgeometric18", title: "Finding the Specified Term for the Geometric Sequence", body: "Find the specified term for the geometric sequence, given the first term and common ratio.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

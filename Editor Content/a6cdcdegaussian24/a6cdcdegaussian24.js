@@ -1,0 +1,1 @@
+import steps from "./a6cdcdegaussian24-index.js"; const problem = {id: "a6cdcdegaussian24", title: "Solving Quadratic Equations by Factoring", body: "Find the sum of the following equation's solutions by factoring:", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

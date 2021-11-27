@@ -1,0 +1,1 @@
+import hints from "./a1d97ebsolveapp1a-index.js"; const step = {id: "a1d97ebsolveapp1a", stepAnswer: ["15"], problemType: "TextBox", stepTitle: "The product of two positive, consecutive odd numbers is 255. Find the lower number.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

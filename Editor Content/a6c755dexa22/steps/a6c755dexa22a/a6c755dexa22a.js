@@ -1,0 +1,1 @@
+import hints from "./a6c755dexa22a-index.js"; const step = {id: "a6c755dexa22a", stepAnswer: ["$$-3k+12$$"], problemType: "TextBox", stepTitle: "-3(k-4)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

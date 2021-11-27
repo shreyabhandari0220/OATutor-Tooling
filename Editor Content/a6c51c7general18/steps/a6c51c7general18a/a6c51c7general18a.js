@@ -1,0 +1,1 @@
+import hints from "./a6c51c7general18a-index.js"; const step = {id: "a6c51c7general18a", stepAnswer: ["$$9b^5 \\left(5b+3\\right)$$"], problemType: "TextBox", stepTitle: "$$45b^6+27b^5$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

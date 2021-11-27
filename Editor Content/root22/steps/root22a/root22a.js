@@ -1,1 +1,0 @@
-import hints from "./root22a-index.js"; const step = {id: "root22a", stepAnswer: ["Undefined"], problemType: "MultipleChoice", stepTitle: "Solve the following expression. If the answer is not possible, choose \"Undefined\" as the answer.", stepBody: "$$\\sqrt{-9}$$", choices: ["-3", "3", "Undefined"], answerType: "string", hints: hints, variabilization: {}}; export {step};

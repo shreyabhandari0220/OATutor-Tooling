@@ -1,0 +1,1 @@
+import hints from "./ac2ef74add8a-index.js"; const step = {id: "ac2ef74add8a", stepAnswer: ["$$12x^2$$"], problemType: "TextBox", stepTitle: "$$7x^2+5x^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

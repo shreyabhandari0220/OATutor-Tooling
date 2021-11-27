@@ -1,0 +1,1 @@
+import hints from "./a527a65simplify10a-index.js"; const step = {id: "a527a65simplify10a", stepAnswer: ["$$\\frac{2x-10}{3x+16}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\frac{2}{x+5}}{\\frac{3}{x}-5-\\frac{1}{x^2}-25}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

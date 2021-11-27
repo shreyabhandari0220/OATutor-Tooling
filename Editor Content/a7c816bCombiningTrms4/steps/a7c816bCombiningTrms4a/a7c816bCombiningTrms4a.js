@@ -1,0 +1,1 @@
+import hints from "./a7c816bCombiningTrms4a-index.js"; const step = {id: "a7c816bCombiningTrms4a", stepAnswer: ["-73n"], problemType: "TextBox", stepTitle: "$$-84n+\\left(-73n\\right)+84n$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

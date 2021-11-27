@@ -1,1 +1,0 @@
-import hints from "./gaussian24a-index.js"; const step = {id: "gaussian24a", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "$$\\left(p-5\\right) \\left(p+3\\right)=-7$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

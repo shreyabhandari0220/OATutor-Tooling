@@ -1,0 +1,1 @@
+import hints from "./a174874theparabola11a-index.js"; const step = {id: "a174874theparabola11a", stepAnswer: ["(0,0),(1/32,0),x=-1/32"], problemType: "MultipleChoice", stepTitle: "$$x=8y^2$$", stepBody: "", choices: ["(0,0),(1/32,0),x=-1/32", "(0,1),(1/31,0),x=-1/32"], answerType: "string", hints: hints, variabilization: {}}; export {step};

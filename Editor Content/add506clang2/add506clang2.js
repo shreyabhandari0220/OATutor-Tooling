@@ -1,0 +1,1 @@
+import steps from "./add506clang2-index.js"; const problem = {id: "add506clang2", title: "Find Factors, Prime Factorizations, and Least Common Multiples", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

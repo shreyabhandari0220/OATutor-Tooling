@@ -1,1 +1,0 @@
-import steps from "./binomseq29-index.js"; const problem = {id: "binomseq29", title: "Binomial Expansion", body: "Expand the following.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

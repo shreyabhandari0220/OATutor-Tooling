@@ -1,0 +1,1 @@
+import hints from "./af977f3radical6a-index.js"; const step = {id: "af977f3radical6a", stepAnswer: ["$$p^4 \\sqrt{p}$$"], problemType: "TextBox", stepTitle: "Simplify $$\\sqrt{p^9}$$", stepBody: "Write your answer in radical form.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

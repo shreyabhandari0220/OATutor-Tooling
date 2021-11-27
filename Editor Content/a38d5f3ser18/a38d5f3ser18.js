@@ -1,0 +1,1 @@
+import steps from "./a38d5f3ser18-index.js"; const problem = {id: "a38d5f3ser18", title: "Interpreting the Sum of Infinite Series", body: "Determine whether the sum of each $$infinite$$ series is defined.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

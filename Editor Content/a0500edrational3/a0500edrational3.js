@@ -1,1 +1,1 @@
-import steps from "./a0500edrational3-index.js"; const problem = {id: "a0500edrational3", title: "Simplify Expressions with $$a^{\\frac{1}{n}}$$", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };
+import steps from "./a0500edrational3-index.js"; const problem = {id: "a0500edrational3", title: "Simplify Expressions with $$a^{\\frac{1}{n}}$$", body: "Simplify:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

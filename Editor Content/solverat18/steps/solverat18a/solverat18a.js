@@ -1,1 +1,0 @@
-import hints from "./solverat18a-index.js"; const step = {id: "solverat18a", stepAnswer: ["$$c=\\frac{4}{7}$$"], problemType: "TextBox", stepTitle: "$$\\frac{5}{2}-\\frac{1}{c}=\\frac{3}{4}$$", stepBody: "Solve for c. Please input the answer as $$variable=answer$$.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

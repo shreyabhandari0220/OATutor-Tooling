@@ -1,0 +1,1 @@
+import hints from "./ad08bdaarith25a-index.js"; const step = {id: "ad08bdaarith25a", stepAnswer: ["a_n+1=a_n+0.5,a_1=-0.52"], problemType: "TextBox", stepTitle: "Find the recursive formula for a $$=$$ {-.52, -1.02, -1.52,...}", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

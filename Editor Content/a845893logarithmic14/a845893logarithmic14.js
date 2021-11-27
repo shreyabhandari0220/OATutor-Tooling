@@ -1,0 +1,1 @@
+import steps from "./a845893logarithmic14-index.js"; const problem = {id: "a845893logarithmic14", title: "Evaluating Logarithmic Expressions with Properties of Logarithms", body: "Use properties of logarithms to evaluate the expression without using a calculator.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,0 +1,1 @@
+import steps from "./ac20c00conic11-index.js"; const problem = {id: "ac20c00conic11", title: "Identify a Conic Given the Polar Form", body: "$$r=\\frac{5}{1+2sintheta}$$", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

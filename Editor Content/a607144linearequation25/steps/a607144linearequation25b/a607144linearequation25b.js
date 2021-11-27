@@ -1,0 +1,1 @@
+import hints from "./a607144linearequation25b-index.js"; const step = {id: "a607144linearequation25b", stepAnswer: ["-2"], problemType: "TextBox", stepTitle: "What is the y-value for the y-intercept to the equation $$2x-4y=8$$?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

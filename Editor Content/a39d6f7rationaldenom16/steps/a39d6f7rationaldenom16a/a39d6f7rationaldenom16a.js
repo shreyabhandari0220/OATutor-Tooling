@@ -1,0 +1,1 @@
+import hints from "./a39d6f7rationaldenom16a-index.js"; const step = {id: "a39d6f7rationaldenom16a", stepAnswer: ["$$\\frac{31}{36}$$"], problemType: "TextBox", stepTitle: "Add $$\\frac{7}{12}$$ + $$\\frac{5}{18}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

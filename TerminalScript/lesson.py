@@ -143,7 +143,7 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
     elif is_local == 'online':
         # checks for problem name conflicts. Conflicted names are stored in conflict_names in conflict_names.py
         
-        check_names_repeat()
+        # check_names_repeat()
 
         url_df = get_all_url()
         for index, row in url_df.iterrows():
@@ -155,10 +155,10 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
                 start = time.time()
                 if sheet[:2] == '##':
                     skills = process_sheet(book_url, sheet, default_path, 'online','FALSE',
-                                            conflict_names=conflict_names,validator_path=validator_path, course_name=course_name)
+                                            validator_path=validator_path, course_name=course_name)
                 else:
                     skills = process_sheet(book_url, sheet, default_path, 'online','TRUE',
-                                            conflict_names=conflict_names,validator_path=validator_path, course_name=course_name)
+                                            validator_path=validator_path, course_name=course_name)
                 lesson_plan.append(create_lesson_plan(sheet, skills))
                 if skills:
                     for skill in skills:
@@ -169,8 +169,6 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
             course_plan.append(create_course_plan(course_name, lesson_plan))
 
         # process editor sheet
-        all_problem_names = []
-        conflict_names = []
         for index, row in url_df.iterrows():
             editor_url = row['Editor Sheet']
             if editor_url:
@@ -187,10 +185,10 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
                     start = time.time()
                     if sheet[:2] == '##':
                         process_sheet(editor_url, sheet, editor_content_path, 'online','FALSE',
-                                            conflict_names=conflict_names,validator_path=validator_path,editor=True,course_name="")
+                                            validator_path=validator_path,editor=True,course_name="")
                     else:
                         process_sheet(editor_url, sheet, editor_content_path, 'online','TRUE',
-                                            conflict_names=conflict_names,validator_path=validator_path,editor=True,course_name="")
+                                            validator_path=validator_path,editor=True,course_name="")
                     end = time.time()
                     if end - start < 4:
                         time.sleep(4 - (end - start))

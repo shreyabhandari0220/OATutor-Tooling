@@ -1,1 +1,0 @@
-import hints from "./linearequation27a-index.js"; const step = {id: "linearequation27a", stepAnswer: ["Horizontal"], problemType: "MultipleChoice", stepTitle: "Is $$y=-4$$ a vertical or horizontal line?", stepBody: "", choices: ["Vertical", "Horizontal"], answerType: "string", hints: hints, variabilization: {}}; export {step};

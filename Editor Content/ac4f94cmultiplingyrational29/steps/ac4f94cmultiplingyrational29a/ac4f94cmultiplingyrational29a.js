@@ -1,0 +1,1 @@
+import hints from "./ac4f94cmultiplingyrational29a-index.js"; const step = {id: "ac4f94cmultiplingyrational29a", stepAnswer: ["(6−t)(t+3)/(t−5)"], problemType: "TextBox", stepTitle: "Divide", stepBody: "$$\\frac{t-\\frac{6}{3}-t}{t-\\frac{5}{t^2}-9}$$", answerType: "string", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import steps from "./a987796probability1-index.js"; const problem = {id: "a987796probability1", title: "Computing the Probability of an Event with Equally Likely Outcomes", body: "A six-sided number cube is rolled.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

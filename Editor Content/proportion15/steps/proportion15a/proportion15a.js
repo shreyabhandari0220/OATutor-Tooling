@@ -1,1 +1,0 @@
-import hints from "./proportion15a-index.js"; const step = {id: "proportion15a", stepAnswer: ["400"], problemType: "TextBox", stepTitle: "One 12 ounce can of soda has 150 calories. If Josiah drinks the big 32 ounce size from the local mini-mart, how many calories does he get?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

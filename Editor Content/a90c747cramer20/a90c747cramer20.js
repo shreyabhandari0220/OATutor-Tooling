@@ -1,0 +1,1 @@
+import steps from "./a90c747cramer20-index.js"; const problem = {id: "a90c747cramer20", title: "Finding the Determinant of a 3x3 Matrix", body: "Find the determinant of the 3x3 matrix given.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,0 +1,1 @@
+import steps from "./a7b9bfasolverat22-index.js"; const problem = {id: "a7b9bfasolverat22", title: "Solving a Rational Equation", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/8-6-solve-rational-equations", courseName: ""}; export { problem };

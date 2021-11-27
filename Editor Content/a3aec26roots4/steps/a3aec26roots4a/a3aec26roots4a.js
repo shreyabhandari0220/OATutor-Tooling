@@ -1,1 +1,0 @@
-import hints from "./a3aec26roots4a-index.js"; const step = {id: "a3aec26roots4a", stepAnswer: ["not real number"], problemType: "MultipleChoice", stepTitle: "$$\\sqrt{-196}$$", stepBody: "", choices: ["-13I-14I-15Inot real number"], answerType: "string", hints: hints, variabilization: {}}; export {step};

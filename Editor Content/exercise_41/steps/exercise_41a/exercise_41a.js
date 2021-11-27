@@ -1,1 +1,0 @@
-import hints from "./exercise_41a-index.js"; const step = {id: "exercise_41a", stepAnswer: ["10((x'sqrt(2)/2-y'sqrt(2)/2)(x'sqrt(2)/2+y'sqrt(2)/2)+((x'sqrt(2)/2+y'sqrt(2)/2))**2-24"], problemType: "TextBox", stepTitle: "$$x^2-10xy+y^2-24=0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

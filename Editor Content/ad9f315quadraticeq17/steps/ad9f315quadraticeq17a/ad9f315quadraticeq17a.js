@@ -1,0 +1,1 @@
+import hints from "./ad9f315quadraticeq17a-index.js"; const step = {id: "ad9f315quadraticeq17a", stepAnswer: ["12 or -12"], problemType: "MultipleChoice", stepTitle: "$$b^2=144$$", stepBody: "", choices: ["12 or -12", "11 or -11", "13 or -13"], answerType: "string", hints: hints, variabilization: {}}; export {step};

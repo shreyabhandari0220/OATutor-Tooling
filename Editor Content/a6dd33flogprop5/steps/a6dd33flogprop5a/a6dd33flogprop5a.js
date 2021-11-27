@@ -1,0 +1,1 @@
+import hints from "./a6dd33flogprop5a-index.js"; const step = {id: "a6dd33flogprop5a", stepAnswer: ["5log{2}(x)"], problemType: "TextBox", stepTitle: "Expand log{2}(x**5)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

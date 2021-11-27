@@ -1,1 +1,0 @@
-import hints from "./Solvingsqrt2a-index.js"; const step = {id: "Solvingsqrt2a", stepAnswer: ["$$z=3$$"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{7z+15}=6$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

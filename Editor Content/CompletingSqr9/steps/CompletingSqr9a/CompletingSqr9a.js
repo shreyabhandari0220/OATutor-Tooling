@@ -1,1 +1,0 @@
-import hints from "./CompletingSqr9a-index.js"; const step = {id: "CompletingSqr9a", stepAnswer: ["$${\\left(p-0.167\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$p^2-\\frac{p}{3}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

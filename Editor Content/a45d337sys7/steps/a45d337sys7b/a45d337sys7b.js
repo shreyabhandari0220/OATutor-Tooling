@@ -1,0 +1,1 @@
+import hints from "./a45d337sys7b-index.js"; const step = {id: "a45d337sys7b", stepAnswer: ["No"], problemType: "MultipleChoice", stepTitle: "(5,2)", stepBody: "", choices: ["Yes", "No"], answerType: "string", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./a1d97ebsolveapp6a-index.js"; const step = {id: "a1d97ebsolveapp6a", stepAnswer: ["22"], problemType: "TextBox", stepTitle: "The product of two positive, consecutive even numbers is 528. Find the lower number.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

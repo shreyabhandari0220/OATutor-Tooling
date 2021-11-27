@@ -1,1 +1,0 @@
-import steps from "./quad10-index.js"; const problem = {id: "quad10", title: "Solve Quadratic Equations Using the Quadratic Formula", body: "Solve the following exercise by using the Quadratic Formula:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

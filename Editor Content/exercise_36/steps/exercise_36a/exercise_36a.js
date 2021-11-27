@@ -1,1 +1,0 @@
-import hints from "./exercise_36a-index.js"; const step = {id: "exercise_36a", stepAnswer: ["$$\\frac{x'}{2}+\\frac{\\sqrt{3}}{2} y'={\\left(\\frac{x' \\sqrt{3}}{2}-\\frac{y'}{2}\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$y=\\frac{x^2}{2}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

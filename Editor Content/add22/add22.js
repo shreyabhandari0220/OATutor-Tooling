@@ -1,1 +1,0 @@
-import steps from "./add22-index.js"; const problem = {id: "add22", title: "Adding and Subtracting Polynomials", body: "Simplify the expression.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

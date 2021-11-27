@@ -1,0 +1,1 @@
+import hints from "./a427045gre24a-index.js"; const step = {id: "a427045gre24a", stepAnswer: ["$$5\\left(a+1\\right)$$"], problemType: "TextBox", stepTitle: "$$5a+5$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./radical5a-index.js"; const step = {id: "radical5a", stepAnswer: ["$$b^2 \\sqrt{b}$$"], problemType: "TextBox", stepTitle: "Simplify $$\\sqrt{b^5}$$", stepBody: "Write your answer in radical form.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

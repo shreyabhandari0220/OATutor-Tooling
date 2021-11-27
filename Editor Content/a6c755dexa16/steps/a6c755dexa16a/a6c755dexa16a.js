@@ -1,0 +1,1 @@
+import hints from "./a6c755dexa16a-index.js"; const step = {id: "a6c755dexa16a", stepAnswer: ["$$4w+40$$"], problemType: "TextBox", stepTitle: "$$4\\left(w+10\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

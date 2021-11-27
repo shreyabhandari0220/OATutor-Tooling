@@ -1,1 +1,0 @@
-import hints from "./roots25a-index.js"; const step = {id: "roots25a", stepAnswer: ["$$11\\sqrt{13}$$"], problemType: "TextBox", stepTitle: "$$5\\sqrt{13}+4\\sqrt{13}+2\\sqrt{13}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

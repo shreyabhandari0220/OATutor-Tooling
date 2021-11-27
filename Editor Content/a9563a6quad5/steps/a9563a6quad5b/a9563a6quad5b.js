@@ -1,0 +1,1 @@
+import hints from "./a9563a6quad5b-index.js"; const step = {id: "a9563a6quad5b", stepAnswer: ["3 and -6"], problemType: "MultipleChoice", stepTitle: "$$q^2+3q-18=0$$", stepBody: "", choices: ["3 and -6I4 and 2I3 and 5I-2 and 6"], answerType: "string", hints: hints, variabilization: {}}; export {step};

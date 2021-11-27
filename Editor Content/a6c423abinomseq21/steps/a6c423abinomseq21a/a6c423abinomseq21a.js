@@ -1,0 +1,1 @@
+import hints from "./a6c423abinomseq21a-index.js"; const step = {id: "a6c423abinomseq21a", stepAnswer: ["$$462a^5 b^6$$"], problemType: "TextBox", stepTitle: "$${\\left(a+b\\right)}^{11}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

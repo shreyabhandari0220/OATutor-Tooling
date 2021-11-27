@@ -1,0 +1,1 @@
+import steps from "./ae369bflog6-index.js"; const problem = {id: "ae369bflog6", title: "Solving Logarithms Mentally", body: "Solve the expression without a calculator.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

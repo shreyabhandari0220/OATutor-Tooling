@@ -1,0 +1,1 @@
+import hints from "./aa06b90partfrac26a-index.js"; const step = {id: "aa06b90partfrac26a", stepAnswer: ["$$\\frac{2}{x-1}+\\frac{2x-1}{x^2+6x+11}$$"], problemType: "TextBox", stepTitle: "", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

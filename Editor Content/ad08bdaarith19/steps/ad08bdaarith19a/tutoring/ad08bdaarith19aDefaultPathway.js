@@ -1,0 +1,1 @@
+var hints = [{id: "ad08bdaarith19a-h1", type: "hint", dependencies: [], title: "Finding a Recursive Formula", text: "We can use the common difference to create a recursive formula. d $$=$$ 20. So, $$\\operatorname{a_{}}\\left(n+1\\right)$$ $$=$$ $$a_n$$ + 20, $$a_1$$ $$=$$ 40", variabilization: {}}, ]; export {hints};

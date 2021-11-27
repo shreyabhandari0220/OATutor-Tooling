@@ -1,0 +1,1 @@
+import hints from "./a4e8d55roots2a-index.js"; const step = {id: "a4e8d55roots2a", stepAnswer: ["$$\\frac{\\sqrt{2}}{2}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\sqrt{32}}{8}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

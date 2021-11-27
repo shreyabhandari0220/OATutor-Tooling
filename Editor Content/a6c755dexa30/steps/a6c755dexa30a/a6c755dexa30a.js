@@ -1,0 +1,1 @@
+import hints from "./a6c755dexa30a-index.js"; const step = {id: "a6c755dexa30a", stepAnswer: ["$$24r^2+6rs$$"], problemType: "TextBox", stepTitle: "$$6r\\left(4r+s\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

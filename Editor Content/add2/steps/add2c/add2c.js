@@ -1,1 +1,0 @@
-import hints from "./add2c-index.js"; const step = {id: "add2c", stepAnswer: ["trinomial"], problemType: "MultipleChoice", stepTitle: "$$x^2+5x-7$$", stepBody: "", choices: ["monomial", "binomial", "trinomial", "polynomial"], answerType: "string", hints: hints, variabilization: {}}; export {step};

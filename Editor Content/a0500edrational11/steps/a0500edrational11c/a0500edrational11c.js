@@ -1,1 +1,1 @@
-import hints from "./a0500edrational11c-index.js"; const step = {id: "a0500edrational11c", stepAnswer: ["$$x^2$$"], problemType: "TextBox", stepTitle: "Simplify: $$2^{\\frac{1}{2}} 2^{\\frac{5}{2}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./a0500edrational11c-index.js"; const step = {id: "a0500edrational11c", stepAnswer: ["$$x^2$$"], problemType: "TextBox", stepTitle: "$$2^{\\frac{1}{2}} 2^{\\frac{5}{2}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./ad9f315quadraticeq25a-index.js"; const step = {id: "ad9f315quadraticeq25a", stepAnswer: ["14 or -2"], problemType: "MultipleChoice", stepTitle: "$${\\left(u-6\\right)}^2=64$$", stepBody: "", choices: ["14 or -3", "11 or -3", "14 or -2"], answerType: "string", hints: hints, variabilization: {}}; export {step};

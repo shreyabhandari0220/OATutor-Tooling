@@ -1,0 +1,1 @@
+import steps from "./a45d337sys14-index.js"; const problem = {id: "a45d337sys14", title: "Number of Solutions of Linear Systems of Equations", body: "Without graphing, determine the number of solutions and then classify the system of equation: \n##figure2.gif", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

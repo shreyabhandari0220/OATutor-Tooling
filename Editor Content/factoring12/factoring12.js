@@ -1,1 +1,0 @@
-import steps from "./factoring12-index.js"; const problem = {id: "factoring12", title: "Factor Trinomials of the form $${ax}^2+bx+c$$ with a GCF", body: "Factor the expression below completely", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

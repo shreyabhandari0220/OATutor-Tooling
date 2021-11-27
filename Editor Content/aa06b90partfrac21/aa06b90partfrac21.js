@@ -1,0 +1,1 @@
+import steps from "./aa06b90partfrac21-index.js"; const problem = {id: "aa06b90partfrac21", title: "Decomposing a fraction with repeating linear factors", body: "Decompose the partial fraction for the repeating linear factors: $$\\frac{7x+14}{{\\left(x+3\\right)}^2}$$", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

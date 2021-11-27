@@ -1,1 +1,0 @@
-import hints from "./quad9a-index.js"; const step = {id: "quad9a", stepAnswer: ["$$\\frac{-3}{4}$$"], problemType: "TextBox", stepTitle: "$$16c^2+24c+9=0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
