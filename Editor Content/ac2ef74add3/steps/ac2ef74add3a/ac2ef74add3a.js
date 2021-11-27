@@ -1,0 +1,1 @@
+import hints from "./ac2ef74add3a-index.js"; const step = {id: "ac2ef74add3a", stepAnswer: ["binomial"], problemType: "MultipleChoice", stepTitle: "8-3x", stepBody: "", choices: ["monomial", "binomial", "trinomial", "polynomial"], answerType: "string", hints: hints, variabilization: {}}; export {step};

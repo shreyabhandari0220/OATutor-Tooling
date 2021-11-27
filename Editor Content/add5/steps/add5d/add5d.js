@@ -1,1 +1,0 @@
-import hints from "./add5d-index.js"; const step = {id: "add5d", stepAnswer: ["3"], problemType: "TextBox", stepTitle: "$$y^3-8y^2+2y-16$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

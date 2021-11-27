@@ -1,0 +1,1 @@
+import hints from "./add506clang8b-index.js"; const step = {id: "add506clang8b", stepAnswer: ["$$8x+y$$"], problemType: "TextBox", stepTitle: "Translate the English phrase into an algebraic expression: the sum of eight times x and y", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

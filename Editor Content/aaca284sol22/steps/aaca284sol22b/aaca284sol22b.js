@@ -1,0 +1,1 @@
+import hints from "./aaca284sol22b-index.js"; const step = {id: "aaca284sol22b", stepAnswer: ["7"], problemType: "TextBox", stepTitle: "How much does a stapler cost?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

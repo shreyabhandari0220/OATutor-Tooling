@@ -1,0 +1,1 @@
+import hints from "./a8c5cb9explog1a-index.js"; const step = {id: "a8c5cb9explog1a", stepAnswer: ["$$\\frac{-1}{3}$$"], problemType: "TextBox", stepTitle: "$$64\\times4^{3x}$$ $$=$$ 16", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

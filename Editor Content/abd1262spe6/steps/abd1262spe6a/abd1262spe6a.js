@@ -1,0 +1,1 @@
+import hints from "./abd1262spe6a-index.js"; const step = {id: "abd1262spe6a", stepAnswer: ["$$y^2-6y+9$$"], problemType: "TextBox", stepTitle: "$${\\left(y-3\\right)}^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

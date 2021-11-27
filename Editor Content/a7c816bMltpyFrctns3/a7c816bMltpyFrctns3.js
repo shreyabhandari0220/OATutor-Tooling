@@ -1,0 +1,1 @@
+import steps from "./a7c816bMltpyFrctns3-index.js"; const problem = {id: "a7c816bMltpyFrctns3", title: "Multiplying Fractions", body: "$$\\frac{17\\frac{11\\frac{6}{17}}{25}}{6}$$: Find what this equals.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/intermediate-algebra-2e/pages/1-5-properties-of-real-numbers", courseName: ""}; export { problem };

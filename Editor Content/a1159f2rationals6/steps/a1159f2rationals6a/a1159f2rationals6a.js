@@ -1,0 +1,1 @@
+import hints from "./a1159f2rationals6a-index.js"; const step = {id: "a1159f2rationals6a", stepAnswer: ["$$\\frac{-3}{5}$$"], problemType: "TextBox", stepTitle: "$$x=0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

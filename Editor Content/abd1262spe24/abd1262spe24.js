@@ -1,0 +1,1 @@
+import steps from "./abd1262spe24-index.js"; const problem = {id: "abd1262spe24", title: "Binomial Squares Pattern", body: "Square each binomial using the Binomial Squares Pattern.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

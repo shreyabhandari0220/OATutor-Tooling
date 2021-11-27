@@ -1,0 +1,1 @@
+import hints from "./a14c389Solvingsqrt3a-index.js"; const step = {id: "a14c389Solvingsqrt3a", stepAnswer: ["$$x=14$$"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{5x-6}=8$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

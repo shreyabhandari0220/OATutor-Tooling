@@ -1,0 +1,1 @@
+import hints from "./a6632d9exponents30a-index.js"; const step = {id: "a6632d9exponents30a", stepAnswer: ["$$1.29\\times {10}^6$$"], problemType: "TextBox", stepTitle: "1290000", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

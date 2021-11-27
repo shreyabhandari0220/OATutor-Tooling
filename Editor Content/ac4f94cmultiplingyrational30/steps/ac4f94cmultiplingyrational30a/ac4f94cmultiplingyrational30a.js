@@ -1,0 +1,1 @@
+import hints from "./ac4f94cmultiplingyrational30a-index.js"; const step = {id: "ac4f94cmultiplingyrational30a", stepAnswer: ["−1/(10−w)"], problemType: "TextBox", stepTitle: "Divide", stepBody: "$$\\frac{10+\\frac{w}{w}-8}{100-\\frac{w^2}{8}-w}$$", answerType: "string", hints: hints, variabilization: {}}; export {step};

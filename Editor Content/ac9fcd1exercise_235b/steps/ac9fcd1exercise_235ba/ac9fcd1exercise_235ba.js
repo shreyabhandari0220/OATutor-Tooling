@@ -1,0 +1,1 @@
+import hints from "./ac9fcd1exercise_235ba-index.js"; const step = {id: "ac9fcd1exercise_235ba", stepAnswer: ["160"], problemType: "TextBox", stepTitle: "$$4\\sqrt{8}\\times5 \\sqrt{8}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./add3b-index.js"; const step = {id: "add3b", stepAnswer: ["polynomial"], problemType: "MultipleChoice", stepTitle: "$$y^3-8y^2+2y-16$$", stepBody: "", choices: ["monomial", "binomial", "trinomial", "polynomial"], answerType: "string", hints: hints, variabilization: {}}; export {step};

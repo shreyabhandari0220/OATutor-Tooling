@@ -1,1 +1,0 @@
-import steps from "./binomseq24-index.js"; const problem = {id: "binomseq24", title: "Binomial Expansion", body: "Find the ninth term of:", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

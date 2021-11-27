@@ -1,0 +1,1 @@
+import hints from "./a3f472fvariation11a-index.js"; const step = {id: "a3f472fvariation11a", stepAnswer: ["$$v=0.67w$$"], problemType: "TextBox", stepTitle: "If 𝑣 varies directly as 𝑤 and $$𝑣=8, when𝑤=12$$, find the equation that relates 𝑣and𝑤 (in the form $$v=?)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./a6c51c7general19a-index.js"; const step = {id: "a6c51c7general19a", stepAnswer: ["(3x-2)(4x-1)"], problemType: "TextBox", stepTitle: "$$12x^2+11x+2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

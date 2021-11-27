@@ -1,1 +1,0 @@
-import hints from "./add4d-index.js"; const step = {id: "add4d", stepAnswer: ["binomial"], problemType: "MultipleChoice", stepTitle: "$$4y+17$$", stepBody: "", choices: ["monomial", "binomial", "trinomial", "polynomial"], answerType: "string", hints: hints, variabilization: {}}; export {step};

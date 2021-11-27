@@ -1,0 +1,1 @@
+import hints from "./a11b6c2poly10a-index.js"; const step = {id: "a11b6c2poly10a", stepAnswer: ["$$4q+1-\\frac{1}{3q}$$"], problemType: "TextBox", stepTitle: "$$\\frac{12q^2+3q-1}{3q}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

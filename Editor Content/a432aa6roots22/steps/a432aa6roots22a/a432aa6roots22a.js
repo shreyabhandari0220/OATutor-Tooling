@@ -1,0 +1,1 @@
+import hints from "./a432aa6roots22a-index.js"; const step = {id: "a432aa6roots22a", stepAnswer: ["$$4\\sqrt{x}-2\\sqrt{y}$$"], problemType: "TextBox", stepTitle: "$$4\\sqrt{x}-2\\sqrt{y}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

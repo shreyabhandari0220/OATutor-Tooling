@@ -1,0 +1,1 @@
+import steps from "./a387d68inv6-index.js"; const problem = {id: "a387d68inv6", title: "Solving a 2x2 System Using the Inverse of a Matrix", body: "Solve the given system of equations using the inverse of a matrix.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

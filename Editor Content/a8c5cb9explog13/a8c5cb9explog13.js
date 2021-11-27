@@ -1,0 +1,1 @@
+import steps from "./a8c5cb9explog13-index.js"; const problem = {id: "a8c5cb9explog13", title: "Using the definition of Logarithms to solve equations", body: "Solve the following equation.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/college-algebra/pages/6-6-exponential-and-logarithmic-equations", courseName: ""}; export { problem };

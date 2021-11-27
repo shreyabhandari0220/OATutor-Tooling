@@ -1,0 +1,1 @@
+import steps from "./a7c816bMltpyFrctns1-index.js"; const problem = {id: "a7c816bMltpyFrctns1", title: "Multiplying Fractions", body: "$$\\frac{15\\frac{8\\frac{7}{15}}{23}}{17}$$: Find what this equals.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/intermediate-algebra-2e/pages/1-5-properties-of-real-numbers", courseName: ""}; export { problem };

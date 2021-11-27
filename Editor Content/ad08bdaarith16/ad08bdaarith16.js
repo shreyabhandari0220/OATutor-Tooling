@@ -1,0 +1,1 @@
+import steps from "./ad08bdaarith16-index.js"; const problem = {id: "ad08bdaarith16", title: "Finding the Term of an Arithmetic Series", body: "Find the term using the given information.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./a95d3c7poly25a-index.js"; const step = {id: "a95d3c7poly25a", stepAnswer: ["$$21y^3+15y$$"], problemType: "TextBox", stepTitle: "Find the quotient: $$\\frac{105y^5+75y^3}{5} y^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

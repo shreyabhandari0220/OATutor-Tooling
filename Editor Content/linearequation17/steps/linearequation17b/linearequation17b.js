@@ -1,1 +1,0 @@
-import hints from "./linearequation17b-index.js"; const step = {id: "linearequation17b", stepAnswer: ["1"], problemType: "TextBox", stepTitle: "What is the y-value for the y-intercept to the equation $$y=2x+1$$?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

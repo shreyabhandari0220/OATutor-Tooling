@@ -1,0 +1,1 @@
+import hints from "./a2c372bexponents1a-index.js"; const step = {id: "a2c372bexponents1a", stepAnswer: ["$$\\frac{1}{16}$$"], problemType: "TextBox", stepTitle: "$$4^{\\left(-2\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

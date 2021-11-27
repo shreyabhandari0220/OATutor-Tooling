@@ -1,0 +1,1 @@
+var hints = [{id: "ad08bdaarith21a-h1", type: "hint", dependencies: [], title: "Finding a Recursive Formula", text: "We can use the common difference to create a recursive formula. d $$=$$ 3. So, $$a_n+1$$ $$=$$ 3 + $$a_n$$, $$a_1$$ $$=$$ -1", variabilization: {}}, ]; export {hints};

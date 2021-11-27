@@ -1,1 +1,0 @@
-import hints from "./add3d-index.js"; const step = {id: "add3d", stepAnswer: ["trinomial"], problemType: "MultipleChoice", stepTitle: "$$81b^5-24b^3+1$$", stepBody: "", choices: ["monomial", "binomial", "trinomial", "polynomial"], answerType: "string", hints: hints, variabilization: {}}; export {step};

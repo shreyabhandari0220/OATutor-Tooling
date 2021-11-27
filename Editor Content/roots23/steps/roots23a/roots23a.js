@@ -1,1 +1,0 @@
-import hints from "./roots23a-index.js"; const step = {id: "roots23a", stepAnswer: ["$$7\\sqrt{p}-6\\sqrt{q}$$"], problemType: "TextBox", stepTitle: "$$7\\sqrt{p}-6\\sqrt{q}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

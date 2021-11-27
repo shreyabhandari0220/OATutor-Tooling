@@ -1,0 +1,1 @@
+import hints from "./af80deesubsitution2a-index.js"; const step = {id: "af80deesubsitution2a", stepAnswer: ["(-3,2)"], problemType: "MultipleChoice", stepTitle: "$$x+y=-1$$, $$y=x+5$$", stepBody: "", choices: ["(-2,1)", "(5,-2)", "(-3,2)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

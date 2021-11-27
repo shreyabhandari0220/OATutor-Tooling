@@ -1,1 +1,0 @@
-import hints from "./solverat2a-index.js"; const step = {id: "solverat2a", stepAnswer: ["$$b=6$$, $$b=-2$$"], problemType: "TextBox", stepTitle: "$$1-\\frac{4}{b}=\\frac{12}{b^2}$$", stepBody: "Solve for b. Please input the answer as $$variable=answer$$.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import steps from "./ad08bdaarith20-index.js"; const problem = {id: "ad08bdaarith20", title: "Finding a Recursive Formula", body: "Find the recursive formula using the given information.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

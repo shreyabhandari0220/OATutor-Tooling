@@ -1,0 +1,1 @@
+import hints from "./a6dd33flogprop15a-index.js"; const step = {id: "a6dd33flogprop15a", stepAnswer: ["log{3}(20)"], problemType: "TextBox", stepTitle: "Condense log{3}(5)+log{3}(8)-log{3}(2) into a single logarithm.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

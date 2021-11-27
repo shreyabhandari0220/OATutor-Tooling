@@ -1,0 +1,1 @@
+import hints from "./a18dde9partfrac17a-index.js"; const step = {id: "a18dde9partfrac17a", stepAnswer: ["$$\\frac{-2}{x+4}+\\frac{7}{x-6}$$"], problemType: "TextBox", stepTitle: "", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

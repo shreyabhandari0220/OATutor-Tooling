@@ -1,0 +1,1 @@
+import steps from "./a7197e6logarithmsandlogistic18-index.js"; const problem = {id: "a7197e6logarithmsandlogistic18", title: "Solving Logistic Equations #12", body: "A population is modeled by the logistic equation $$P(t)=\\frac{175}{1+6.995e^{-0.68 t}}$$.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

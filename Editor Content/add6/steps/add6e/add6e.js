@@ -1,1 +1,0 @@
-import hints from "./add6e-index.js"; const step = {id: "add6e", stepAnswer: ["0"], problemType: "TextBox", stepTitle: "17", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

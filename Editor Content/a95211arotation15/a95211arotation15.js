@@ -1,0 +1,1 @@
+import steps from "./a95211arotation15-index.js"; const problem = {id: "a95211arotation15", title: "Rotation of Axes", body: "$$\\left(-2x^2\\right)+8xy+1=0$$, $$\\theta=45\\degree$$", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

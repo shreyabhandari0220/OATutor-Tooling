@@ -1,0 +1,1 @@
+import steps from "./a79da15powers18-index.js"; const problem = {id: "a79da15powers18", title: "Simplify Expressions Using the Product Property for Exponents", body: "Simplify the following expression.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

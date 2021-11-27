@@ -1,0 +1,1 @@
+var hints = [{id: "a3d1685add24a-h1", type: "hint", dependencies: [], title: "Combining Like Terms", text: "Since both terms are like, we can subtract their coefficients to get 23p", variabilization: {}}, ]; export {hints};

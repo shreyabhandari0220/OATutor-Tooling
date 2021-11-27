@@ -1,1 +1,0 @@
-import steps from "./SolvingRats18-index.js"; const problem = {id: "SolvingRats18", title: "Nancy's Drive", body: "Solve the following problem.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/8-8-solve-uniform-motion-and-work-applications", courseName: ""}; export { problem };

@@ -1,1 +1,0 @@
-import hints from "./add15a-index.js"; const step = {id: "add15a", stepAnswer: ["$${xy}^2-5x-5y^2$$"], problemType: "TextBox", stepTitle: "$${xy}^2-5x-5y^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

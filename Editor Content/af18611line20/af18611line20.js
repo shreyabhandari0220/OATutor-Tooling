@@ -1,0 +1,1 @@
+import steps from "./af18611line20-index.js"; const problem = {id: "af18611line20", title: "Finding Equations of Lines", body: "Find the equation of the line passing through the point (5,4)\n##figure1.gif", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

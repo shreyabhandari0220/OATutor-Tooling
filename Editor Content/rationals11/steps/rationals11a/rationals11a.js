@@ -1,1 +1,0 @@
-import hints from "./rationals11a-index.js"; const step = {id: "rationals11a", stepAnswer: ["$$\\frac{-5}{9}$$"], problemType: "TextBox", stepTitle: "$$\\frac{-45}{81}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

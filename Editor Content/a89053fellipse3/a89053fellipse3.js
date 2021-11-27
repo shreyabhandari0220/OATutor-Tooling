@@ -1,0 +1,1 @@
+import steps from "./a89053fellipse3-index.js"; const problem = {id: "a89053fellipse3", title: "Writing the Equation of an Ellipse Centered at a Point Other Than the Origin", body: "Find the standard form equation of the ellipse with the following coordinates", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

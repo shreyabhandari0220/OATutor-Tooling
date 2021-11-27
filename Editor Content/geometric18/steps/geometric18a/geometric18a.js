@@ -1,1 +1,0 @@
-import hints from "./geometric18a-index.js"; const step = {id: "geometric18a", stepAnswer: ["162"], problemType: "TextBox", stepTitle: "The first term is 2, and the common ratio is 3. Find the fifth term.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

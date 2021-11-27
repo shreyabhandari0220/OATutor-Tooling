@@ -1,1 +1,0 @@
-import hints from "./roots21a-index.js"; const step = {id: "roots21a", stepAnswer: ["$$8\\sqrt{u}$$"], problemType: "TextBox", stepTitle: "$$5\\sqrt{u}+3\\sqrt{u}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

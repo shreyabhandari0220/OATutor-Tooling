@@ -1,1 +1,0 @@
-import hints from "./rationals8c-index.js"; const step = {id: "rationals8c", stepAnswer: ["$$\\frac{-1}{3}$$"], problemType: "TextBox", stepTitle: "$$x=0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

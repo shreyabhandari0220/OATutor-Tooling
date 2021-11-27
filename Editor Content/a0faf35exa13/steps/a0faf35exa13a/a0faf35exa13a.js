@@ -1,0 +1,1 @@
+import hints from "./a0faf35exa13a-index.js"; const step = {id: "a0faf35exa13a", stepAnswer: ["$$ap+4p$$"], problemType: "TextBox", stepTitle: "$$\\left(a+4\\right) p$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

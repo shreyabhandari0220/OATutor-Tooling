@@ -1,1 +1,0 @@
-import hints from "./rationals6c-index.js"; const step = {id: "rationals6c", stepAnswer: ["$$\\frac{9}{4}$$"], problemType: "TextBox", stepTitle: "$$x=3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

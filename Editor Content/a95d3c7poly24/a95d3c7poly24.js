@@ -1,0 +1,1 @@
+import steps from "./a95d3c7poly24-index.js"; const problem = {id: "a95d3c7poly24", title: "Division of a Polynomial by a Monomial", body: "Find the quotient by dividing the polynomial.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

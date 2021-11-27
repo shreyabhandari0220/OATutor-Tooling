@@ -1,0 +1,1 @@
+import hints from "./a2c372bexponents4a-index.js"; const step = {id: "a2c372bexponents4a", stepAnswer: ["$$\\frac{1}{9}$$"], problemType: "TextBox", stepTitle: "$$3^{\\left(-2\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

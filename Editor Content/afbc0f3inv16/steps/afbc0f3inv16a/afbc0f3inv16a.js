@@ -1,0 +1,1 @@
+import hints from "./afbc0f3inv16a-index.js"; const step = {id: "afbc0f3inv16a", stepAnswer: ["$$/mat{(8,3),(5,-4)/(-17)$$"], problemType: "TextBox", stepTitle: "Find the inverse of the matrix $$\\begin{bmatrix} -4 & -3 \\\\ -5 & 8 \\end{bmatrix}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

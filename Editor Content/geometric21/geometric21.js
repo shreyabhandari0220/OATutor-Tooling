@@ -1,1 +1,0 @@
-import steps from "./geometric21-index.js"; const problem = {id: "geometric21", title: "Finding the Specified Term for the Geometric Sequence", body: "Find the specified term for the geometric sequence, given the first four terms.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

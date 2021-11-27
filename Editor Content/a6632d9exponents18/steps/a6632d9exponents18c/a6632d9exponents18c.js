@@ -1,0 +1,1 @@
+import hints from "./a6632d9exponents18c-index.js"; const step = {id: "a6632d9exponents18c", stepAnswer: ["$$\\frac{1}{y^7}$$"], problemType: "TextBox", stepTitle: "$$y^{-2} y^{-5}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

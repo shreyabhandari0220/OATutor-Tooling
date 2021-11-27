@@ -1,0 +1,1 @@
+var hints = [{id: "a95d3c7poly16a-h1", type: "hint", dependencies: [], title: "We must divide each term in the numerator by 7, so we get $$y^2+3$$", text: "", variabilization: {}}, ]; export {hints};

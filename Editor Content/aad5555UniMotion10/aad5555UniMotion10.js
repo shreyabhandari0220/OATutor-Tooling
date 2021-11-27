@@ -1,0 +1,1 @@
+import steps from "./aad5555UniMotion10-index.js"; const problem = {id: "aad5555UniMotion10", title: "Brian's Concrete", body: "Find how long it takes them to lay the concrete together.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/8-8-solve-uniform-motion-and-work-applications", courseName: ""}; export { problem };

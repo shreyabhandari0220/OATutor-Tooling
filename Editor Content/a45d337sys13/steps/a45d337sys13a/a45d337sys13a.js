@@ -1,0 +1,1 @@
+import hints from "./a45d337sys13a-index.js"; const step = {id: "a45d337sys13a", stepAnswer: ["Infinitely many"], problemType: "MultipleChoice", stepTitle: "Determine number of solutions.", stepBody: "", choices: ["1 solution", "No solution", "Infinitely many"], answerType: "string", hints: hints, variabilization: {}}; export {step};

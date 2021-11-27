@@ -1,0 +1,1 @@
+import hints from "./ae0f06fprobability20a-index.js"; const step = {id: "ae0f06fprobability20a", stepAnswer: ["$$\\frac{3}{8}$$"], problemType: "TextBox", stepTitle: "Find the probability of tossing exactly two heads.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

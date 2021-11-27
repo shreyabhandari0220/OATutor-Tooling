@@ -1,0 +1,1 @@
+import steps from "./a7c816bAddingFrctns1-index.js"; const problem = {id: "a7c816bAddingFrctns1", title: "Adding Fractions", body: "$$\\frac{5}{13}+\\frac{3}{4}+\\frac{1}{4}$$: Find what this equals.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/intermediate-algebra-2e/pages/1-5-properties-of-real-numbers", courseName: ""}; export { problem };

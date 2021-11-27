@@ -1,0 +1,1 @@
+import steps from "./ac0d1f7cou30-index.js"; const problem = {id: "ac0d1f7cou30", title: "Number of Permutations", body: "Finding the Number of Permutations of n Non-Distinct Objects", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

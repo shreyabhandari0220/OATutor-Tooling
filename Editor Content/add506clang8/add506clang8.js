@@ -1,0 +1,1 @@
+import steps from "./add506clang8-index.js"; const problem = {id: "add506clang8", title: "Translate an English Phrase to an Algebraic Expression", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./ac4f94cmultiplingyrational16a-index.js"; const step = {id: "ac4f94cmultiplingyrational16a", stepAnswer: ["$$\\frac{3}{10}$$"], problemType: "TextBox", stepTitle: "Add", stepBody: "$$\\frac{12}{16}+\\frac{4}{10}$$", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

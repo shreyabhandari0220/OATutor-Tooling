@@ -1,0 +1,1 @@
+var hints = [{id: "ae369bflog1b-h1", type: "hint", dependencies: [], title: "Rewrite.", text: "log{a}(x)=b is equivalent to $$a^b=x$$.", variabilization: {}}, ]; export {hints};

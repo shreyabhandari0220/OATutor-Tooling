@@ -1,0 +1,1 @@
+import hints from "./a26939eGrphingQuads5a-index.js"; const step = {id: "a26939eGrphingQuads5a", stepAnswer: ["(0,13), DNE"], problemType: "TextBox", stepTitle: "$$y=x^2+6x+13$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

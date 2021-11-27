@@ -1,0 +1,1 @@
+import hints from "./a4cd9dfgeometric19a-index.js"; const step = {id: "a4cd9dfgeometric19a", stepAnswer: ["162"], problemType: "TextBox", stepTitle: "The first term is 16 and the common ratio is $$\\frac{-1}{3}$$. Find the fourth term.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

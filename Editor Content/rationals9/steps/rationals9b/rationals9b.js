@@ -1,1 +1,0 @@
-import hints from "./rationals9b-index.js"; const step = {id: "rationals9b", stepAnswer: ["UND"], problemType: "TextBox", stepTitle: "$$x=2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

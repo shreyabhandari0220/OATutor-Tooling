@@ -1,1 +1,0 @@
-import hints from "./solverat14a-index.js"; const step = {id: "solverat14a", stepAnswer: ["$$A=\\frac{F}{M}$$"], problemType: "TextBox", stepTitle: "$$\\frac{F}{A}=M$$", stepBody: "Solve for A in terms of F and M", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import steps from "./factoring13-index.js"; const problem = {id: "factoring13", title: "Factor Trinomials Using Trial and Error", body: "Factor the expression below", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

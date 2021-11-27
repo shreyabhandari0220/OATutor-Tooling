@@ -1,0 +1,1 @@
+import steps from "./aa244f1rotation4-index.js"; const problem = {id: "aa244f1rotation4", title: "Rewriting an Equation with respect to the x' and y' axes without the x'y' term", body: "Rewrite the following equation in the x'y' system without an x'y' term.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

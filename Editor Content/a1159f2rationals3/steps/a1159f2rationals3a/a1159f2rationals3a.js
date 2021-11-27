@@ -1,0 +1,1 @@
+import hints from "./a1159f2rationals3a-index.js"; const step = {id: "a1159f2rationals3a", stepAnswer: ["$$\\frac{-1}{3}$$"], problemType: "TextBox", stepTitle: "$$\\frac{8n-5}{3n+1}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

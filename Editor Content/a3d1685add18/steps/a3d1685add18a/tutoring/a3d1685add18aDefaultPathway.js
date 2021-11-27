@@ -1,0 +1,1 @@
+var hints = [{id: "a3d1685add18a-h1", type: "hint", dependencies: [], title: "Number of Terms", text: "Since there are 5 terms, the expression is neither a monomial, binomial, nor trinomial.", variabilization: {}}, ]; export {hints};

@@ -1,0 +1,1 @@
+import steps from "./a3f314cSolvingRats2-index.js"; const problem = {id: "a3f314cSolvingRats2", title: "Judy's Boat", body: "Solve the following problem.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/8-8-solve-uniform-motion-and-work-applications", courseName: ""}; export { problem };

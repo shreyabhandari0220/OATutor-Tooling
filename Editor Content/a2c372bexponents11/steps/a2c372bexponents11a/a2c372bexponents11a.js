@@ -1,0 +1,1 @@
+import hints from "./a2c372bexponents11a-index.js"; const step = {id: "a2c372bexponents11a", stepAnswer: ["$$3.7{10}^4$$"], problemType: "TextBox", stepTitle: "37,000", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

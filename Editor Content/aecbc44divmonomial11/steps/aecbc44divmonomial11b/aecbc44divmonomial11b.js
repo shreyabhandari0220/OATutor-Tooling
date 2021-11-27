@@ -1,0 +1,1 @@
+import hints from "./aecbc44divmonomial11b-index.js"; const step = {id: "aecbc44divmonomial11b", stepAnswer: ["1"], problemType: "TextBox", stepTitle: "$$m^0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./arith16a-index.js"; const step = {id: "arith16a", stepAnswer: ["47"], problemType: "TextBox", stepTitle: "First term is 5, common difference is 6, find the 8th term.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

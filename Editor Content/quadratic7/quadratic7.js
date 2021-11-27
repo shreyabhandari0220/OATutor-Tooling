@@ -1,1 +1,0 @@
-import steps from "./quadratic7-index.js"; const problem = {id: "quadratic7", title: "Solve Applications of the Quadratic Formula", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

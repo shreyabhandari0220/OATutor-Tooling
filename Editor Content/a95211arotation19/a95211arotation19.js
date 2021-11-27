@@ -1,0 +1,1 @@
+import steps from "./a95211arotation19-index.js"; const problem = {id: "a95211arotation19", title: "Rotation of Axes", body: "$$x^2+4xy+y^2-2x+1=0$$", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

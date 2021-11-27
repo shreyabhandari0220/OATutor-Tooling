@@ -1,0 +1,1 @@
+import hints from "./ac2ef74add7d-index.js"; const step = {id: "ac2ef74add7d", stepAnswer: ["3"], problemType: "TextBox", stepTitle: "$$23{ab}^2-14$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

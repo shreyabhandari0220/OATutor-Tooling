@@ -1,0 +1,1 @@
+import hints from "./a7c816bAddingFrctns3a-index.js"; const step = {id: "a7c816bAddingFrctns3a", stepAnswer: ["$$\\frac{11}{9}$$"], problemType: "TextBox", stepTitle: "$$\\frac{2}{9}+\\frac{7}{12}+\\frac{5}{12}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

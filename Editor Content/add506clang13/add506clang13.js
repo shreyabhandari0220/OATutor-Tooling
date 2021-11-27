@@ -1,0 +1,1 @@
+import steps from "./add506clang13-index.js"; const problem = {id: "add506clang13", title: "Identify and Combine Like Terms", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

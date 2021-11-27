@@ -1,1 +1,0 @@
-import hints from "./simplify13a-index.js"; const step = {id: "simplify13a", stepAnswer: ["$$\\frac{2c+29}{5c}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\frac{5}{c+2}-\\frac{3}{c+7}}{\\frac{5c}{c^2+9c+14}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

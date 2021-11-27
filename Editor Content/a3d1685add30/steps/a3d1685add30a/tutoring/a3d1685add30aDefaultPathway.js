@@ -1,0 +1,1 @@
+var hints = [{id: "a3d1685add30a-h1", type: "hint", dependencies: [], title: "Combining Like Terms", text: "There are no like terms in this expression, so it is already simplified.", variabilization: {}}, ]; export {hints};

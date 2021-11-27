@@ -1,1 +1,0 @@
-import hints from "./factoring20a-index.js"; const step = {id: "factoring20a", stepAnswer: ["$$10q\\left(3q+2\\right) \\left(q+4\\right)$$"], problemType: "TextBox", stepTitle: "$$30q^3+140q^2+80q$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

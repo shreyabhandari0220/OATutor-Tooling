@@ -1,1 +1,0 @@
-import hints from "./CompletingSqr7a-index.js"; const step = {id: "CompletingSqr7a", stepAnswer: ["$${\\left(x-4.5\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$x^2-9x$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

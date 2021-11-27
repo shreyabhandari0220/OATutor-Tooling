@@ -1,0 +1,1 @@
+import hints from "./abd1262spe4a-index.js"; const step = {id: "abd1262spe4a", stepAnswer: ["$$y^2+\\frac{1}{2} y+\\frac{1}{16}$$"], problemType: "TextBox", stepTitle: "$${\\left(y+\\frac{1}{4}\\right)}^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

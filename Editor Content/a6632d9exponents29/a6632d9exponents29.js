@@ -1,0 +1,1 @@
+import steps from "./a6632d9exponents29-index.js"; const problem = {id: "a6632d9exponents29", title: "Convert from Decimal Notation to Scientific Notation", body: "Write the number in scientific notation", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

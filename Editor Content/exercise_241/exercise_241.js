@@ -1,1 +1,0 @@
-import steps from "./exercise_241-index.js"; const problem = {id: "exercise_241", title: "Multiplying Square Roots", body: "Simplify the following square roots.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

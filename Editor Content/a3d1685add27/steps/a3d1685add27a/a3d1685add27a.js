@@ -1,0 +1,1 @@
+import hints from "./a3d1685add27a-index.js"; const step = {id: "a3d1685add27a", stepAnswer: ["$$-5c^2+7d^2$$"], problemType: "TextBox", stepTitle: "Simplify $$c^2+7d^2-6c^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

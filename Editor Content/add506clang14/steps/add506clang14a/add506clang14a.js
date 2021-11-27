@@ -1,0 +1,1 @@
+import hints from "./add506clang14a-index.js"; const step = {id: "add506clang14a", stepAnswer: ["$$10y+1$$"], problemType: "TextBox", stepTitle: "Simplify: $$8y+5+2y-4$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

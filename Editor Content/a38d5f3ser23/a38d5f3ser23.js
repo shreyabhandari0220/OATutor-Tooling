@@ -1,0 +1,1 @@
+import steps from "./a38d5f3ser23-index.js"; const problem = {id: "a38d5f3ser23", title: "Interpreting the Sum of Infinite Series", body: "Determine whether the $$infinite$$ series has a sum. If so, write the formula for the sum.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

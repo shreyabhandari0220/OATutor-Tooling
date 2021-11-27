@@ -1,1 +1,0 @@
-import hints from "./solverat17a-index.js"; const step = {id: "solverat17a", stepAnswer: ["$$b=-6$$"], problemType: "TextBox", stepTitle: "$$\\frac{5}{6}+\\frac{3}{b}=\\frac{1}{3}$$", stepBody: "Solve for b. Please input the answer as $$variable=answer$$.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

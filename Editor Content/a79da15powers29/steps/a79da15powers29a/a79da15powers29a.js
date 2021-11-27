@@ -1,0 +1,1 @@
+import hints from "./a79da15powers29a-index.js"; const step = {id: "a79da15powers29a", stepAnswer: ["$$54b^9$$"], problemType: "TextBox", stepTitle: "$$\\left(-6b^4\\right) \\left(-9b^5\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./a3d1685add17a-index.js"; const step = {id: "a3d1685add17a", stepAnswer: ["Monomial"], problemType: "MultipleChoice", stepTitle: "$$5a^4 b^2$$", stepBody: "", choices: ["Monomial", "Binomial", "Trinomial", "Other"], answerType: "string", hints: hints, variabilization: {}}; export {step};

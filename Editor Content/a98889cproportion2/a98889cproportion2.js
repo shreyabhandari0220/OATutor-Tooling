@@ -1,0 +1,1 @@
+import steps from "./a98889cproportion2-index.js"; const problem = {id: "a98889cproportion2", title: "Solve Proportion and Similar Figure Applications", body: "Solve the following exercise:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

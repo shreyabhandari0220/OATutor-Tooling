@@ -1,0 +1,1 @@
+import steps from "./a65f94eintercepts16-index.js"; const problem = {id: "a65f94eintercepts16", title: "Finding the Intercepts of an Equation", body: "Identify the x and y intercepts to solve the given problem.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

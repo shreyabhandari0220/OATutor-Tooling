@@ -1,1 +1,0 @@
-import steps from "./poly1-index.js"; const problem = {id: "poly1", title: "Divide Polynomials", body: "Divide each polynomial by the monomial.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./a79da15powers18a-index.js"; const step = {id: "a79da15powers18a", stepAnswer: ["$$d^{11}$$"], problemType: "TextBox", stepTitle: "$$d^4 d^5 d^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

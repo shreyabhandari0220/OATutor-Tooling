@@ -1,0 +1,1 @@
+import steps from "./a607144linearequation22-index.js"; const problem = {id: "a607144linearequation22", title: "Determining the X- and Y-Intercepts to the Equation $$y=\\frac{1}{4} x+2$$", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

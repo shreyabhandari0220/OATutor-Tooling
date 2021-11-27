@@ -1,0 +1,1 @@
+import steps from "./a607144linearequation20-index.js"; const problem = {id: "a607144linearequation20", title: "Determining the X- and Y-Intercepts to the Equation $$y=-3x$$", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,0 +1,1 @@
+import steps from "./aad5555UniMotion15-index.js"; const problem = {id: "aad5555UniMotion15", title: "Dana's Dog", body: "Find Dana's walking speed.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/8-8-solve-uniform-motion-and-work-applications", courseName: ""}; export { problem };

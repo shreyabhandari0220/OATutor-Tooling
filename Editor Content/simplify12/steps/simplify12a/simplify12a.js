@@ -1,1 +1,0 @@
-import hints from "./simplify12a-index.js"; const step = {id: "simplify12a", stepAnswer: ["$$\\frac{4}{3a-7}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\frac{4}{a^2-2a-15}}{\\frac{1}{a}-5-\\frac{2}{a}+3}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

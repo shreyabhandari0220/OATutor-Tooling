@@ -1,1 +1,0 @@
-import hints from "./binomseq17a-index.js"; const step = {id: "binomseq17a", stepAnswer: ["$$216{xy}^3$$"], problemType: "TextBox", stepTitle: "$${\\left(2x-3y\\right)}^4$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

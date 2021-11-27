@@ -1,0 +1,1 @@
+import hints from "./a9563a6quad3a-index.js"; const step = {id: "a9563a6quad3a", stepAnswer: ["3 and 0.5"], problemType: "MultipleChoice", stepTitle: "$$2p^2-7p+3=0$$", stepBody: "", choices: ["5 and 2I-1 and 4I3 and 0.5I1 and 5"], answerType: "string", hints: hints, variabilization: {}}; export {step};

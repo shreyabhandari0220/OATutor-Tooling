@@ -1,1 +1,0 @@
-import steps from "./add7-index.js"; const problem = {id: "add7", title: "Determine the Degree of Polynomials", body: "Determine the degree of each polynomial.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

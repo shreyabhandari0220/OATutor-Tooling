@@ -1,0 +1,1 @@
+import steps from "./aaffbe2graphlog14-index.js"; const problem = {id: "aaffbe2graphlog14", title: "Domain and vertical asymptotes of log functions", body: "What is the domain and vertical asymptote of the function $$f(x)=\\ln(x-\\frac{3}{7})$$?", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

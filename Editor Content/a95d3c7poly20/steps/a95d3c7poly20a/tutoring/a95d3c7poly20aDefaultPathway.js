@@ -1,0 +1,1 @@
+var hints = [{id: "a95d3c7poly20a-h1", type: "hint", dependencies: [], title: "We must divide each term in the numerator by 3b, so we get $$9b^2-11b$$", text: "", variabilization: {}}, ]; export {hints};

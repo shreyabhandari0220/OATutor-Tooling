@@ -1,1 +1,0 @@
-import hints from "./add5c-index.js"; const step = {id: "add5c", stepAnswer: ["1"], problemType: "TextBox", stepTitle: "$$5x+2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

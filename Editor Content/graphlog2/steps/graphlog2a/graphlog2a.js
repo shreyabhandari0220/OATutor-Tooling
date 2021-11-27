@@ -1,1 +1,0 @@
-import hints from "./graphlog2a-index.js"; const step = {id: "graphlog2a", stepAnswer: ["(-inf, 5/2)"], problemType: "MultipleChoice", stepTitle: "", stepBody: "", choices: ["(-inf, 5/2)", "(5/2, inf)", "$$(-\\infty,\\infty)$$", "$$(0,\\infty)$$"], answerType: "string", hints: hints, variabilization: {}}; export {step};

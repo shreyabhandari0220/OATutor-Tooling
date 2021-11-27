@@ -1,0 +1,1 @@
+import hints from "./aa06b90partfrac29a-index.js"; const step = {id: "aa06b90partfrac29a", stepAnswer: ["$$\\left(-\\frac{5}{x+2}\\right)+\\frac{8}{x^2-2x+4}$$"], problemType: "TextBox", stepTitle: "", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

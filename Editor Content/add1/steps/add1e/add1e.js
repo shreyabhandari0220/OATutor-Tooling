@@ -1,1 +1,0 @@
-import hints from "./add1e-index.js"; const step = {id: "add1e", stepAnswer: ["binomial"], problemType: "MultipleChoice", stepTitle: "$$4y+17$$", stepBody: "", choices: ["monomial", "binomial", "trinomial", "polynomial"], answerType: "string", hints: hints, variabilization: {}}; export {step};

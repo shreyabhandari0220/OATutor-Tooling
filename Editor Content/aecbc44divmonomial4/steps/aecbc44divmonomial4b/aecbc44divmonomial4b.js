@@ -1,0 +1,1 @@
+import hints from "./aecbc44divmonomial4b-index.js"; const step = {id: "aecbc44divmonomial4b", stepAnswer: ["$$\\frac{1}{7^2}$$"], problemType: "TextBox", stepTitle: "$$\\frac{7^3}{7^5}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

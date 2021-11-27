@@ -1,0 +1,1 @@
+import steps from "./a5067c8sequences26-index.js"; const problem = {id: "a5067c8sequences26", title: "Writing the First Three Terms of a Sequence Defined by a Formula", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

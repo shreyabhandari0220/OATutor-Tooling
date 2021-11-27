@@ -1,0 +1,1 @@
+import hints from "./a8c5cb9explog6a-index.js"; const step = {id: "a8c5cb9explog6a", stepAnswer: ["$$\\ln(\\frac{17}{8})$$ - 7"], problemType: "TextBox", stepTitle: "$$-8{10}^{x+7}-7$$ $$=-24$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

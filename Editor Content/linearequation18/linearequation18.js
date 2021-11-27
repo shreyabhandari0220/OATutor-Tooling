@@ -1,1 +1,0 @@
-import steps from "./linearequation18-index.js"; const problem = {id: "linearequation18", title: "Determining the X- and Y-Intercepts to the Equation $$y=2x-3$$.", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

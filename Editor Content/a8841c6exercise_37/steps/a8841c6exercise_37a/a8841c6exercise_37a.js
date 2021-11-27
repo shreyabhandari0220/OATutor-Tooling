@@ -1,0 +1,1 @@
+import hints from "./a8841c6exercise_37a-index.js"; const step = {id: "a8841c6exercise_37a", stepAnswer: ["$$\\frac{\\sqrt{3}}{2} x'-0.5y'={\\left(0.4x'+\\frac{\\sqrt{3}}{2} y-1\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$x={\\left(y-1\\right)}^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

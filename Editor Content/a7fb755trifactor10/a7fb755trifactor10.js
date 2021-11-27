@@ -1,0 +1,1 @@
+import steps from "./a7fb755trifactor10-index.js"; const problem = {id: "a7fb755trifactor10", title: "Factor Special Products", body: "Factor the trinomial.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

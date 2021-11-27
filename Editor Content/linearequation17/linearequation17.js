@@ -1,1 +1,0 @@
-import steps from "./linearequation17-index.js"; const problem = {id: "linearequation17", title: "Determining the X- and Y-Intercepts to an Equation", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

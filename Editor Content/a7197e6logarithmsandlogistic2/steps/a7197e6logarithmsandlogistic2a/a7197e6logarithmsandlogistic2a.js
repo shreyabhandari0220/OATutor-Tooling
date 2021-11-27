@@ -1,0 +1,1 @@
+import hints from "./a7197e6logarithmsandlogistic2a-index.js"; const step = {id: "a7197e6logarithmsandlogistic2a", stepAnswer: ["3.83"], problemType: "TextBox", stepTitle: "To the nearest hundredth, for what value of t does $$P(t)=45$$?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

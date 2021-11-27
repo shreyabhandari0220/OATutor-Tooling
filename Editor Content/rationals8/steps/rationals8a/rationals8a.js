@@ -1,1 +1,0 @@
-import hints from "./rationals8a-index.js"; const step = {id: "rationals8a", stepAnswer: ["$$\\frac{4}{3}$$"], problemType: "TextBox", stepTitle: "$$x=1$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

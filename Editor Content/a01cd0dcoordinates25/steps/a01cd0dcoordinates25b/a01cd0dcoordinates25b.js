@@ -1,0 +1,1 @@
+import hints from "./a01cd0dcoordinates25b-index.js"; const step = {id: "a01cd0dcoordinates25b", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "$$y=\\frac{x}{3}+1$$", stepBody: "If $$x=3$$, what is y?", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

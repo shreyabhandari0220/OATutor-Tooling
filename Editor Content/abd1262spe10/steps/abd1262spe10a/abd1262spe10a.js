@@ -1,0 +1,1 @@
+import hints from "./abd1262spe10a-index.js"; const step = {id: "abd1262spe10a", stepAnswer: ["$$p^2-26p+169$$"], problemType: "TextBox", stepTitle: "$${\\left(p-13\\right)}^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

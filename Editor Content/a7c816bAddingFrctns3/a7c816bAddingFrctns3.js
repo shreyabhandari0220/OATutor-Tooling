@@ -1,0 +1,1 @@
+import steps from "./a7c816bAddingFrctns3-index.js"; const problem = {id: "a7c816bAddingFrctns3", title: "Adding Fractions", body: "$$\\frac{2}{9}+\\frac{7}{12}+\\frac{5}{12}$$: Find what this equals.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/intermediate-algebra-2e/pages/1-5-properties-of-real-numbers", courseName: ""}; export { problem };

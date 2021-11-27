@@ -1,1 +1,0 @@
-import hints from "./factoring13b-index.js"; const step = {id: "factoring13b", stepAnswer: ["(2k-3)(2k-5)"], problemType: "TextBox", stepTitle: "$$4k^2-16k+15$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

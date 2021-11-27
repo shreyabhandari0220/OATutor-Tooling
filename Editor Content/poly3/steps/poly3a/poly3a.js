@@ -1,1 +1,0 @@
-import hints from "./poly3a-index.js"; const step = {id: "poly3a", stepAnswer: ["$$\\left(-8p\\right)+11$$"], problemType: "TextBox", stepTitle: "$$\\frac{24p^2-33p}{\\left(-3p\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

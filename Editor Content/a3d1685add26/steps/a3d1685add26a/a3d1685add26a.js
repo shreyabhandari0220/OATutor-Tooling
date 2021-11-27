@@ -1,0 +1,1 @@
+import hints from "./a3d1685add26a-index.js"; const step = {id: "a3d1685add26a", stepAnswer: ["13m"], problemType: "TextBox", stepTitle: "Subtract 8m-(-5m)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import steps from "./a6dd33flogprop10-index.js"; const problem = {id: "a6dd33flogprop10", title: "Using the Power Rule in Inverse", body: "Rewrite the logarithm.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

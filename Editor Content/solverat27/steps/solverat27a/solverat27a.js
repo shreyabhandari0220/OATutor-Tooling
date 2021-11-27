@@ -1,1 +1,0 @@
-import hints from "./solverat27a-index.js"; const step = {id: "solverat27a", stepAnswer: ["$$q=6$$, $$q=1$$"], problemType: "TextBox", stepTitle: "$$1-\\frac{7}{q}=\\left(-\\frac{6}{q^2}\\right)$$", stepBody: "Solve for q. Please input the answer as $$variable=answer$$.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

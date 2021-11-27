@@ -1,0 +1,1 @@
+import hints from "./a3f472fvariation5a-index.js"; const step = {id: "a3f472fvariation5a", stepAnswer: ["$$p=2.5q$$"], problemType: "TextBox", stepTitle: "If 𝑝 varies directly as 𝑞 and $$𝑝=5, when𝑞=2$$, find the equation that relates 𝑝and𝑞 (in the form $$p=?)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

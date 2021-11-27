@@ -1,0 +1,1 @@
+import hints from "./af977f3radical3a-index.js"; const step = {id: "af977f3radical3a", stepAnswer: ["$$12\\sqrt{2}$$"], problemType: "TextBox", stepTitle: "Simplify $$\\sqrt{288}$$", stepBody: "Write your answer in radical form.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

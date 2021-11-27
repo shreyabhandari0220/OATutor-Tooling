@@ -1,1 +1,0 @@
-import hints from "./add1a-index.js"; const step = {id: "add1a", stepAnswer: ["trinomial"], problemType: "MultipleChoice", stepTitle: "$$81b^5-24b^3+1$$", stepBody: "", choices: ["monomial", "binomial", "trinomial", "polynomial"], answerType: "string", hints: hints, variabilization: {}}; export {step};

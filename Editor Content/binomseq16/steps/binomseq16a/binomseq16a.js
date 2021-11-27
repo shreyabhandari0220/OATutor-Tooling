@@ -1,1 +1,0 @@
-import hints from "./binomseq16a-index.js"; const step = {id: "binomseq16a", stepAnswer: ["15"], problemType: "TextBox", stepTitle: "(6,2)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

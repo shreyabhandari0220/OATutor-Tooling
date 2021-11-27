@@ -1,0 +1,1 @@
+import hints from "./ae0f06fprobability26a-index.js"; const step = {id: "ae0f06fprobability26a", stepAnswer: ["$$\\frac{12}{13}$$"], problemType: "TextBox", stepTitle: "Find the probability of drawing a non-Ace.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

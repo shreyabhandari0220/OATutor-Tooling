@@ -1,0 +1,1 @@
+import hints from "./a527a65simplify9a-index.js"; const step = {id: "a527a65simplify9a", stepAnswer: ["$$\\frac{pq}{q-p}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\frac{1}{p}+\\frac{1}{q}}{\\frac{1}{p^2}-\\frac{1}{q^2}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

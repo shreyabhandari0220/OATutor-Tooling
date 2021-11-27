@@ -1,0 +1,1 @@
+import steps from "./a6dd33flogprop8-index.js"; const problem = {id: "a6dd33flogprop8", title: "Rewriting an Expression as a Power before Using the Power Rule", body: "Rewrite the logarithm.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

@@ -1,1 +1,0 @@
-import hints from "./add7d-index.js"; const step = {id: "add7d", stepAnswer: ["3"], problemType: "TextBox", stepTitle: "$$23{ab}^2-14$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

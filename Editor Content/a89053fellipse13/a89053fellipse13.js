@@ -1,0 +1,1 @@
+import steps from "./a89053fellipse13-index.js"; const problem = {id: "a89053fellipse13", title: "The Ellipse", body: "$$x^2+9y^2=1$$", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

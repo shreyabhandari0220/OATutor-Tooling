@@ -1,0 +1,1 @@
+import hints from "./a95d3c7poly21a-index.js"; const step = {id: "a95d3c7poly21a", stepAnswer: ["$$5y^2-11y$$"], problemType: "TextBox", stepTitle: "Find the quotient: $$\\frac{25y^3-55y^2}{5} y$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

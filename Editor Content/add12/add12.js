@@ -1,1 +1,0 @@
-import steps from "./add12-index.js"; const problem = {id: "add12", title: "Add and Subtract Monomials", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

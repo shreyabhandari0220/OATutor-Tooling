@@ -1,0 +1,1 @@
+import hints from "./a2f5864rationaldenom8a-index.js"; const step = {id: "a2f5864rationaldenom8a", stepAnswer: ["$$\\frac{49}{60}$$"], problemType: "TextBox", stepTitle: "$$\\frac{9}{20}+\\frac{11}{30}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

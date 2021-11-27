@@ -1,0 +1,1 @@
+import steps from "./a90c747cramer16-index.js"; const problem = {id: "a90c747cramer16", title: "Finding the Determinant of a 2x2 Matrix", body: "Find the determinant of the given matrix", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

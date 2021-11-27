@@ -1,0 +1,1 @@
+var hints = [{id: "ab397a8conic16a-h1", type: "hint", dependencies: [], title: "Making Equivalent Polar to Cartesian Substitutions", text: "Convert the equation to rectangular form.", variabilization: {}}, ]; export {hints};

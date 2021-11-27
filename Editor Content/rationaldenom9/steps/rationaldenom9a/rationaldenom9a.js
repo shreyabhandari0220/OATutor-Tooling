@@ -1,1 +1,0 @@
-import hints from "./rationaldenom9a-index.js"; const step = {id: "rationaldenom9a", stepAnswer: ["$$\\frac{37}{54}$$"], problemType: "TextBox", stepTitle: "$$\\frac{8}{27}+\\frac{7}{18}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

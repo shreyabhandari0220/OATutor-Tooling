@@ -1,0 +1,1 @@
+import hints from "./a6c51c7general17a-index.js"; const step = {id: "a6c51c7general17a", stepAnswer: ["$$3a^3 \\left(a+6\\right)$$"], problemType: "TextBox", stepTitle: "$$3a^4+18a^3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

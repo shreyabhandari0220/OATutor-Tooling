@@ -1,0 +1,1 @@
+import steps from "./ac0d1f7cou19-index.js"; const problem = {id: "ac0d1f7cou19", title: "Number of Combinations", body: "Compute the value of the expression.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };
