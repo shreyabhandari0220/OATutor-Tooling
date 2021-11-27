@@ -70,7 +70,6 @@ def names_from_one_sheet(book, sheet_name):
             # skip empty rows
             if type(problem_name) != str:
                 continue
-            problem_row = question.iloc[0]
             if problem_name in all_problem_names:
                 conflict_names.append(problem_name)
             else:
