@@ -1,1 +1,0 @@
-import steps from "./afaa296systemeq4-index.js"; const problem = {id: "afaa296systemeq4", title: "Solving Systems of Linear Equations", body: "Solve the system of linear equations: $$\\frac{1}{2} x+\\frac{1}{3} y=16$$, $$\\frac{1}{6} x+\\frac{1}{4} y=9$$", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

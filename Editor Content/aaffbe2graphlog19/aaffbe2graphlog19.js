@@ -1,1 +1,0 @@
-import steps from "./aaffbe2graphlog19-index.js"; const problem = {id: "aaffbe2graphlog19", title: "Finding the x and y intercepts of log functions", body: "What is the y-intercept of $$\\ln(5x+10)+3$$? Write as a coordinate pair. If it does not exist, write DNE.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

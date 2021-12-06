@@ -1,1 +1,0 @@
-import hints from "./afaa296systemeq3a-index.js"; const step = {id: "afaa296systemeq3a", stepAnswer: ["$$infinitely$$ many solutions"], problemType: "MultipleChoice", stepTitle: "", stepBody: "", choices: ["x-2, $$y=8$$", "$$x=4$$, $$y=5$$", "$$infinitely$$ many solutions", "no solution"], answerType: "string", hints: hints, variabilization: {}}; export {step};

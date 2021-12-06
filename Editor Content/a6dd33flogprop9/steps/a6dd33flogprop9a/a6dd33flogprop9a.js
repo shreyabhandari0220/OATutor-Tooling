@@ -1,1 +1,0 @@
-import hints from "./a6dd33flogprop9a-index.js"; const step = {id: "a6dd33flogprop9a", stepAnswer: ["$$\\ln(x^4)$$"], problemType: "TextBox", stepTitle: "Rewrite 4ln(x) using the inverse power rule such that it has a coefficient of 1.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

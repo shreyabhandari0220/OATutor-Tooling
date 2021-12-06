@@ -1,1 +1,0 @@
-import hints from "./ae369bflog4b-index.js"; const step = {id: "ae369bflog4b", stepAnswer: ["log{5}(125)=3"], problemType: "MultipleChoice", stepTitle: "$$5^3$$ $$=$$ 125", stepBody: "", answerType: "string", hints: hints, variabilization: {}}; export {step};

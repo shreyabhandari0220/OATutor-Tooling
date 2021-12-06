@@ -1,0 +1,1 @@
+import hints from "./af7680dfractions3a-index.js"; const step = {id: "af7680dfractions3a", stepAnswer: ["$$\\frac{1}{2\\left(x-3\\right)}$$"], problemType: "TextBox", stepTitle: "(1/(x**2-7x+12)/(2/(x-4))", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

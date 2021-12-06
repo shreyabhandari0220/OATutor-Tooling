@@ -1,1 +1,0 @@
-import steps from "./a81e159exponential14-index.js"; const problem = {id: "a81e159exponential14", title: "Interpreting Logistic Growth Models", body: "For the following problem, use the logistic growth model $$f(x)=\\frac{@{numerator}}{1+8e^{\\left(-2x\\right)}}$$.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

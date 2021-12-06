@@ -1,1 +1,0 @@
-import hints from "./a3f472fvariation9a-index.js"; const step = {id: "a3f472fvariation9a", stepAnswer: ["$$y=3.1x$$"], problemType: "TextBox", stepTitle: "If y varies directly as x and $$y=12.4, whenx=4$$, find the equation that relates xandy (in the form $$y=?)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

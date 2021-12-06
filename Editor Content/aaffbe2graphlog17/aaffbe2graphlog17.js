@@ -1,1 +1,0 @@
-import steps from "./aaffbe2graphlog17-index.js"; const problem = {id: "aaffbe2graphlog17", title: "Domain and vertical asymptotes of log functions", body: "What is the domain and vertical asymptote of log{3}(15-5x)+6?", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

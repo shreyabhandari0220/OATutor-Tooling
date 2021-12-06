@@ -1,1 +1,0 @@
-import steps from "./aad0b4bthreevar17-index.js"; const problem = {id: "aad0b4bthreevar17", title: "Finding the Solution to a Dependent System of Equations", body: "Find the solution to the given system.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

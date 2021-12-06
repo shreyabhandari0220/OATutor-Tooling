@@ -1,1 +1,0 @@
-import hints from "./a6dd33flogprop2a-index.js"; const step = {id: "a6dd33flogprop2a", stepAnswer: ["log{b}(8)+log{b}(k)"], problemType: "TextBox", stepTitle: "Expand log{b}(8k)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

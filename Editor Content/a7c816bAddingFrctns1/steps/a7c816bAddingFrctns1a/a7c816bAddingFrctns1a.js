@@ -1,1 +1,0 @@
-import hints from "./a7c816bAddingFrctns1a-index.js"; const step = {id: "a7c816bAddingFrctns1a", stepAnswer: ["$$\\frac{18}{13}$$"], problemType: "TextBox", stepTitle: "$$\\frac{5}{13}+\\frac{3}{4}+\\frac{1}{4}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import steps from "./afaa296systemeq3-index.js"; const problem = {id: "afaa296systemeq3", title: "Solving Systems of Linear Equations", body: "Solve the system: $$-3x+y=2$$, $$12x-4y=-8$$", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

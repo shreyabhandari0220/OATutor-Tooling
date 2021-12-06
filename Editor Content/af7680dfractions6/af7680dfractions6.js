@@ -1,0 +1,1 @@
+import steps from "./af7680dfractions6-index.js"; const problem = {id: "af7680dfractions6", title: "Simplifying Rational Expressions", body: "Simplify the following expression.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

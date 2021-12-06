@@ -1,0 +1,1 @@
+import steps from "./ad3667dMultDivInts12-index.js"; const problem = {id: "ad3667dMultDivInts12", title: "Simplifying Expressions", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./adc339bfractions22a-index.js"; const step = {id: "adc339bfractions22a", stepAnswer: ["19"], problemType: "TextBox", stepTitle: "$$\\frac{\\frac{5}{6}+\\frac{2}{9}}{\\frac{7}{18}-\\frac{1}{3}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

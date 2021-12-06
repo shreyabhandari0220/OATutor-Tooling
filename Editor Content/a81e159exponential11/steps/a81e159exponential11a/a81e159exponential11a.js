@@ -1,1 +1,0 @@
-import hints from "./a81e159exponential11a-index.js"; const step = {id: "a81e159exponential11a", stepAnswer: ["@{ans}"], problemType: "TextBox", stepTitle: "What is the temperature of the object after 1.5 hours to the nearest degree?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

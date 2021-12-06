@@ -1,0 +1,1 @@
+import hints from "./ab733ecreal3a-index.js"; const step = {id: "ab733ecreal3a", stepAnswer: ["$$2.43p+8.26q$$"], problemType: "TextBox", stepTitle: "$$6.8p+9.14q+\\left(-4.37p\\right)+\\left(-0.88q\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

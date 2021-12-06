@@ -1,0 +1,1 @@
+import hints from "./ab4685cSolvingFormul12a-index.js"; const step = {id: "ab4685cSolvingFormul12a", stepAnswer: ["$$t=\\frac{A}{Pr}-\\frac{1}{r}$$"], problemType: "TextBox", stepTitle: "$$A=P+P r t$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

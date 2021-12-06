@@ -1,1 +1,0 @@
-import steps from "./a3f472fvariation2-index.js"; const problem = {id: "a3f472fvariation2", title: "How to Solve Direct Variation Problems", body: "Solve for the relating equation (Convert all fractions into decimals).", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

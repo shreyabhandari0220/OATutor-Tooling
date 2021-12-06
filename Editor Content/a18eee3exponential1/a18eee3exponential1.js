@@ -1,1 +1,0 @@
-import steps from "./a18eee3exponential1-index.js"; const problem = {id: "a18eee3exponential1", title: "Identifying Exponential Functions", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

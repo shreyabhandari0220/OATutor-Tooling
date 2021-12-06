@@ -1,0 +1,1 @@
+import hints from "./a9f4a3alang8a-index.js"; const step = {id: "a9f4a3alang8a", stepAnswer: ["$$8\\left(x+y\\right)$$"], problemType: "TextBox", stepTitle: "Translate the English phrase into an algebraic expression: eight times the sum of x and y", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

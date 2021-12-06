@@ -1,1 +1,0 @@
-import steps from "./a7c816bMltpyFrctns2-index.js"; const problem = {id: "a7c816bMltpyFrctns2", title: "Multiplying Fractions", body: "$$\\frac{10\\frac{5\\frac{9}{10}}{49}}{9}$$: Find what this equals.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/intermediate-algebra-2e/pages/1-5-properties-of-real-numbers", courseName: ""}; export { problem };

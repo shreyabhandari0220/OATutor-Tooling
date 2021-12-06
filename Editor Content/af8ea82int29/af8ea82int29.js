@@ -1,0 +1,1 @@
+import steps from "./af8ea82int29-index.js"; const problem = {id: "af8ea82int29", title: "Use Integers in Applications", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./a7c816bRealNums2a-index.js"; const step = {id: "a7c816bRealNums2a", stepAnswer: ["$$32r+29s$$"], problemType: "TextBox", stepTitle: "$$23r+14s+9r+15s$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

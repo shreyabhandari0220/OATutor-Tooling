@@ -1,1 +1,0 @@
-import hints from "./add506clang6b-index.js"; const step = {id: "add506clang6b", stepAnswer: ["81"], problemType: "TextBox", stepTitle: "When x $$=$$ 4, evaluate $$3^x$$?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

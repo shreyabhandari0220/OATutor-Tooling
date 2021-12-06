@@ -1,1 +1,0 @@
-import hints from "./ae369bflog16a-index.js"; const step = {id: "ae369bflog16a", stepAnswer: ["undefined"], problemType: "MultipleChoice", stepTitle: "$$y=ln(-500)$$", stepBody: "", choices: ["$$y=8.867$$", "$$y=7.9888$$", "$$y=undefined$$", "$$y=0.9867$$"], answerType: "string", hints: hints, variabilization: {}}; export {step};

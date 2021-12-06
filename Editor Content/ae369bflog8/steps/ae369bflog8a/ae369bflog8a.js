@@ -1,1 +1,0 @@
-import hints from "./ae369bflog8a-index.js"; const step = {id: "ae369bflog8a", stepAnswer: ["-6"], problemType: "TextBox", stepTitle: "y=log{2}(1/32)", stepBody: "y=log{2}(1/32)", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

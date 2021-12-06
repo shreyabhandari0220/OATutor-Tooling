@@ -1,1 +1,0 @@
-import hints from "./a81e159exponential14a-index.js"; const step = {id: "a81e159exponential14a", stepAnswer: ["@{numerator}"], problemType: "TextBox", stepTitle: "Find the carrying capacity.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import steps from "./afaa296systemeq9-index.js"; const problem = {id: "afaa296systemeq9", title: "Solving Systems of Linear Equations", body: "Solve the system. $$7x-2y=3$$, $$4x+5y=3.25$$", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

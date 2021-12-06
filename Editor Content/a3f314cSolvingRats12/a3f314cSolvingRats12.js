@@ -1,1 +1,0 @@
-import steps from "./a3f314cSolvingRats12-index.js"; const problem = {id: "a3f314cSolvingRats12", title: "Private Jets", body: "Solve the following problem", steps: steps, variabilization: {}, oer: "https://openstax.org/books/elementary-algebra-2e/pages/8-8-solve-uniform-motion-and-work-applications", courseName: ""}; export { problem };

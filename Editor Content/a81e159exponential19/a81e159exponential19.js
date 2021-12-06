@@ -1,1 +1,0 @@
-import steps from "./a81e159exponential19-index.js"; const problem = {id: "a81e159exponential19", title: "Fish Population", body: "$$P(t)=\\frac{@{numerator}}{1+9e^{-0.6 t}}$$ represents the population of fish as a function of time.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

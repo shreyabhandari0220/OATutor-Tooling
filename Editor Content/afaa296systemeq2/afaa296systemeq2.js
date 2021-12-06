@@ -1,1 +1,0 @@
-import steps from "./afaa296systemeq2-index.js"; const problem = {id: "afaa296systemeq2", title: "Solving Systems of Linear Equations", body: "Solve the system of equations: $$3x+5y=9$$, $$30x+50y=-90$$", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

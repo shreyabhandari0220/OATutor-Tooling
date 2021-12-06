@@ -1,1 +1,0 @@
-import hints from "./a845893logarithmic10a-index.js"; const step = {id: "a845893logarithmic10a", stepAnswer: ["$$\\frac{\\ln(55.875)}{\\ln(14)}$$"], problemType: "TextBox", stepTitle: "$$log(14, 55.875)$$ to base 10", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

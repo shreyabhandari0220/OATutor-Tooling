@@ -1,1 +1,0 @@
-import hints from "./a89053fellipse13a-index.js"; const step = {id: "a89053fellipse13a", stepAnswer: ["(x**2)/(1**2)+(y**2)/(1/3)**2=1"], problemType: "TextBox", stepTitle: "Write the equation of an ellipse in standard form", stepBody: "", answerType: "string", hints: hints, variabilization: {}}; export {step};

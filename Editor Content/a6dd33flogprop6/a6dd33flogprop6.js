@@ -1,1 +1,0 @@
-import steps from "./a6dd33flogprop6-index.js"; const problem = {id: "a6dd33flogprop6", title: "Using the Power Rule for Logarithms", body: "Expand the logarithm.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

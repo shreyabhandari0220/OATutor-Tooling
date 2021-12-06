@@ -1,0 +1,1 @@
+import hints from "./af7680dfractions7a-index.js"; const step = {id: "af7680dfractions7a", stepAnswer: ["$$\\frac{y+x}{y-x}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\frac{1}{x}+\\frac{1}{y}}{\\frac{1}{x}-\\frac{1}{y}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

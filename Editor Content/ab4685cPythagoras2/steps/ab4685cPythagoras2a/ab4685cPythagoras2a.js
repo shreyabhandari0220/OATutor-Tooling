@@ -1,0 +1,1 @@
+import hints from "./ab4685cPythagoras2a-index.js"; const step = {id: "ab4685cPythagoras2a", stepAnswer: ["8"], problemType: "TextBox", stepTitle: "Solve for the third side of the triangle if the hypotenuse has length17 and another side has length 15.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

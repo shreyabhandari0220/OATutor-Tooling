@@ -1,1 +1,0 @@
-import hints from "./a81e159exponential15a-index.js"; const step = {id: "a81e159exponential15a", stepAnswer: ["100"], problemType: "TextBox", stepTitle: "What is the initial population?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./a845893logarithmic3a-index.js"; const step = {id: "a845893logarithmic3a", stepAnswer: ["$$\\ln(\\frac{a}{d c})$$"], problemType: "TextBox", stepTitle: "ln(a)-ln(d)-ln(c)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

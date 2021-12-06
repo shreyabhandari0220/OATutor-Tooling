@@ -1,1 +1,0 @@
-import steps from "./a6dd33flogprop15-index.js"; const problem = {id: "a6dd33flogprop15", title: "Condensing Logarithmic Expressions", body: "Condense the logarithm.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

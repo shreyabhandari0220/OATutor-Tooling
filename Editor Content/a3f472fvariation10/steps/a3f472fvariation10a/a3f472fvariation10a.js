@@ -1,1 +1,0 @@
-import hints from "./a3f472fvariation10a-index.js"; const step = {id: "a3f472fvariation10a", stepAnswer: ["$$a=0.46b$$"], problemType: "TextBox", stepTitle: "If a varies directly as b and $$a=6, whenb=13$$, find the equation that relates aandb (in the form $$a=?)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

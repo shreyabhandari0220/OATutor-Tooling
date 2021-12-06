@@ -1,0 +1,1 @@
+import steps from "./af8ea82int23-index.js"; const problem = {id: "af8ea82int23", title: "Multiply and Divide Integers", body: "Multiply or divide:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

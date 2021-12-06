@@ -1,1 +1,0 @@
-import hints from "./a9227d4exponential22a-index.js"; const step = {id: "a9227d4exponential22a", stepAnswer: ["-0.0004"], problemType: "TextBox", stepTitle: "The half-life of Radium-226 is 1590 years. What is the annual decay rate? Express the decimal result to four decimal places.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

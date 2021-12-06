@@ -1,1 +1,0 @@
-import hints from "./ad7cb54exponential14a-index.js"; const step = {id: "ad7cb54exponential14a", stepAnswer: ["-0.2707"], problemType: "TextBox", stepTitle: "$$f(x)=-2e^{x-1}$$, for f(-1)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

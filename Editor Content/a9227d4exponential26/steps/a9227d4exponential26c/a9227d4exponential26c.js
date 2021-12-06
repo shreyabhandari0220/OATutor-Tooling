@@ -1,1 +1,0 @@
-import hints from "./a9227d4exponential26c-index.js"; const step = {id: "a9227d4exponential26c", stepAnswer: ["10"], problemType: "TextBox", stepTitle: "To the nearest minute, how long did it take the population to double?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
