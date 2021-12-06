@@ -525,7 +525,6 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                             problem_name = re.search('[\D]*\d+', row_id[7:]).group(0)
                         elif row_id[0] == 'b' and row_id[1].isnumeric():  #using b# and sha1
                             problem_name = re.search('[\D]*\d+', row_id[re.search(sha, row_id).end(0):]).group(0)
-                            # problem_name = re.search('(?<=b\d)([\D]*\d)', row_id).group(0)
                         else: #shouldn't need to use this
                             problem_name = re.search('[\D]*[\d]+', row_id).group(0)
                         if '-h' not in row_id:
