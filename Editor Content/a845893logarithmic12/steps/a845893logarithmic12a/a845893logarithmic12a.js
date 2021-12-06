@@ -1,1 +1,0 @@
-import hints from "./a845893logarithmic12a-index.js"; const step = {id: "a845893logarithmic12a", stepAnswer: ["$$\\frac{a}{b}-1$$"], problemType: "TextBox", stepTitle: "$$log(11,\\frac{6}{11})$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

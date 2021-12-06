@@ -1,0 +1,1 @@
+import steps from "./af23defint13-index.js"; const problem = {id: "af23defint13", title: "Simplify and Evaluate Expressions with Integers", body: "Simplify the following expression", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

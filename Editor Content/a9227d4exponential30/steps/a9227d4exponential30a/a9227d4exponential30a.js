@@ -1,1 +1,0 @@
-import hints from "./a9227d4exponential30a-index.js"; const step = {id: "a9227d4exponential30a", stepAnswer: ["10"], problemType: "TextBox", stepTitle: "How many people started the rumor?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

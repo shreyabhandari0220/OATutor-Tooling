@@ -1,1 +1,0 @@
-import hints from "./a89600bsystems6a-index.js"; const step = {id: "a89600bsystems6a", stepAnswer: ["(1,-3),(2,3)"], problemType: "MultipleChoice", stepTitle: "$$-2x^2+y=-5$$, \\n $$6x-y=9$$", stepBody: "", choices: ["(1,-3),(2,3)", "(1,3),(2,3)", "(-1,3),(-2,3)", "No Solution"], answerType: "string", hints: hints, variabilization: {}}; export {step};

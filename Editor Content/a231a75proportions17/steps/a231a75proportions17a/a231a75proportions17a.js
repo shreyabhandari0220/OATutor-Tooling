@@ -1,0 +1,1 @@
+import hints from "./a231a75proportions17a-index.js"; const step = {id: "a231a75proportions17a", stepAnswer: ["16"], problemType: "TextBox", stepTitle: "$$\\frac{a}{a+12}=\\frac{4}{7}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

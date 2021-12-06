@@ -1,0 +1,1 @@
+var hints = [{id: "ab4685cPythagoras2a-h1", type: "hint", dependencies: [], title: "The Pythagorean Theorem", text: "$$a^2+b^2=a^2$$ or side a squared plus side b squared $$=$$ hypotenuse squared.", variabilization: {}}, ]; export {hints};

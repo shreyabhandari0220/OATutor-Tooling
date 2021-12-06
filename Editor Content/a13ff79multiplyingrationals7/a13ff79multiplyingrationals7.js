@@ -1,1 +1,1 @@
-import steps from "./a13ff79multiplyingrationals7-index.js"; const problem = {id: "a13ff79multiplyingrationals7", title: "Multiplying Rational Expressions", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };
+import steps from "./a13ff79multiplyingrationals7-index.js"; const problem = {id: "a13ff79multiplyingrationals7", title: "Multiplying Rational Expressions", body: "Find the value of the expression.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

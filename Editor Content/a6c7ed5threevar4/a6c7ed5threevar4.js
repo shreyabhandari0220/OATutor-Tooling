@@ -1,1 +1,0 @@
-import steps from "./a6c7ed5threevar4-index.js"; const problem = {id: "a6c7ed5threevar4", title: "Determining Whether an Ordered Triple Is a Solution to a System", body: "", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

@@ -1,1 +1,0 @@
-import hints from "./aa06b90partfrac22a-index.js"; const step = {id: "aa06b90partfrac22a", stepAnswer: ["$$\\frac{-4}{6x-7}-\\frac{55}{{\\left(6x-7\\right)}^2}$$"], problemType: "TextBox", stepTitle: "", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

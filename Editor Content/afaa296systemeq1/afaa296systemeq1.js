@@ -1,1 +1,0 @@
-import steps from "./afaa296systemeq1-index.js"; const problem = {id: "afaa296systemeq1", title: "Solving Systems of Linear Equations", body: "Solve the system of linear equations. $$x-0.2y=1$$, $$-10x+2y=5$$", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

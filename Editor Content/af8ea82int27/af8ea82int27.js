@@ -1,0 +1,1 @@
+import steps from "./af8ea82int27-index.js"; const problem = {id: "af8ea82int27", title: "Evaluate Variable Expressions with Integers", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

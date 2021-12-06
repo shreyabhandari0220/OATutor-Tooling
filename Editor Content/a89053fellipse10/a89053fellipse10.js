@@ -1,1 +1,0 @@
-import steps from "./a89053fellipse10-index.js"; const problem = {id: "a89053fellipse10", title: "The Ellipse", body: "For the following exercise, determine whether the given equations represent ellipses. If yes, write in standard form.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

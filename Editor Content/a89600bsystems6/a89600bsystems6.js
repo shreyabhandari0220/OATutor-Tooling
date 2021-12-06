@@ -1,1 +1,0 @@
-import steps from "./a89600bsystems6-index.js"; const problem = {id: "a89600bsystems6", title: "Solving a System of Nonlinear Equations Using Elimination", body: "Solve the system of nonlinear equations using elimination.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

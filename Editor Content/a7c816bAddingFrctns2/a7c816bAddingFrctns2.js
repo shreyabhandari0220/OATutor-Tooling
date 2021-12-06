@@ -1,1 +1,0 @@
-import steps from "./a7c816bAddingFrctns2-index.js"; const problem = {id: "a7c816bAddingFrctns2", title: "Adding Fractions", body: "$$\\frac{7}{15}+\\frac{5}{8}+\\frac{3}{8}$$: Find what this equals.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/intermediate-algebra-2e/pages/1-5-properties-of-real-numbers", courseName: ""}; export { problem };

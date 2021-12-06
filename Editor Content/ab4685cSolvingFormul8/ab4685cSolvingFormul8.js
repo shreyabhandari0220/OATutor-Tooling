@@ -1,0 +1,1 @@
+import steps from "./ab4685cSolvingFormul8-index.js"; const problem = {id: "ab4685cSolvingFormul8", title: "Solve a Formula for a Specific Variable", body: "Solve the formula $$A=P+P r t$$ for r.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/intermediate-algebra-2e/pages/2-3-solve-a-formula-for-a-specific-variable", courseName: ""}; export { problem };

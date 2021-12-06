@@ -1,1 +1,0 @@
-import steps from "./a6cf09cmatrices11-index.js"; const problem = {id: "a6cf09cmatrices11", title: "Finding the Dimensions of the Given Matrix", body: "Find the dimensions of matrix A.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

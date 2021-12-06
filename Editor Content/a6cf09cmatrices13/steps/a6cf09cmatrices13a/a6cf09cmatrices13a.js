@@ -1,1 +1,0 @@
-import hints from "./a6cf09cmatrices13a-index.js"; const step = {id: "a6cf09cmatrices13a", stepAnswer: ["$$\\begin{bmatrix} 6 & 8 \\\\ 10 & 12 \\end{bmatrix}$$"], problemType: "TextBox", stepTitle: "$$A=/mat{(1,2),(3,4)$$ and $$B=\\begin{bmatrix} 5 & 6 \\\\ 7 & 8 \\end{bmatrix}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

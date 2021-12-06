@@ -1,1 +1,0 @@
-import hints from "./a6dd33flogprop8a-index.js"; const step = {id: "a6dd33flogprop8a", stepAnswer: ["-2ln(x)"], problemType: "TextBox", stepTitle: "Expand $$\\ln(\\frac{1}{x^2})$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

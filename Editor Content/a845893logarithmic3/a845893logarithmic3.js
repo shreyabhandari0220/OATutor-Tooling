@@ -1,1 +1,0 @@
-import steps from "./a845893logarithmic3-index.js"; const problem = {id: "a845893logarithmic3", title: "Combining Logarithms Using Product, Quotient, and Power Rules", body: "Condense the expression to a single logarithm if possible.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

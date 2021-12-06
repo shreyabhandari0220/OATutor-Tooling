@@ -1,0 +1,1 @@
+import hints from "./ab733ecreal14a-index.js"; const step = {id: "ab733ecreal14a", stepAnswer: ["$$\\frac{23}{12}$$"], problemType: "TextBox", stepTitle: "$$\\frac{11}{12}+\\frac{4}{9}+\\frac{5}{9}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

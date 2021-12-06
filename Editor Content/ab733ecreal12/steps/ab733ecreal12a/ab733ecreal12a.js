@@ -1,0 +1,1 @@
+import hints from "./ab733ecreal12a-index.js"; const step = {id: "ab733ecreal12a", stepAnswer: ["$$12q$$"], problemType: "TextBox", stepTitle: "$$20\\frac{3}{5} q$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import steps from "./ad3667dMultDivInts15-index.js"; const problem = {id: "ad3667dMultDivInts15", title: "Urbana Temperature", body: "Find the difference in temperatures (in degrees).", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

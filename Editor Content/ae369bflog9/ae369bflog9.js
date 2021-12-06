@@ -1,1 +1,0 @@
-import steps from "./ae369bflog9-index.js"; const problem = {id: "ae369bflog9", title: "Finding the Value of a Common Logarithm Mentally", body: "Solve the expression without a calculator.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

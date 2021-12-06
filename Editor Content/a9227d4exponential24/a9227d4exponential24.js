@@ -1,1 +1,0 @@
-import steps from "./a9227d4exponential24-index.js"; const problem = {id: "a9227d4exponential24", title: "Finding the Function that Describes Radioactive Decay", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,0 +1,1 @@
+import steps from "./a7c816bRealNums4-index.js"; const problem = {id: "a7c816bRealNums4", title: "Adding Fractions", body: "Find the sum of the fractions, written as an improper fraction", steps: steps, variabilization: {}, oer: "https://openstax.org/books/intermediate-algebra-2e/pages/1-5-properties-of-real-numbers", courseName: ""}; export { problem };

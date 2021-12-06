@@ -1,1 +1,0 @@
-import hints from "./ae369bflog12a-index.js"; const step = {id: "ae369bflog12a", stepAnswer: ["2.09"], problemType: "TextBox", stepTitle: "$$y=\\ln(123)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

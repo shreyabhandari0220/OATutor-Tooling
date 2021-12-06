@@ -1,0 +1,1 @@
+import steps from "./a0af30flang24-index.js"; const problem = {id: "a0af30flang24", title: "Simplifying Expressions", body: "Simplify the given expression.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

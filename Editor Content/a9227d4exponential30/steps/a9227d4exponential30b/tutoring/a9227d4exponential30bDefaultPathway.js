@@ -1,1 +1,0 @@
-var hints = [{id: "a9227d4exponential30b-h1", type: "hint", dependencies: [], title: "Substitution", text: "Substituting $$t=3$$, what is N(3)?", variabilization: {}}, ]; export {hints};

@@ -1,1 +1,0 @@
-import hints from "./a9227d4exponential27b-index.js"; const step = {id: "a9227d4exponential27b", stepAnswer: ["88"], problemType: "TextBox", stepTitle: "To the nearest minute, how long will it take the soup to cool to 80° F?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

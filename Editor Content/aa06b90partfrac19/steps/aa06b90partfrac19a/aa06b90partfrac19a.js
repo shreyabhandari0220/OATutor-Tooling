@@ -1,1 +1,0 @@
-import hints from "./aa06b90partfrac19a-index.js"; const step = {id: "aa06b90partfrac19a", stepAnswer: ["$$\\frac{-1}{3x+5}+\\frac{1}{2x+5}$$"], problemType: "TextBox", stepTitle: "", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

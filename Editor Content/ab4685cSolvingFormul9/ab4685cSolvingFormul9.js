@@ -1,0 +1,1 @@
+import steps from "./ab4685cSolvingFormul9-index.js"; const problem = {id: "ab4685cSolvingFormul9", title: "Solve a Formula for a Specific Variable", body: "Solve the formula $$8x+7y=15$$ for y.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/intermediate-algebra-2e/pages/2-3-solve-a-formula-for-a-specific-variable", courseName: ""}; export { problem };

@@ -1,1 +1,0 @@
-import steps from "./a7c816bDistrubting1-index.js"; const problem = {id: "a7c816bDistrubting1", title: "Distributive Property", body: "$$3\\left(x+4\\right)$$: Distribute the terms.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/intermediate-algebra-2e/pages/1-5-properties-of-real-numbers", courseName: ""}; export { problem };

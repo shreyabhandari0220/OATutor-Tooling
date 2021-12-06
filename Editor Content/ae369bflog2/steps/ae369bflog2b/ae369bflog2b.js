@@ -1,1 +1,0 @@
-import hints from "./ae369bflog2b-index.js"; const step = {id: "ae369bflog2b", stepAnswer: ["$$5^2=25$$"], problemType: "MultipleChoice", stepTitle: "log{5}(25) $$=$$ 2", stepBody: "", choices: ["$$5^2=25$$", "$${25}^{\\frac{1}{2}}=5$$", "$$2^5=25$$", "None of the above"], answerType: "string", hints: hints, variabilization: {}}; export {step};

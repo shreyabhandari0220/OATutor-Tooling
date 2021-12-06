@@ -1,0 +1,1 @@
+import steps from "./a1a4133MultDivInts30-index.js"; const problem = {id: "a1a4133MultDivInts30", title: "Diontre's Checking Account", body: "What is the new balance (in dollars)?", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

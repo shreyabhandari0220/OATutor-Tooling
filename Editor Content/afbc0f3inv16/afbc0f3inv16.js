@@ -1,1 +1,0 @@
-import steps from "./afbc0f3inv16-index.js"; const problem = {id: "afbc0f3inv16", title: "Finding the Inverse of a 2x2 Matrix", body: "", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

@@ -1,1 +1,0 @@
-import steps from "./ae369bflog2-index.js"; const problem = {id: "ae369bflog2", title: "Converting from Logarithmic Form to Exponential Form", body: "Write the following logarithmic equations in exponential form.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

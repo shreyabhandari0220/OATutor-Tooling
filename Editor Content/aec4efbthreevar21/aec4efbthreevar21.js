@@ -1,1 +1,0 @@
-import steps from "./aec4efbthreevar21-index.js"; const problem = {id: "aec4efbthreevar21", title: "Systems of Linear Equations", body: "Three even numbers sum up to 108. The smaller is half the larger and the middle number is $$\\frac{3}{4}$$ the larger.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

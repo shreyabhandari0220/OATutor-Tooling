@@ -1,0 +1,1 @@
+import hints from "./ab4685cSolvingFormul7a-index.js"; const step = {id: "ab4685cSolvingFormul7a", stepAnswer: ["$$h=\\frac{S}{2\\pi r}-r$$"], problemType: "TextBox", stepTitle: "$$S=2\\pi r^2+2\\pi r h$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

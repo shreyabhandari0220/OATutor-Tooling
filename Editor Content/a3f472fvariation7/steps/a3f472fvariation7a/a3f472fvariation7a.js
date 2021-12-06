@@ -1,1 +1,0 @@
-import hints from "./a3f472fvariation7a-index.js"; const step = {id: "a3f472fvariation7a", stepAnswer: ["$$a=4b$$"], problemType: "TextBox", stepTitle: "If a varies directly as b and $$a=16, whenb=4$$, find the equation that relates a and b (in the form a $$=?)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

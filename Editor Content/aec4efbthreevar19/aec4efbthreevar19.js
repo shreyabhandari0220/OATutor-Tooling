@@ -1,1 +1,0 @@
-import steps from "./aec4efbthreevar19-index.js"; const problem = {id: "aec4efbthreevar19", title: "Systems of Linear Equations", body: "For the following exercise, solve the system for x, y, and z (indicate in coordinates)", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

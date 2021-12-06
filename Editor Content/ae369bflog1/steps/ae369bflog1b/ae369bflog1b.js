@@ -1,1 +1,0 @@
-import hints from "./ae369bflog1b-index.js"; const step = {id: "ae369bflog1b", stepAnswer: ["$$3^2$$ $$=$$ 9"], problemType: "MultipleChoice", stepTitle: "log{3}9 $$=$$ 2", stepBody: "", choices: ["$$2^3=9$$", "$$3^2$$ $$=$$ 9", "$$\\sqrt{9}=3$$", "None of the above"], answerType: "string", hints: hints, variabilization: {}}; export {step};
