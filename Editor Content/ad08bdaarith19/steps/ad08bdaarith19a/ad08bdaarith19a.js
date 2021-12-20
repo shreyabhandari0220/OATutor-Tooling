@@ -1,1 +1,0 @@
-import hints from "./ad08bdaarith19a-index.js"; const step = {id: "ad08bdaarith19a", stepAnswer: ["$$\\operatorname{a_{}}\\left(n+1\\right)$$ =a_n+20,a_1=40"], problemType: "TextBox", stepTitle: "Find the recursive formula for a $$=$$ {40, 60, 80, ...}", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

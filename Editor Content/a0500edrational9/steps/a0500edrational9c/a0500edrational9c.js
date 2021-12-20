@@ -1,1 +1,0 @@
-import hints from "./a0500edrational9c-index.js"; const step = {id: "a0500edrational9c", stepAnswer: ["$$\\frac{1}{32}$$"], problemType: "TextBox", stepTitle: "Simplify: $$4^{\\left(-\\frac{5}{2}\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

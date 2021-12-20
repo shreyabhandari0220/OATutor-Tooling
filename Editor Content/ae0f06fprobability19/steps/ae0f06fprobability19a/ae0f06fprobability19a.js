@@ -1,1 +1,0 @@
-import hints from "./ae0f06fprobability19a-index.js"; const step = {id: "ae0f06fprobability19a", stepAnswer: ["$$\\frac{3}{4}$$"], problemType: "TextBox", stepTitle: "Find the probability of tossing at least one tail.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

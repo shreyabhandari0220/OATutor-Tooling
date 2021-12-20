@@ -1,0 +1,1 @@
+import hints from "./af16b17Linear1b-index.js"; const step = {id: "af16b17Linear1b", stepAnswer: ["Yes"], problemType: "MultipleChoice", stepTitle: "$$y=\\frac{7}{5}$$", stepBody: "", choices: ["Yes", "No"], answerType: "string", hints: hints, variabilization: {}}; export {step};

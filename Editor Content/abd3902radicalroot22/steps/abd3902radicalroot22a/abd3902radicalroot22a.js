@@ -1,0 +1,1 @@
+import hints from "./abd3902radicalroot22a-index.js"; const step = {id: "abd3902radicalroot22a", stepAnswer: ["$$v=17$$"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{6v-2}=10$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

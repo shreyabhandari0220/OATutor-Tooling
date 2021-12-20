@@ -1,0 +1,1 @@
+import steps from "./af16b17Linear1-index.js"; const problem = {id: "af16b17Linear1", title: "Solve Linear Equations Using a General Strategy", body: "Determine whether the values are solutions to the equation: $$5y+3=10y-4$$", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

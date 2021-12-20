@@ -1,0 +1,1 @@
+var hints = [{id: "a951790realnumbers24a-h1", type: "hint", dependencies: [], title: "Question Simplification", text: "What number to the power of 4 is 256?", variabilization: {}}, {id: "a951790realnumbers24a-h2", type: "hint", dependencies: ["a951790realnumbers24a-h1"], title: "Finding the Root", text: "$$4^4=256$$, so our answer is 4.", variabilization: {}}, ]; export {hints};

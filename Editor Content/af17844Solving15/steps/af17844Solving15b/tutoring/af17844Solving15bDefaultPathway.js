@@ -1,0 +1,1 @@
+var hints = [{id: "af17844Solving15b-h1", type: "hint", dependencies: [], title: "Formula", text: "List price $$=$$ original cost + mark-up", variabilization: {}}, {id: "af17844Solving15b-h2", type: "hint", dependencies: ["af17844Solving15b-h1"], title: "Setup", text: "Assume list price $$=$$ x, the equation becomes $$x=750+300$$", variabilization: {}}, ]; export {hints};

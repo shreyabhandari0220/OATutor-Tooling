@@ -1,1 +1,0 @@
-import hints from "./ab397a8conic17a-index.js"; const step = {id: "ab397a8conic17a", stepAnswer: ["$$3\\sqrt{x^2+y^2}-2x=8$$"], problemType: "TextBox", stepTitle: "Convert $$r=\\frac{8}{3-2cos\\left(\\theta\\right)}$$ to rectangular form.", stepBody: "Convert the equation to rectangular form.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

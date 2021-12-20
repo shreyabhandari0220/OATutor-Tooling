@@ -1,1 +1,0 @@
-import hints from "./ab24738root13a-index.js"; const step = {id: "ab24738root13a", stepAnswer: ["4"], problemType: "TextBox", stepTitle: "Solve the following expression.", stepBody: "$$\\sqrt{16}$$", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

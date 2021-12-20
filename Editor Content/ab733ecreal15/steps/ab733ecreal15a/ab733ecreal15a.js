@@ -1,1 +1,0 @@
-import hints from "./ab733ecreal15a-index.js"; const step = {id: "ab733ecreal15a", stepAnswer: ["$$\\frac{11}{6}$$"], problemType: "TextBox", stepTitle: "$$\\frac{5}{6}+\\frac{8}{15}+\\frac{7}{15}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./a3423a9quad5a-index.js"; const step = {id: "a3423a9quad5a", stepAnswer: ["(2,-1)"], problemType: "MultipleChoice", stepTitle: "$$y=-\\left(x^2\\right)+4x-5$$", stepBody: "", choices: ["(0,1)I(7,-2)I(2,-1)I(3,5)", "(2,-1)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

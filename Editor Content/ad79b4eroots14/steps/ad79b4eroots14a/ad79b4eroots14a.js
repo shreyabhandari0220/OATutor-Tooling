@@ -1,1 +1,0 @@
-import hints from "./ad79b4eroots14a-index.js"; const step = {id: "ad79b4eroots14a", stepAnswer: ["$$5\\sqrt{c}-3\\sqrt{d}$$"], problemType: "TextBox", stepTitle: "$$5\\sqrt{c}-3\\sqrt{d}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

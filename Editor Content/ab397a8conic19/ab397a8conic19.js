@@ -1,1 +1,0 @@
-import steps from "./ab397a8conic19-index.js"; const problem = {id: "ab397a8conic19", title: "Converting Polar Equations to Rectangular Equations", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

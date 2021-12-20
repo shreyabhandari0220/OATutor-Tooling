@@ -1,1 +1,0 @@
-import steps from "./a4bf175hyperbola5-index.js"; const problem = {id: "a4bf175hyperbola5", title: "The Hyperbola", body: "$$\\frac{y^2}{3^2}-\\frac{x^2}{3^2}=1$$", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./a951790realnumbers24a-index.js"; const step = {id: "a951790realnumbers24a", stepAnswer: ["4"], problemType: "TextBox", stepTitle: "$$\\sqrt{4, 256}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

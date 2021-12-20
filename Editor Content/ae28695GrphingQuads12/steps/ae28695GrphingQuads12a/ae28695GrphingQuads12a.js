@@ -1,0 +1,1 @@
+import hints from "./ae28695GrphingQuads12a-index.js"; const step = {id: "ae28695GrphingQuads12a", stepAnswer: ["-1"], problemType: "TextBox", stepTitle: "$$y=x^2+2x-8$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./adeaf6dGrphingQuads2a-index.js"; const step = {id: "adeaf6dGrphingQuads2a", stepAnswer: ["(0,6), (-6,0), (-1,0)"], problemType: "TextBox", stepTitle: "$$y=x^2+7x+6$$", stepBody: "", answerType: "string", hints: hints, variabilization: {}}; export {step};

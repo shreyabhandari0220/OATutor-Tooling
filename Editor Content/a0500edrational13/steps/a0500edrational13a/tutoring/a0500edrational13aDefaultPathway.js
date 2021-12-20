@@ -1,1 +1,0 @@
-var hints = [{id: "a0500edrational13a-h1", type: "hint", dependencies: [], title: "Exponent subtraction", text: "To divide with the same base, we subtract the exponents.", variabilization: {}}, {id: "a0500edrational13a-h2", type: "hint", dependencies: ["a0500edrational13a-h1"], title: "Simplify", text: "Simply the whole expression", variabilization: {}}, ]; export {hints};

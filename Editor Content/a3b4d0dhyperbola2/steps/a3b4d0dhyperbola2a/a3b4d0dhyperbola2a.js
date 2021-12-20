@@ -1,1 +1,0 @@
-import hints from "./a3b4d0dhyperbola2a-index.js"; const step = {id: "a3b4d0dhyperbola2a", stepAnswer: ["(3,0),(-3,0)"], problemType: "MultipleChoice", stepTitle: "Find the vertices of $$\\frac{x^2}{9}-\\frac{y^2}{25}=1$$", stepBody: "", choices: ["(3,0),(-3,0)", "(0,5),(0,-5)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

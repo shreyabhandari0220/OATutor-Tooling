@@ -1,0 +1,1 @@
+import steps from "./a05393drealnumbers15-index.js"; const problem = {id: "a05393drealnumbers15", title: "Add and Subtract Higher Roots", body: "Simplify the following square root.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

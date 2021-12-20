@@ -1,1 +1,0 @@
-import hints from "./ae0f06fprobability25a-index.js"; const step = {id: "ae0f06fprobability25a", stepAnswer: ["$$\\frac{1}{26}$$"], problemType: "TextBox", stepTitle: "Find the probability of drawing a red six.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import steps from "./a0500edrational7-index.js"; const problem = {id: "a0500edrational7", title: "Simplify Expressions with $$a^{\\frac{m}{n}}$$", body: "Simplify:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

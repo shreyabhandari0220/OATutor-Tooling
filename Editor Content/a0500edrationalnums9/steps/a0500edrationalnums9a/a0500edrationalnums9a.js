@@ -1,0 +1,1 @@
+import hints from "./a0500edrationalnums9a-index.js"; const step = {id: "a0500edrationalnums9a", stepAnswer: ["$$\\frac{1}{64}$$"], problemType: "TextBox", stepTitle: "$${16}^{\\left(-\\frac{3}{2}\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

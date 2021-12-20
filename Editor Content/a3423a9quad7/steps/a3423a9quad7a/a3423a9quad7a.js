@@ -1,1 +1,0 @@
-import hints from "./a3423a9quad7a-index.js"; const step = {id: "a3423a9quad7a", stepAnswer: ["(0,-49)"], problemType: "MultipleChoice", stepTitle: "$$y=4x^2-49$$", stepBody: "", choices: ["(0,-16)I(0,-25)I(0,-36)I(0,-49)", "(0,-49)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

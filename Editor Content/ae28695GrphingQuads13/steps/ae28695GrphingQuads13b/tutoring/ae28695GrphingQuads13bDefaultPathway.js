@@ -1,0 +1,1 @@
+var hints = [{id: "ae28695GrphingQuads13b-h1", type: "hint", dependencies: [], title: "Finding the Vertex of Parabolas", text: "Plug in the axis of symmetry and solve the equation.", variabilization: {}}, ]; export {hints};

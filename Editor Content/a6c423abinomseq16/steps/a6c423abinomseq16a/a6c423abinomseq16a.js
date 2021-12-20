@@ -1,1 +1,0 @@
-import hints from "./a6c423abinomseq16a-index.js"; const step = {id: "a6c423abinomseq16a", stepAnswer: ["15"], problemType: "TextBox", stepTitle: "(6,2)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

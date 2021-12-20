@@ -1,1 +1,0 @@
-import hints from "./ab4685cSolvingFormul3a-index.js"; const step = {id: "ab4685cSolvingFormul3a", stepAnswer: ["$$h=\\frac{2A}{b}$$"], problemType: "TextBox", stepTitle: "$$A=\\frac{1}{2} b h$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./adeaf6dGrphingQuads4a-index.js"; const step = {id: "adeaf6dGrphingQuads4a", stepAnswer: ["(0,-19), DNE"], problemType: "TextBox", stepTitle: "$$y=\\left(-x^2\\right)+8x+19$$", stepBody: "", answerType: "string", hints: hints, variabilization: {}}; export {step};

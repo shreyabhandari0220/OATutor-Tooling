@@ -1,0 +1,1 @@
+import hints from "./a05393drealnumbers5a-index.js"; const step = {id: "a05393drealnumbers5a", stepAnswer: ["$$4p^2$$"], problemType: "TextBox", stepTitle: "$$\\sqrt{3, 64p^6}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

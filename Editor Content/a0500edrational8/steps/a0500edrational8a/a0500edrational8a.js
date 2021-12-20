@@ -1,1 +1,0 @@
-import hints from "./a0500edrational8a-index.js"; const step = {id: "a0500edrational8a", stepAnswer: ["27"], problemType: "TextBox", stepTitle: "Simplify: $$9^{\\frac{3}{2}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

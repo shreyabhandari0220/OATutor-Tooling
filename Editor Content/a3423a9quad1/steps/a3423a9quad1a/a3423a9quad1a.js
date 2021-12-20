@@ -1,1 +1,0 @@
-import hints from "./a3423a9quad1a-index.js"; const step = {id: "a3423a9quad1a", stepAnswer: ["(-7,0)"], problemType: "MultipleChoice", stepTitle: "Find the x-intercept of the given equation.", stepBody: "", choices: ["(-7,0)I(4,0)I(-2,0)I(3,0)", "(-7,0)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

@@ -1,0 +1,1 @@
+import hints from "./a432aa6squareroots30a-index.js"; const step = {id: "a432aa6squareroots30a", stepAnswer: ["$$-5\\sqrt{7}+2\\sqrt{5}$$"], problemType: "TextBox", stepTitle: "$$3\\sqrt{7}-8\\sqrt{7}+2\\sqrt{5}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

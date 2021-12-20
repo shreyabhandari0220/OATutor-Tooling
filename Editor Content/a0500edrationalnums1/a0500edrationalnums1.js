@@ -1,0 +1,1 @@
+import steps from "./a0500edrationalnums1-index.js"; const problem = {id: "a0500edrationalnums1", title: "Simplify Expressions with $$a^{\\frac{1}{n}}$$", body: "Simplify the following expressions.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

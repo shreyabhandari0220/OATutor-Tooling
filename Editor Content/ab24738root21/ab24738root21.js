@@ -1,1 +1,0 @@
-import steps from "./ab24738root21-index.js"; const problem = {id: "ab24738root21", title: "Finding the Square Root of a Number", body: "Solve the following expression. If the answer is not possible, choose \"Undefined\" as the answer.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

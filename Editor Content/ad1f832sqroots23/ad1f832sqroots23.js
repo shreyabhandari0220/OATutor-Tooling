@@ -1,0 +1,1 @@
+import steps from "./ad1f832sqroots23-index.js"; const problem = {id: "ad1f832sqroots23", title: "Simplifying Dvided Square Roots", body: "Simplify the square root espression.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

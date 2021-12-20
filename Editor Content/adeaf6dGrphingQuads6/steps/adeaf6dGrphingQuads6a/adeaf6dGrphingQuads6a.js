@@ -1,0 +1,1 @@
+import hints from "./adeaf6dGrphingQuads6a-index.js"; const step = {id: "adeaf6dGrphingQuads6a", stepAnswer: ["(0,25), (2.5,0)"], problemType: "TextBox", stepTitle: "$$y=4x^2-20x+25$$", stepBody: "", answerType: "string", hints: hints, variabilization: {}}; export {step};

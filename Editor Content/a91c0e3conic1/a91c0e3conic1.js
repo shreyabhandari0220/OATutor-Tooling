@@ -1,1 +1,0 @@
-import steps from "./a91c0e3conic1-index.js"; const problem = {id: "a91c0e3conic1", title: "Identifying a Conic Given the Polar Form", body: "For each of the following equations, identify the conic with focus at the origin, the directrix, and the eccentricity.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

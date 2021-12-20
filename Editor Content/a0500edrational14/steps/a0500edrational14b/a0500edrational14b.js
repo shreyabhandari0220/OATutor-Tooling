@@ -1,1 +1,0 @@
-import hints from "./a0500edrational14b-index.js"; const step = {id: "a0500edrational14b", stepAnswer: ["$$p q^2$$"], problemType: "TextBox", stepTitle: "$${\\left(p^4 q^8\\right)}^{\\frac{1}{4}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

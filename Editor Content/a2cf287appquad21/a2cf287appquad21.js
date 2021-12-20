@@ -1,0 +1,1 @@
+import steps from "./a2cf287appquad21-index.js"; const problem = {id: "a2cf287appquad21", title: "Solve Applications of the Quadratic Formula", body: "Find the correct dimension.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

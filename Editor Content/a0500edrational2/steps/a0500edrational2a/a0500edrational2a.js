@@ -1,1 +1,0 @@
-import hints from "./a0500edrational2a-index.js"; const step = {id: "a0500edrational2a", stepAnswer: ["$$x^{\\frac{1}{2}}$$"], problemType: "TextBox", stepTitle: "Wrtie with a rational exponent: $$\\sqrt{x}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

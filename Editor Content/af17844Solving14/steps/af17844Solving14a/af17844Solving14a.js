@@ -1,0 +1,1 @@
+import hints from "./af17844Solving14a-index.js"; const step = {id: "af17844Solving14a", stepAnswer: ["50.0%"], problemType: "MultipleChoice", stepTitle: "Find the percent change. (Round to the nearest tenth of a percent.)", stepBody: "", choices: ["48%", "50%", "53%", "50.0%"], answerType: "string", hints: hints, variabilization: {}}; export {step};

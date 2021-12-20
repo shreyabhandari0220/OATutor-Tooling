@@ -1,1 +1,0 @@
-import steps from "./ab733ecreal8-index.js"; const problem = {id: "ab733ecreal8", title: "Use the Commutative and Associative Properties", body: "Simplify the following exercise.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

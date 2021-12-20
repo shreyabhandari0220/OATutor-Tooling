@@ -1,0 +1,1 @@
+import steps from "./a05393drealnumbers10-index.js"; const problem = {id: "a05393drealnumbers10", title: "Simplifying Exponents", body: "Simplify:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

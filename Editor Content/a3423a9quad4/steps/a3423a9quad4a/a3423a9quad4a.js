@@ -1,1 +1,0 @@
-import hints from "./a3423a9quad4a-index.js"; const step = {id: "a3423a9quad4a", stepAnswer: ["(3,6)"], problemType: "MultipleChoice", stepTitle: "$$y=x^2-6x+15$$", stepBody: "", choices: ["(3,6)", "(2,1)I(3,6)I(4,9)I(7,2)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

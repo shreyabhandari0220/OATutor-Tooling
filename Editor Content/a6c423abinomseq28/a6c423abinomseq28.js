@@ -1,1 +1,0 @@
-import steps from "./a6c423abinomseq28-index.js"; const problem = {id: "a6c423abinomseq28", title: "Binomial Expansion", body: "Expand the following.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

@@ -1,0 +1,1 @@
+import hints from "./a951790realnumbers23a-index.js"; const step = {id: "a951790realnumbers23a", stepAnswer: ["-8"], problemType: "TextBox", stepTitle: "$$\\sqrt{3, -512}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

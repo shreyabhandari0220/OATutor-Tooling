@@ -1,1 +1,0 @@
-import steps from "./ab4685cSolvingFormul10-index.js"; const problem = {id: "ab4685cSolvingFormul10", title: "Solve a Formula for a Specific Variable", body: "Solve the formula $$4x+7y=9$$ for y.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/intermediate-algebra-2e/pages/2-3-solve-a-formula-for-a-specific-variable", courseName: ""}; export { problem };

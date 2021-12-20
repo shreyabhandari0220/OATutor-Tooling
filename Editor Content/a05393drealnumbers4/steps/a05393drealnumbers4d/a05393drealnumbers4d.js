@@ -1,0 +1,1 @@
+import hints from "./a05393drealnumbers4d-index.js"; const step = {id: "a05393drealnumbers4d", stepAnswer: ["y"], problemType: "TextBox", stepTitle: "$$\\sqrt{5, y^5}$$", stepBody: "$$\\sqrt{5, y^5}$$", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./a3423a9quad3a-index.js"; const step = {id: "a3423a9quad3a", stepAnswer: ["(1.5,4)"], problemType: "MultipleChoice", stepTitle: "$$y=\\left(-4x^2\\right)+12x-5$$", stepBody: "", choices: ["(1.5,4)", "(1.5,4)I(2,3)I(3.5,1)I(7,2)"], answerType: "string", hints: hints, variabilization: {}}; export {step};
