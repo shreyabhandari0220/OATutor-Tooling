@@ -1,0 +1,1 @@
+import hints from "./af16b17Linear2b-index.js"; const step = {id: "af16b17Linear2b", stepAnswer: ["0"], problemType: "TextBox", stepTitle: "Determine whether $$y=\\frac{1}{3}$$ is a solution to $$9y+2=6y-3$$ (0 for non-solution, 1 for solution)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

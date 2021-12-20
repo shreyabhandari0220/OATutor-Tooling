@@ -1,1 +1,0 @@
-import hints from "./ac0d1f7cou4a-index.js"; const step = {id: "ac0d1f7cou4a", stepAnswer: ["6"], problemType: "TextBox", stepTitle: "Let the set $$A={-5, -3, -1, 2, 3, 4, 5, 6$$.} How many ways are there to choose a negative or an even number from A?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

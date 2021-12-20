@@ -1,0 +1,1 @@
+import hints from "./ac9891erationalnums17a-index.js"; const step = {id: "ac9891erationalnums17a", stepAnswer: ["$$\\sqrt{3, s}$$"], problemType: "TextBox", stepTitle: "$$s^{\\frac{1}{3}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

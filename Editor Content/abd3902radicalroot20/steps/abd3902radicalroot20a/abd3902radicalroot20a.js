@@ -1,0 +1,1 @@
+import hints from "./abd3902radicalroot20a-index.js"; const step = {id: "abd3902radicalroot20a", stepAnswer: ["$$m=14$$"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{2m-3}-5=0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

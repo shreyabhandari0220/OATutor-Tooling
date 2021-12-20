@@ -1,1 +1,0 @@
-import hints from "./a4e8d55roots3a-index.js"; const step = {id: "a4e8d55roots3a", stepAnswer: ["$$\\frac{3-\\sqrt{6}}{6}$$"], problemType: "TextBox", stepTitle: "$$\\frac{6-\\sqrt{24}}{12}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./a3b4d0dhyperbola9a-index.js"; const step = {id: "a3b4d0dhyperbola9a", stepAnswer: ["NA"], problemType: "MultipleChoice", stepTitle: "$$3y^2+2x=6$$", stepBody: "", choices: ["$$\\frac{y^2}{2}+\\frac{x}{3}=1$$", "$$\\frac{y^2}{2^2}-\\frac{x^2}{3^3}=1$$", "NA"], answerType: "string", hints: hints, variabilization: {}}; export {step};

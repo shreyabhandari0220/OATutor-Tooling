@@ -1,1 +1,0 @@
-import hints from "./ad08bdaarith27a-index.js"; const step = {id: "ad08bdaarith27a", stepAnswer: ["$$a_n+1=-0.75+a_n$$, $$a_1=-0.5$$"], problemType: "TextBox", stepTitle: "Find the recursive formula for a $$=$$ {$$\\frac{-1}{2}$$, $$\\frac{-5}{4}$$, -2}", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import steps from "./a74ab1ebinomseq9-index.js"; const problem = {id: "a74ab1ebinomseq9", title: "Finding Binomial Coefficients", body: "For the following exercise, evaluate the binomial coefficient", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

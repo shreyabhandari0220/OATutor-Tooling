@@ -1,1 +1,0 @@
-import hints from "./a4e8d55roots14a-index.js"; const step = {id: "a4e8d55roots14a", stepAnswer: ["(2*(4-sqrt(2))/7"], problemType: "TextBox", stepTitle: "$$\\frac{4}{4+\\sqrt{2}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

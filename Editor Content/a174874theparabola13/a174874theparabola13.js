@@ -1,1 +1,0 @@
-import steps from "./a174874theparabola13-index.js"; const problem = {id: "a174874theparabola13", title: "Finding Parabola Characteristics", body: "Find the vertex, focus, and directrix (in order, separated by a comma) of the parabola:", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

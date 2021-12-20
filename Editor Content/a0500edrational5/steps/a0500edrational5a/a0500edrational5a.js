@@ -1,1 +1,0 @@
-import hints from "./a0500edrational5a-index.js"; const step = {id: "a0500edrational5a", stepAnswer: ["-4"], problemType: "TextBox", stepTitle: "Simplify: $${\\left(-64\\right)}^{\\frac{1}{3}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

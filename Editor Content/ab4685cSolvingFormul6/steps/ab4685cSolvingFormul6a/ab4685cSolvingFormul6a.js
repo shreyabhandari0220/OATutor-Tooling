@@ -1,1 +1,0 @@
-import hints from "./ab4685cSolvingFormul6a-index.js"; const step = {id: "ab4685cSolvingFormul6a", stepAnswer: ["$$b=\\frac{2A}{h}-B$$"], problemType: "TextBox", stepTitle: "$$A=\\frac{1}{2} h+b+B$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

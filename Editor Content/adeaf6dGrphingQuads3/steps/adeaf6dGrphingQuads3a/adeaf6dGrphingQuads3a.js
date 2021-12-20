@@ -1,0 +1,1 @@
+import hints from "./adeaf6dGrphingQuads3a-index.js"; const step = {id: "adeaf6dGrphingQuads3a", stepAnswer: ["(0,-11), (-11,0), (1,0)"], problemType: "TextBox", stepTitle: "$$y=x^2+10x-11$$", stepBody: "", answerType: "string", hints: hints, variabilization: {}}; export {step};

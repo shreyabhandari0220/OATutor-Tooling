@@ -1,0 +1,1 @@
+import hints from "./a3aec26roots12a-index.js"; const step = {id: "a3aec26roots12a", stepAnswer: ["4*n"], problemType: "TextBox", stepTitle: "$$\\sqrt{16n^2}$$", stepBody: "", answerType: "string", hints: hints, variabilization: {}}; export {step};

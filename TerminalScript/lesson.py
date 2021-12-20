@@ -164,8 +164,8 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
                     for skill in skills:
                         bkt_params.append(create_bkt_params(skill))
                 end = time.time()
-                if end - start < 3:
-                    time.sleep(3 - (end - start))
+                if end - start < 4:
+                    time.sleep(4 - (end - start))
             course_plan.append(create_course_plan(course_name, lesson_plan))
 
         # process editor sheet
@@ -175,20 +175,24 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
                 editor_book = get_sheet(editor_url)
                 sheet_names = [sheet.title for sheet in editor_book.worksheets() if sheet.title[:2] != '!!']
                 # check name conflicts in editor sheet
+                # for sheet in sheet_names:
+                #     start = time.time()
+                #     names_from_one_sheet(editor_book, sheet)
+                #     end = time.time()
+                #     if end - start < 3:
+                #         time.sleep(3 - (end - start))
                 for sheet in sheet_names:
                     start = time.time()
-                    names_from_one_sheet(editor_book, sheet)
-                    end = time.time()
-                    if end - start < 3:
-                        time.sleep(3 - (end - start))
-                for sheet in sheet_names:
-                    start = time.time()
-                    if sheet[:2] == '##':
-                        process_sheet(editor_url, sheet, editor_content_path, 'online','FALSE',
-                                            validator_path=validator_path,editor=True,course_name="")
-                    else:
-                        process_sheet(editor_url, sheet, editor_content_path, 'online','TRUE',
-                                            validator_path=validator_path,editor=True,course_name="")
+                    try:
+                        if sheet[:2] == '##':
+                            process_sheet(editor_url, sheet, editor_content_path, 'online','FALSE',
+                                                validator_path=validator_path,editor=True,course_name="")
+                        else:
+                            process_sheet(editor_url, sheet, editor_content_path, 'online','TRUE',
+                                                validator_path=validator_path,editor=True,course_name="")
+                    except Exception as e:
+                        print("Error in {}:".format(sheet), e)
+
                     end = time.time()
                     if end - start < 4:
                         time.sleep(4 - (end - start))

@@ -1,0 +1,1 @@
+import hints from "./af17844Solving15b-index.js"; const step = {id: "af17844Solving15b", stepAnswer: ["1050"], problemType: "TextBox", stepTitle: "Find the list price of the printing", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

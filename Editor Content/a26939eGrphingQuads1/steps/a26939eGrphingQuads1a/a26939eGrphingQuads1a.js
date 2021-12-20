@@ -1,1 +1,0 @@
-import hints from "./a26939eGrphingQuads1a-index.js"; const step = {id: "a26939eGrphingQuads1a", stepAnswer: ["$$x=-2$$, (-2,5)"], problemType: "TextBox", stepTitle: "$$y=\\left(-2x^2\\right)-8x-3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

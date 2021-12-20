@@ -1,0 +1,1 @@
+import hints from "./a0500edrationalnums13c-index.js"; const step = {id: "a0500edrationalnums13c", stepAnswer: ["$$\\frac{1}{z}$$"], problemType: "TextBox", stepTitle: "$${\\left(m^9\\right)}^{\\frac{2}{9}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

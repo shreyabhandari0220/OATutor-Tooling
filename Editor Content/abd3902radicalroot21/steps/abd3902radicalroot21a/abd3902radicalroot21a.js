@@ -1,0 +1,1 @@
+import hints from "./abd3902radicalroot21a-index.js"; const step = {id: "abd3902radicalroot21a", stepAnswer: ["$$n=5$$"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{2n-1}-3=0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

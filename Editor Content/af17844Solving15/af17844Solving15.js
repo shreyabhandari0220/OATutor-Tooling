@@ -1,0 +1,1 @@
+import steps from "./af17844Solving15-index.js"; const problem = {id: "af17844Solving15", title: "Find Percent Change", body: "Liam’s art gallery bought a painting at an original cost of $750. Liam marked the price up 40%.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,1 +1,0 @@
-import steps from "./a38d5f3ser29-index.js"; const problem = {id: "a38d5f3ser29", title: "Interpreting the Sum of Geometric Series", body: "Find the sum of the $$infinite$$ geometric series.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

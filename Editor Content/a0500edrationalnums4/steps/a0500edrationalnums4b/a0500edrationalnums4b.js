@@ -1,0 +1,1 @@
+import hints from "./a0500edrationalnums4b-index.js"; const step = {id: "a0500edrationalnums4b", stepAnswer: ["4"], problemType: "TextBox", stepTitle: "$${64}^{\\frac{1}{3}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

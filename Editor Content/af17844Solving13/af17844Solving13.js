@@ -1,0 +1,1 @@
+import steps from "./af17844Solving13-index.js"; const problem = {id: "af17844Solving13", title: "Find Percent Change", body: "In 2011, the IRS increased the deductible mileage cost to 55.5 cents from 51 cents.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

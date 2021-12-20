@@ -1,1 +1,0 @@
-import steps from "./a7c816bRealNums14-index.js"; const problem = {id: "a7c816bRealNums14", title: "Distributive Property", body: "Distribute the terms.", steps: steps, variabilization: {}, oer: "https://openstax.org/books/intermediate-algebra-2e/pages/1-5-properties-of-real-numbers", courseName: ""}; export { problem };

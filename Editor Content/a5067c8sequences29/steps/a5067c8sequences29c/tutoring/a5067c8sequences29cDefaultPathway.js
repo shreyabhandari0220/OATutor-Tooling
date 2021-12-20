@@ -1,1 +1,0 @@
-var hints = [{id: "a5067c8sequences29c-h1", type: "hint", dependencies: [], title: "Substitution", text: "Substitute $$n=3$$ into the formula", variabilization: {}}, {id: "a5067c8sequences29c-h2", type: "hint", dependencies: ["a5067c8sequences29c-h1"], title: "Simplification", text: "Calculate the expression $$\\frac{3^2}{2\\times3+1}$$", variabilization: {}}, ]; export {hints};

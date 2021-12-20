@@ -1,0 +1,1 @@
+import steps from "./af16b17Linear14-index.js"; const problem = {id: "af16b17Linear14", title: "How to Solve a Linear Equation with Fraction or Decimal Coefficient", body: "Solve the following equation", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

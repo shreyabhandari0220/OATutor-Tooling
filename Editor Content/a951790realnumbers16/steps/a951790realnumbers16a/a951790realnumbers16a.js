@@ -1,0 +1,1 @@
+import hints from "./a951790realnumbers16a-index.js"; const step = {id: "a951790realnumbers16a", stepAnswer: ["6"], problemType: "TextBox", stepTitle: "$$\\sqrt{3, 216}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

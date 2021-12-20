@@ -1,1 +1,0 @@
-import steps from "./a6c423abinomseq16-index.js"; const problem = {id: "a6c423abinomseq16", title: "Evaluating the Binomial Coefficient", body: "Evaluate the binomial coefficient:", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

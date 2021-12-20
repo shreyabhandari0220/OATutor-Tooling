@@ -1,1 +1,0 @@
-import hints from "./a6c423abinomseq26a-index.js"; const step = {id: "a6c423abinomseq26a", stepAnswer: ["$$\\frac{1152y^2}{x^7}$$"], problemType: "TextBox", stepTitle: "(y/2 + 2/x)**9", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

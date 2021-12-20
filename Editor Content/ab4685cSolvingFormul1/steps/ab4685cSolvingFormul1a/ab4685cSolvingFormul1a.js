@@ -1,1 +1,0 @@
-import hints from "./ab4685cSolvingFormul1a-index.js"; const step = {id: "ab4685cSolvingFormul1a", stepAnswer: ["$$h=\\frac{3v}{\\pi r^2}$$"], problemType: "TextBox", stepTitle: "$$V=13\\pi r^2 h$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

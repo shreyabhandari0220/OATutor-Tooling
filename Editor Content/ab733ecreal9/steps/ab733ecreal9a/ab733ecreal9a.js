@@ -1,1 +1,0 @@
-import hints from "./ab733ecreal9a-index.js"; const step = {id: "ab733ecreal9a", stepAnswer: ["14.88"], problemType: "TextBox", stepTitle: "[2.48*(12)](0.5)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

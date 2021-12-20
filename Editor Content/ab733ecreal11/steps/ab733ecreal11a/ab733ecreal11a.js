@@ -1,1 +1,0 @@
-import hints from "./ab733ecreal11a-index.js"; const step = {id: "ab733ecreal11a", stepAnswer: ["$$10p$$"], problemType: "TextBox", stepTitle: "$$12\\frac{5}{6} p$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

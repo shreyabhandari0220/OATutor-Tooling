@@ -1,1 +1,0 @@
-import hints from "./ab4685cSolvingFormul8a-index.js"; const step = {id: "ab4685cSolvingFormul8a", stepAnswer: ["$$r=\\frac{A}{P t}-\\frac{1}{t}$$"], problemType: "TextBox", stepTitle: "$$A=P+P r t$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

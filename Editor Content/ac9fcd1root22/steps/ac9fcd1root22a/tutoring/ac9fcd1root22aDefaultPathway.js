@@ -1,0 +1,1 @@
+var hints = [{id: "ac9fcd1root22a-h1", type: "hint", dependencies: [], title: "Multiplying Each Root", text: "$$\\sqrt{6} \\sqrt{12}=\\sqrt{72}$$", variabilization: {}}, {id: "ac9fcd1root22a-h2", type: "hint", dependencies: ["ac9fcd1root22a-h1"], title: "Simplifying the Product", text: "$$\\sqrt{72}=\\sqrt{36\\times2}=6\\sqrt{2}$$", variabilization: {}}, ]; export {hints};

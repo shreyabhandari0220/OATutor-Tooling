@@ -1,0 +1,1 @@
+import hints from "./a05393drealnumbers2b-index.js"; const step = {id: "a05393drealnumbers2b", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "$$\\sqrt{4, 16}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

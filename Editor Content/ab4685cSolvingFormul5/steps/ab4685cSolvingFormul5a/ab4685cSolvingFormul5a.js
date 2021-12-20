@@ -1,1 +1,0 @@
-import hints from "./ab4685cSolvingFormul5a-index.js"; const step = {id: "ab4685cSolvingFormul5a", stepAnswer: ["$$C=\\frac{5}{9} F-32$$"], problemType: "TextBox", stepTitle: "F=((9/5)*C)+32)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

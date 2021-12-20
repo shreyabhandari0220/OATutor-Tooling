@@ -1,0 +1,1 @@
+import steps from "./af17844Solving7-index.js"; const problem = {id: "af17844Solving7", title: "Solve Number Word Problems", body: "Solve the following word problem", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,1 +1,0 @@
-import steps from "./a74ab1ebinomseq1-index.js"; const problem = {id: "a74ab1ebinomseq1", title: "Writing a Given Term of a Binomial Expansion", body: "Find the tenth term of $${\\left(x+2y\\right)}^{16}$$ without fully expanding the binomial", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

@@ -1,1 +1,0 @@
-import steps from "./a6c423abinomseq26-index.js"; const problem = {id: "a6c423abinomseq26", title: "Binomial Expansion", body: "Find the eighth term of:", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

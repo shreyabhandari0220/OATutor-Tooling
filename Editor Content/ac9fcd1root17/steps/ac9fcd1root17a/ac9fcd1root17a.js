@@ -1,0 +1,1 @@
+import hints from "./ac9fcd1root17a-index.js"; const step = {id: "ac9fcd1root17a", stepAnswer: ["$$18\\sqrt{6}$$"], problemType: "TextBox", stepTitle: "$$3\\sqrt{3}\\times2 \\sqrt{18}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

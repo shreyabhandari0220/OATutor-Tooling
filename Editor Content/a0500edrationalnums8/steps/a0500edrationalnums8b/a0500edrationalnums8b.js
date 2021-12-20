@@ -1,0 +1,1 @@
+import hints from "./a0500edrationalnums8b-index.js"; const step = {id: "a0500edrationalnums8b", stepAnswer: ["25"], problemType: "TextBox", stepTitle: "$${125}^{\\frac{2}{3}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

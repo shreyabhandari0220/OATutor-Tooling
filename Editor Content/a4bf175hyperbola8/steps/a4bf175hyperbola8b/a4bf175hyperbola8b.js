@@ -1,1 +1,0 @@
-import hints from "./a4bf175hyperbola8b-index.js"; const step = {id: "a4bf175hyperbola8b", stepAnswer: ["$$y=\\pm \\left(\\frac{3}{4}\\right) \\left(x-1\\right)+1$$"], problemType: "TextBox", stepTitle: "Finding Asymptotes", stepBody: "Find the equations of the asymptotes for each hyperbola.", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

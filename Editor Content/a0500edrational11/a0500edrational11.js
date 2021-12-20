@@ -1,1 +1,0 @@
-import steps from "./a0500edrational11-index.js"; const problem = {id: "a0500edrational11", title: "Use the Laws of Exponents to Simplify Expressions with Rational Exponents", body: "Simplify:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,1 +1,0 @@
-import steps from "./a15d9a7sequences14-index.js"; const problem = {id: "a15d9a7sequences14", title: "Finding First N Terms of a Sequence", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

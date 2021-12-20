@@ -1,1 +1,0 @@
-import hints from "./ab4685cSolvingFormul4a-index.js"; const step = {id: "ab4685cSolvingFormul4a", stepAnswer: ["$$F=\\frac{9}{5} C+32$$"], problemType: "TextBox", stepTitle: "$$C=\\frac{5}{9} \\left(F-32\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./ab733ecreal5a-index.js"; const step = {id: "ab733ecreal5a", stepAnswer: ["-63"], problemType: "TextBox", stepTitle: "$$-24\\times7 \\frac{3}{8}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

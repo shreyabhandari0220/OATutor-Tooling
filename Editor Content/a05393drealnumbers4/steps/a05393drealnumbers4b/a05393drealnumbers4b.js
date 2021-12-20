@@ -1,0 +1,1 @@
+import hints from "./a05393drealnumbers4b-index.js"; const step = {id: "a05393drealnumbers4b", stepAnswer: ["n"], problemType: "TextBox", stepTitle: "$$\\sqrt{3, n^3}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

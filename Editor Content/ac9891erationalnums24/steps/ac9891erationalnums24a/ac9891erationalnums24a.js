@@ -1,0 +1,1 @@
+import hints from "./ac9891erationalnums24a-index.js"; const step = {id: "ac9891erationalnums24a", stepAnswer: ["$$t^{\\frac{1}{4}}$$"], problemType: "TextBox", stepTitle: "(sqrt(4,t))", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

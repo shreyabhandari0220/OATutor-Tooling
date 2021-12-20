@@ -1,1 +1,0 @@
-import steps from "./aa244f1rotation1-index.js"; const problem = {id: "aa244f1rotation1", title: "Identifying a Conic from Its General Form", body: "Identify the graph of each of the following nondegenerate conic sections.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

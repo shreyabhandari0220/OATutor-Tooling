@@ -1,1 +1,0 @@
-import steps from "./ac0d1f7cou4-index.js"; const problem = {id: "ac0d1f7cou4", title: "Numeric", body: "Use the Addition Principle or the Multiplication Principle to perform the calculations.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

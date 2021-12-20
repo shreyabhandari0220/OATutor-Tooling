@@ -1,0 +1,1 @@
+import steps from "./a05393drealnumbers12-index.js"; const problem = {id: "a05393drealnumbers12", title: "Use the Quotient Property to Simplify Expressions with Higher Roots", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };
