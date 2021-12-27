@@ -1,0 +1,1 @@
+import steps from "./a9e110dGrphingQuads28-index.js"; const problem = {id: "a9e110dGrphingQuads28", title: "Solve Maximum and Minimum", body: "In the following exercise, find the maximum or minimum value", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };
