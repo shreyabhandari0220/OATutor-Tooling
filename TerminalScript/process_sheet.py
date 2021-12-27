@@ -19,6 +19,10 @@ pd.options.display.html.use_mathjax = False
 from create_dir import *
 from create_content import *
 
+import functools
+print = functools.partial(print, flush=True)
+
+
 URL_SPREADSHEET_KEY = '1yyeDxm52Zd__56Y0T3CdoeyXvxHVt0ITDKNKWIoIMkU'
 
 
