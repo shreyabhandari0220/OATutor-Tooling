@@ -10,7 +10,7 @@ def create_variabilization(variabilization):
         var_str = ""
         for var in var_list:
             name, field = var.split(":")
-            fields = field[1:-1].split("|")  #get rid of brackets
+            fields = field.split("|") 
             var_str += name + ": ["
             for f in fields:
                 var_str += "\"" + f + "\", "
