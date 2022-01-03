@@ -23,7 +23,7 @@ def submit_feedback(url_prefix):
     os.environ['WDM_LOG_LEVEL'] = '0'  # suppress logs from ChromeDriverManager install
     options = webdriver.ChromeOptions()
     # options.headless = True
-    driver = webdriver.Chrome(ChromeDriverManager(version="94.0.4606.41").install(), options=options)
+    driver = webdriver.Chrome(ChromeDriverManager(version="96.0.4664.45").install(), options=options)
 
     problem_names = random.sample(get_all_content_filename(), 5)
     for problem_name in problem_names:
