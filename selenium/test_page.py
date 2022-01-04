@@ -34,7 +34,7 @@ def start_driver():
     driver = webdriver.Chrome(ChromeDriverManager(version="96.0.4664.45").install(), options=options)
     return driver
 
-def test_page(url_prefix, problem, driver, alert_df):
+def test_page(url_prefix, problem, driver, alert_df, test_hints=False):
     url = url_prefix + problem.problem_name
     driver.get(url)
     header_selector = "//*[@id=\"root\"]/div[1]/div/div/div[1]/div[1]/div"
@@ -51,13 +51,13 @@ def test_page(url_prefix, problem, driver, alert_df):
     problem_index = 1
 
     for step in problem.steps:
-        alert_df = test_step(problem.problem_name, driver, problem_index, step, alert_df, problem.book_name, len(problem.steps))
+        alert_df = test_step(problem.problem_name, driver, problem_index, step, alert_df, problem.book_name, len(problem.steps), test_hints=test_hints)
         problem_index += 1
 
     return alert_df, driver
 
 
-def test_step(problem_name, driver, problem_index, step, alert_df, book_name, step_len):
+def test_step(problem_name, driver, problem_index, step, alert_df, book_name, step_len, test_hints):
 
     # if step.type == "MultipleChoice":
     #     return alert_df
@@ -123,8 +123,8 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
         problem_index += 1
 
     # click through hints
-    if len(step.hints) > 0:
-        alert_df = check_hints(problem_name, problem_index, driver, step.hints, alert_df, book_name, len(problem.steps))
+    if test_hints and len(step.hints) > 0:
+        alert_df = check_hints(problem_name, problem_index, driver, step.hints, alert_df, book_name, step_len)
 
     return alert_df
 
@@ -408,9 +408,8 @@ if __name__ == '__main__':
     problem = fetch_problem_ans_info(problem_name)
     driver = start_driver()
     alert_df = pd.DataFrame(columns=["Book Name", "Error Log", "Issue Type", "Status", "Comment"])
-    alert_df = test_page(url_prefix, problem, driver, alert_df)[0]
+    alert_df = test_page(url_prefix, problem, driver, alert_df, test_hints=True)[0]
     alert(alert_df)
-
 
     try:
         driver.close()
