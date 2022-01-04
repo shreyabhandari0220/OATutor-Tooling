@@ -1,0 +1,1 @@
+import hints from "./a54e856radical30a-index.js"; const step = {id: "a54e856radical30a", stepAnswer: ["$$\\operatorname{psqrt}\\left(p\\right)$$"], problemType: "TextBox", stepTitle: "$$\\sqrt{p^3}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

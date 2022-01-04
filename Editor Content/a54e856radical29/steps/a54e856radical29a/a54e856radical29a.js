@@ -1,0 +1,1 @@
+import hints from "./a54e856radical29a-index.js"; const step = {id: "a54e856radical29a", stepAnswer: ["$$y^5 \\sqrt{y}$$"], problemType: "TextBox", stepTitle: "$$\\sqrt{y^{11}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
