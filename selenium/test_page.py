@@ -26,7 +26,7 @@ def start_driver():
     # sets up selenium driver with correct Chrome headless version
     os.environ['WDM_LOG_LEVEL'] = '0'  # suppress logs from ChromeDriverManager install
     options = webdriver.ChromeOptions()
-    # options.headless = True
+    options.headless = True
     options.add_argument("start-maximized")
     options.add_argument("disable-infobars")
     options.add_argument("--disable-extensions")
@@ -248,6 +248,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                     col_count = re.search(r'begin\{bmatrix\}(.*?)\\\\', correct_answer).group(1).count('&') + 1
                     row_selector = "[data-selenium-target=grid-answer-row-input-{0}-{1}] > div > input".format(hint_idx, problem_index)
                     WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, row_selector)))
+                    time.sleep(0.1)
                     row = driver.find_element_by_css_selector(row_selector)
                     row.send_keys(row_count)
                     col_selector = "[data-selenium-target=grid-answer-col-input-{0}-{1}] > div > input".format(hint_idx, problem_index)
