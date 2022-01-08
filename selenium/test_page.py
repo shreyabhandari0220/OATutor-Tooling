@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.common.exceptions import NoSuchElementException, InvalidSessionIdException
+from selenium.common.exceptions import NoSuchElementException, InvalidSessionIdException, TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -16,6 +16,7 @@ import pandas as pd
 from fetch_problem_ans import fetch_problem_ans_info
 from generate_script import generate_script_arithmetic
 from alert_error import alert
+from wait_class import element_has_attribute
 
 # URL_PREFIX = "https://cahlr.github.io/OATutor-Staging/#/debug/"
 CORRECT = "https://cahlr.github.io/OATutor-Staging/static/images/icons/green_check.svg"
@@ -68,7 +69,7 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
                 icon_selector = "[data-selenium-target=step-correct-img-{}]".format(problem_index)
                 submit = driver.find_element_by_css_selector(submit_selector)
                 ActionChains(driver).move_to_element(submit).click(submit).perform()
-                time.sleep(0.45)
+                WebDriverWait(driver, 0.45).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
                 icon = driver.find_element_by_css_selector(icon_selector)
                 if icon.get_attribute("src") != CORRECT:
                     err = "{0}: Invalid answer for step {1}: {2}".format(problem_name, problem_index + 1, step.answer)
@@ -88,7 +89,7 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
                     icon_selector = "[data-selenium-target=step-correct-img-{}]".format(problem_index)
                     submit = driver.find_element_by_css_selector(submit_selector)
                     ActionChains(driver).move_to_element(submit).click(submit).perform()
-                    time.sleep(0.45)
+                    WebDriverWait(driver, 0.45).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
                     icon = driver.find_element_by_css_selector(icon_selector)
                     if icon.get_attribute("src") == CORRECT:
                         correct = True
@@ -187,7 +188,20 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
     try:
         raise_hand_selector = "[data-selenium-target=hint-button-{}]".format(problem_index)
         raise_hand_button = driver.find_element_by_css_selector(raise_hand_selector)
+        # raise_hand_button.click()
         ActionChains(driver).move_to_element(raise_hand_button).click(raise_hand_button).perform()
+        try: 
+            hint_selector = "[data-selenium-target=hint-expand-0-{0}]".format(problem_index)
+            WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, hint_selector)))
+        except TimeoutException:
+            try:
+                raise_hand_button.click()
+                WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, hint_selector)))
+            except TimeoutException:
+                err = "{0}: step {1} raise hand button not clickable".format(problem_name, problem_index + 1)
+                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                return alert_df
+
     except NoSuchElementException:
         err = "{0}: step {1} raise hand button not found.".format(problem_name, problem_index + 1)
         alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
@@ -197,21 +211,24 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
     while hint_idx <= len(hints):
         try:
             hint_selector = "[data-selenium-target=hint-expand-{0}-{1}]".format(hint_idx, problem_index)
-            hint_expand_button = driver.find_element_by_css_selector(hint_selector)
 
             # check if hint is clickable/expandable
-            if hint_expand_button.get_attribute("aria-disabled") == "true":
+            try:
+                WebDriverWait(driver, 0.2).until(element_has_attribute((By.CSS_SELECTOR, hint_selector), "aria-disabled", "false"))
+            except Exception as e:
                 err = "{0}: step {1} hint {2} expand button not clickable.".format(problem_name, problem_index + 1, hint_idx + 1)
                 alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                 return alert_df
+            
+            hint_expand_button = driver.find_element_by_css_selector(hint_selector)
 
             ActionChains(driver).move_to_element(hint_expand_button).click(hint_expand_button).perform()
-            
+
         except NoSuchElementException:
             err = "{0}: step {1} hint {2} expand button not found.".format(problem_name, problem_index + 1, hint_idx + 1)
             alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             return alert_df
-        time.sleep(0.2)
+
         if hint_idx == len(hints) or hints[hint_idx] == "hint":
             hint_idx += 1
         else:
@@ -230,6 +247,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                     row_count = correct_answer.count('\\\\') + 1
                     col_count = re.search(r'begin\{bmatrix\}(.*?)\\\\', correct_answer).group(1).count('&') + 1
                     row_selector = "[data-selenium-target=grid-answer-row-input-{0}-{1}] > div > input".format(hint_idx, problem_index)
+                    WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, row_selector)))
                     row = driver.find_element_by_css_selector(row_selector)
                     row.send_keys(row_count)
                     col_selector = "[data-selenium-target=grid-answer-col-input-{0}-{1}] > div > input".format(hint_idx, problem_index)
@@ -263,6 +281,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
 
             elif answer_type == "arithmetic":
                 scaffold_answer_selector = "[data-selenium-target=arithmetic-answer-{0}-{1}] > span".format(hint_idx, problem_index)
+                WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, scaffold_answer_selector)))
                 try:
                     ans = driver.find_element_by_css_selector(scaffold_answer_selector)
                     script = generate_script_arithmetic(scaffold_answer_selector, correct_answer)
@@ -274,6 +293,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
             
             elif answer_type == "string":
                 scaffold_answer_selector = "[data-selenium-target=string-answer-{0}-{1}] > div > input".format(hint_idx, problem_index)
+                WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, scaffold_answer_selector)))
                 try:
                     ans = driver.find_element_by_css_selector(scaffold_answer_selector)
                     ans.send_keys(correct_answer)
@@ -288,7 +308,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                 icon_selector = "[data-selenium-target=step-correct-img-{0}-{1}]".format(hint_idx, problem_index)
                 submit = driver.find_element_by_css_selector(submit_selector)
                 ActionChains(driver).move_to_element(submit).click(submit).perform()
-                time.sleep(0.45)
+                WebDriverWait(driver, 0.45).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
                 icon = driver.find_element_by_css_selector(icon_selector)
                 if icon.get_attribute("src") != CORRECT:
                     err = "{0}: Invalid answer for step {1} hint {2}: {3}".format(problem_name, problem_index + 1, hint_idx + 1, correct_answer)
