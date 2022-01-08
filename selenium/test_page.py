@@ -35,21 +35,22 @@ def start_driver():
     driver = webdriver.Chrome(ChromeDriverManager(version="96.0.4664.45").install(), options=options)
     return driver
 
-def test_page(url_prefix, problem, driver, alert_df, test_hints=False):
+def test_page(url_prefix, problem, driver, alert_df, test_hints=True):
     url = url_prefix + problem.problem_name
     driver.get(url)
     header_selector = "[data-selenium-target=problem-header]"
     # WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.XPATH, header_selector)))
     try:
         driver.find_element_by_css_selector(header_selector)
-    except NoSuchElementException:
-        err = "{}: Cannot load problem page.".format(problem_name)
-        alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+    except Exception:
+        err = "{}: Cannot load problem page.".format(problem.problem_name)
+        alert_df = alert_df.append({"Book Name": problem.book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+        return alert_df, driver
 
     problem_index = 0
 
     for step in problem.steps:
-        alert_df = test_step(problem.problem_name, driver, problem_index, step, alert_df, problem.book_name, len(problem.steps), test_hints=test_hints)
+        alert_df, driver = test_step(problem.problem_name, driver, problem_index, step, alert_df, problem.book_name, len(problem.steps), test_hints=test_hints)
         problem_index += 1
 
     return alert_df, driver
@@ -112,9 +113,9 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
 
     # click through hints
     if test_hints and len(step.hints) > 0:
-        alert_df = check_hints(problem_name, problem_index, driver, step.hints, alert_df, book_name, step_len)
+        alert_df, driver = check_hints(problem_name, problem_index, driver, step.hints, alert_df, book_name, step_len)
 
-    return alert_df
+    return alert_df, driver
 
 def enter_text_answer(problem_name, driver, problem_index, correct_answer, answer_type, alert_df, book_name, step_len):
     """
@@ -188,8 +189,23 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
     try:
         raise_hand_selector = "[data-selenium-target=hint-button-{}]".format(problem_index)
         raise_hand_button = driver.find_element_by_css_selector(raise_hand_selector)
-        # raise_hand_button.click()
         ActionChains(driver).move_to_element(raise_hand_button).click(raise_hand_button).perform()
+        
+        # checks if clicking on raise hand button breaks the page
+        try:
+            header_selector = "[data-selenium-target=problem-header]"
+            driver.find_element_by_css_selector(header_selector)
+        except Exception:
+            err = "{0}: Clicking on step {1} raise hand button breaks the page.".format(problem_name, problem_index + 1)
+            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            try:
+                driver.close()
+                driver = start_driver()
+            except InvalidSessionIdException:
+                driver = start_driver()
+            
+            return alert_df, driver
+
         try: 
             hint_selector = "[data-selenium-target=hint-expand-0-{0}]".format(problem_index)
             WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, hint_selector)))
@@ -200,12 +216,12 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
             except TimeoutException:
                 err = "{0}: step {1} raise hand button not clickable".format(problem_name, problem_index + 1)
                 alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-                return alert_df
+                return alert_df, driver
 
     except NoSuchElementException:
         err = "{0}: step {1} raise hand button not found.".format(problem_name, problem_index + 1)
         alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-        return alert_df
+        return alert_df, driver
     hint_idx = 0
 
     while hint_idx <= len(hints):
@@ -218,7 +234,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
             except Exception as e:
                 err = "{0}: step {1} hint {2} expand button not clickable.".format(problem_name, problem_index + 1, hint_idx + 1)
                 alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-                return alert_df
+                return alert_df, driver
             
             hint_expand_button = driver.find_element_by_css_selector(hint_selector)
 
@@ -227,7 +243,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
         except NoSuchElementException:
             err = "{0}: step {1} hint {2} expand button not found.".format(problem_name, problem_index + 1, hint_idx + 1)
             alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-            return alert_df
+            return alert_df, driver
 
         if hint_idx == len(hints) or hints[hint_idx] == "hint":
             hint_idx += 1
@@ -235,7 +251,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
             correct_answer, answer_type = hints[hint_idx]
 
             if answer_type == "MultipleChoice":
-                return alert_df
+                return alert_df, driver
 
             if answer_type != "MultipleChoice":
                 answer_type = answer_type.split()[1]
@@ -272,12 +288,12 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                     err = "{0}: step {1} hint {2} matrix dimension or answer input box does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                     # print("{0}: step {1} matrix dimension or answer input box does not exist.".format(problem_name, problem_index))
-                    return alert_df
+                    return alert_df, driver
                 except AttributeError:
                     err = "{0}: step {1} hint {2} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index + 1, hint_idx + 1)
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                     # print("{0}: step {1} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index))
-                    return alert_df
+                    return alert_df, driver
 
 
             elif answer_type == "arithmetic":
@@ -290,7 +306,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                 except NoSuchElementException:
                     err = "{0}: step {1} hint {2} arithmetic answer box does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-                    return alert_df
+                    return alert_df, driver
             
             elif answer_type == "string":
                 scaffold_answer_selector = "[data-selenium-target=string-answer-{0}-{1}] > div > input".format(hint_idx, problem_index)
@@ -301,7 +317,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                 except NoSuchElementException:
                     err = "{0}: step {1} hint {2} string answer box does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-                    return alert_df
+                    return alert_df, driver
 
             # click submit
             try:
@@ -314,15 +330,15 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                 if icon.get_attribute("src") != CORRECT:
                     err = "{0}: Invalid answer for step {1} hint {2}: {3}".format(problem_name, problem_index + 1, hint_idx + 1, correct_answer)
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-                    return alert_df
+                    return alert_df, driver
             except NoSuchElementException:
                 err = "{0}: step {1} hint {2} submit does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
                 alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)     
-                return alert_df
+                return alert_df, driver
 
             hint_idx += 1
     
-    return alert_df
+    return alert_df, driver
 
 
 
