@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.common.exceptions import NoSuchElementException, InvalidSessionIdException, TimeoutException
+from selenium.common.exceptions import NoSuchElementException, InvalidSessionIdException, TimeoutException, ElementNotInteractableException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -70,7 +70,11 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
                 icon_selector = "[data-selenium-target=step-correct-img-{}]".format(problem_index)
                 submit = driver.find_element_by_css_selector(submit_selector)
                 ActionChains(driver).move_to_element(submit).click(submit).perform()
-                WebDriverWait(driver, 0.45).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
+                try:
+                    WebDriverWait(driver, 0.45).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
+                except TimeoutException:
+                    submit.click()
+                    WebDriverWait(driver, 0.45).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
                 icon = driver.find_element_by_css_selector(icon_selector)
                 if icon.get_attribute("src") != CORRECT:
                     err = "{0}: Invalid answer for step {1}: {2}".format(problem_name, problem_index + 1, step.answer)
@@ -112,7 +116,7 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
         problem_index += 1
 
     # click through hints
-    if test_hints and len(step.hints) > 0:
+    if test_hints:
         alert_df, driver = check_hints(problem_name, problem_index, driver, step.hints, alert_df, book_name, step_len)
 
     return alert_df, driver
@@ -169,7 +173,6 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
 
     elif answer_type == "string":
         ans_selector = "[data-selenium-target=string-answer-{}] > div > input".format(problem_index)
-        print(1, ans_selector)
         try:
             ans = driver.find_element_by_css_selector(ans_selector)
             ans.send_keys(correct_answer)
@@ -264,12 +267,19 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                     col_count = re.search(r'begin\{bmatrix\}(.*?)\\\\', correct_answer).group(1).count('&') + 1
                     row_selector = "[data-selenium-target=grid-answer-row-input-{0}-{1}] > div > input".format(hint_idx, problem_index)
                     WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, row_selector)))
-                    time.sleep(0.1)
                     row = driver.find_element_by_css_selector(row_selector)
-                    row.send_keys(row_count)
+                    try:
+                        row.send_keys(row_count)
+                    except ElementNotInteractableException:
+                        time.sleep(0.1)
+                        row.send_keys(row_count)
                     col_selector = "[data-selenium-target=grid-answer-col-input-{0}-{1}] > div > input".format(hint_idx, problem_index)
                     col = driver.find_element_by_css_selector(col_selector)
-                    col.send_keys(col_count)
+                    try:
+                        col.send_keys(col_count)
+                    except ElementNotInteractableException:
+                        time.sleep(0.1)
+                        col.send_keys(col_count)
                     next_button_selector = "[data-selenium-target=grid-answer-next-{0}-{1}]".format(hint_idx, problem_index)
                     next_button = driver.find_element_by_css_selector(next_button_selector)
                     ActionChains(driver).move_to_element(next_button).click(next_button).perform()
@@ -298,7 +308,12 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
 
             elif answer_type == "arithmetic":
                 scaffold_answer_selector = "[data-selenium-target=arithmetic-answer-{0}-{1}] > span".format(hint_idx, problem_index)
-                WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, scaffold_answer_selector)))
+                try:
+                    WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, scaffold_answer_selector)))
+                except TimeoutException:
+                    err = "{0}: step {1} hint {2} arithmetic answer box does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
+                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                    return alert_df, driver
                 try:
                     ans = driver.find_element_by_css_selector(scaffold_answer_selector)
                     script = generate_script_arithmetic(scaffold_answer_selector, correct_answer)
@@ -318,6 +333,14 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                     err = "{0}: step {1} hint {2} string answer box does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                     return alert_df, driver
+                except ElementNotInteractableException:
+                    time.sleep(0.1)
+                    try:
+                        ans.send_keys(correct_answer)
+                    except NoSuchElementException:
+                        err = "{0}: step {1} hint {2} string answer box does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
+                        alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                        return alert_df, driver
 
             # click submit
             try:
