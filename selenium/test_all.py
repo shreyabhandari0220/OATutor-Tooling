@@ -35,6 +35,7 @@ def test_all_content(url_prefix):
             alert_df, driver = test_page(url_prefix, problem, driver, alert_df)
         except Exception as e:
             err = "Exception on problem {0}: {1}".format(problem_name, e)
+            print(err)
             alert_df = alert_df.append({"Book Name": problem.book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
 
     try:
