@@ -132,3 +132,41 @@ To test whether feedback submitted through the frontend platform reaches Google 
 python3 check_feedback.py <url_prefix>
 ```
 url_prefix: an optional argument that specifies the url domain that the feedback will be submitted from. If not present, we default to the staging branch. 
+
+## OATutor Google App Script Editor Tools Library
+
+A set of tools is currently under development to be incorporated in relevant content Google Spreadsheets.
+
+### Using the Library
+
+1. In a content spreadsheet (e.g., "Openstax: College Algebra"), click on the Extensions menu
+2. Click on the App Scripts menu item
+3. In the App Scripts editor, If the "OATutorEditorTools" library already exists under the "Libraries" tab, skip to step 6
+4. Next to the "Libraries" tab, there is a plus button. Click it then paste in the following script ID: `1l0L7TnKrOHOrRDVOLrO3F0JM1BcUBD1P3ckEPpy7ZbchyO-7t1OuvLIa`
+5. Choose the default options
+6. To use a library function such as `getProblemId(rawProblemName)`, write a function in any `.gs` file
+
+For example, to generate problem IDs (with hash prepended) in "Openstax: College Algebra", 
+`generateProblemId.gs` is created with the following content:
+```javascript
+function getProblemId(rawProblemName) {
+  return OATutorEditorTools.getProblemId(rawProblemName);
+}
+```  
+> Make sure to press ctrl/cmd + s to save!!
+
+Then, in the spreadsheet, it is possible to enter custom formula to access the custom formula.  
+For example, putting `= getProblemId("real1")` into a cell returns `a6f9727real1`
+
+### Errors?
+
+This could be because the library project has not been shared with you yet. Message an OpenITS dev.
+
+### Updating the Library
+
+1. Write relevant code with relevant function/parameter names
+2. Press ctrl/cmd + s to save
+3. Press the blue "Deploy" button
+4. Choose the library type
+5. In the description, roughly describe what feature you added
+6. Deploy
