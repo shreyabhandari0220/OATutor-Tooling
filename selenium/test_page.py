@@ -39,12 +39,17 @@ def test_page(url_prefix, problem, driver, alert_df, test_hints=True):
     url = url_prefix + problem.problem_name
     driver.get(url)
     header_selector = "[data-selenium-target=problem-header]"
-    # WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.XPATH, header_selector)))
     try:
+        WebDriverWait(driver, 2).until(EC.presence_of_element_located((By.CSS_SELECTOR, header_selector)))
         driver.find_element_by_css_selector(header_selector)
     except Exception:
         err = "{}: Cannot load problem page.".format(problem.problem_name)
         alert_df = alert_df.append({"Book Name": problem.book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+        try:
+            driver.close()
+            driver = start_driver()
+        except InvalidSessionIdException:
+            driver = start_driver()
         return alert_df, driver
 
     problem_index = 0
@@ -201,6 +206,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
         except Exception:
             err = "{0}: Clicking on step {1} raise hand button breaks the page.".format(problem_name, problem_index + 1)
             alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            print(err)
             try:
                 driver.close()
                 driver = start_driver()
