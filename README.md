@@ -109,15 +109,13 @@ The Selenium script is developed with the purpose of answer validation testing. 
 ## Selenium Script Usage
 To test all steps of a particular problem, change directory to selenium, and run the following command:
 ```
-python3 test_page.py <problem_name> <ans1> <type1> <ans2> <type2> ...
+python3 test_page.py <problem_name>
 ```
 or
 ```
-python3 test_page.py <url_prefix> <problem_name> <ans1> <type1> <ans2> <type2> ...
+python3 test_page.py <problem_name> <url_prefix>
 ```
-problem_name: the name of problem that you are testing, ex. "real1".
-`ans`: answer of a particular step, in order of steps.
-`type`: type of the previous answer. Can be one of "TextBox arithmetic", "TextBox string", "MultipleChoice".
+problem_name: the name of problem that you are testing, with hash code included. ex. "af36e21FunNota14".
 `url_prefix`: the script tests the webpage with the full URL: `url_prefix + problem_name`. If `url_prefix` is not specified in the function call, it will be default to the CAHLR staging URL "https://cahlr.github.io/OATutor-Staging/#/debug/". 
 
 To test answer for all problems, change directory to selenium, and run the following command:
