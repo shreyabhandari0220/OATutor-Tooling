@@ -1,6 +1,5 @@
 import json
 import re
-import random
 
 from process_text import preprocess_text_to_latex
 
