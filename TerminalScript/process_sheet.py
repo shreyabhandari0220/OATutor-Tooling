@@ -147,6 +147,9 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
     for index, row in question.iterrows():
         # checks row type
         try:
+            if type(row["Row Type"]) == float:
+                raise Exception("Row type is missing")
+
             row_type = row['Row Type'].strip().lower()
             if index != 0:
                 if row_type == "step":

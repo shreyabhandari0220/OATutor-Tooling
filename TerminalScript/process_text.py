@@ -8,7 +8,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
 sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
 
 supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_"]
-supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{", 'log(', 'sum{']
+supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{", 'log(', 'sum{', '\\theta']
 answer_only_operators = ["-"]
 replace = {"⋅" : "*", 
             "−" : "-", 
@@ -228,6 +228,7 @@ def handle_word(word, coord=True):
     word = re.sub('(?<!(abs)|(log)|(qrt))\(\-', 'negneg(', word)
     word = re.sub(r'\\=', '=', word)
     word = re.sub(r'\'', r"primesymbol", word)
+    word = re.sub(r"\\theta", r"theta", word)
     # to handle -(.....) missing parenthesis instance
     while re.search("-\([^\w\d\(]", word):
         open_par_miss = re.search("-\([^\w\d]", word).start() + 1
@@ -262,7 +263,11 @@ def handle_word(word, coord=True):
     word = re.sub("primesymbol", "\'", word)
     word = re.sub("°", "\\\\degree", word)
     word = re.sub("𝜃", "\\\\theta", word)
+    word = re.sub("θ", "\\\\theta", word)
     word = re.sub("ε", "\\\\varepsilon", word)
+
+    while re.search(r"sqrt\{[^\,]+\,\s*[^\,]+\}", word):
+        word = re.sub(r"sqrt\{([^\,]+)\,\s*([^\,]+)\}", r"sqrt[\g<1>]{\g<2>}",  word)
 
     if sum_match:
         if not sum_upper_num:
