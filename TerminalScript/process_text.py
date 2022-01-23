@@ -7,7 +7,7 @@ import io
 sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
 sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
 
-supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_"]
+supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_", "~"]
 supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{", 'log(', 'sum{', '\\theta']
 answer_only_operators = ["-"]
 replace = {"⋅" : "*", 
@@ -166,6 +166,7 @@ def use_latex(word, render_latex):
     return False
 
 def handle_word(word, coord=True):
+    print(1, word)
     latex_dic = {"=": "=", "U": " \cup ", "<=" : " \leq ", ">=" : " \geq "}
     if word in latex_dic:
         return latex_dic[word]
@@ -192,7 +193,7 @@ def handle_word(word, coord=True):
     if "ln{" in word:
         return re.sub("ln{", r"\\ln{", word)
         
-    coordinates = re.findall("(?<!sqrt)[\(|\[][\+\-\*/\(\)\d\s\D]+,[\+\-\*/\(\)\d\s\D]+[\)|\]]", word)
+    coordinates = re.findall("(?<!sqrt)[\(|\[][^(sqrt)\+\-\*/\(\)\d\s\w]+,[^(sqrt)\+\-\*/\(\)\d\s\w]+[\)|\]]", word)
     if coord and coordinates:
         trailing = ''
         if word[-1] != ')' and word[-1] != ']':
@@ -207,7 +208,10 @@ def handle_word(word, coord=True):
         new_coord = re.sub(r'\\', r'\\\\', new_coord)
         return re.sub("[\(|\[][-\d\D]+,[-\d\D]+[\)|\]]", new_coord, word)
     
-    word = re.sub("\+/-", "pm(a)", word)
+    word = re.sub("\+/-", "~", word)
+    word = re.sub("(.+)~", "\g<1>+plusminus+", word)
+
+    print(2, word)
     
     original_word = word
     scientific_notation = re.findall("\(?([\d]{2,})\)?\*([\d]{2,})\*\*", word)
@@ -222,7 +226,6 @@ def handle_word(word, coord=True):
     word = re.sub(r"([0-9]+)([a-zA-Z])", "\g<1>*\g<2>", word)
     word = re.sub(r"sqrt\*", r"sqrt", word)
     word = re.sub(r"abs\*", r"abs", word)
-    word = re.sub(r"pm\*", r"pm", word)
     word = re.sub('\*\*\(\-0.', '**(zero', word)
     word = re.sub('\*\*\(\-\.', '**(zero', word) 
     word = re.sub('(?<!(abs)|(log)|(qrt))\(\-', 'negneg(', word)
@@ -246,6 +249,8 @@ def handle_word(word, coord=True):
             sum_upper = sum_match.group(2)
             sum_upper_num = False
         word = 'sum([' + sum_match.group(3) + ' for ' + sum_var + ' in range(' + sum_lower + ',' + sum_upper + ')])'
+    
+    print(3, word)
 
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
 
@@ -255,6 +260,7 @@ def handle_word(word, coord=True):
         word = re.sub(item[0] + "\{" + item[1] + "\}", item[0] + "\\\\times {" + item[1] + "}", word)
     word = re.sub(r"\\operatorname{negneg}\\left\(", r"\\left(-", word)
     word = re.sub(r"\\operatorname{invert}", r"\\pm ", word)
+    word = re.sub(r"\+plusminus\+", "\\\\pm", word)
     word = re.sub(r"\\operatorname{(\w)}", r"\g<1>", word)
     word = re.sub(r"zero", r"-0.", word)
     word = re.sub("_{2,}", r"\\rule{2cm}{0.15mm}", word)
