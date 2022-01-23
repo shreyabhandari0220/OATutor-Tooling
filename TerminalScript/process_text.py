@@ -166,7 +166,6 @@ def use_latex(word, render_latex):
     return False
 
 def handle_word(word, coord=True):
-    print(1, word)
     latex_dic = {"=": "=", "U": " \cup ", "<=" : " \leq ", ">=" : " \geq "}
     if word in latex_dic:
         return latex_dic[word]
@@ -211,7 +210,6 @@ def handle_word(word, coord=True):
     word = re.sub("\+/-", "~", word)
     word = re.sub("(.+)~", "\g<1>+plusminus+", word)
 
-    print(2, word)
     
     original_word = word
     scientific_notation = re.findall("\(?([\d]{2,})\)?\*([\d]{2,})\*\*", word)
@@ -250,7 +248,6 @@ def handle_word(word, coord=True):
             sum_upper_num = False
         word = 'sum([' + sum_match.group(3) + ' for ' + sum_var + ' in range(' + sum_lower + ',' + sum_upper + ')])'
     
-    print(3, word)
 
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
 
