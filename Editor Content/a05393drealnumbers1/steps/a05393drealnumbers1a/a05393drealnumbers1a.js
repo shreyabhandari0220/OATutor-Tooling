@@ -1,1 +1,1 @@
-import hints from "./a05393drealnumbers1a-index.js"; const step = {id: "a05393drealnumbers1a", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "$$\\sqrt{3, 8}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./a05393drealnumbers1a-index.js"; const step = {id: "a05393drealnumbers1a", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "$$\\sqrt[3]{8}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

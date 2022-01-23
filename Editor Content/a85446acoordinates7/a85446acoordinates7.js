@@ -1,1 +1,0 @@
-import steps from "./a85446acoordinates7-index.js"; const problem = {id: "a85446acoordinates7", title: "Verify Ordered Pairs as Solutions", body: "Determine if the following point is a valid solution to the equation.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

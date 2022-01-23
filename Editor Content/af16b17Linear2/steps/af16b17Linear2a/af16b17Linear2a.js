@@ -1,1 +1,0 @@
-import hints from "./af16b17Linear2a-index.js"; const step = {id: "af16b17Linear2a", stepAnswer: ["No"], problemType: "MultipleChoice", stepTitle: "$$y=\\frac{4}{3}$$", stepBody: "", choices: ["Yes", "No"], answerType: "string", hints: hints, variabilization: {}}; export {step};

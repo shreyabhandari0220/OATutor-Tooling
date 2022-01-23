@@ -1,1 +1,1 @@
-import hints from "./ac9891erationalnums20a-index.js"; const step = {id: "ac9891erationalnums20a", stepAnswer: ["$$\\sqrt{5, h}$$"], problemType: "TextBox", stepTitle: "$$h^{\\frac{1}{5}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./ac9891erationalnums20a-index.js"; const step = {id: "ac9891erationalnums20a", stepAnswer: ["$$\\sqrt[5]{h}$$"], problemType: "TextBox", stepTitle: "$$h^{\\frac{1}{5}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

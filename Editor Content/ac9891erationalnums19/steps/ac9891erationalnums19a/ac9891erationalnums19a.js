@@ -1,1 +1,1 @@
-import hints from "./ac9891erationalnums19a-index.js"; const step = {id: "ac9891erationalnums19a", stepAnswer: ["$$\\sqrt{7, g}$$"], problemType: "TextBox", stepTitle: "$$g^{\\frac{1}{7}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./ac9891erationalnums19a-index.js"; const step = {id: "ac9891erationalnums19a", stepAnswer: ["$$\\sqrt[7]{g}$$"], problemType: "TextBox", stepTitle: "$$g^{\\frac{1}{7}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

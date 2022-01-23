@@ -1,1 +1,1 @@
-import hints from "./a05393drealnumbers5b-index.js"; const step = {id: "a05393drealnumbers5b", stepAnswer: ["$$2|q^3|$$"], problemType: "TextBox", stepTitle: "$$\\sqrt{4, 16q^{12}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./a05393drealnumbers5b-index.js"; const step = {id: "a05393drealnumbers5b", stepAnswer: ["$$2|q^3|$$"], problemType: "TextBox", stepTitle: "$$\\sqrt[4]{16q^{12}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
