@@ -1,1 +1,1 @@
-import hints from "./a951790realnumbers19a-index.js"; const step = {id: "a951790realnumbers19a", stepAnswer: ["5"], problemType: "TextBox", stepTitle: "$$\\sqrt{3, 125}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./a951790realnumbers19a-index.js"; const step = {id: "a951790realnumbers19a", stepAnswer: ["5"], problemType: "TextBox", stepTitle: "$$\\sqrt[3]{125}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

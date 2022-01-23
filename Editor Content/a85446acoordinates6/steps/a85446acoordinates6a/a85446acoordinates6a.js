@@ -1,1 +1,0 @@
-import hints from "./a85446acoordinates6a-index.js"; const step = {id: "a85446acoordinates6a", stepAnswer: ["Yes"], problemType: "MultipleChoice", stepTitle: "Determine if (0,2) is a solution to the equation $$x+4y=8$$.", stepBody: "", choices: ["Yes", "No"], answerType: "string", hints: hints, variabilization: {}}; export {step};

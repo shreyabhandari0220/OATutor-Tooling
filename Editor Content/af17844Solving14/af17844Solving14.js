@@ -1,1 +1,0 @@
-import steps from "./af17844Solving14-index.js"; const problem = {id: "af17844Solving14", title: "Find Percent Change", body: "In 1995, the standard bus fare in Chicago was $1.50. In 2008, the standard bus fare was 2.25.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

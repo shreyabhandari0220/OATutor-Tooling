@@ -1,1 +1,0 @@
-import steps from "./a75f22bGrphingQuads16-index.js"; const problem = {id: "a75f22bGrphingQuads16", title: "Find the Axis of Symmetry and Vertex of a Parabola", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };
