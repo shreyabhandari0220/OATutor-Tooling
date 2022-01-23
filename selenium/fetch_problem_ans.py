@@ -71,6 +71,10 @@ def fetch_problem_ans_info(problem_name, verbose=False):
                 step_type += " " + re.search('answerType:\s*\"(.*)\",\s*hints:', data).group(1)
             # print(data)
             # print(step_ans)
+
+            step_ans = re.sub("(\d)\{10\}\^([\d\w\{])", "\g<1>*{10}^\g<2>", step_ans)
+            step_ans = re.sub("\{([^{]+)\}\^(.)", "{\\\\left(\g<1>\\\\right)}^\g<2>", step_ans)
+
             if "@" in step_ans:
                 variabilization = re.search('variabilization: {([^}]+)}', data).group(1)
                 var_dict = dict(re.findall('([^,:\s]+)+:\s(\[[^]]+\])', variabilization))
