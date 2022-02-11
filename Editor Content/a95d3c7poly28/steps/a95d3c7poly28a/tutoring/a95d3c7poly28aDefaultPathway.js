@@ -1,1 +1,0 @@
-var hints = [{id: "a95d3c7poly28a-h1", type: "hint", dependencies: [], title: "We must divide each term in the numerator by -5xy, so we get $$-3x^2+7y$$", text: "", variabilization: {}}, ]; export {hints};

@@ -1,1 +1,0 @@
-import hints from "./a6632d9exponents18b-index.js"; const step = {id: "a6632d9exponents18b", stepAnswer: ["$$\\frac{1}{q^5}$$"], problemType: "TextBox", stepTitle: "$$q^{-8} q^3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

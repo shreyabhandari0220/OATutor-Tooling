@@ -1,1 +1,0 @@
-import hints from "./abd1262spe13a-index.js"; const step = {id: "abd1262spe13a", stepAnswer: ["$$16a^2+80a+100$$"], problemType: "TextBox", stepTitle: "$${\\left(4a+10\\right)}^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

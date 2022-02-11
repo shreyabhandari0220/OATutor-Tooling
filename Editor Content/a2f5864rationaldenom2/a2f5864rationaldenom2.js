@@ -1,1 +1,0 @@
-import steps from "./a2f5864rationaldenom2-index.js"; const problem = {id: "a2f5864rationaldenom2", title: "Writing Equivalent Rational Expressions With a Given LCD", body: "Rewrite the expressions as rational expressions given their least common denominator.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

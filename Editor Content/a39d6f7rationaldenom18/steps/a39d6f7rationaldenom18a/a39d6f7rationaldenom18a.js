@@ -1,1 +1,0 @@
-import hints from "./a39d6f7rationaldenom18a-index.js"; const step = {id: "a39d6f7rationaldenom18a", stepAnswer: ["$$\\frac{33}{40}$$"], problemType: "TextBox", stepTitle: "Add $$\\frac{3}{8}+\\frac{9}{20}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

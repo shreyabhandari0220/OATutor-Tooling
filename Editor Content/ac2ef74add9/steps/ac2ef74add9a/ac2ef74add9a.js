@@ -1,1 +1,0 @@
-import hints from "./ac2ef74add9a-index.js"; const step = {id: "ac2ef74add9a", stepAnswer: ["6w"], problemType: "TextBox", stepTitle: "$$-12w+18w$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./abd3902radicalroot30a-index.js"; const step = {id: "abd3902radicalroot30a", stepAnswer: ["DNE"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{2m+1}+4=0$$", stepBody: "", answerType: "string", hints: hints, variabilization: {}}; export {step};

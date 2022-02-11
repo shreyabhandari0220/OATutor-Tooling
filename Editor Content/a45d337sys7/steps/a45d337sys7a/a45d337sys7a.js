@@ -1,1 +1,0 @@
-import hints from "./a45d337sys7a-index.js"; const step = {id: "a45d337sys7a", stepAnswer: ["Yes"], problemType: "MultipleChoice", stepTitle: "$$\\frac{\\frac{5}{72}}{7}$$", stepBody: "", choices: ["Yes", "No"], answerType: "string", hints: hints, variabilization: {}}; export {step};

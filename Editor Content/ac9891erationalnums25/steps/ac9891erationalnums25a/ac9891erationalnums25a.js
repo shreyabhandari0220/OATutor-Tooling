@@ -1,1 +1,0 @@
-import hints from "./ac9891erationalnums25a-index.js"; const step = {id: "ac9891erationalnums25a", stepAnswer: ["$$u^{\\frac{1}{5}}$$"], problemType: "TextBox", stepTitle: "$$\\sqrt[5]{u}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

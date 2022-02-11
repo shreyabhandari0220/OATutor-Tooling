@@ -1,1 +1,0 @@
-import hints from "./a6cdcdegaussian13a-index.js"; const step = {id: "a6cdcdegaussian13a", stepAnswer: ["-7"], problemType: "TextBox", stepTitle: "$$x^2+7x+12$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

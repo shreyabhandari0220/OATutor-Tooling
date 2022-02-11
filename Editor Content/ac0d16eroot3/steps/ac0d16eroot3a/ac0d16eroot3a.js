@@ -1,1 +1,0 @@
-import hints from "./ac0d16eroot3a-index.js"; const step = {id: "ac0d16eroot3a", stepAnswer: ["$$27\\sqrt{2}$$"], problemType: "TextBox", stepTitle: "$$3\\sqrt{3}\\times3 \\sqrt{6}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

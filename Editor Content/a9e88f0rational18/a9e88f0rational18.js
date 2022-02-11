@@ -1,1 +1,0 @@
-import steps from "./a9e88f0rational18-index.js"; const problem = {id: "a9e88f0rational18", title: "Add Rational Expressions with a Common Denominator", body: "In the folloing exercise, add:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

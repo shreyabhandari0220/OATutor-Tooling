@@ -1,1 +1,0 @@
-import hints from "./a951790realnumbers17a-index.js"; const step = {id: "a951790realnumbers17a", stepAnswer: ["3"], problemType: "TextBox", stepTitle: "$$\\sqrt[3]{27}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

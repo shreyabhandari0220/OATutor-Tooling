@@ -1,1 +1,0 @@
-import hints from "./a607144linearequation20a-index.js"; const step = {id: "a607144linearequation20a", stepAnswer: ["0"], problemType: "TextBox", stepTitle: "What is the x-value for the x-intercept to the equation $$y=-3x$$?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./a6cdcdegaussian18a-index.js"; const step = {id: "a6cdcdegaussian18a", stepAnswer: ["5"], problemType: "TextBox", stepTitle: "$$n^2=5n-6$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

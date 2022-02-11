@@ -1,1 +1,0 @@
-import hints from "./abd3902radicalroot17a-index.js"; const step = {id: "abd3902radicalroot17a", stepAnswer: ["$$z=3$$"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{7z+15}=6$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import steps from "./a01cd0dcoordinates30-index.js"; const problem = {id: "a01cd0dcoordinates30", title: "Find Solutions to a Linear Equation", body: "In the following exercise, find the other variable given the equation and the value of another variable.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

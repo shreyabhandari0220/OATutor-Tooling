@@ -1,1 +1,0 @@
-import hints from "./a607144linearequation26a-index.js"; const step = {id: "a607144linearequation26a", stepAnswer: ["Vertical"], problemType: "MultipleChoice", stepTitle: "Is $$x=2$$ a vertical or horizontal line?", stepBody: "", choices: ["Vertical", "Horizontal"], answerType: "string", hints: hints, variabilization: {}}; export {step};

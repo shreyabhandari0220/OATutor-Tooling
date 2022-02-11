@@ -1,1 +1,0 @@
-import hints from "./ab24738roots17a-index.js"; const step = {id: "ab24738roots17a", stepAnswer: ["-10"], problemType: "TextBox", stepTitle: "$$-\\sqrt{100}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

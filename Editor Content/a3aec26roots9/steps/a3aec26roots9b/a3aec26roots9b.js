@@ -1,1 +1,0 @@
-import hints from "./a3aec26roots9b-index.js"; const step = {id: "a3aec26roots9b", stepAnswer: ["y**8"], problemType: "TextBox", stepTitle: "$$\\sqrt{y^{16}}$$", stepBody: "", answerType: "string", hints: hints, variabilization: {}}; export {step};

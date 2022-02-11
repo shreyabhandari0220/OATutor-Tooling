@@ -1,1 +1,0 @@
-import hints from "./a4e8d55sqroots11a-index.js"; const step = {id: "a4e8d55sqroots11a", stepAnswer: ["$$\\frac{4\\sqrt{3}}{3}$$"], problemType: "TextBox", stepTitle: "$$\\frac{4}{\\sqrt{3}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./aecbc44divmonomial3a-index.js"; const step = {id: "aecbc44divmonomial3a", stepAnswer: ["$$y^6$$"], problemType: "TextBox", stepTitle: "$$\\frac{y^{43}}{y^{37}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

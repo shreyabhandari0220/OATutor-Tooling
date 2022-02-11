@@ -1,1 +1,0 @@
-import steps from "./a45d337sys28-index.js"; const problem = {id: "a45d337sys28", title: "Graphing Linear Equations", body: "Solve the system by graphing\n##figure2.gif", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

@@ -1,1 +1,0 @@
-import hints from "./a7b9bfasolverat14a-index.js"; const step = {id: "a7b9bfasolverat14a", stepAnswer: ["$$A=\\frac{F}{M}$$"], problemType: "TextBox", stepTitle: "$$\\frac{F}{A}=M$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

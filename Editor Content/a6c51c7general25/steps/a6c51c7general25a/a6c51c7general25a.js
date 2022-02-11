@@ -1,1 +1,0 @@
-import hints from "./a6c51c7general25a-index.js"; const step = {id: "a6c51c7general25a", stepAnswer: ["$$5x^3 \\left(2x+7\\right)$$"], problemType: "TextBox", stepTitle: "$$10x^4+35x^3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

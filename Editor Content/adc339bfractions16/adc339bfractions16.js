@@ -1,1 +1,0 @@
-import steps from "./adc339bfractions16-index.js"; const problem = {id: "adc339bfractions16", title: "Simplify a Complex Rational Expression by Writing It as Division", body: "Simplify the following expression.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };
