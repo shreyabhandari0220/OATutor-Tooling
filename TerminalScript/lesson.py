@@ -6,13 +6,14 @@ import shutil
 from process_sheet import process_sheet, get_all_url, get_sheet
 
 def create_bkt_params(name):
-    return "\"" + name.replace('"', r'\"') + "\": {probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1},"
+    escaped_name = name.replace('"', r'\"').replace('“', r'\"').replace('”', r'\"')
+    return "\"" + escaped_name + "\": {probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1},"
 
 
 def create_lesson_plan(sheet, skills):
     lesson_number = sheet.split()[0]
     lesson_topics = " ".join(sheet.split()[1:])
-    
+
     lesson_id = ("lesson" + lesson_number)
     lesson_name = "Lesson " + lesson_number
     learning_objectives = "{"
@@ -23,7 +24,7 @@ def create_lesson_plan(sheet, skills):
     if len(learning_objectives) > 1:
         learning_objectives = learning_objectives[:-2]
     learning_objectives += "}"
-    
+
     lesson_plan = "{\"id\": " + "\"{0}\", \"name\": \"{1}\", \"topics\": \"{2}\", \"allowRecyle\": true, \"learningObjectives\": {3} ".format(lesson_id, lesson_name, lesson_topics, learning_objectives) + "},"
     return lesson_plan
 
@@ -56,7 +57,7 @@ all_problem_names = []
 conflict_names = []
 
 def names_from_one_sheet(book, sheet_name):
-    worksheet = book.worksheet(sheet_name) 
+    worksheet = book.worksheet(sheet_name)
     table = worksheet.get_all_values()
     try:
         df = pd.DataFrame(table[1:], columns=table[0])
@@ -107,8 +108,8 @@ def check_names_repeat():
             time.sleep(20)
     if not success:
         raise Exception("Failed to read sheet names from google sheet. Try again later.")
-        
-        
+
+
 def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
     '''if sheet_names is not provided, default to run all sheets'''
     global all_problem_names
@@ -142,7 +143,7 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
             course_plan.append(create_course_plan(course_name, lesson_plan))
     elif is_local == 'online':
         # checks for problem name conflicts. Conflicted names are stored in conflict_names in conflict_names.py
-        
+
         # check_names_repeat()
 
         url_df = get_all_url()
@@ -197,7 +198,7 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
                     if end - start < 4:
                         time.sleep(4 - (end - start))
 
-            
+
 
     # strip the last comma
     course_plan[-1] = course_plan[-1][:-1]
@@ -205,11 +206,11 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
     # open("../lessonPlans.js", "x")
     file = open("../coursePlans.js", "w")
     finish_course_plan(course_plan, file)
-    
+
     # open("../bktParams.js", "x")
     file = open("../bktParams.js", "w")
     finish_bkt_params(bkt_params, file)
-    
+
     file.close()
 
 
