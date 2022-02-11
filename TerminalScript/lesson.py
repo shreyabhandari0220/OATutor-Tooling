@@ -6,7 +6,7 @@ import shutil
 from process_sheet import process_sheet, get_all_url, get_sheet
 
 def create_bkt_params(name):
-    return "\"" + name + "\": {probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1},"
+    return "\"" + name.replace('"', r'\"') + "\": {probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1},"
 
 
 def create_lesson_plan(sheet, skills):
