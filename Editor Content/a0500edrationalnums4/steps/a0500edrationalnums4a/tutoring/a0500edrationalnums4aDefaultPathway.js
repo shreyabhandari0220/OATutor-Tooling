@@ -1,1 +1,0 @@
-var hints = [{id: "a0500edrationalnums4a-h1", type: "hint", dependencies: [], title: "Rewrite", text: "The first step is to rewrite as a squre root", variabilization: {}}, {id: "a0500edrationalnums4a-h2", type: "hint", dependencies: ["a0500edrationalnums4a-h1"], title: "Simplify", text: "Then, we simplify", variabilization: {}}, ]; export {hints};

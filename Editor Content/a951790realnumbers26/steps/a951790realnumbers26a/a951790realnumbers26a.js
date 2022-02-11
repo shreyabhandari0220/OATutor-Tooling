@@ -1,1 +1,1 @@
-import hints from "./a951790realnumbers26a-index.js"; const step = {id: "a951790realnumbers26a", stepAnswer: ["3"], problemType: "TextBox", stepTitle: "$$\\sqrt{4, 81}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./a951790realnumbers26a-index.js"; const step = {id: "a951790realnumbers26a", stepAnswer: ["3"], problemType: "TextBox", stepTitle: "$$\\sqrt[4]{81}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

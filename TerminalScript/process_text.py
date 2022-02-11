@@ -7,8 +7,8 @@ import io
 sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
 sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
 
-supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_"]
-supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{", 'log(', 'sum{']
+supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_", "~"]
+supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{", 'log(', 'sum{', '\\theta']
 answer_only_operators = ["-"]
 replace = {"⋅" : "*", 
             "−" : "-", 
@@ -192,7 +192,7 @@ def handle_word(word, coord=True):
     if "ln{" in word:
         return re.sub("ln{", r"\\ln{", word)
         
-    coordinates = re.findall("(?<!sqrt)[\(|\[][\+\-\*/\(\)\d\s\D]+,[\+\-\*/\(\)\d\s\D]+[\)|\]]", word)
+    coordinates = re.findall("(?<!sqrt)[\(|\[][^(sqrt)\+\-\*/\(\)\d\s\w]+,[^(sqrt)\+\-\*/\(\)\d\s\w]+[\)|\]]", word)
     if coord and coordinates:
         trailing = ''
         if word[-1] != ')' and word[-1] != ']':
@@ -207,7 +207,9 @@ def handle_word(word, coord=True):
         new_coord = re.sub(r'\\', r'\\\\', new_coord)
         return re.sub("[\(|\[][-\d\D]+,[-\d\D]+[\)|\]]", new_coord, word)
     
-    word = re.sub("\+/-", "pm(a)", word)
+    word = re.sub("\+/-", "~", word)
+    word = re.sub("(.+)~", "\g<1>+plusminus+", word)
+
     
     original_word = word
     scientific_notation = re.findall("\(?([\d]{2,})\)?\*([\d]{2,})\*\*", word)
@@ -222,12 +224,12 @@ def handle_word(word, coord=True):
     word = re.sub(r"([0-9]+)([a-zA-Z])", "\g<1>*\g<2>", word)
     word = re.sub(r"sqrt\*", r"sqrt", word)
     word = re.sub(r"abs\*", r"abs", word)
-    word = re.sub(r"pm\*", r"pm", word)
     word = re.sub('\*\*\(\-0.', '**(zero', word)
     word = re.sub('\*\*\(\-\.', '**(zero', word) 
     word = re.sub('(?<!(abs)|(log)|(qrt))\(\-', 'negneg(', word)
     word = re.sub(r'\\=', '=', word)
     word = re.sub(r'\'', r"primesymbol", word)
+    word = re.sub(r"\\theta", r"theta", word)
     # to handle -(.....) missing parenthesis instance
     while re.search("-\([^\w\d\(]", word):
         open_par_miss = re.search("-\([^\w\d]", word).start() + 1
@@ -245,6 +247,7 @@ def handle_word(word, coord=True):
             sum_upper = sum_match.group(2)
             sum_upper_num = False
         word = 'sum([' + sum_match.group(3) + ' for ' + sum_var + ' in range(' + sum_lower + ',' + sum_upper + ')])'
+    
 
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
 
@@ -254,6 +257,7 @@ def handle_word(word, coord=True):
         word = re.sub(item[0] + "\{" + item[1] + "\}", item[0] + "\\\\times {" + item[1] + "}", word)
     word = re.sub(r"\\operatorname{negneg}\\left\(", r"\\left(-", word)
     word = re.sub(r"\\operatorname{invert}", r"\\pm ", word)
+    word = re.sub(r"\+plusminus\+", "\\\\pm", word)
     word = re.sub(r"\\operatorname{(\w)}", r"\g<1>", word)
     word = re.sub(r"zero", r"-0.", word)
     word = re.sub("_{2,}", r"\\rule{2cm}{0.15mm}", word)
@@ -262,7 +266,11 @@ def handle_word(word, coord=True):
     word = re.sub("primesymbol", "\'", word)
     word = re.sub("°", "\\\\degree", word)
     word = re.sub("𝜃", "\\\\theta", word)
+    word = re.sub("θ", "\\\\theta", word)
     word = re.sub("ε", "\\\\varepsilon", word)
+
+    while re.search(r"sqrt\{[^\,]+\,\s*[^\,]+\}", word):
+        word = re.sub(r"sqrt\{([^\,]+)\,\s*([^\,]+)\}", r"sqrt[\g<1>]{\g<2>}",  word)
 
     if sum_match:
         if not sum_upper_num:

@@ -1,1 +1,1 @@
-import hints from "./a05393drealnumbers4c-index.js"; const step = {id: "a05393drealnumbers4c", stepAnswer: ["$$|p|$$"], problemType: "TextBox", stepTitle: "$$\\sqrt{4, p^4}$$", stepBody: "$$\\sqrt{4, p^4}$$", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./a05393drealnumbers4c-index.js"; const step = {id: "a05393drealnumbers4c", stepAnswer: ["$$|p|$$"], problemType: "TextBox", stepTitle: "$$\\sqrt[4]{p^4}$$", stepBody: "$$\\sqrt[4]{p^4}$$", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

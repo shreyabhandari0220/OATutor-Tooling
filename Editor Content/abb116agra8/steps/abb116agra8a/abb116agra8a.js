@@ -1,1 +1,1 @@
-import hints from "./abb116agra8a-index.js"; const step = {id: "abb116agra8a", stepAnswer: ["Yes"], problemType: "MultipleChoice", stepTitle: "$$(\\frac{1}{4},\\frac{7}{6})$$", stepBody: "", choices: ["Yes", "No"], answerType: "string", hints: hints, variabilization: {}}; export {step};
+import hints from "./abb116agra8a-index.js"; const step = {id: "abb116agra8a", stepAnswer: ["Yes"], problemType: "MultipleChoice", stepTitle: "$$\\frac{\\frac{1}{47}}{6}$$", stepBody: "", choices: ["Yes", "No"], answerType: "string", hints: hints, variabilization: {}}; export {step};

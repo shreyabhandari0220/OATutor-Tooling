@@ -32,7 +32,9 @@ def start_driver():
     options.add_argument("--disable-extensions")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
+    # options.add_experimental_option('w3c', False)
     driver = webdriver.Chrome(ChromeDriverManager(version="96.0.4664.45").install(), options=options)
+    driver.maximize_window()
     return driver
 
 def test_page(url_prefix, problem, driver, alert_df, test_hints=True):
@@ -247,6 +249,9 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
             
             hint_expand_button = driver.find_element_by_css_selector(hint_selector)
 
+            # WebDriverWait(driver, 0.2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, hint_selector)))
+            # ActionChains(driver).move_to_element(WebDriverWait(driver, 0.5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, hint_selector)))).click().perform()
+            # hint_expand_button.click()
             ActionChains(driver).move_to_element(hint_expand_button).click(hint_expand_button).perform()
 
         except NoSuchElementException:

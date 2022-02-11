@@ -1,1 +1,1 @@
-import hints from "./a05393drealnumbers9b-index.js"; const step = {id: "a05393drealnumbers9b", stepAnswer: ["$$a^2$$"], problemType: "TextBox", stepTitle: "$$\\sqrt{4, \\frac{a^{10}}{a^2}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./a05393drealnumbers9b-index.js"; const step = {id: "a05393drealnumbers9b", stepAnswer: ["$$a^2$$"], problemType: "TextBox", stepTitle: "$$\\sqrt[4]{\\frac{a^{10}}{a^2}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

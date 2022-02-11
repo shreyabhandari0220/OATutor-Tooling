@@ -1,1 +1,0 @@
-import hints from "./a0500edrationalnums12c-index.js"; const step = {id: "a0500edrationalnums12c", stepAnswer: ["$$z^6$$"], problemType: "TextBox", stepTitle: "$${\\left(z^9\\right)}^{\\frac{2}{3}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

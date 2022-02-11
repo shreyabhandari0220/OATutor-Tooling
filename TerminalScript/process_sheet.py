@@ -126,6 +126,7 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
     hint_dic = {}
     problem_name = question.iloc[0]['Problem Name']
     error_message = ''
+    scaff_lst = []
 
     if not question['Row Type'].str.contains('problem').any() and not question['Row Type'].str.contains(
             'Problem').any():
@@ -146,6 +147,9 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
     for index, row in question.iterrows():
         # checks row type
         try:
+            if type(row["Row Type"]) == float:
+                raise Exception("Row type is missing")
+
             row_type = row['Row Type'].strip().lower()
             if index != 0:
                 if row_type == "step":
@@ -162,7 +166,13 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
                         create_step(problem_name, row['Title'], row["Body Text"], row["Answer"], row["answerType"],
                                     step_count, choices, "", latex=latex, verbosity=verbosity)
 
+                if row_type == "hint" and type(row["Answer"]) != float:
+                    raise Exception("{} is \"hint\" but has answer".format(row["HintID"]))
+
                 elif (row_type == 'hint' or row_type == "scaffold") and type(row['Parent']) != float:
+                    if row['Parent'] not in scaff_lst:
+                        raise Exception("{} is hint so should not have subhint(s)".format(row["Parent"]))
+
                     hint_images = ""
                     if type(row["Images (space delimited)"]) == str and type(
                             row["Images (space delimited)"]) != np.float64:
@@ -172,8 +182,6 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
                     except TypeError:
                         raise Exception("Hint ID is missing")
                     if row_type == 'hint':
-                        # if type(row['Answer']) != float:
-                        #     raise Exception("hint row has answer. Should be a scaffold")
                         if variabilization:
                             subhint, subhint_id = create_hint(current_step_name, hint_id, row["Title"],
                                                               row["Body Text"], row["Dependency"], hint_images,
@@ -184,6 +192,7 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
                                                               row["Body Text"], row["Dependency"], hint_images,
                                                               hint_dic=hint_dic, latex=latex, verbosity=verbosity)
                     else:
+                        scaff_lst.append(hint_id)
                         if variabilization:
                             subhint, subhint_id = create_scaffold(current_step_name, hint_id, row["Title"],
                                                                   row["Body Text"], row["answerType"], row["Answer"],
@@ -200,8 +209,6 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
                     current_subhints.append(subhint)
                     tutoring.pop()
                     if previous_tutor['Row Type'] == 'hint':
-                        # if type(row['Answer']) != float:
-                        #     raise Exception("hint row has answer. Should be a scaffold")
                         if variabilization:
                             previous, hint_id = create_hint(current_step_name, previous_tutor["HintID"],
                                                             previous_tutor["Title"], previous_tutor["Body Text"],
@@ -239,8 +246,6 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
                     tutor_count += 1
                     current_subhints = []
                     if row_type == "hint":
-                        # if type(row['Answer']) != float:
-                        #     raise Exception("hint row has answer. Should be a scaffold")
                         hint_images = ""
                         if type(row["Images (space delimited)"]) == str:
                             validate_image(row["Images (space delimited)"])
@@ -258,6 +263,7 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
                         previous_tutor = row
                         previous_images = hint_images
                     if row_type == "scaffold":
+                        scaff_lst.append(row["HintID"])
                         scaff_images = ""
                         if type(row["Images (space delimited)"]) == str:
                             validate_image(row["Images (space delimited)"])
