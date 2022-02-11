@@ -1,1 +1,1 @@
-import hints from "./ac9891erationalnums28a-index.js"; const step = {id: "ac9891erationalnums28a", stepAnswer: ["$$x^{\\frac{7}{3}}$$"], problemType: "TextBox", stepTitle: "(sqrt(3,x**7))", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./ac9891erationalnums28a-index.js"; const step = {id: "ac9891erationalnums28a", stepAnswer: ["$$x^{\\frac{7}{3}}$$"], problemType: "TextBox", stepTitle: "$$\\sqrt[3]{x^7}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

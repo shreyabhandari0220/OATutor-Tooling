@@ -1,1 +1,0 @@
-import hints from "./af17844Solving15a-index.js"; const step = {id: "af17844Solving15a", stepAnswer: ["300"], problemType: "TextBox", stepTitle: "Find the amount of mark-up", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

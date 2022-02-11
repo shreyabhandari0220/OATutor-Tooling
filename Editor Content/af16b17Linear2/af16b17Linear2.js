@@ -1,1 +1,0 @@
-import steps from "./af16b17Linear2-index.js"; const problem = {id: "af16b17Linear2", title: "Solve Linear Equations Using a General Strategy", body: "Determine whether the values are solutions to the equation: $$9y+2=6y+3$$", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

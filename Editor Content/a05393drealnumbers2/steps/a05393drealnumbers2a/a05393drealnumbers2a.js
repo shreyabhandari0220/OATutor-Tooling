@@ -1,1 +1,1 @@
-import hints from "./a05393drealnumbers2a-index.js"; const step = {id: "a05393drealnumbers2a", stepAnswer: ["10"], problemType: "TextBox", stepTitle: "$$\\sqrt{3, 1000}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./a05393drealnumbers2a-index.js"; const step = {id: "a05393drealnumbers2a", stepAnswer: ["10"], problemType: "TextBox", stepTitle: "$$\\sqrt[3]{1000}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

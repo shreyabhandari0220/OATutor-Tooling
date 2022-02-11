@@ -1,6 +1,5 @@
 import json
 import re
-import random
 
 from process_text import preprocess_text_to_latex
 
@@ -205,6 +204,7 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
         choice_list = [choice for choice in choices.split('|') if choice]
         if answer not in choice_list:
             choice_list.append(answer)
+            choice_list.sort()
 
         choices = json.dumps([preprocess_text_to_latex(mc_answer, True, True, render_latex=latex, verbosity=verbosity)[0] for mc_answer in choice_list])
         answer = preprocess_text_to_latex(answer, tutoring=True, render_latex=latex, verbosity=verbosity)[0]

@@ -1,0 +1,1 @@
+import steps from "./ac38dceFraction14-index.js"; const problem = {id: "ac38dceFraction14", title: "Add or Subtract Fractions?", body: "Simplify the following expression", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

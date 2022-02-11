@@ -1,1 +1,0 @@
-import hints from "./a0500edrationalnums13b-index.js"; const step = {id: "a0500edrationalnums13b", stepAnswer: ["$$y^{\\frac{1}{2}}$$"], problemType: "TextBox", stepTitle: "$${\\left(s^{12}\\right)}^{\\frac{3}{4}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

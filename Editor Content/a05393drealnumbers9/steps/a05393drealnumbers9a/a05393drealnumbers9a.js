@@ -1,1 +1,1 @@
-import hints from "./a05393drealnumbers9a-index.js"; const step = {id: "a05393drealnumbers9a", stepAnswer: ["a"], problemType: "TextBox", stepTitle: "$$\\sqrt{3, \\frac{a^8}{a^5}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
+import hints from "./a05393drealnumbers9a-index.js"; const step = {id: "a05393drealnumbers9a", stepAnswer: ["a"], problemType: "TextBox", stepTitle: "$$\\sqrt[3]{\\frac{a^8}{a^5}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
