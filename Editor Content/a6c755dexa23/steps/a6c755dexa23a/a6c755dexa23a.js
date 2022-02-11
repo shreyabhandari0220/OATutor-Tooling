@@ -1,1 +1,0 @@
-import hints from "./a6c755dexa23a-index.js"; const step = {id: "a6c755dexa23a", stepAnswer: ["$$-8j+40$$"], problemType: "TextBox", stepTitle: "-8(j-5)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

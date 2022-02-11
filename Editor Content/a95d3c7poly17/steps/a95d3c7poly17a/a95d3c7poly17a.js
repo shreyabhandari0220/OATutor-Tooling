@@ -1,1 +1,0 @@
-import hints from "./a95d3c7poly17a-index.js"; const step = {id: "a95d3c7poly17a", stepAnswer: ["$$2z^2+6$$"], problemType: "TextBox", stepTitle: "Find the quotient: $$\\frac{8z^2+24}{4}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

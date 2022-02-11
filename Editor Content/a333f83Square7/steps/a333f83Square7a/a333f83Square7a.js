@@ -1,1 +1,0 @@
-import hints from "./a333f83Square7a-index.js"; const step = {id: "a333f83Square7a", stepAnswer: ["$${\\left(d+5\\right)}^2=16$$"], problemType: "TextBox", stepTitle: "$$d^2+10d=-9$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./aecbc44divmonomial18b-index.js"; const step = {id: "aecbc44divmonomial18b", stepAnswer: ["1"], problemType: "TextBox", stepTitle: "$$k^0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

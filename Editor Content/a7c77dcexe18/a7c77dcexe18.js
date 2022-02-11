@@ -1,1 +1,0 @@
-import steps from "./a7c77dcexe18-index.js"; const problem = {id: "a7c77dcexe18", title: "Factoring Trinomials", body: "Factor the trinomial.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

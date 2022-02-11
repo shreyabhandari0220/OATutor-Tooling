@@ -1,1 +1,0 @@
-import hints from "./a9e110dGrphingQuads32a-index.js"; const step = {id: "a9e110dGrphingQuads32a", stepAnswer: ["(0,16)"], problemType: "MultipleChoice", stepTitle: "$$y=\\left(-9x^2\\right)+16$$", stepBody: "", choices: ["(0,5)", "(0,10)", "(0,16)", "(0,81)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./a39d6f7rationaldenom19a-index.js"; const step = {id: "a39d6f7rationaldenom19a", stepAnswer: ["$$\\frac{16x+35y}{84x^2 y^2}$$"], problemType: "TextBox", stepTitle: "Add $$\\frac{5}{12x^2 y}+\\frac{4}{21{xy}^2}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./ac9891erationalnums27a-index.js"; const step = {id: "ac9891erationalnums27a", stepAnswer: ["$$x^{\\frac{3}{5}}$$"], problemType: "TextBox", stepTitle: "$$\\sqrt[5]{x^3}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

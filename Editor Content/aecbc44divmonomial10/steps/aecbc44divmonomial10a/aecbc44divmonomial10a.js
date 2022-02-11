@@ -1,1 +1,0 @@
-import hints from "./aecbc44divmonomial10a-index.js"; const step = {id: "aecbc44divmonomial10a", stepAnswer: ["1"], problemType: "TextBox", stepTitle: "$$9^0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

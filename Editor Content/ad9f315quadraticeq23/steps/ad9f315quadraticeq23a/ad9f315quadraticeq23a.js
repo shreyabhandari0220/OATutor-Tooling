@@ -1,1 +1,0 @@
-import hints from "./ad9f315quadraticeq23a-index.js"; const step = {id: "ad9f315quadraticeq23a", stepAnswer: ["1 or -5"], problemType: "MultipleChoice", stepTitle: "$${\\left(x+2\\right)}^2=9$$", stepBody: "", choices: ["1 or -5", "1 or -1", "2 or -3"], answerType: "string", hints: hints, variabilization: {}}; export {step};

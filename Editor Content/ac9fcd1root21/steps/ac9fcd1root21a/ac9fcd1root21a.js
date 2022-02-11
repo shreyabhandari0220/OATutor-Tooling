@@ -1,1 +1,0 @@
-import hints from "./ac9fcd1root21a-index.js"; const step = {id: "ac9fcd1root21a", stepAnswer: ["160"], problemType: "TextBox", stepTitle: "$$4\\sqrt{8}\\times5 \\sqrt{8}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

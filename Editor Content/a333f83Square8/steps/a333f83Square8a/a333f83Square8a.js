@@ -1,1 +1,0 @@
-import hints from "./a333f83Square8a-index.js"; const step = {id: "a333f83Square8a", stepAnswer: ["$${\\left(y-3\\right)}^2=25$$"], problemType: "TextBox", stepTitle: "$$y^2-6y=16$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

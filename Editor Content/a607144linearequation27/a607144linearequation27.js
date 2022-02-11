@@ -1,1 +1,0 @@
-import steps from "./a607144linearequation27-index.js"; const problem = {id: "a607144linearequation27", title: "Identifying whether the expression $$y=-4$$ represents a vertical or horizontal line", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

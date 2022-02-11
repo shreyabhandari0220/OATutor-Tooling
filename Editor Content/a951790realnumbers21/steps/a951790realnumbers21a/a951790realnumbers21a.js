@@ -1,1 +1,0 @@
-import hints from "./a951790realnumbers21a-index.js"; const step = {id: "a951790realnumbers21a", stepAnswer: ["-4"], problemType: "TextBox", stepTitle: "$$\\sqrt[3]{-64}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

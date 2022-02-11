@@ -1,1 +1,0 @@
-import hints from "./a11b6c2poly12a-index.js"; const step = {id: "a11b6c2poly12a", stepAnswer: ["$$\\left(-5y\\right)-3+\\frac{1}{4y}$$"], problemType: "TextBox", stepTitle: "$$\\frac{20y^2+12y-1}{\\left(-4y\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

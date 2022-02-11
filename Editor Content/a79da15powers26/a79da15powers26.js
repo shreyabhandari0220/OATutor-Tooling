@@ -1,1 +1,0 @@
-import steps from "./a79da15powers26-index.js"; const problem = {id: "a79da15powers26", title: "Simplify Expressions by Applying Several Properties", body: "Simplify the following expressions.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

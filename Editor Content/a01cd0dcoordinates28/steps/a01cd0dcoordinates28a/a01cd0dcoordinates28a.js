@@ -1,1 +1,0 @@
-import hints from "./a01cd0dcoordinates28a-index.js"; const step = {id: "a01cd0dcoordinates28a", stepAnswer: ["-1"], problemType: "TextBox", stepTitle: "$$y=\\left(-\\frac{2x}{3}\\right)-1$$ If $$x=0$$, what is y?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

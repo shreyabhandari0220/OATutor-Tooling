@@ -1,1 +1,0 @@
-import hints from "./a35324crational9a-index.js"; const step = {id: "a35324crational9a", stepAnswer: ["$$\\frac{5x+2}{2x+3}$$"], problemType: "TextBox", stepTitle: "$$\\frac{5x}{2x+3}+\\frac{2}{2x+3}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

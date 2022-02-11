@@ -1,1 +1,0 @@
-import steps from "./a607144linearequation25-index.js"; const problem = {id: "a607144linearequation25", title: "Determining the X- and Y-Intercepts to the Equation $$2x-4y=8$$.", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

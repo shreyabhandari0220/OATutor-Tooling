@@ -1,1 +1,0 @@
-import hints from "./aecbc44divmonomial17a-index.js"; const step = {id: "aecbc44divmonomial17a", stepAnswer: ["1"], problemType: "TextBox", stepTitle: "$${20}^0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

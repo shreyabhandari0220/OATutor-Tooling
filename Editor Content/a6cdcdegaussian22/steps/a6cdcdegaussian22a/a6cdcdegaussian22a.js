@@ -1,1 +1,0 @@
-import hints from "./a6cdcdegaussian22a-index.js"; const step = {id: "a6cdcdegaussian22a", stepAnswer: ["0"], problemType: "TextBox", stepTitle: "$$625=x^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

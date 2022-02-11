@@ -1,1 +1,0 @@
-import hints from "./af7680dfractions9a-index.js"; const step = {id: "af7680dfractions9a", stepAnswer: ["$$\\frac{\\left(n+1\\right) \\left(n-5\\right)}{2} n$$"], problemType: "TextBox", stepTitle: "(n-(4n/(n+5)))/((1/(n+5))-(1/(n-5))", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

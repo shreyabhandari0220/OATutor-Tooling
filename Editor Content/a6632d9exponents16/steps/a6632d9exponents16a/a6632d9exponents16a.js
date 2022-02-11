@@ -1,1 +1,0 @@
-import hints from "./a6632d9exponents16a-index.js"; const step = {id: "a6632d9exponents16a", stepAnswer: ["$$\\frac{8}{343}$$"], problemType: "TextBox", stepTitle: "$${\\left(\\frac{7}{2}\\right)}^{-3}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

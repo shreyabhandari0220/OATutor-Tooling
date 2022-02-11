@@ -1,1 +1,0 @@
-import hints from "./a9563a6Square17a-index.js"; const step = {id: "a9563a6Square17a", stepAnswer: ["1.25 and 1"], problemType: "MultipleChoice", stepTitle: "$$4n^2-9n+5=0$$", stepBody: "", choices: ["2 and 4.5", "1.25 and 1", "-1 and 0.25", "3 and 5"], answerType: "string", hints: hints, variabilization: {}}; export {step};

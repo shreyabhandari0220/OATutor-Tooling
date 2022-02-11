@@ -1,1 +1,0 @@
-import steps from "./a39d6f7rationaldenom20-index.js"; const problem = {id: "a39d6f7rationaldenom20", title: "Adding Rational Expressions with Different Denominators", body: "Solve the expression.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

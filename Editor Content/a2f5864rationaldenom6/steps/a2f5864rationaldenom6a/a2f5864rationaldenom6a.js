@@ -1,1 +1,0 @@
-import hints from "./a2f5864rationaldenom6a-index.js"; const step = {id: "a2f5864rationaldenom6a", stepAnswer: ["$$\\frac{37}{72}$$"], problemType: "TextBox", stepTitle: "$$\\frac{5}{24}+\\frac{11}{36}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

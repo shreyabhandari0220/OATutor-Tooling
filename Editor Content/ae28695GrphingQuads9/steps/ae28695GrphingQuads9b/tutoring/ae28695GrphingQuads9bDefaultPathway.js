@@ -1,1 +1,0 @@
-var hints = [{id: "ae28695GrphingQuads9b-h1", type: "hint", dependencies: [], title: "Solving for intercepts", text: "Plug in 0 for x and solve the equation", variabilization: {}}, ]; export {hints};

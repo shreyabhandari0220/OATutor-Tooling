@@ -1,1 +1,0 @@
-import hints from "./a6cdcdegaussian17a-index.js"; const step = {id: "a6cdcdegaussian17a", stepAnswer: ["4.25"], problemType: "TextBox", stepTitle: "$$4m^2=17m-15$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

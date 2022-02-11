@@ -1,1 +1,0 @@
-import hints from "./ac0d16eroot13a-index.js"; const step = {id: "ac0d16eroot13a", stepAnswer: ["13"], problemType: "TextBox", stepTitle: "$$\\left(5-2\\sqrt{3}\\right) \\left(5+2\\sqrt{3}\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

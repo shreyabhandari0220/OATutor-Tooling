@@ -1,1 +1,0 @@
-import hints from "./a45d337sys9b-index.js"; const step = {id: "a45d337sys9b", stepAnswer: ["Yes"], problemType: "MultipleChoice", stepTitle: "$$\\frac{54}{3}$$", stepBody: "", choices: ["Yes", "No"], answerType: "string", hints: hints, variabilization: {}}; export {step};

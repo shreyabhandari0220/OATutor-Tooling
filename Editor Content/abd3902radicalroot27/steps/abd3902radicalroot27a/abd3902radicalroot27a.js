@@ -1,1 +1,0 @@
-import hints from "./abd3902radicalroot27a-index.js"; const step = {id: "abd3902radicalroot27a", stepAnswer: ["DNE"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{2u-3}+2=0$$", stepBody: "", answerType: "string", hints: hints, variabilization: {}}; export {step};

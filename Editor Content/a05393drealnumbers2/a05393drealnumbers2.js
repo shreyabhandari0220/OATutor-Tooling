@@ -1,1 +1,0 @@
-import steps from "./a05393drealnumbers2-index.js"; const problem = {id: "a05393drealnumbers2", title: "Simplify Expressions with Higher Roots", body: "Simplify:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

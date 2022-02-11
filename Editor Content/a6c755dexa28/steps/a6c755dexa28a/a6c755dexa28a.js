@@ -1,1 +1,0 @@
-import hints from "./a6c755dexa28a-index.js"; const step = {id: "a6c755dexa28a", stepAnswer: ["$$-\\left(x^2\\right)+10x$$"], problemType: "TextBox", stepTitle: "-x(x-10)", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

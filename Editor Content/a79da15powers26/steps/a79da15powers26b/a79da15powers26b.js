@@ -1,1 +1,0 @@
-import hints from "./a79da15powers26b-index.js"; const step = {id: "a79da15powers26b", stepAnswer: ["$$-8c^{12} d^6$$"], problemType: "TextBox", stepTitle: "$${\\left(-2c^4 d^2\\right)}^3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
