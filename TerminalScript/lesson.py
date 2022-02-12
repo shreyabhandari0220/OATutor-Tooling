@@ -5,9 +5,11 @@ import time
 import shutil
 from process_sheet import process_sheet, get_all_url, get_sheet
 
+def escape_quotes(name):
+    return name.replace('"', r'\"').replace('“', r'\"').replace('”', r'\"')
+
 def create_bkt_params(name):
-    escaped_name = name.replace('"', r'\"').replace('“', r'\"').replace('”', r'\"')
-    return "\"" + escaped_name + "\": {probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1},"
+    return "\"" + escape_quotes(name) + "\": {probMastery: 0.1, probTransit: 0.1, probSlip: 0.1, probGuess: 0.1},"
 
 
 def create_lesson_plan(sheet, skills):
@@ -19,7 +21,7 @@ def create_lesson_plan(sheet, skills):
     learning_objectives = "{"
     if skills:
         for skill in skills:
-            learning_objectives += "\"" + skill + "\": 0.85, "
+            learning_objectives += "\"" + escape_quotes(skill) + "\": 0.85, "
     # strip the last comma
     if len(learning_objectives) > 1:
         learning_objectives = learning_objectives[:-2]
