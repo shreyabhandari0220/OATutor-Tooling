@@ -18,5 +18,10 @@ __init__.py
 node_modules/
 skillModel1.js
 .idea
+
+# script generated files / directories
 Editor Content
 OpenStax Content
+bktParams.js
+coursePlans.js
+skillModel.js
