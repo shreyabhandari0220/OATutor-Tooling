@@ -32,7 +32,7 @@ def create_lesson_plan(sheet, skills):
         "name": lesson_name,
         "topics": lesson_topics,
         "allowRecycle": True,
-        "learningObjectives": skills
+        "learningObjectives": dict(zip(skills, [0.85 for _ in skills]))
     }
 
     return lesson_plan
