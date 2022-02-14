@@ -27,7 +27,7 @@ def create_lesson_plan(sheet, skills):
         learning_objectives = learning_objectives[:-2]
     learning_objectives += "}"
 
-    lesson_plan = "{\"id\": " + "\"{0}\", \"name\": \"{1}\", \"topics\": \"{2}\", \"allowRecyle\": true, \"learningObjectives\": {3} ".format(lesson_id, lesson_name, lesson_topics, learning_objectives) + "},"
+    lesson_plan = "{\"id\": " + "\"{0}\", \"name\": \"{1}\", \"topics\": \"{2}\", \"allowRecycle\": true, \"learningObjectives\": {3} ".format(lesson_id, lesson_name, lesson_topics, learning_objectives) + "},"
     return lesson_plan
 
 
