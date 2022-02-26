@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.common.exceptions import NoSuchElementException, InvalidSessionIdException, TimeoutException, ElementNotInteractableException
+from selenium.common.exceptions import NoSuchElementException, InvalidSessionIdException, TimeoutException, ElementNotInteractableException, MoveTargetOutOfBoundsException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -19,14 +19,15 @@ from alert_error import alert
 from wait_class import element_has_attribute
 
 # URL_PREFIX = "https://cahlr.github.io/OATutor-Staging/#/debug/"
-CORRECT = "https://cahlr.github.io/OATutor-Staging/static/images/icons/green_check.svg"
-WRONG = "https://cahlr.github.io/OATutor-Staging/static/images/icons/error.svg"
+CORRECT = "https://cahlr.github.io/OATutor-Content-Staging/static/images/icons/green_check.svg"
+WRONG = "https://cahlr.github.io/OATutor-Content-Staging/static/images/icons/error.svg"
+SCROLL_LENGTH = 500
 
 def start_driver():
     # sets up selenium driver with correct Chrome headless version
     os.environ['WDM_LOG_LEVEL'] = '0'  # suppress logs from ChromeDriverManager install
     options = webdriver.ChromeOptions()
-    options.headless = True
+    # options.headless = True
     options.add_argument("start-maximized")
     options.add_argument("disable-infobars")
     options.add_argument("--disable-extensions")
@@ -76,7 +77,12 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
                 submit_selector = "[data-selenium-target=submit-button-{}]".format(problem_index)
                 icon_selector = "[data-selenium-target=step-correct-img-{}]".format(problem_index)
                 submit = driver.find_element_by_css_selector(submit_selector)
-                ActionChains(driver).move_to_element(submit).click(submit).perform()
+                try:
+                    ActionChains(driver).move_to_element(submit).click(submit).perform()
+                except MoveTargetOutOfBoundsException:
+                    driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
+                    driver.execute_script("arguments[0].click();", submit)
+                    print('text step submit button')
                 try:
                     WebDriverWait(driver, 0.45).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
                 except TimeoutException:
@@ -100,7 +106,12 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
                     submit_selector = "[data-selenium-target=submit-button-{}]".format(problem_index)
                     icon_selector = "[data-selenium-target=step-correct-img-{}]".format(problem_index)
                     submit = driver.find_element_by_css_selector(submit_selector)
-                    ActionChains(driver).move_to_element(submit).click(submit).perform()
+                    try:
+                        ActionChains(driver).move_to_element(submit).click(submit).perform()
+                    except MoveTargetOutOfBoundsException:
+                        driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
+                        driver.execute_script("arguments[0].click();", submit)
+                        print ('text step var submit button')
                     WebDriverWait(driver, 0.45).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
                     icon = driver.find_element_by_css_selector(icon_selector)
                     if icon.get_attribute("src") == CORRECT:
@@ -146,7 +157,12 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
             col.send_keys(col_count)
             next_button_selector = "[data-selenium-target=grid-answer-next-{}]".format(problem_index)
             next_button = driver.find_element_by_css_selector(next_button_selector)
-            ActionChains(driver).move_to_element(next_button).click(next_button).perform()
+            try:
+                ActionChains(driver).move_to_element(next_button).click(next_button).perform()
+            except MoveTargetOutOfBoundsException:
+                driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
+                driver.execute_script("arguments[0].click();", next_button)
+                print ('matrix step next button')
 
             # Enter matrix elements
             matrix_latex = re.search(r"\\begin\{bmatrix\}.+\\end\{bmatrix\}", correct_answer).group(0)
@@ -199,7 +215,12 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
     try:
         raise_hand_selector = "[data-selenium-target=hint-button-{}]".format(problem_index)
         raise_hand_button = driver.find_element_by_css_selector(raise_hand_selector)
-        ActionChains(driver).move_to_element(raise_hand_button).click(raise_hand_button).perform()
+        try:
+            ActionChains(driver).move_to_element(raise_hand_button).click(raise_hand_button).perform()
+        except MoveTargetOutOfBoundsException:
+            driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
+            driver.execute_script("arguments[0].click();", raise_hand_button)
+            print ('raise hand button')
         
         # checks if clicking on raise hand button breaks the page
         try:
@@ -252,7 +273,12 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
             # WebDriverWait(driver, 0.2).until(EC.element_to_be_clickable((By.CSS_SELECTOR, hint_selector)))
             # ActionChains(driver).move_to_element(WebDriverWait(driver, 0.5).until(EC.element_to_be_clickable((By.CSS_SELECTOR, hint_selector)))).click().perform()
             # hint_expand_button.click()
-            ActionChains(driver).move_to_element(hint_expand_button).click(hint_expand_button).perform()
+            try:
+                ActionChains(driver).move_to_element(hint_expand_button).click(hint_expand_button).perform()
+            except MoveTargetOutOfBoundsException:
+                driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
+                driver.execute_script("arguments[0].click();", hint_expand_button)
+                print ('hint expand button')
 
         except NoSuchElementException:
             err = "{0}: step {1} hint {2} expand button not found.".format(problem_name, problem_index + 1, hint_idx + 1)
@@ -293,7 +319,12 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                         col.send_keys(col_count)
                     next_button_selector = "[data-selenium-target=grid-answer-next-{0}-{1}]".format(hint_idx, problem_index)
                     next_button = driver.find_element_by_css_selector(next_button_selector)
-                    ActionChains(driver).move_to_element(next_button).click(next_button).perform()
+                    try:
+                        ActionChains(driver).move_to_element(next_button).click(next_button).perform()
+                    except MoveTargetOutOfBoundsException:
+                        driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
+                        driver.execute_script("arguments[0].click();", next_button)
+                        print ('hint matrix next button')
 
                     # Enter matrix elements
                     matrix_latex = re.search(r"\\begin\{bmatrix\}.+\\end\{bmatrix\}", correct_answer).group(0)
@@ -358,7 +389,12 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                 submit_selector = "[data-selenium-target=submit-button-{0}-{1}]".format(hint_idx, problem_index)
                 icon_selector = "[data-selenium-target=step-correct-img-{0}-{1}]".format(hint_idx, problem_index)
                 submit = driver.find_element_by_css_selector(submit_selector)
-                ActionChains(driver).move_to_element(submit).click(submit).perform()
+                try:
+                    ActionChains(driver).move_to_element(submit).click(submit).perform()
+                except MoveTargetOutOfBoundsException:
+                    driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
+                    driver.execute_script("arguments[0].click();", submit)
+                    print('submit button')
                 WebDriverWait(driver, 0.45).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
                 icon = driver.find_element_by_css_selector(icon_selector)
                 if icon.get_attribute("src") != CORRECT:
@@ -421,7 +457,7 @@ if __name__ == '__main__':
     if len(sys.argv) == 3:
         url_prefix = sys.argv[2]
     else:
-        url_prefix = "https://cahlr.github.io/OATutor-Staging/#/debug/"
+        url_prefix = "https://cahlr.github.io/OATutor-Content-Staging/#/debug/"
     
     problem = fetch_problem_ans_info(problem_name)
     driver = start_driver()
