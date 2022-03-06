@@ -18,3 +18,4 @@ __init__.py
 node_modules/
 skillModel1.js
 .idea
+TerminalScript/Test.ipynb
