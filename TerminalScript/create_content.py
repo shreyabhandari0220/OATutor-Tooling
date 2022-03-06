@@ -20,7 +20,7 @@ def create_variabilization(variabilization):
         var_str = "{}"
     return var_str
 
-def create_problem_js(name,title,body,oer,images=[],variabilization='',latex=True,verbosity=False,course_name=""):
+def create_problem_js(name,title,body,oer,images=[],variabilization='',latex=True,verbosity=False,course_name="",sheet_name=""):
     if type(body) == float:
         body= ""
     for image in images:
@@ -41,6 +41,7 @@ def create_problem_js(name,title,body,oer,images=[],variabilization='',latex=Tru
     contents +=  "steps: steps, "
     contents += "variabilization: {0}, ".format(var_str)
     contents += "oer: \"{0}\", ".format(oer)
+    contents += "lesson: \"{0}\", ".format(sheet_name)
     contents += "courseName: \"{0}\"".format(course_name)
     contents += "}; export { problem };"
     
