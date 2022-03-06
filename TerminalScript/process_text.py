@@ -50,7 +50,8 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
         text = re.sub("\\\\pipe", "|", text) #To account for literal | in mc answers
         text = re.sub(r"\\/", r"\\\\slash\\\\", text) #To account for literal /
         text = re.sub(r"@{(\d+|\w+)}", r"aaa\g<1>ttt", text) #For variabilization
-        text = re.sub(r"_\{([\w]+),([\w]+)\}", r"_\g<1>\g<2>", text) #To account for subscript in form of A_{i,j} (change to A_ij)
+        text = re.sub(r"_\{([\w]+),([\w]+)\}", r"_\g<1>_\g<2>", text) #To account for subscript in form of A_{i,j} (change to A_ij)
+        text = re.sub("_\(([^)]+)\)", "_\g<1>", text) # To account for subscript in form of A_(BC) (chage to A_BC)
 
         # for operator in supported_operators:
         #     text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
@@ -179,6 +180,9 @@ def handle_word(word, coord=True):
     if not (any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])):
         word = re.sub("𝜃", "\\\\theta", word)
         word = re.sub("°", "\\\\degree", word)
+        word = re.sub("θ", "\\\\theta", word)
+        word = re.sub("ε", "\\\\varepsilon", word)
+        word = re.sub("λ", "\\\\lambda", word)
         return word
 
     if "log{" in word:
@@ -230,6 +234,10 @@ def handle_word(word, coord=True):
     word = re.sub(r'\\=', '=', word)
     word = re.sub(r'\'', r"primesymbol", word)
     word = re.sub(r"\\theta", r"theta", word)
+    word = re.sub(r"←", r"getsgets", word)
+    word = re.sub(r"\.\.\.", r"dotdotdot", word)
+    bracketsub = re.search("\[([^\(^\)]+)\]", word)
+    word = re.sub("\[([^\(^\)^\[^\]]+)\]", "bracketsub", word)
     # to handle -(.....) missing parenthesis instance
     while re.search("-\([^\w\d\(]", word):
         open_par_miss = re.search("-\([^\w\d]", word).start() + 1
@@ -268,6 +276,11 @@ def handle_word(word, coord=True):
     word = re.sub("𝜃", "\\\\theta", word)
     word = re.sub("θ", "\\\\theta", word)
     word = re.sub("ε", "\\\\varepsilon", word)
+    word = re.sub("λ", "\\\\lambda", word)
+    word = re.sub("getsgets", " \\\\gets ", word)
+    word = re.sub("dotdotdot", "...", word)
+    if bracketsub:
+        word = re.sub("bracketsub", "[" + bracketsub.group(1) + "]", word)
 
     while re.search(r"sqrt\{[^\,]+\,\s*[^\,]+\}", word):
         word = re.sub(r"sqrt\{([^\,]+)\,\s*([^\,]+)\}", r"sqrt[\g<1>]{\g<2>}",  word)
