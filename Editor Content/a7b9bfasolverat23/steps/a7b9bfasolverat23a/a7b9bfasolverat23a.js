@@ -1,1 +1,0 @@
-import hints from "./a7b9bfasolverat23a-index.js"; const step = {id: "a7b9bfasolverat23a", stepAnswer: ["$$y=-16$$"], problemType: "TextBox", stepTitle: "$$\\frac{3}{8}+\\frac{2}{y}=\\frac{1}{4}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

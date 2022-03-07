@@ -1,1 +1,0 @@
-import hints from "./ac4f94cmultiplingyrational19a-index.js"; const step = {id: "ac4f94cmultiplingyrational19a", stepAnswer: ["$$\\frac{8a^4}{3} b^2$$"], problemType: "TextBox", stepTitle: "$$\\frac{12a^3 b b^2 2{ab}^2}{9b^3}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

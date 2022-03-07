@@ -1,1 +1,0 @@
-import hints from "./aecbc44divmonomial13b-index.js"; const step = {id: "aecbc44divmonomial13b", stepAnswer: ["1"], problemType: "TextBox", stepTitle: "$${\\left(-4{ba}^2\\right)}^0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

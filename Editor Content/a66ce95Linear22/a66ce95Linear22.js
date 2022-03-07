@@ -1,1 +1,0 @@
-import steps from "./a66ce95Linear22-index.js"; const problem = {id: "a66ce95Linear22", title: "Solve Equations Using the General Strategy", body: "Solve the Linear Equation", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

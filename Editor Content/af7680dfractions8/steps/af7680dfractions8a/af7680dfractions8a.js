@@ -1,1 +1,0 @@
-import hints from "./af7680dfractions8a-index.js"; const step = {id: "af7680dfractions8a", stepAnswer: ["$$\\frac{ab}{b-a}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\frac{1}{a}+\\frac{1}{b}}{\\frac{1}{a^2}-\\frac{1}{b^2}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

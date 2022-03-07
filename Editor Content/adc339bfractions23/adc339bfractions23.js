@@ -1,1 +1,0 @@
-import steps from "./adc339bfractions23-index.js"; const problem = {id: "adc339bfractions23", title: "Simplify a Complex Rational Expression by Using the LCD", body: "Simplify the following expression.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

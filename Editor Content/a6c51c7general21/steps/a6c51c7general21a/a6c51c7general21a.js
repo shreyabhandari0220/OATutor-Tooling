@@ -1,1 +1,0 @@
-import hints from "./a6c51c7general21a-index.js"; const step = {id: "a6c51c7general21a", stepAnswer: ["(4x-3)(2x-3)"], problemType: "TextBox", stepTitle: "$$8x^2-18x+9$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

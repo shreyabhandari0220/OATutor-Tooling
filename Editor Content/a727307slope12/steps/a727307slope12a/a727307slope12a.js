@@ -1,1 +1,0 @@
-import hints from "./a727307slope12a-index.js"; const step = {id: "a727307slope12a", stepAnswer: ["-3/2;(0,3)"], problemType: "MultipleChoice", stepTitle: "$$6x+4y=12$$", stepBody: "", choices: ["$$\\frac{-3}{2}$$", "$$3$$", "-3/2;(0,3)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

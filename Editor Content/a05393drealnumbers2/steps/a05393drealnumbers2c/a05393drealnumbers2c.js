@@ -1,1 +1,0 @@
-import hints from "./a05393drealnumbers2c-index.js"; const step = {id: "a05393drealnumbers2c", stepAnswer: ["2"], problemType: "TextBox", stepTitle: "$$\\sqrt[5]{32}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

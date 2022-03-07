@@ -1,1 +1,0 @@
-import hints from "./aaca284sol23a-index.js"; const step = {id: "aaca284sol23a", stepAnswer: ["860"], problemType: "TextBox", stepTitle: "How much sodium is in a hot dog?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

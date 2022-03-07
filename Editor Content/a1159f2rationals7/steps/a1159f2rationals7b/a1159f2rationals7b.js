@@ -1,1 +1,0 @@
-import hints from "./a1159f2rationals7b-index.js"; const step = {id: "a1159f2rationals7b", stepAnswer: ["$$\\frac{2}{9}$$"], problemType: "TextBox", stepTitle: "$$y=-3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import steps from "./ae28695GrphingQuads9-index.js"; const problem = {id: "ae28695GrphingQuads9", title: "Finding Intercepts of a Parabola", body: "Find the x intercepts of the parabola.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

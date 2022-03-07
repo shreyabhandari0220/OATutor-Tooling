@@ -1,1 +1,0 @@
-import hints from "./a2c372bexponents2a-index.js"; const step = {id: "a2c372bexponents2a", stepAnswer: ["$$\\frac{1}{1000}$$"], problemType: "TextBox", stepTitle: "$${10}^{\\left(-3\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

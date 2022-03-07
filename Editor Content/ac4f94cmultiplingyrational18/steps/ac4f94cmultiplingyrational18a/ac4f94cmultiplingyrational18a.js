@@ -1,1 +1,0 @@
-import hints from "./ac4f94cmultiplingyrational18a-index.js"; const step = {id: "ac4f94cmultiplingyrational18a", stepAnswer: ["$$\\frac{x^3}{8y}$$"], problemType: "TextBox", stepTitle: "(5x**2y**4/12xy**3)*(6x**2/20y**2", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

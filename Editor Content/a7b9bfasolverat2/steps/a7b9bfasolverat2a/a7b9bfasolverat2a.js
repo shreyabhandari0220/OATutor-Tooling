@@ -1,1 +1,0 @@
-import hints from "./a7b9bfasolverat2a-index.js"; const step = {id: "a7b9bfasolverat2a", stepAnswer: ["b=6, b=-2"], problemType: "TextBox", stepTitle: "$$1-\\frac{4}{b}=\\frac{12}{b^2}$$", stepBody: "", answerType: "string", hints: hints, variabilization: {}}; export {step};

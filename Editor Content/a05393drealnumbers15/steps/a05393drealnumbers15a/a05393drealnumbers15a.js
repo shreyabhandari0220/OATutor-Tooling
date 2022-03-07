@@ -1,1 +1,0 @@
-import hints from "./a05393drealnumbers15a-index.js"; const step = {id: "a05393drealnumbers15a", stepAnswer: ["$$2x \\sqrt[3]{x}-\\left(-3x^2 \\sqrt[3]{3x}\\right)$$"], problemType: "TextBox", stepTitle: "$$\\sqrt[3]{24x^4}-\\sqrt[3]{-81x^7}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

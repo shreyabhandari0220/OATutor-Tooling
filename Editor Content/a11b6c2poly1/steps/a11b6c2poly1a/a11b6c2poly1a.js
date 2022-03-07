@@ -1,1 +1,0 @@
-import hints from "./a11b6c2poly1a-index.js"; const step = {id: "a11b6c2poly1a", stepAnswer: ["$$17y^2+14$$"], problemType: "TextBox", stepTitle: "$$\\frac{51y^4+42y^2}{3y^2}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

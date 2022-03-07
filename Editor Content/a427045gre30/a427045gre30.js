@@ -1,1 +1,0 @@
-import steps from "./a427045gre30-index.js"; const problem = {id: "a427045gre30", title: "Greatest Common Factor", body: "Factor the greatest common factor from each polynomial.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

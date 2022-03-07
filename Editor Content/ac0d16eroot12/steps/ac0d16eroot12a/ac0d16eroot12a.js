@@ -1,1 +1,0 @@
-import hints from "./ac0d16eroot12a-index.js"; const step = {id: "ac0d16eroot12a", stepAnswer: ["14"], problemType: "TextBox", stepTitle: "$$\\left(4-\\sqrt{2}\\right) \\left(4+\\sqrt{2}\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

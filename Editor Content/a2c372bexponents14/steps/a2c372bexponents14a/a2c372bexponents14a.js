@@ -1,1 +1,0 @@
-import hints from "./a2c372bexponents14a-index.js"; const step = {id: "a2c372bexponents14a", stepAnswer: ["$$5.2{10}^{\\left(-3\\right)}$$"], problemType: "TextBox", stepTitle: "0.0052", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

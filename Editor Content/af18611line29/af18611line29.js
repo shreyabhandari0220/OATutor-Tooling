@@ -1,1 +1,0 @@
-import steps from "./af18611line29-index.js"; const problem = {id: "af18611line29", title: "Finding Equations of Perpendicular Lines", body: "Find the equation of the line perpendicular to the given line.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

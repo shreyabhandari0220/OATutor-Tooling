@@ -1,1 +1,0 @@
-import steps from "./ad9f315quadraticeq17-index.js"; const problem = {id: "ad9f315quadraticeq17", title: "Solving Equations with the Square Root Property", body: "Solve the equation for the value of the variable.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

@@ -1,1 +1,0 @@
-import hints from "./aaca284sol10a-index.js"; const step = {id: "aaca284sol10a", stepAnswer: ["(6,9)"], problemType: "MultipleChoice", stepTitle: "Refer to the image for the system of equations.", stepBody: "##figure1.gif## ", choices: ["(6,9)", "(9,6)", "(-6,9)", "(6,-9)", "(-9,6)"], answerType: "string", hints: hints, variabilization: {}}; export {step};
