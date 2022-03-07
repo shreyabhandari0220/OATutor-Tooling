@@ -628,11 +628,11 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"],
                                         problem_row["OER src"], problem_images,
                                         variabilization=problem_row["Variabilization"], latex=latex,
-                                        verbosity=verbosity, course_name=course_name)
+                                        verbosity=verbosity, course_name=course_name, sheet_name=sheet_name)
         else:
             prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"],
                                         problem_row["OER src"], problem_images, latex=latex, verbosity=verbosity,
-                                        course_name=course_name)
+                                        course_name=course_name, sheet_name=sheet_name)
         re.sub("[\.js]{2,}", ".js", prob_js)
         file = open(problem_js, "w", encoding="utf-8")
         file.write(prob_js)
