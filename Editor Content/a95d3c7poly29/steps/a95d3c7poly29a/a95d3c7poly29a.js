@@ -1,1 +1,0 @@
-import hints from "./a95d3c7poly29a-index.js"; const step = {id: "a95d3c7poly29a", stepAnswer: ["$$-4a+2b$$"], problemType: "TextBox", stepTitle: "Find the quotient: $$\\frac{32a^2 b-16{ab}^2}{\\left(-8ab\\right)}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

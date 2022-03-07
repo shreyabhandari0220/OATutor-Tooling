@@ -1,1 +1,0 @@
-import hints from "./a9b2830linearequation9a-index.js"; const step = {id: "a9b2830linearequation9a", stepAnswer: ["-2"], problemType: "TextBox", stepTitle: "$$y=-2x$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

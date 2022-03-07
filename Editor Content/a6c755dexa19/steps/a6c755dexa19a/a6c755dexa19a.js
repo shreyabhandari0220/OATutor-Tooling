@@ -1,1 +1,0 @@
-import hints from "./a6c755dexa19a-index.js"; const step = {id: "a6c755dexa19a", stepAnswer: ["-5p-45"], problemType: "TextBox", stepTitle: "$$-5\\left(p+9\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

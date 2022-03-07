@@ -1,1 +1,0 @@
-import hints from "./a02ea1dCompletingSqr4a-index.js"; const step = {id: "a02ea1dCompletingSqr4a", stepAnswer: ["$${\\left(n-8\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$n^2-16n$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

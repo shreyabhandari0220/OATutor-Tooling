@@ -1,1 +1,0 @@
-import steps from "./a607144linearequation26-index.js"; const problem = {id: "a607144linearequation26", title: "Identifying whether the expression $$x=2$$ represents a vertical or horizontal line", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

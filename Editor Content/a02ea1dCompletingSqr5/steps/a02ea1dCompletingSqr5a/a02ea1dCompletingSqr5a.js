@@ -1,1 +1,0 @@
-import hints from "./a02ea1dCompletingSqr5a-index.js"; const step = {id: "a02ea1dCompletingSqr5a", stepAnswer: ["$${\\left(p-11\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$p^2-22p$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

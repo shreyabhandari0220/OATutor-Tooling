@@ -1,1 +1,0 @@
-import hints from "./a35324crational5a-index.js"; const step = {id: "a35324crational5a", stepAnswer: ["$$\\frac{1}{3}$$"], problemType: "TextBox", stepTitle: "$$\\frac{4}{21}+\\frac{3}{21}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

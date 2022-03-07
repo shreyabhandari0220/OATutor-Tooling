@@ -1,1 +1,0 @@
-import hints from "./a2c372bexponents15a-index.js"; const step = {id: "a2c372bexponents15a", stepAnswer: ["$$7.8{10}^{\\left(-3\\right)}$$"], problemType: "TextBox", stepTitle: "0.0078", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

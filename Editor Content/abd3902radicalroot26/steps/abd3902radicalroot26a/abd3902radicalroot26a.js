@@ -1,1 +1,0 @@
-import hints from "./abd3902radicalroot26a-index.js"; const step = {id: "abd3902radicalroot26a", stepAnswer: ["$$n=2.5$$"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{6n+1}+4=8$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

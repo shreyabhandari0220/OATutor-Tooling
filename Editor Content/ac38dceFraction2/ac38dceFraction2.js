@@ -1,1 +1,0 @@
-import steps from "./ac38dceFraction2-index.js"; const problem = {id: "ac38dceFraction2", title: "How to Simplify a Fraction?", body: "Simplify the following expression", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

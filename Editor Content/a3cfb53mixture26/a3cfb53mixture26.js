@@ -1,1 +1,0 @@
-import steps from "./a3cfb53mixture26-index.js"; const problem = {id: "a3cfb53mixture26", title: "Solve A Uniform Motion Application", body: "Solve the following problem:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

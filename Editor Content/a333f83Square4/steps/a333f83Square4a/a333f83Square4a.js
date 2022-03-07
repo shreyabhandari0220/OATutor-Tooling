@@ -1,1 +1,0 @@
-import hints from "./a333f83Square4a-index.js"; const step = {id: "a333f83Square4a", stepAnswer: ["$${\\left(u-\\frac{9}{2}\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$u^2-9u$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

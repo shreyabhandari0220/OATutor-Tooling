@@ -1,1 +1,0 @@
-import hints from "./abb116agra7a-index.js"; const step = {id: "abb116agra7a", stepAnswer: ["No"], problemType: "MultipleChoice", stepTitle: "(1,-3)", stepBody: "", choices: ["Yes", "No"], answerType: "string", hints: hints, variabilization: {}}; export {step};

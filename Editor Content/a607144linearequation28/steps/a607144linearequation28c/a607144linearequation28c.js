@@ -1,1 +1,0 @@
-import hints from "./a607144linearequation28c-index.js"; const step = {id: "a607144linearequation28c", stepAnswer: ["No"], problemType: "MultipleChoice", stepTitle: "(-3,2)", stepBody: "", choices: ["Yes", "No"], answerType: "string", hints: hints, variabilization: {}}; export {step};

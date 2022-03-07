@@ -1,1 +1,0 @@
-import hints from "./a7c77dcexe16a-index.js"; const step = {id: "a7c77dcexe16a", stepAnswer: ["$$\\left(x+1\\right) \\left(x+3\\right)$$"], problemType: "TextBox", stepTitle: "Factor the following trinomial: $$x^2+4x+3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

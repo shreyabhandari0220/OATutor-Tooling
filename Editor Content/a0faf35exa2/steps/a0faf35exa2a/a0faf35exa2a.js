@@ -1,1 +1,0 @@
-import hints from "./a0faf35exa2a-index.js"; const step = {id: "a0faf35exa2a", stepAnswer: ["$$5x+35$$"], problemType: "TextBox", stepTitle: "$$5\\left(x+7\\right)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

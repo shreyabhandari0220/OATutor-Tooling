@@ -1,1 +1,0 @@
-import hints from "./ae28695GrphingQuads10a-index.js"; const step = {id: "ae28695GrphingQuads10a", stepAnswer: ["No Real Roots"], problemType: "MultipleChoice", stepTitle: "$$y=x^2-2x-8$$", stepBody: "", choices: ["1 and 2", "3 and -3", "No Real Roots"], answerType: "string", hints: hints, variabilization: {}}; export {step};

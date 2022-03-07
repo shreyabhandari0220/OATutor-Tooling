@@ -1,1 +1,0 @@
-import hints from "./abd3902radicalroot18a-index.js"; const step = {id: "abd3902radicalroot18a", stepAnswer: ["$$x=14$$"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{5x-6}=8$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

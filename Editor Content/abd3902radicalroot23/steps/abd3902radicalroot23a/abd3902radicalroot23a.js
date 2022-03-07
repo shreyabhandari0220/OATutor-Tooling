@@ -1,1 +1,0 @@
-import hints from "./abd3902radicalroot23a-index.js"; const step = {id: "abd3902radicalroot23a", stepAnswer: ["$$u=8.5$$"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{4u+2}-6=0$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

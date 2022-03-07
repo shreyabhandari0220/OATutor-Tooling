@@ -1,1 +1,0 @@
-import hints from "./a7b9bfasolverat20a-index.js"; const step = {id: "a7b9bfasolverat20a", stepAnswer: ["$$v=\\frac{40}{21}$$"], problemType: "TextBox", stepTitle: "$$\\frac{4}{5}+\\frac{1}{4}=\\frac{2}{v}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

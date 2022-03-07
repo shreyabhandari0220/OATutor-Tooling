@@ -1,1 +1,0 @@
-import hints from "./abd3902radicalroot29a-index.js"; const step = {id: "abd3902radicalroot29a", stepAnswer: ["DNE"], problemType: "TextBox", stepTitle: "Solve $$\\sqrt{3z-5}+2=0$$", stepBody: "", answerType: "string", hints: hints, variabilization: {}}; export {step};

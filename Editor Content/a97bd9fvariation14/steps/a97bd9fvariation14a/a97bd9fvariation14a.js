@@ -1,1 +1,0 @@
-import hints from "./a97bd9fvariation14a-index.js"; const step = {id: "a97bd9fvariation14a", stepAnswer: ["$$y=\\frac{16}{x}$$"], problemType: "TextBox", stepTitle: "If y varies inversely with x and $$y=8$$ when $$x=2$$, find the equation that relates x and y (in the form $$y=?)$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
