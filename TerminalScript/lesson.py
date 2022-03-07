@@ -106,7 +106,10 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
             lesson_plan = []
             course_name, book_url = row['Book'], row['URL']
             book = get_sheet(book_url)
-            sheet_names = [sheet.title for sheet in book.worksheets() if sheet.title[:2] != '!!']
+            try:
+                sheet_names = [sheet.title for sheet in book.worksheets() if sheet.title[:2] != '!!']
+            except Exception as e:
+                print("Gspread Error in {}, {}:".format(course_name, book_url), e)
             for sheet in sheet_names:
                 start = time.time()
                 if sheet[:2] == '##':
@@ -156,11 +159,11 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
                         time.sleep(4 - (end - start))
 
     # open("../lessonPlans.js", "x")
-    file = open("../coursePlans.js", "w")
+    file = open(os.path.join("..", "lessonPlans.js"), "w")
     finish_course_plan(course_plan, file)
 
     # open("../bktParams.js", "x")
-    file = open("../bktParams.js", "w")
+    file = open(os.path.join("..", "bktParams.js"), "w")
     finish_bkt_params(bkt_params, file)
 
     file.close()
