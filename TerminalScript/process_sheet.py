@@ -372,8 +372,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         df["Title"] = df["Title"].str.replace("\"", "\\\"")
         df["Answer"] = df["Answer"].str.replace("\"", "\\\"")
         df["mcChoices"] = df["mcChoices"].str.replace("\"", "\\\"")
-        df["Body Text"] = df["Body Text"].str.replace("\\n", r" \\\\n ")
-        df["Title"] = df["Title"].str.replace("\\n", r" \\\\n ")
+        df["Body Text"] = df["Body Text"].str.replace("\\n", r" \\\\n ", regex=True)
+        df["Title"] = df["Title"].str.replace("\\n", r" \\\\n ", regex=True)
     except AttributeError:
         pass
     df["openstax KC"] = df["openstax KC"].str.replace("\'", "\\\'")
