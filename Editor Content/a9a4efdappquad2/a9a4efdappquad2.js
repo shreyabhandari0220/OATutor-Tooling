@@ -1,1 +1,0 @@
-import steps from "./a9a4efdappquad2-index.js"; const problem = {id: "a9a4efdappquad2", title: "Solve Applications of the Quadratic Formula", body: "Find the number(s) that satisfy the given conditions.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

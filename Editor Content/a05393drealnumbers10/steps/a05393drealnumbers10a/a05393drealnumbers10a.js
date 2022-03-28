@@ -1,1 +1,0 @@
-import hints from "./a05393drealnumbers10a-index.js"; const step = {id: "a05393drealnumbers10a", stepAnswer: ["$$m^2$$"], problemType: "TextBox", stepTitle: "$$\\sqrt[3]{\\frac{m^{13}}{m^7}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

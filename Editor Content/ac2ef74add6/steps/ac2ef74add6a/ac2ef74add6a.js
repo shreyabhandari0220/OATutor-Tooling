@@ -1,1 +1,0 @@
-import hints from "./ac2ef74add6a-index.js"; const step = {id: "ac2ef74add6a", stepAnswer: ["3"], problemType: "TextBox", stepTitle: "$$9y^3-10y^2+2y-6$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

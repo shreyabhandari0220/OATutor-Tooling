@@ -1,1 +1,0 @@
-var hints = [{id: "a95d3c7poly22a-h1", type: "hint", dependencies: [], title: "We must divide each term in the numerator by -4, so we get $$-3d^2+4d$$", text: "", variabilization: {}}, ]; export {hints};

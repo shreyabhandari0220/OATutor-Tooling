@@ -1,1 +1,0 @@
-import steps from "./a85446acoordinates15-index.js"; const problem = {id: "a85446acoordinates15", title: "Finding Solutions to the Equation", body: "Find the solution to the equation.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

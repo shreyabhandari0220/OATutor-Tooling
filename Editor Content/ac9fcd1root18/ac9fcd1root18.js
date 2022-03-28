@@ -1,1 +1,0 @@
-import steps from "./ac9fcd1root18-index.js"; const problem = {id: "ac9fcd1root18", title: "Multiplying Square Roots", body: "Simplify the following square roots.", steps: steps, variabilization: {}, oer: "openstax.org", courseName: ""}; export { problem };

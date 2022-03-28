@@ -1,1 +1,0 @@
-import hints from "./a7c77dcexe29a-index.js"; const step = {id: "a7c77dcexe29a", stepAnswer: ["$$\\left(x-5\\right) \\left(x+4\\right)$$"], problemType: "TextBox", stepTitle: "Factor the following trinomial: $$x^2-x-20$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

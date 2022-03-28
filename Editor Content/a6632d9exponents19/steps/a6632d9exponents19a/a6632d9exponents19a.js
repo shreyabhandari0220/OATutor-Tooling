@@ -1,1 +1,0 @@
-import hints from "./a6632d9exponents19a-index.js"; const step = {id: "a6632d9exponents19a", stepAnswer: ["1"], problemType: "TextBox", stepTitle: "$$y^5 y^{-5}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

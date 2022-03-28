@@ -1,1 +1,0 @@
-import hints from "./ab13831powers3a-index.js"; const step = {id: "ab13831powers3a", stepAnswer: ["$$n^{31}$$"], problemType: "TextBox", stepTitle: "$$n^{19} n^{12}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

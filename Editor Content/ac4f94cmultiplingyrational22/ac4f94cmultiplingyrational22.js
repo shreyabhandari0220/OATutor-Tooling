@@ -1,1 +1,0 @@
-import steps from "./ac4f94cmultiplingyrational22-index.js"; const problem = {id: "ac4f94cmultiplingyrational22", title: "Multiplying Rational Expressions", body: "Find the value of the expression. When possible, simplify your answer.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

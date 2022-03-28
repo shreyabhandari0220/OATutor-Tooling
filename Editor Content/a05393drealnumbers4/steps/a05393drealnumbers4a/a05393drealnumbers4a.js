@@ -1,1 +1,0 @@
-import hints from "./a05393drealnumbers4a-index.js"; const step = {id: "a05393drealnumbers4a", stepAnswer: ["$$|x|$$"], problemType: "TextBox", stepTitle: "$$\\sqrt{x^2}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

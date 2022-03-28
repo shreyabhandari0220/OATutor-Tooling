@@ -1,1 +1,0 @@
-import hints from "./ae28695GrphingQuads13a-index.js"; const step = {id: "ae28695GrphingQuads13a", stepAnswer: ["5.5"], problemType: "TextBox", stepTitle: "How many seconds will it take the volleyball to reach its maximum height?", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

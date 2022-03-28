@@ -1,1 +1,0 @@
-import hints from "./a6c51c7general26a-index.js"; const step = {id: "a6c51c7general26a", stepAnswer: ["$$6p^3 \\left(3p^3+4\\right)$$"], problemType: "TextBox", stepTitle: "$$18p^6+{24}^{p^3}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

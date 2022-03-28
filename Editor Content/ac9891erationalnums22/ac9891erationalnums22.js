@@ -1,1 +1,0 @@
-import steps from "./ac9891erationalnums22-index.js"; const problem = {id: "ac9891erationalnums22", title: "Wrting Radical Expressions in Exponential Form", body: "Write the radical as an expression with an exponent.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

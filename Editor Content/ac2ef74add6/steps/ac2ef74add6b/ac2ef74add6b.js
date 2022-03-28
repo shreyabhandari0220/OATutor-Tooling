@@ -1,1 +1,0 @@
-import hints from "./ac2ef74add6b-index.js"; const step = {id: "ac2ef74add6b", stepAnswer: ["4"], problemType: "TextBox", stepTitle: "$$-12p^4$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

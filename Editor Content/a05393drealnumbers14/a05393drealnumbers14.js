@@ -1,1 +1,0 @@
-import steps from "./a05393drealnumbers14-index.js"; const problem = {id: "a05393drealnumbers14", title: "Add and Subtract Higher Roots", body: "Find the value of the expression.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

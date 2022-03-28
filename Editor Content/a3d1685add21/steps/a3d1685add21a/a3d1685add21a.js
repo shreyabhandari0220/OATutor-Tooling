@@ -1,1 +1,0 @@
-import hints from "./a3d1685add21a-index.js"; const step = {id: "a3d1685add21a", stepAnswer: ["$$40y^2$$"], problemType: "TextBox", stepTitle: "Add $$25y^2+15y^2$$", stepBody: "", choices: ["$$40y^2$$", "Binomial", "Monomial", "Other", "Trinomial"], answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

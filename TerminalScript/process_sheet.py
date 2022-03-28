@@ -20,8 +20,8 @@ from create_dir import *
 from create_content import *
 
 import functools
-print = functools.partial(print, flush=True)
 
+print = functools.partial(print, flush=True)
 
 URL_SPREADSHEET_KEY = '1yyeDxm52Zd__56Y0T3CdoeyXvxHVt0ITDKNKWIoIMkU'
 
@@ -372,13 +372,12 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         df["Title"] = df["Title"].str.replace("\"", "\\\"")
         df["Answer"] = df["Answer"].str.replace("\"", "\\\"")
         df["mcChoices"] = df["mcChoices"].str.replace("\"", "\\\"")
-        df["Body Text"] = df["Body Text"].str.replace("\\n", r" \\\\n ")
-        df["Title"] = df["Title"].str.replace("\\n", r" \\\\n ")
+        df["Body Text"] = df["Body Text"].str.replace("\\n", r" \\\\n ", regex=True)
+        df["Title"] = df["Title"].str.replace("\\n", r" \\\\n ", regex=True)
     except AttributeError:
         pass
     df["openstax KC"] = df["openstax KC"].str.replace("\'", "\\\'")
     df["KC"] = df["KC"].str.replace("\'", "\\\'")
-
 
     skillModelJS_lines = []
     skills = []
@@ -402,11 +401,15 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     error_df = pd.DataFrame(index=range(len(df)), columns=['Check 1', 'Check 2', 'Time Last Checked'])
     error_df.at[0, 'Time Last Checked'] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
+    debug_df = pd.DataFrame(index=range(len(df)), columns=['Debug Link'])
+    debug_platform_template = "https://cahlr.github.io/OATutor-Content-Staging/#/debug/{}"
+
     print("[{}] JS validator start".format(sheet_name))
 
     questions = [x for _, x in df.groupby(df['Problem Name'])]
 
     for question in questions:
+        first_problem_index = min(question.index)
         problem_name = question.iloc[0]['Problem Name']
 
         # skip empty rows
@@ -439,6 +442,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         result_problems = ""
         problem_name, path, problem_js = create_problem_dir(sheet_name, problem_name, default_path, verbosity)
         step_count = tutor_count = 0
+        debug_df.at[first_problem_index, 'Debug Link'] = debug_platform_template.format(problem_name)
         current_step_path = current_step_name = step_reg_js = step_index_js = default_pathway_js = ""
         images = False
         figure_path = ""
@@ -670,7 +674,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     #   3. run matthew's index and validator script on OpenStax1/
     #   4. use validator output to update check 2 column of error_df
     #   5. write check 1 and check 2 to google spreadsheet
-    #   6. remove Openstax1/
+    #   6. Set debug links
+    #   7. remove Openstax1/
 
     if validator_path and os.path.isdir(validator_path):
         try:
@@ -740,6 +745,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             print('sheetname:', sheet_name, e)
             time.sleep(40)
 
+    set_with_dataframe(worksheet, debug_df, col=20)
+
     for e in error_data:
         print("====")
         print('Sheet name:', e[0])
@@ -768,4 +775,3 @@ if __name__ == '__main__':
         latex = 'TRUE'
     process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, validator_path='../.OpenStax Validator',
                   skill_model="skillModel1.js", course_name="")
-

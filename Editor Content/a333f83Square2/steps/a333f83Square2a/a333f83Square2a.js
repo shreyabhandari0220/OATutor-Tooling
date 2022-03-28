@@ -1,1 +1,0 @@
-import hints from "./a333f83Square2a-index.js"; const step = {id: "a333f83Square2a", stepAnswer: ["$${\\left(z+4\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$z^2+8z$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import steps from "./ad3667dMultDivInts2-index.js"; const problem = {id: "ad3667dMultDivInts2", title: "Multiplying Integers with Signs", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

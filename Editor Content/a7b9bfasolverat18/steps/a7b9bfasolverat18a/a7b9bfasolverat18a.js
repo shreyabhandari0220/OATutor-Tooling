@@ -1,1 +1,0 @@
-import hints from "./a7b9bfasolverat18a-index.js"; const step = {id: "a7b9bfasolverat18a", stepAnswer: ["$$c=\\frac{4}{7}$$"], problemType: "TextBox", stepTitle: "$$\\frac{5}{2}-\\frac{1}{c}=\\frac{3}{4}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

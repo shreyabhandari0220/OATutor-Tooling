@@ -1,1 +1,0 @@
-import hints from "./ac0d16eroot7a-index.js"; const step = {id: "ac0d16eroot7a", stepAnswer: ["a) 48 b) 54"], problemType: "TextBox", stepTitle: "a) $$2\\sqrt{3} 8\\sqrt{3}$$ b) $${\\left(3\\sqrt{6}\\right)}^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

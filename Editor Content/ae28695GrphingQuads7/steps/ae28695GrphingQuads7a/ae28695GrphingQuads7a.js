@@ -1,1 +1,0 @@
-import hints from "./ae28695GrphingQuads7a-index.js"; const step = {id: "ae28695GrphingQuads7a", stepAnswer: ["Downward"], problemType: "MultipleChoice", stepTitle: "y $$=$$ $$-3x^2+2x-4$$", stepBody: "", choices: ["Upward", "Downward"], answerType: "string", hints: hints, variabilization: {}}; export {step};

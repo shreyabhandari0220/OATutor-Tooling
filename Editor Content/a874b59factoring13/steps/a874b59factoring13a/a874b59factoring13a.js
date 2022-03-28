@@ -1,1 +1,0 @@
-import hints from "./a874b59factoring13a-index.js"; const step = {id: "a874b59factoring13a", stepAnswer: ["$$\\left(2t+5\\right) \\left(t+1\\right)$$"], problemType: "TextBox", stepTitle: "$$2t^2+7t+5$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

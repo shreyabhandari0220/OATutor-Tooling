@@ -1,1 +1,0 @@
-import hints from "./ad1f832sqroots21a-index.js"; const step = {id: "ad1f832sqroots21a", stepAnswer: ["$$\\frac{4}{3}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\sqrt{128}}{\\sqrt{72}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

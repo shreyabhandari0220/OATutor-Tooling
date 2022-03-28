@@ -1,1 +1,0 @@
-import hints from "./a539946trifactor27a-index.js"; const step = {id: "a539946trifactor27a", stepAnswer: ["$$10{p\\left(3p+5q\\right)}^2$$"], problemType: "TextBox", stepTitle: "$$90p^3+300p^2 q+250{pq}^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
