@@ -1,1 +1,0 @@
-import steps from "./abde277SolvingFormul30-index.js"; const problem = {id: "abde277SolvingFormul30", title: "Solve the Formula for the given variable", body: "Solve the formula to get an expression for y.", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

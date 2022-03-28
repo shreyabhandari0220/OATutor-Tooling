@@ -1,1 +1,0 @@
-import hints from "./a95d3c7poly16a-index.js"; const step = {id: "a95d3c7poly16a", stepAnswer: ["$$y^2+3$$"], problemType: "TextBox", stepTitle: "Find the quotient: $$\\frac{7y^2+21}{7}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

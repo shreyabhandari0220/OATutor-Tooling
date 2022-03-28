@@ -1,1 +1,0 @@
-import hints from "./adc339bfractions17a-index.js"; const step = {id: "adc339bfractions17a", stepAnswer: ["$$\\frac{n^2+m}{m-n^2}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\frac{n}{m}+\\frac{1}{n}}{\\frac{1}{n}-\\frac{n}{m}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

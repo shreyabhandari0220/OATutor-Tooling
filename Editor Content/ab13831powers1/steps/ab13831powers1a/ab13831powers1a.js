@@ -1,1 +1,0 @@
-import hints from "./ab13831powers1a-index.js"; const step = {id: "ab13831powers1a", stepAnswer: ["$$d^9$$"], problemType: "TextBox", stepTitle: "$$d^3 d^6$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

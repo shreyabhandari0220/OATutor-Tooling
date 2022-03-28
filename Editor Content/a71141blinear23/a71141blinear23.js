@@ -1,1 +1,0 @@
-import steps from "./a71141blinear23-index.js"; const problem = {id: "a71141blinear23", title: "Solving Linear Inequalities", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

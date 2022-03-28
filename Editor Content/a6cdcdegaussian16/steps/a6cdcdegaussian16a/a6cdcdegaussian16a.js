@@ -1,1 +1,0 @@
-import hints from "./a6cdcdegaussian16a-index.js"; const step = {id: "a6cdcdegaussian16a", stepAnswer: ["-1.75"], problemType: "TextBox", stepTitle: "$$4b^2+7b=-3$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

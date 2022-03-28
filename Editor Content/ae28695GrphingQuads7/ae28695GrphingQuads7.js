@@ -1,1 +1,0 @@
-import steps from "./ae28695GrphingQuads7-index.js"; const problem = {id: "ae28695GrphingQuads7", title: "Parabola Orientation", body: "Determine whether each parabola opens upward or downward:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

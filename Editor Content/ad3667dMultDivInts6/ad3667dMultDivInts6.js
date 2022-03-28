@@ -1,1 +1,0 @@
-import steps from "./ad3667dMultDivInts6-index.js"; const problem = {id: "ad3667dMultDivInts6", title: "Dividing Integers with Signs", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

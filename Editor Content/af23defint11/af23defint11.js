@@ -1,1 +1,0 @@
-import steps from "./af23defint11-index.js"; const problem = {id: "af23defint11", title: "Multiply and Divide Integers", body: "Simplify the following expression", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

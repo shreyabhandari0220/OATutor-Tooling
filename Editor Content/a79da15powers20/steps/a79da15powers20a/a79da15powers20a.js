@@ -1,1 +1,0 @@
-import hints from "./a79da15powers20a-index.js"; const step = {id: "a79da15powers20a", stepAnswer: ["$$y^{45}$$"], problemType: "TextBox", stepTitle: "$${\\left(y^5\\right)}^9$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

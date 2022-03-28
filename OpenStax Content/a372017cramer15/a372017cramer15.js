@@ -1,1 +1,0 @@
-import steps from "./a372017cramer15-index.js"; const problem = {id: "a372017cramer15", title: "Solve the system of linear equations using Cramer’s Rule.", body: "", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: "Openstax: College Algebra"}; export { problem };

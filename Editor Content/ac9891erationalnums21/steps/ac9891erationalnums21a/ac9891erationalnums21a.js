@@ -1,1 +1,0 @@
-import hints from "./ac9891erationalnums21a-index.js"; const step = {id: "ac9891erationalnums21a", stepAnswer: ["$$\\sqrt[25]{j}$$"], problemType: "TextBox", stepTitle: "$$j^{\\frac{1}{25}}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

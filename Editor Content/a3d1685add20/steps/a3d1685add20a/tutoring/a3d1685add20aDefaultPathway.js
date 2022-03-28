@@ -1,1 +1,0 @@
-var hints = [{id: "a3d1685add20a-h1", type: "hint", dependencies: [], title: "Number of Terms", text: "Since there is 1 term, the expression is a monomial..", variabilization: {}}, ]; export {hints};

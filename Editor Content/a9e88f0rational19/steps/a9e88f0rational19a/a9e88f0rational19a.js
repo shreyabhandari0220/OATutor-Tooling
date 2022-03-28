@@ -1,1 +1,0 @@
-import hints from "./a9e88f0rational19a-index.js"; const step = {id: "a9e88f0rational19a", stepAnswer: ["$$\\frac{2w}{w-4}$$"], problemType: "TextBox", stepTitle: "$$\\frac{2w^2}{w^2-16}+\\frac{8w}{w^2-16}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

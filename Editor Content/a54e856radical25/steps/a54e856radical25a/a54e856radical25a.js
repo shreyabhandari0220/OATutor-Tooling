@@ -1,1 +1,0 @@
-import hints from "./a54e856radical25a-index.js"; const step = {id: "a54e856radical25a", stepAnswer: ["$$12\\sqrt{2}$$"], problemType: "TextBox", stepTitle: "$$\\sqrt{288}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

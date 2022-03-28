@@ -1,1 +1,0 @@
-import hints from "./aba5d15quadraticeq4a-index.js"; const step = {id: "aba5d15quadraticeq4a", stepAnswer: ["$$3\\sqrt{3}$$"], problemType: "TextBox", stepTitle: "$$x^2$$ -27 $$=$$ 0", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

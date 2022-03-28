@@ -1,1 +1,0 @@
-import hints from "./a1d97ebappquad10a-index.js"; const step = {id: "a1d97ebappquad10a", stepAnswer: ["24"], problemType: "TextBox", stepTitle: "The product of two positive, consecutive even numbers is 624. Find the lower number.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

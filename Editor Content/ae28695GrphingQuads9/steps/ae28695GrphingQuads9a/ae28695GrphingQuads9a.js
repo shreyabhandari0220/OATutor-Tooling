@@ -1,1 +1,0 @@
-import hints from "./ae28695GrphingQuads9a-index.js"; const step = {id: "ae28695GrphingQuads9a", stepAnswer: ["4 and -2"], problemType: "MultipleChoice", stepTitle: "$$y=x^2-2x-8$$", stepBody: "", choices: ["4 and -2", "2 and 3", "5 and 4"], answerType: "string", hints: hints, variabilization: {}}; export {step};

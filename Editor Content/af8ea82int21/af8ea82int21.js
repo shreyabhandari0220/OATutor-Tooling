@@ -1,1 +1,0 @@
-import steps from "./af8ea82int21-index.js"; const problem = {id: "af8ea82int21", title: "Add and Subtract Integers", body: "Simplify:", steps: steps, variabilization: {}, oer: "https://openstax.org/", courseName: ""}; export { problem };

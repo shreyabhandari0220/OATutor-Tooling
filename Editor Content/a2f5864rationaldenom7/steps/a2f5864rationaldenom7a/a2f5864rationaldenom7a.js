@@ -1,1 +1,0 @@
-import hints from "./a2f5864rationaldenom7a-index.js"; const step = {id: "a2f5864rationaldenom7a", stepAnswer: ["$$\\frac{47}{90}$$"], problemType: "TextBox", stepTitle: "$$\\frac{7}{30}+\\frac{13}{45}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

@@ -1,1 +1,0 @@
-import hints from "./af80deesubsitution10a-index.js"; const step = {id: "af80deesubsitution10a", stepAnswer: ["(6,2)"], problemType: "MultipleChoice", stepTitle: "$$x-6y=-6$$, $$2x-4y=4$$", stepBody: "", choices: ["(2,2)", "(6,2)", "(6,3)"], answerType: "string", hints: hints, variabilization: {}}; export {step};

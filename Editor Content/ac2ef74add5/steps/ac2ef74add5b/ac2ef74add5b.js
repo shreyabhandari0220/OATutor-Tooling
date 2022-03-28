@@ -1,1 +1,0 @@
-import hints from "./ac2ef74add5b-index.js"; const step = {id: "ac2ef74add5b", stepAnswer: ["4"], problemType: "TextBox", stepTitle: "$$18{xy}^2 z$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

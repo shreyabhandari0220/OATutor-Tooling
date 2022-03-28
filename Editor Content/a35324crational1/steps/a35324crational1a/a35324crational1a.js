@@ -1,1 +1,0 @@
-import hints from "./a35324crational1a-index.js"; const step = {id: "a35324crational1a", stepAnswer: ["$$\\frac{2}{3}$$"], problemType: "TextBox", stepTitle: "$$\\frac{5}{18}+\\frac{7}{18}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

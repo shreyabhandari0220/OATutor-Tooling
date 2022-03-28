@@ -1,1 +1,0 @@
-import hints from "./a65f94eintercepts28a-index.js"; const step = {id: "a65f94eintercepts28a", stepAnswer: ["8"], problemType: "TextBox", stepTitle: "Find the sum of the x-value of the x-intercept and the y-value of the y-intercept of the following equation: $$x-3y=12$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

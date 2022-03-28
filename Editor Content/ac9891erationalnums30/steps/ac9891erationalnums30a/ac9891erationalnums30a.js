@@ -1,1 +1,0 @@
-import hints from "./ac9891erationalnums30a-index.js"; const step = {id: "ac9891erationalnums30a", stepAnswer: ["$$x^{\\frac{5}{2}}$$"], problemType: "TextBox", stepTitle: "$$\\sqrt{x^5}$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

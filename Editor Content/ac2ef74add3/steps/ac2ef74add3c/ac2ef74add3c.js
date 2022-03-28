@@ -1,1 +1,0 @@
-import hints from "./ac2ef74add3c-index.js"; const step = {id: "ac2ef74add3c", stepAnswer: ["trinomial"], problemType: "MultipleChoice", stepTitle: "$$z^2-5z-6$$", stepBody: "", choices: ["monomial", "binomial", "trinomial", "polynomial"], answerType: "string", hints: hints, variabilization: {}}; export {step};

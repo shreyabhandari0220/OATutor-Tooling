@@ -1,1 +1,0 @@
-import hints from "./ab13831powers2a-index.js"; const step = {id: "ab13831powers2a", stepAnswer: ["$$x^6$$"], problemType: "TextBox", stepTitle: "$$x^4 x^2$$", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};

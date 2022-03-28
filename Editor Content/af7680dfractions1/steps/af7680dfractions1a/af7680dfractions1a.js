@@ -1,1 +1,0 @@
-import hints from "./af7680dfractions1a-index.js"; const step = {id: "af7680dfractions1a", stepAnswer: ["$$\\frac{y+3}{2}$$"], problemType: "TextBox", stepTitle: "$$\\frac{\\frac{4}{y-3}}{\\frac{8}{y^2-9}}$$.", stepBody: "", answerType: "arithmetic", hints: hints, variabilization: {}}; export {step};
