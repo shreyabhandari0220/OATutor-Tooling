@@ -34,7 +34,7 @@ def start_driver():
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
     # options.add_experimental_option('w3c', False)
-    driver = webdriver.Chrome(ChromeDriverManager(version="96.0.4664.45").install(), options=options)
+    driver = webdriver.Chrome(ChromeDriverManager(version="99.0.4844.51").install(), options=options)
     driver.maximize_window()
     return driver
 
@@ -395,7 +395,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                     driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
                     driver.execute_script("arguments[0].click();", submit)
                     print('submit button')
-                WebDriverWait(driver, 0.45).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
+                WebDriverWait(driver, 0.6).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
                 icon = driver.find_element_by_css_selector(icon_selector)
                 if icon.get_attribute("src") != CORRECT:
                     err = "{0}: Invalid answer for step {1} hint {2}: {3}".format(problem_name, problem_index + 1, hint_idx + 1, correct_answer)
