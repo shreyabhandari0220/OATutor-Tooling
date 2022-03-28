@@ -378,6 +378,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         pass
     df["openstax KC"] = df["openstax KC"].str.replace("\'", "\\\'")
     df["KC"] = df["KC"].str.replace("\'", "\\\'")
+    df["Problem Name"] = df["Problem Name"].str.replace(r"\s", "", regex=True)
 
     skillModelJS_lines = []
     skills = []
