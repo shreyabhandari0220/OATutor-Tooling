@@ -125,8 +125,8 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
                 for skill in skills:
                     bkt_params.update(create_bkt_params(skill))
                 end = time.time()
-                if end - start < 4:
-                    time.sleep(4 - (end - start))
+                if end - start < 4.5:
+                    time.sleep(4.5 - (end - start))
             course_plan.append(create_course_plan(course_name, lesson_plan))
 
         # process editor sheet
@@ -155,8 +155,8 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
                         print("Error in {}:".format(sheet), e)
 
                     end = time.time()
-                    if end - start < 4:
-                        time.sleep(4 - (end - start))
+                    if end - start < 4.5:
+                        time.sleep(4.5 - (end - start))
 
     # open("../lessonPlans.js", "x")
     file = open(os.path.join("..", "lessonPlans.js"), "w")
