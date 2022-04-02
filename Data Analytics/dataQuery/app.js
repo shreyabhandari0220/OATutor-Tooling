@@ -11,7 +11,7 @@ const db = getFirestore();
 
 const submissionsRef = db.collection('problemSubmissions');
 const startRef = db.collection('problemStartLogs');
-const userId = "47221";
+const userId = "46480";
 const pageLen = 2;
 
 
@@ -59,15 +59,6 @@ async function* getAllSubmissionsForUser(userId) {
     }
     
 }
-
-// (async () => {
-//     const submissionsGen = getAllSubmissionsForUser(userId);
-//     await submissionsGen.next();
-//     console.log(submissions);
-//     await submissionsGen.next();
-//     console.log(submissions);
-// })();
-
 
 // ProblemStartLog
 var start = {};

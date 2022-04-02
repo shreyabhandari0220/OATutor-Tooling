@@ -744,8 +744,13 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             print('Fail to write to google sheet. Waiting...')
             print('sheetname:', sheet_name, e)
             time.sleep(40)
-
-    set_with_dataframe(worksheet, debug_df, col=20)
+    try:
+        set_with_dataframe(worksheet, debug_df, col=20)
+    except Exception as e:
+        print('Fail to write to google sheet. Waiting...')
+        print('sheetname:', sheet_name, e)
+        time.sleep(40)
+        
 
     for e in error_data:
         print("====")
