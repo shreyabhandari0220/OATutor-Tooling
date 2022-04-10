@@ -32,7 +32,7 @@ def test_all_content(url_prefix):
             end_time = time.time()
             time_elapse = round(end_time - start_time, 2)
             
-            if count != 0 and time_elapse < 25:
+            if count != 0 and time_elapse < 5:
                 print("Fetching blank pages. Logging result and breaking program...")
                 print("Last 11 problems:", all_files[max(0, count - 11): min(count + 1, len(all_files))])
 
@@ -84,6 +84,6 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         url_prefix = sys.argv[1]
     else:
-        url_prefix = "https://cahlr.github.io/OATutor-Staging/#/debug/"
+        url_prefix = "https://cahlr.github.io/OATutor-Content-Staging/#/debug/"
     
     test_all_content(url_prefix)
