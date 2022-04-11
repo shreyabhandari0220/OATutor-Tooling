@@ -45,12 +45,14 @@ def test_page(url_prefix, problem, driver, alert_df, test_hints=True):
     url = url_prefix + problem.problem_name
     driver.get(url)
     header_selector = "[data-selenium-target=problem-header]"
+    commit_hash = driver.execute_script("return document['oats-meta-site-hash']")
+
     try:
         WebDriverWait(driver, 2).until(EC.presence_of_element_located((By.CSS_SELECTOR, header_selector)))
         driver.find_element_by_css_selector(header_selector)
     except Exception:
         err = "{}: Cannot load problem page.".format(problem.problem_name)
-        alert_df = alert_df.append({"Book Name": problem.book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+        alert_df = alert_df.append({"Book Name": problem.book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         try:
             driver.close()
             driver = start_driver()
@@ -71,9 +73,9 @@ def test_page(url_prefix, problem, driver, alert_df, test_hints=True):
 
 
 def test_step(problem_name, driver, problem_index, step, alert_df, book_name, step_len, test_hints):
+    
+    commit_hash = driver.execute_script("return document['oats-meta-site-hash']")
 
-    # if step.type == "MultipleChoice":
-    #     return alert_df
     # Enter step answer
     if step.type.split()[0] == "TextBox":
         if type(step.answer) != list:
@@ -99,10 +101,10 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
                 icon = driver.find_element_by_css_selector(icon_selector)
                 if icon.get_attribute("src") != CORRECT:
                     err = "{0}: Invalid answer for step {1}: {2}".format(problem_name, problem_index + 1, step.answer)
-                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             except NoSuchElementException:
                 err = "{0}: step {1} submit does not exist.".format(problem_name, problem_index + 1)
-                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         
         # if using variablization
         else:
@@ -129,10 +131,10 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
                         break
                 except NoSuchElementException:
                     err = "{0}: step {1} submit does not exist.".format(problem_name, problem_index + 1)
-                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             if not correct:
                 err = "{0}: Invalid answer for step {1} with variabilization: {2}".format(problem_name, problem_index + 1, step.answer)
-                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         
     elif step.type.split()[0] == "MultipleChoice":
         pass
@@ -140,7 +142,7 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
     
     else:
         err = '{0}: Wrong answer type for step {1}: {2}'.format(problem_name, problem_index + 1, step.type)
-        alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+        alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         problem_index += 1
 
     # click through hints
@@ -153,7 +155,9 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
     """
     Enters type TextBox answers into text box.
     """
-    
+
+    commit_hash = driver.execute_script("return document['oats-meta-site-hash']")
+
     if answer_type == "arithmetic" and "begin{bmatrix}" in correct_answer: 
         try:
             # Enter matrix dimension
@@ -188,11 +192,11 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
 
         except NoSuchElementException:
             err = "{0}: step {1} matrix dimension or answer input box does not exist.".format(problem_name, problem_index + 1)
-            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             # print("{0}: step {1} matrix dimension or answer input box does not exist.".format(problem_name, problem_index - 1))
         except AttributeError:
             err = "{0}: step {1} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index + 1)
-            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             # print("{0}: step {1} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index - 1))
     
     elif answer_type == "arithmetic":
@@ -203,7 +207,7 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
             driver.execute_script(script, ans)
         except NoSuchElementException:
             err = "{0}: step {1} arithmetic answer box does not exist.".format(problem_name, problem_index + 1)
-            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             # print("{0}: step {1} arithmetic answer box does not exist.".format(problem_name, problem_index))
 
     elif answer_type == "string":
@@ -213,18 +217,21 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
             ans.send_keys(correct_answer)
         except NoSuchElementException:
             err = "{0}: step {1} string answer box does not exist.".format(problem_name, problem_index + 1)
-            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             # print("{0}: step {1} string answer box does not exist.".format(problem_name, problem_index))
 
     else:
         err = "{0}: step {1} string answer box does not exist.".format(problem_name, problem_index + 1)
-        alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+        alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         # print("{0}: step {1} answer box type not defined: {2}".format(problem_name, problem_index, answer_type))
     return alert_df
 
 
 def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name, step_len):
     global page_breaks
+
+    commit_hash = driver.execute_script("return document['oats-meta-site-hash']")
+
     try:
         raise_hand_selector = "[data-selenium-target=hint-button-{}]".format(problem_index)
         raise_hand_button = driver.find_element_by_css_selector(raise_hand_selector)
@@ -244,7 +251,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
         except Exception:
             page_breaks = True
             err = "{0}: Clicking on step {1} raise hand button breaks the page.".format(problem_name, problem_index + 1)
-            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             print(err)
             try:
                 driver.close()
@@ -263,12 +270,12 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                 WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, hint_selector)))
             except TimeoutException:
                 err = "{0}: step {1} raise hand button not clickable".format(problem_name, problem_index + 1)
-                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                 return alert_df, driver
 
     except NoSuchElementException:
         err = "{0}: step {1} raise hand button not found.".format(problem_name, problem_index + 1)
-        alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+        alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         return alert_df, driver
     hint_idx = 0
 
@@ -281,7 +288,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                 WebDriverWait(driver, 0.5).until(element_has_attribute((By.CSS_SELECTOR, hint_selector), "aria-disabled", "false"))
             except Exception as e:
                 err = "{0}: step {1} hint {2} expand button not clickable.".format(problem_name, problem_index + 1, hint_idx + 1)
-                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                 return alert_df, driver
             
             hint_expand_button = driver.find_element_by_css_selector(hint_selector)
@@ -304,7 +311,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
 
         except NoSuchElementException:
             err = "{0}: step {1} hint {2} expand button not found.".format(problem_name, problem_index + 1, hint_idx + 1)
-            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             return alert_df, driver
 
         if hint_idx == len(hints) or hints[hint_idx] == "hint":
@@ -363,12 +370,12 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
 
                 except NoSuchElementException:
                     err = "{0}: step {1} hint {2} matrix dimension or answer input box does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
-                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                     # print("{0}: step {1} matrix dimension or answer input box does not exist.".format(problem_name, problem_index))
                     return alert_df, driver
                 except AttributeError:
                     err = "{0}: step {1} hint {2} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index + 1, hint_idx + 1)
-                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                     # print("{0}: step {1} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index))
                     return alert_df, driver
 
@@ -379,7 +386,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                     WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, scaffold_answer_selector)))
                 except TimeoutException:
                     err = "{0}: step {1} hint {2} arithmetic answer box does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
-                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                     return alert_df, driver
                 try:
                     ans = driver.find_element_by_css_selector(scaffold_answer_selector)
@@ -387,7 +394,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                     driver.execute_script(script, ans)
                 except NoSuchElementException:
                     err = "{0}: step {1} hint {2} arithmetic answer box does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
-                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                     return alert_df, driver
             
             elif answer_type == "string":
@@ -398,7 +405,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                     ans.send_keys(correct_answer)
                 except NoSuchElementException:
                     err = "{0}: step {1} hint {2} string answer box does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
-                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                     return alert_df, driver
                 except ElementNotInteractableException:
                     time.sleep(0.1)
@@ -406,7 +413,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                         ans.send_keys(correct_answer)
                     except NoSuchElementException:
                         err = "{0}: step {1} hint {2} string answer box does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
-                        alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                        alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                         return alert_df, driver
 
             # click submit
@@ -432,11 +439,11 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                 icon = driver.find_element_by_css_selector(icon_selector)
                 if icon.get_attribute("src") != CORRECT:
                     err = "{0}: Invalid answer for step {1} hint {2}: {3}".format(problem_name, problem_index + 1, hint_idx + 1, correct_answer)
-                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                     return alert_df, driver
             except NoSuchElementException:
                 err = "{0}: step {1} hint {2} submit does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
-                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)     
+                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)     
                 return alert_df, driver
 
             # time.sleep(0.3)
@@ -497,7 +504,7 @@ if __name__ == '__main__':
     
     problem = fetch_problem_ans_info(problem_name)
     driver = start_driver()
-    alert_df = pd.DataFrame(columns=["Book Name", "Error Log", "Issue Type", "Status", "Comment"])
+    alert_df = pd.DataFrame(columns=["Book Name", "Error Log", "Commit Hash", "Issue Type", "Status", "Comment"])
     alert_df = test_page(url_prefix, problem, driver, alert_df, test_hints=True)[0]
     alert(alert_df)
 

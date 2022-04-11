@@ -16,9 +16,10 @@ def test_all_content(url_prefix):
     driver = start_driver()
 
     all_files = get_all_content_filename()
-    alert_df = pd.DataFrame(columns=["Book Name", "Error Log", "Issue Type", "Status", "Comment"])
+    alert_df = pd.DataFrame(columns=["Book Name", "Error Log", "Commit Hash", "Issue Type", "Status", "Comment"])
 
     count = 0
+    commit_hash = ""
 
     init_time = time.time()
     start_time = time.time()
@@ -62,10 +63,11 @@ def test_all_content(url_prefix):
         
         try:
             alert_df, driver = test_page(url_prefix, problem, driver, alert_df)
+            commit_hash = driver.execute_script("return document['oats-meta-site-hash']")
         except Exception as e:
             err = "Exception on problem {0}: {1}".format(problem_name, e)
             print(err)
-            alert_df = alert_df.append({"Book Name": problem.book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            alert_df = alert_df.append({"Book Name": problem.book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
 
     try:
         driver.close()

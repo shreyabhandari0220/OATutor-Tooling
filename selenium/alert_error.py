@@ -18,7 +18,7 @@ def alert(alert_df):
     try:
         original_df = pd.DataFrame(table[1:], columns=table[0])
     except Exception as e:
-        original_df = pd.DataFrame(columns=["Book Name", "Error Log", "Issue Type", "Status", "Comment"])
+        original_df = pd.DataFrame(columns=["Book Name", "Error Log", "Commit Hash", "Issue Type", "Status", "Comment"])
 
     check_df = original_df.merge(alert_df[["Error Log", "Status"]], how="left", left_on="Error Log", right_on="Error Log")
     original_df.at[(check_df["Status_x"] == "resolved") & (check_df["Status_y"] == "open"), "Status"] = "open"
@@ -32,16 +32,10 @@ def alert(alert_df):
 
 
     new_df = new_df.reset_index()
-    new_df = new_df.reindex(columns=['Book Name', 'Error Log', 'Issue Type', 'Status', 'Comment'])
+    new_df = new_df.reindex(columns=['Book Name', 'Error Log', 'Commit Hash', 'Issue Type', 'Status', 'Comment'])
     try:
         set_with_dataframe(worksheet, new_df, include_index=False)
     except Exception as e:
         print('Fail to write to google sheet.')
         print(e)
     
-
-if __name__ == '__main__':
-    df = pd.DataFrame([["hie", "bcd", "cde", "asdf", "asdf"], 
-                       ["def", 'efg', 'ghi', 'sfad', '8r9']], 
-                      columns = ['Book Name', 'Error Log', 'Issue Type', 'Status', 'Comment'])
-    alert(df)
