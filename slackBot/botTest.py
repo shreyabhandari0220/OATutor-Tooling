@@ -7,4 +7,9 @@ env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
 
 client = slack.WebClient(token=os.environ['SLACK_TOKEN'])
-client.chat_postMessage(channel='#random', text='Hello World!')
+# # client.chat_postMessage(channel='#random', text='Hello World!')
+ret = client.conversations_open(users="U01GFFXHFK9")
+channel = ret["channel"]["id"]
+client.chat_postMessage(channel=channel, text="test dm")
+
+# client.chat_postMessage(channel='#test', text='test message from bot')
