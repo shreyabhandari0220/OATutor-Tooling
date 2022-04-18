@@ -50,11 +50,9 @@ if __name__ == '__main__':
     # Slockbot usage
     env_path = Path('.') / '.env'
     load_dotenv(dotenv_path=env_path)
-    # member_id = "U01GFFXHFK9"
-    member_id = "U02DJM2RY66"
+    
+    channel = "#oatutor-feedbacks"
     client = slack.WebClient(token=os.environ['SLACK_TOKEN'])
-    ret = client.conversations_open(users=member_id)
-    channel = ret["channel"]["id"]
     
     while True:
         time.sleep(2)
