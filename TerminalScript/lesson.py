@@ -161,7 +161,7 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
                         time.sleep(4.5 - (end - start))
 
     # open("../lessonPlans.js", "x")
-    file = open(os.path.join("..", "lessonPlans.js"), "w")
+    file = open(os.path.join("..", "coursePlans.js"), "w")
     finish_course_plan(course_plan, file)
 
     # open("../bktParams.js", "x")
