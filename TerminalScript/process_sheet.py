@@ -1,6 +1,7 @@
 import shutil
 import sys
 import time
+import uuid
 from datetime import datetime
 from distutils.dir_util import copy_tree
 from urllib.parse import urlparse
@@ -10,6 +11,7 @@ import numpy as np
 import pandas as pd
 # import jsbeautifier
 import requests
+import shortuuid
 from Naked.toolshed.shell import muterun_js, execute_js
 from gspread_dataframe import set_with_dataframe
 from oauth2client.service_account import ServiceAccountCredentials
@@ -86,8 +88,10 @@ def create_default_pathway(tutoring):
     return to_return
 
 
-def get_all_url():
-    book = get_sheet(URL_SPREADSHEET_KEY)
+def get_all_url(bank_url):
+    if not bank_url:
+        bank_url = URL_SPREADSHEET_KEY
+    book = get_sheet(bank_url)
     worksheet = book.worksheet('URLs')
     table = worksheet.get_all_values()
     df = pd.DataFrame(table[1:], columns=table[0])
@@ -310,18 +314,23 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             df = pd.DataFrame(table[1:], columns=table[0])
         except:
             print("[{}] data frame not found, returning early".format(sheet_name))
-            return
-        ##Only keep columns we need 
+            return None, None
+        if "Problem ID" not in df.columns:
+            df["Problem ID"] = ""
+        if "Lesson ID" not in df.columns:
+            df["Lesson ID"] = ""
+        ##Only keep columns we need
         variabilization = 'Variabilization' in df.columns
         try:
             if variabilization:
                 df = df[["Problem Name", "Row Type", "Variabilization", "Title", "Body Text", "Answer", "answerType",
                          "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
-                         "openstax KC", "KC", "Taxonomy"]]
+                         "openstax KC", "KC", "Taxonomy", "Problem ID", "Lesson ID"]]
             else:
                 df = df[
                     ["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency",
-                     "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", "Taxonomy"]]
+                     "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", "Taxonomy",
+                     "Problem ID", "Lesson ID"]]
         except KeyError as e:
             print("[{}] error found: {}".format(sheet_name, e))
             error_df = pd.DataFrame(index=range(len(df)), columns=['Check 1', 'Check 2', 'Time Last Checked'])
@@ -337,7 +346,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                 print('Fail to write to google sheet. Waiting...')
                 print('sheetname:', sheet_name, e)
                 time.sleep(40)
-            return
+            return None, None
         df = df.astype(str)
         df.replace('', 0.0, inplace=True)
         df.replace(' ', 0.0, inplace=True)
@@ -350,17 +359,22 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             df = pd.read_excel(excel_path, sheet_name, header=0)
         except:
             print("path not found:", excel_path, sheet_name)
-            return
-        ##Only keep columns we need 
+            return None, None
+        ##Only keep columns we need
+        if "Problem ID" not in df.columns:
+            df["Problem ID"] = ""
+        if "Lesson ID" not in df.columns:
+            df["Lesson ID"] = ""
         variabilization = 'Variabilization' in df.columns
         if variabilization:
             df = df[
                 ["Problem Name", "Row Type", "Variabilization", "Title", "Body Text", "Answer", "answerType", "HintID",
                  "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC",
-                 "Taxonomy"]]
+                 "Taxonomy", "Problem ID", "Lesson ID"]]
         else:
             df = df[["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency",
-                     "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", "Taxonomy"]]
+                     "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", "Taxonomy",
+                     "Problem ID", "Lesson ID"]]
         df = df.astype(str)
         df.replace('nan', float(0.0), inplace=True)
 
@@ -402,15 +416,22 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     error_df = pd.DataFrame(index=range(len(df)), columns=['Check 1', 'Check 2', 'Time Last Checked'])
     error_df.at[0, 'Time Last Checked'] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
-    debug_df = pd.DataFrame(index=range(len(df)), columns=['Debug Link'])
+    debug_df = pd.DataFrame(index=range(len(df)), columns=['Debug Link', 'Problem ID', 'Lesson ID'])
     debug_platform_template = "https://cahlr.github.io/OATutor-Content-Staging/#/debug/{}"
 
     print("[{}] JS validator start".format(sheet_name))
+
+    lesson_id = df.at[0, "Lesson ID"]
+    if not lesson_id or len(str(lesson_id)) <= 3:
+        lesson_id = generate_id()  # DF sometimes infer float for this col
+    debug_df.at[0, "Lesson ID"] = lesson_id
 
     questions = [x for _, x in df.groupby(df['Problem Name'])]
 
     for question in questions:
         first_problem_index = min(question.index)
+        existing_problem_id = df.at[first_problem_index, 'Problem ID']
+
         problem_name = question.iloc[0]['Problem Name']
 
         # skip empty rows
@@ -444,6 +465,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         problem_name, path, problem_js = create_problem_dir(sheet_name, problem_name, default_path, verbosity)
         step_count = tutor_count = 0
         debug_df.at[first_problem_index, 'Debug Link'] = debug_platform_template.format(problem_name)
+        debug_df.at[first_problem_index, 'Problem ID'] = problem_name
         current_step_path = current_step_name = step_reg_js = step_index_js = default_pathway_js = ""
         images = False
         figure_path = ""
@@ -732,7 +754,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             pass
 
         try:
-            set_with_dataframe(worksheet, error_df, col=len(df.columns) + 2)
+            set_with_dataframe(worksheet, error_df, col=len(df.columns))
         except Exception as e:
             print('Fail to write to google sheet. Waiting...')
             print('sheetname:', sheet_name, e)
@@ -740,18 +762,17 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     elif validator_path:
         try:
-            set_with_dataframe(worksheet, error_df, col=len(df.columns) + 2)
+            set_with_dataframe(worksheet, error_df, col=len(df.columns))
         except Exception as e:
             print('Fail to write to google sheet. Waiting...')
             print('sheetname:', sheet_name, e)
             time.sleep(40)
     try:
-        set_with_dataframe(worksheet, debug_df, col=20)
+        set_with_dataframe(worksheet, debug_df, col=len(df.columns) + len(error_df.columns))
     except Exception as e:
         print('Fail to write to google sheet. Waiting...')
         print('sheetname:', sheet_name, e)
         time.sleep(40)
-        
 
     for e in error_data:
         print("====")
@@ -765,7 +786,13 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     print("[{}] processing complete".format(sheet_name))
 
-    return list(set(skills_unformatted))
+    return list(set(skills_unformatted)), lesson_id
+
+
+def generate_id():
+    shortuuid.set_alphabet("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQSRTUVWXYZ1234567890")
+    raw_id = shortuuid.encode(uuid.uuid4())
+    return raw_id[:8] + "-" + raw_id[8:12] + "-" + raw_id[12:]
 
 
 if __name__ == '__main__':

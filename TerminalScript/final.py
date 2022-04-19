@@ -23,6 +23,7 @@ if __name__ == '__main__':
     # else:
     #     sheet_keys = sys.argv[2:]
     #     create_total('../OpenStax Content', is_local, sheet_keys)
-    
+
     is_local = sys.argv[1]
-    create_total('../OpenStax Content', is_local)
+    bank_url = sys.argv[2] if len(sys.argv) > 2 else None
+    create_total('../OpenStax Content', is_local, bank_url=bank_url)

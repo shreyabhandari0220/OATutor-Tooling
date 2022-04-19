@@ -1,3 +1,4 @@
+import hashlib
 import sys
 import os
 import pandas as pd
@@ -20,11 +21,10 @@ def create_bkt_params(name):
     return bkt_params
 
 
-def create_lesson_plan(sheet, skills):
+def create_lesson_plan(sheet, skills, lesson_id):
     lesson_number = sheet.split()[0]
     lesson_topics = " ".join(sheet.split()[1:])
 
-    lesson_id = ("lesson" + lesson_number)
     lesson_name = ("Lesson " + lesson_number)
 
     lesson_plan = {
@@ -66,7 +66,7 @@ def finish_bkt_params(bkt_params, file):
     file.close()
 
 
-def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
+def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank_url=None):
     """if sheet_names is not provided, default to run all sheets"""
     course_plan = []
     bkt_params = {}
@@ -92,16 +92,17 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
                 myexcel = pd.ExcelFile(excel_path + sheet_key)
                 sheet_names = [tab for tab in myexcel.sheet_names if tab[:2] != '!!']
             for sheet in sheet_names:
-                skills = process_sheet(sheet_key, sheet, default_path, is_local)
-                if not skills:
-                    skills = []
+                skills, lesson_id = process_sheet(sheet_key, sheet, default_path, is_local)
+                if not skills or not lesson_id:
+                    continue
                 skills.sort()
-                lesson_plan.append(create_lesson_plan(sheet, skills))
+                lesson_plan.append(create_lesson_plan(sheet, skills, lesson_id))
+
                 for skill in skills:
                     bkt_params.update(create_bkt_params(skill))
             course_plan.append(create_course_plan(course_name, lesson_plan))
     elif is_local == 'online':
-        url_df = get_all_url()
+        url_df = get_all_url(bank_url=bank_url)
         for index, row in url_df.iterrows():
             lesson_plan = []
             course_name, book_url = row['Book'], row['URL']
@@ -113,17 +114,18 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None):
             for sheet in sheet_names:
                 start = time.time()
                 if sheet[:2] == '##':
-                    skills = process_sheet(book_url, sheet, default_path, 'online', 'FALSE',
+                    skills, lesson_id = process_sheet(book_url, sheet, default_path, 'online', 'FALSE',
                                            validator_path=validator_path, course_name=course_name)
                 else:
-                    skills = process_sheet(book_url, sheet, default_path, 'online', 'TRUE',
+                    skills, lesson_id = process_sheet(book_url, sheet, default_path, 'online', 'TRUE',
                                            validator_path=validator_path, course_name=course_name)
-                if not skills:
-                    skills = []
+                if not skills or not lesson_id:
+                    continue
                 skills.sort()
-                lesson_plan.append(create_lesson_plan(sheet, skills))
+                lesson_plan.append(create_lesson_plan(sheet, skills, lesson_id))
                 for skill in skills:
                     bkt_params.update(create_bkt_params(skill))
+
                 end = time.time()
                 if end - start < 4.5:
                     time.sleep(4.5 - (end - start))
