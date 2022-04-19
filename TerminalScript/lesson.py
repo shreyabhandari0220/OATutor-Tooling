@@ -93,8 +93,10 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
                 sheet_names = [tab for tab in myexcel.sheet_names if tab[:2] != '!!']
             for sheet in sheet_names:
                 skills, lesson_id = process_sheet(sheet_key, sheet, default_path, is_local)
-                if not skills or not lesson_id:
+                if not lesson_id:
                     continue
+                if not skills:
+                    skills = []
                 skills.sort()
                 lesson_plan.append(create_lesson_plan(sheet, skills, lesson_id))
 
@@ -119,8 +121,10 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
                 else:
                     skills, lesson_id = process_sheet(book_url, sheet, default_path, 'online', 'TRUE',
                                            validator_path=validator_path, course_name=course_name)
-                if not skills or not lesson_id:
+                if not lesson_id:
                     continue
+                if not skills:
+                    skills = []
                 skills.sort()
                 lesson_plan.append(create_lesson_plan(sheet, skills, lesson_id))
                 for skill in skills:
