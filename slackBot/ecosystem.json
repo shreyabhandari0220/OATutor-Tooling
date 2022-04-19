@@ -1,0 +1,7 @@
+{
+  apps : [{
+    name   : "Feedback Slackbot",
+    script : "./app.sh",
+    watch  : "."
+  }]
+}
