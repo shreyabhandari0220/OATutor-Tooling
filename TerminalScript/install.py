@@ -6,12 +6,13 @@ def install(package):
 
 def pip_install():
     install('gspread')
+    install('gspread_dataframe')
     install('lax')
     install('oauth2client')
     install('pytexit')
-    install('jsbeautifier')
     install('openpyxl')
-    install('--upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib')
+    install('uuid')
+    install('pandas')
 
 if __name__ == '__main__':
     pip_install()

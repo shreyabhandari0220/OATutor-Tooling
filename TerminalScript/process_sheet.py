@@ -9,7 +9,6 @@ from urllib.parse import urlparse
 import gspread
 import numpy as np
 import pandas as pd
-# import jsbeautifier
 import requests
 import shortuuid
 from Naked.toolshed.shell import muterun_js, execute_js
