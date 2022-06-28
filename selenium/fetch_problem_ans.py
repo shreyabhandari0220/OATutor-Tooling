@@ -36,6 +36,20 @@ def process_hint_answer(hint_text):
             hint_answers.append([scaf_ans, scaf_type])
     return hint_answers
 
+def find_matching(word, char, idx):
+    match = {'(': ')', '{': '}', '[': ']', '\\left(': '\\right)', ')': '(', '}': '{', ']': '[', '\\right)': '\\left('}
+    l_count = r_count = 0
+    idx -= 1
+    while idx >= 0:
+        if word[idx] == char:
+            l_count += 1
+        elif word[idx] == match[char]:
+            r_count += 1
+        if r_count > l_count:
+            return idx
+        idx -= 1
+    raise Exception("unmatched" + char)
+
 def fetch_problem_ans_info(problem_name, verbose=False):
     """
     input: problem name (ex. real1)
@@ -69,11 +83,14 @@ def fetch_problem_ans_info(problem_name, verbose=False):
             step_ans = re.search('stepAnswer:\s*\[\"(.*)\"\],\s*problemType:', data).group(1)
             if step_type == "TextBox":
                 step_type += " " + re.search('answerType:\s*\"(.*)\",\s*hints:', data).group(1)
-            # print(data)
-            # print(step_ans)
+
 
             step_ans = re.sub("(\d)\{10\}\^([\d\w\{])", "\g<1>*{10}^\g<2>", step_ans)
-            step_ans = re.sub("\{([^{]+)\}\^(.)", "{\\\\left(\g<1>\\\\right)}^\g<2>", step_ans)
+            if re.search("\}\^", step_ans):
+                target_idx = re.search("\}\^", step_ans).start()
+                idx = find_matching(step_ans, "}", target_idx)
+                step_ans = step_ans[:idx] + "\\\\left(" + step_ans[idx:target_idx+1] + "\\\\right)" + step_ans[target_idx+1:]
+
 
             if "@" in step_ans:
                 variabilization = re.search('variabilization: {([^}]+)}', data).group(1)

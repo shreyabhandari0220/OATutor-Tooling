@@ -25,7 +25,7 @@ def test_all_content(url_prefix):
     start_time = time.time()
 
     # testing
-    # all_files = ['ab8b840systems6', 'a61c721rational10', 'ab1ad7fGenStr27', 'a4b9bbfrationalnums27', 'a9cf449complex17', 'ac3d94dProperties16', 'af1a2a0roots13', 'a9ae528add2', 'a6614c6sol6', 'a7ea646graph9', 'a4b9bbfrationalnums18', 'a9cf449complex28']
+    all_files = ['a616928pvalue4', 'a1279cdpowers29']
 
     for problem_name in all_files:
         if count % 10 == 0:

@@ -23,12 +23,13 @@ CORRECT = "https://cahlr.github.io/OATutor-Content-Staging/static/images/icons/g
 WRONG = "https://cahlr.github.io/OATutor-Content-Staging/static/images/icons/error.svg"
 SCROLL_LENGTH = 500
 page_breaks = False
+last_katex_time = None
 
 def start_driver():
     # sets up selenium driver with correct Chrome headless version
     os.environ['WDM_LOG_LEVEL'] = '0'  # suppress logs from ChromeDriverManager install
     options = webdriver.ChromeOptions()
-    options.headless = True
+    # options.headless = True
     options.add_argument("start-maximized")
     options.add_argument("disable-infobars")
     options.add_argument("--disable-extensions")
@@ -41,6 +42,7 @@ def start_driver():
 
 def test_page(url_prefix, problem, driver, alert_df, test_hints=True):
     global page_breaks
+    global last_katex_time
 
     url = url_prefix + problem.problem_name
     driver.get(url)
@@ -63,11 +65,23 @@ def test_page(url_prefix, problem, driver, alert_df, test_hints=True):
     problem_index = 0
     page_breaks = False
 
-    for step in problem.steps:
-        if page_breaks:
+    katex_error_msg = "ParseError: KaTeX parse error"
+    for log in driver.get_log('browser'): 
+        if katex_error_msg in log["message"] and (last_katex_time == None or log["timestamp"] > last_katex_time + 2000):
+            print(log)
+            last_katex_time = log["timestamp"]
+            err = "{}: Katex parser error".format(problem.problem_name)
+            alert_df = alert_df.append({"Book Name": problem.book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             break
-        alert_df, driver = test_step(problem.problem_name, driver, problem_index, step, alert_df, problem.book_name, len(problem.steps), test_hints=test_hints)
-        problem_index += 1
+            
+
+    # for step in problem.steps:
+    #     if page_breaks:
+    #         break
+    #     alert_df, driver = test_step(problem.problem_name, driver, problem_index, step, alert_df, problem.book_name, len(problem.steps), test_hints=test_hints)
+    #     problem_index += 1
+
+    driver.execute_script('console.clear()')
 
     return alert_df, driver
 

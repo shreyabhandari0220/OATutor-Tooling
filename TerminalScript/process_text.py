@@ -183,6 +183,7 @@ def handle_word(word, coord=True):
         word = re.sub("θ", "\\\\theta", word)
         word = re.sub("ε", "\\\\varepsilon", word)
         word = re.sub("λ", "\\\\lambda", word)
+        word = re.sub("μ", "\\\\mu", word)
         return word
 
     if "log{" in word:
@@ -277,6 +278,7 @@ def handle_word(word, coord=True):
     word = re.sub("θ", "\\\\theta", word)
     word = re.sub("ε", "\\\\varepsilon", word)
     word = re.sub("λ", "\\\\lambda", word)
+    word = re.sub("μ", "\\\\mu", word)
     word = re.sub("getsgets", " \\\\gets ", word)
     word = re.sub("dotdotdot", "...", word)
     if bracketsub:
