@@ -25,7 +25,7 @@ def test_all_content(url_prefix):
     start_time = time.time()
 
     # testing
-    all_files = ['a616928pvalue4', 'a1279cdpowers29']
+    # all_files = ['a616928pvalue4', 'a1279cdpowers29']
 
     for problem_name in all_files:
         if count % 10 == 0:
