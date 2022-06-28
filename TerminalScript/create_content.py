@@ -220,9 +220,7 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
     
     if answer_latex:
         ", answerLatex: \"{0}\"".format(new_answer)
-    
-    
-    
+        
     if type(choices) == str:
         step += ", choices: " + str(choices)
     step += ", answerType: \"{0}\", hints: hints".format(answer_type)

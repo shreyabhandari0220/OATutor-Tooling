@@ -5,7 +5,6 @@ import uuid
 from datetime import datetime
 from distutils.dir_util import copy_tree
 from urllib.parse import urlparse
-
 import gspread
 import numpy as np
 import pandas as pd
@@ -19,6 +18,7 @@ pd.options.display.html.use_mathjax = False
 
 from create_dir import *
 from create_content import *
+from validate_problem import *
 
 import functools
 
@@ -105,22 +105,8 @@ def next_available_row(worksheet):
     return str(len(str_list) + 1)
 
 
-def validate_image(image):
-    # print('debug:', image)
-    try:
-        images = image.split(" ")
-        for i in images:
-            requests.get(i)
-    except:
-        raise Exception("Image retrieval error")
-
-
-def validate_question(sheet_name, question, variabilization, latex, verbosity):
-    result_problems = ""
-    step_count = tutor_count = 0
-    current_step_path = current_step_name = step_reg_js = step_index_js = default_pathway_js = ""
-    images = False
-    figure_path = ""
+def validate_question(question, variabilization, latex, verbosity):
+    current_step_name = ""
     problem_row = question.iloc[0]
     tutoring = []
     current_subhints = []
@@ -156,135 +142,19 @@ def validate_question(sheet_name, question, variabilization, latex, verbosity):
             row_type = row['Row Type'].strip().lower()
             if index != 0:
                 if row_type == "step":
-                    step_images = ""
-                    # checks images and creates the figures path if necessary
-                    if type(row["Images (space delimited)"]) == str:
-                        validate_image(row["Images (space delimited)"])
-                    choices = type(row["mcChoices"]) == str and row["mcChoices"]
-                    if variabilization:
-                        create_step(problem_name, row['Title'], row["Body Text"], row["Answer"], row["answerType"],
-                                    step_count, choices, "", variabilization=row["Variabilization"], latex=latex,
-                                    verbosity=verbosity)
-                    else:
-                        create_step(problem_name, row['Title'], row["Body Text"], row["Answer"], row["answerType"],
-                                    step_count, choices, "", latex=latex, verbosity=verbosity)
+                    validate_step(row, variabilization, latex, verbosity)
 
-                if row_type == "hint" and type(row["Answer"]) != float:
+                elif row_type == "hint" and type(row["Answer"]) != float:
                     raise Exception("{} is \"hint\" but has answer".format(row["HintID"]))
 
                 elif (row_type == 'hint' or row_type == "scaffold") and type(row['Parent']) != float:
-                    if row['Parent'] not in scaff_lst:
-                        raise Exception("{} is hint so should not have subhint(s)".format(row["Parent"]))
-
-                    hint_images = ""
-                    if type(row["Images (space delimited)"]) == str and type(
-                            row["Images (space delimited)"]) != np.float64:
-                        validate_image(row["Images (space delimited)"])
-                    try:
-                        hint_id = row['Parent'] + "-" + row['HintID']
-                    except TypeError:
-                        raise Exception("Hint ID is missing")
-                    if row_type == 'hint':
-                        if variabilization:
-                            subhint, subhint_id = create_hint(current_step_name, hint_id, row["Title"],
-                                                              row["Body Text"], row["Dependency"], hint_images,
-                                                              hint_dic=hint_dic, variabilization=row["Variabilization"],
-                                                              latex=latex, verbosity=verbosity)
-                        else:
-                            subhint, subhint_id = create_hint(current_step_name, hint_id, row["Title"],
-                                                              row["Body Text"], row["Dependency"], hint_images,
-                                                              hint_dic=hint_dic, latex=latex, verbosity=verbosity)
-                    else:
-                        scaff_lst.append(hint_id)
-                        if variabilization:
-                            subhint, subhint_id = create_scaffold(current_step_name, hint_id, row["Title"],
-                                                                  row["Body Text"], row["answerType"], row["Answer"],
-                                                                  row["mcChoices"], row["Dependency"], hint_images,
-                                                                  hint_dic=hint_dic,
-                                                                  variabilization=row["Variabilization"], latex=latex,
-                                                                  verbosity=verbosity)
-                        else:
-                            subhint, subhint_id = create_scaffold(current_step_name, hint_id, row["Title"],
-                                                                  row["Body Text"], row["answerType"], row["Answer"],
-                                                                  row["mcChoices"], row["Dependency"], hint_images,
-                                                                  hint_dic=hint_dic, latex=latex, verbosity=verbosity)
-                    hint_dic[row["HintID"]] = subhint_id
-                    current_subhints.append(subhint)
-                    tutoring.pop()
-                    if previous_tutor['Row Type'] == 'hint':
-                        if variabilization:
-                            previous, hint_id = create_hint(current_step_name, previous_tutor["HintID"],
-                                                            previous_tutor["Title"], previous_tutor["Body Text"],
-                                                            previous_tutor["Dependency"], previous_images,
-                                                            subhints=current_subhints, hint_dic=hint_dic,
-                                                            variabilization=previous_tutor["Variabilization"],
-                                                            latex=latex, verbosity=verbosity)
-                        else:
-                            previous, hint_id = create_hint(current_step_name, previous_tutor["HintID"],
-                                                            previous_tutor["Title"], previous_tutor["Body Text"],
-                                                            previous_tutor["Dependency"], previous_images,
-                                                            subhints=current_subhints, hint_dic=hint_dic, latex=latex,
-                                                            verbosity=verbosity)
-                    else:
-                        if variabilization:
-                            previous, hint_id = create_scaffold(current_step_name, previous_tutor["HintID"],
-                                                                previous_tutor["Title"], previous_tutor["Body Text"],
-                                                                previous_tutor["answerType"], previous_tutor["Answer"],
-                                                                previous_tutor["mcChoices"],
-                                                                previous_tutor["Dependency"], previous_images,
-                                                                subhints=current_subhints, hint_dic=hint_dic,
-                                                                variabilization=previous_tutor["Variabilization"],
-                                                                latex=latex, verbosity=verbosity)
-                        else:
-                            previous, hint_id = create_scaffold(current_step_name, previous_tutor["HintID"],
-                                                                previous_tutor["Title"], previous_tutor["Body Text"],
-                                                                previous_tutor["answerType"], previous_tutor["Answer"],
-                                                                previous_tutor["mcChoices"],
-                                                                previous_tutor["Dependency"], previous_images,
-                                                                subhints=current_subhints, hint_dic=hint_dic,
-                                                                latex=latex, verbosity=verbosity)
-                    tutoring.append(previous)
+                    scaff_lst, hint_dic = validate_hint_with_parent(row, scaff_lst, row_type, hint_dic, 
+                                            previous_tutor, variabilization, latex, verbosity)
 
                 elif row_type == "hint" or row_type == "scaffold":
-                    tutor_count += 1
-                    current_subhints = []
-                    if row_type == "hint":
-                        hint_images = ""
-                        if type(row["Images (space delimited)"]) == str:
-                            validate_image(row["Images (space delimited)"])
-                        if variabilization:
-                            hint, full_id = create_hint(current_step_name, row["HintID"], row["Title"],
-                                                        row["Body Text"], row["Dependency"], hint_images,
-                                                        hint_dic=hint_dic, variabilization=row["Variabilization"],
-                                                        latex=latex, verbosity=verbosity)
-                        else:
-                            hint, full_id = create_hint(current_step_name, row["HintID"], row["Title"],
-                                                        row["Body Text"], row["Dependency"], hint_images,
-                                                        hint_dic=hint_dic, latex=latex, verbosity=verbosity)
-                        hint_dic[row["HintID"]] = full_id
-                        tutoring.append(hint)
-                        previous_tutor = row
-                        previous_images = hint_images
-                    if row_type == "scaffold":
-                        scaff_lst.append(row["HintID"])
-                        scaff_images = ""
-                        if type(row["Images (space delimited)"]) == str:
-                            validate_image(row["Images (space delimited)"])
-                        if variabilization:
-                            scaff, full_id = create_scaffold(current_step_name, row["HintID"], row["Title"],
-                                                             row["Body Text"], row["answerType"], row["Answer"],
-                                                             row["mcChoices"], row["Dependency"], scaff_images,
-                                                             hint_dic=hint_dic, variabilization=row["Variabilization"],
-                                                             latex=latex, verbosity=verbosity)
-                        else:
-                            scaff, full_id = create_scaffold(current_step_name, row["HintID"], row["Title"],
-                                                             row["Body Text"], row["answerType"], row["Answer"],
-                                                             row["mcChoices"], row["Dependency"], scaff_images,
-                                                             hint_dic=hint_dic, latex=latex, verbosity=verbosity)
-                        hint_dic[row["HintID"]] = full_id
-                        tutoring.append(scaff)
-                        previous_tutor = row
-                        previous_images = scaff_images
+                    previous_tutor, hint_dic = validate_hint_without_parent(row, scaff_lst, row_type, 
+                                                hint_dic, variabilization, latex, verbosity)
+
         except Exception as e:
             error_message = error_message + str(e) + '\n'
             continue
@@ -439,7 +309,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
         # validate all fields that relate to this problem
         try:
-            question_error_message = validate_question(sheet_name, question, variabilization, latex, verbosity)
+            question_error_message = validate_question(question, variabilization, latex, verbosity)
             if question_error_message:
                 error_row = (df[df['Problem Name'] == problem_name].index)[0]
                 error_df.at[error_row, 'Check 1'] = question_error_message

@@ -84,25 +84,8 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
         shutil.rmtree(validator_path)
 
     if is_local == 'local':
-        excel_path = "../Excel/"
-        for sheet_key in sheet_keys:
-            lesson_plan = []
-            course_name = sheet_key[:-5]
-            if not sheet_names or len(sheet_keys) > 1:
-                myexcel = pd.ExcelFile(excel_path + sheet_key)
-                sheet_names = [tab for tab in myexcel.sheet_names if tab[:2] != '!!']
-            for sheet in sheet_names:
-                skills, lesson_id = process_sheet(sheet_key, sheet, default_path, is_local)
-                if not lesson_id:
-                    continue
-                if not skills:
-                    skills = []
-                skills.sort()
-                lesson_plan.append(create_lesson_plan(sheet, skills, lesson_id))
+        raise Exception("Local problem reads no longer supported.")
 
-                for skill in skills:
-                    bkt_params.update(create_bkt_params(skill))
-            course_plan.append(create_course_plan(course_name, lesson_plan))
     elif is_local == 'online':
         url_df = get_all_url(bank_url=bank_url)
         for index, row in url_df.iterrows():
@@ -141,13 +124,6 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
             if editor_url:
                 editor_book = get_sheet(editor_url)
                 editor_sheet_names = [sheet.title for sheet in editor_book.worksheets() if sheet.title[:2] != '!!']
-                # check name conflicts in editor sheet
-                # for sheet in sheet_names:
-                #     start = time.time()
-                #     names_from_one_sheet(editor_book, sheet)
-                #     end = time.time()
-                #     if end - start < 3:
-                #         time.sleep(3 - (end - start))
                 for sheet in editor_sheet_names:
                     start = time.time()
                     try:
@@ -174,9 +150,6 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
 
 
 if __name__ == '__main__':
-    # when calling:
-    # if stored locally: python3 final.py "local" <filename> <sheet_names>
-    # if store on google sheet: python3 final.py "online" <url> <sheet_names>
     is_local = sys.argv[1]
     sheet_key = sys.argv[2]
     sheet_names = sys.argv[3:]

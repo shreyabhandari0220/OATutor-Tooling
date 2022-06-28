@@ -8,11 +8,8 @@ pd.options.display.html.use_mathjax = False
 
 def check_sheet(spreadsheet_key, sheet_name, is_local):
     scaff_dic = {"mc": "string", "numeric": "TextBox", "algebra": "TextBox", "string": "string"}
-    if is_local == "local":
-        path = spreadsheet_key
-        df = pd.read_excel(path, sheet_name, header=0) 
 
-    elif is_local == "online":
+    if is_local == "online":
         scope = ['https://spreadsheets.google.com/feeds'] 
         credentials = ServiceAccountCredentials.from_json_keyfile_name('../sunlit-shelter-282118-8847831293f8.json', scope) 
         gc = gspread.authorize(credentials)
