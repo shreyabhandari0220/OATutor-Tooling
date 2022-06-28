@@ -36,7 +36,7 @@ def start_driver():
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
     # options.add_experimental_option('w3c', False)
-    driver = webdriver.Chrome(ChromeDriverManager(version="99.0.4844.51").install(), options=options)
+    driver = webdriver.Chrome(ChromeDriverManager(version="103.0.5060.53").install(), options=options)
     driver.maximize_window()
     return driver
 
@@ -75,11 +75,11 @@ def test_page(url_prefix, problem, driver, alert_df, test_hints=True):
             break
             
 
-    # for step in problem.steps:
-    #     if page_breaks:
-    #         break
-    #     alert_df, driver = test_step(problem.problem_name, driver, problem_index, step, alert_df, problem.book_name, len(problem.steps), test_hints=test_hints)
-    #     problem_index += 1
+    for step in problem.steps:
+        if page_breaks:
+            break
+        alert_df, driver = test_step(problem.problem_name, driver, problem_index, step, alert_df, problem.book_name, len(problem.steps), test_hints=test_hints)
+        problem_index += 1
 
     driver.execute_script('console.clear()')
 
@@ -466,45 +466,6 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
         # time.sleep(0.3)
     
     return alert_df, driver
-
-
-
-# def enter_mc_answer(problem_name, driver, problem_index, correct_answer, alert_df):
-#     """
-#     Clicks the correct answer for multiple choice questions
-#     Note: within the function, correct_answer involving LaTeX are stripped of $$
-#     """
-
-#     choice_idx = 1
-#     all_choices = []  # checkes if the same answer appears multiple times
-#     correct_answer = correct_answer.replace("$$", "")
-#     while True:
-#         ans_selector = "//*[@id=\"root\"]/div/div/div/div[{0}]/div/div[1]/div[2]/div/div[2]/div/fieldset/div/label[{1}]/span[2]"\
-#             .format(problem_index, choice_idx)
-#         ans_choice_selector = "//*[@id=\"root\"]/div/div/div/div[{0}]/div/div[1]/div[2]/div/div[2]/div/fieldset/div/label[{1}]/span[1]"\
-#             .format(problem_index, choice_idx)
-#         try:
-#             # print('full answer:', driver.find_element_by_xpath(ans_selector).text)
-#             ans = driver.find_element_by_xpath(ans_selector).text.split('\n')[0]
-#             # ans = driver.find_element_by_xpath(ans_selector).text.replace('\n', '')
-#             # print('answer choice:', ans)
-
-#             if ans in all_choices:
-#                 err = "{0}: Answer choice appears more than once: {1}".format(problem_name, ans)
-#                 alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-#                 # print("{0}: Answer choice appears more than once: {1}".format(problem_name, ans))
-#             else:
-#                 all_choices.append(ans)
-
-#             if ans == correct_answer:
-#                 ans_choice = driver.find_element_by_xpath(ans_choice_selector)
-#                 ans_choice.click()
-
-#         except NoSuchElementException:
-#             break
-        
-#         choice_idx += 1
-#     return alert_df
 
 
 if __name__ == '__main__':
