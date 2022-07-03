@@ -62,6 +62,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
     angle_bracket = False
     for i in list(range(len(words))):
         word = words[i]
+        word = re.sub(r"(\d)(?<![a-zA-Z])pi", r"\g<1>*pi", word)
         if use_latex(word, render_latex):
             if not re.findall("[\[|\(][\+\-\*/\(\)\d\s\w]+,[\+\-\*/\(\)\d\s\w]+[\)|\]]", word): # only add in space if is not coordinate
                 word = re.sub(",(\S)", ", \g<1>", word)
