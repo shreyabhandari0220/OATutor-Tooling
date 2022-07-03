@@ -106,12 +106,8 @@ def next_available_row(worksheet):
 
 
 def validate_question(question, variabilization, latex, verbosity):
-    current_step_name = ""
     problem_row = question.iloc[0]
-    tutoring = []
-    current_subhints = []
     previous_tutor = ""
-    previous_images = ""
     hint_dic = {}
     problem_name = question.iloc[0]['Problem Name']
     error_message = ''
@@ -163,12 +159,12 @@ def validate_question(question, variabilization, latex, verbosity):
     if type(problem_row["Images (space delimited)"]) == str:
         validate_image(problem_row["Images (space delimited)"])
     if variabilization:
-        prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"],
-                                    problem_row["OER src"], problem_images,
-                                    variabilization=problem_row["Variabilization"], latex=latex, verbosity=verbosity)
+        create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"],
+                            problem_row["OER src"], problem_images,
+                            variabilization=problem_row["Variabilization"], latex=latex, verbosity=verbosity)
     else:
-        prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"],
-                                    problem_row["OER src"], problem_images, latex=latex, verbosity=verbosity)
+        create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"],
+                            problem_row["OER src"], problem_images, latex=latex, verbosity=verbosity)
 
     return error_message[:-1]  # get rid of the last newline
 

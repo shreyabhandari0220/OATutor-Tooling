@@ -52,6 +52,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
         text = re.sub(r"@{(\d+|\w+)}", r"aaa\g<1>ttt", text) #For variabilization
         text = re.sub(r"_\{([\w]+),([\w]+)\}", r"_\g<1>_\g<2>", text) #To account for subscript in form of A_{i,j} (change to A_ij)
         text = re.sub("_\(([^)]+)\)", "_\g<1>", text) # To account for subscript in form of A_(BC) (chage to A_BC)
+        text = re.sub(r"_{2,}", r"___", text)
 
         # for operator in supported_operators:
         #     text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
@@ -93,7 +94,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
             elif word[-2:] == '$$':
                 word = word[:-2]
             try:        
-                sides = re.split('((?<!\\\\)=|U|<=|>=)', word)
+                sides = re.split('((?<!\\\\)=|U|<=|>=|_{3})', word)
                 sides = [handle_word(side) for side in sides]
                 new_word = ""
                 if tutoring and stepMC:
@@ -216,7 +217,6 @@ def handle_word(word, coord=True):
     word = re.sub("(.+)~", "\g<1>+plusminus+", word)
 
     
-    original_word = word
     scientific_notation = re.findall("\(?([\d]{2,})\)?\*([\d]{2,})\*\*", word)
     word = re.sub(":sqrt", ": sqrt", word)
     square_roots = re.findall(r"sqrt\(([^,]*)\,([^\)]*)\)", word)
@@ -257,7 +257,6 @@ def handle_word(word, coord=True):
             sum_upper_num = False
         word = 'sum([' + sum_match.group(3) + ' for ' + sum_var + ' in range(' + sum_lower + ',' + sum_upper + ')])'
     
-
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
 
     
@@ -269,7 +268,6 @@ def handle_word(word, coord=True):
     word = re.sub(r"\+plusminus\+", "\\\\pm", word)
     word = re.sub(r"\\operatorname{(\w)}", r"\g<1>", word)
     word = re.sub(r"zero", r"-0.", word)
-    word = re.sub("_{2,}", r"\\rule{2cm}{0.15mm}", word)
     word = re.sub('leftt\+', '\\\\left(', word)
     word = re.sub('\+rightt', '\\\\right)', word)
     word = re.sub("primesymbol", "\'", word)
