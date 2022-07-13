@@ -330,6 +330,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         write_problem_js(problem_row, problem_name, problem_js, course_name, sheet_name, images, path, 
         figure_path, verbosity, variabilization, latex)
 
+        # Copy problem tree over to validator_path for validator check
         if validator_path:
             val_path = create_validator_dir(problem_name, validator_path)
             try:
@@ -348,6 +349,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     print("[{}] JS validator complete".format(sheet_name))
 
+    # Write skills to skillModel
     if not editor:
         new_skillModelJS_lines = skillModelJS_lines[0:break_index] + skills + skillModelJS_lines[break_index:]
         with open(skillModelJS_path, 'w', encoding="utf-8") as f:
@@ -372,39 +374,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             execute_js('../util/indexGenerator.js', 'auto')
             response = muterun_js('../.postScriptValidator.js', 'auto')
             if response.exitcode == 0:
-                post_script_errors = response.stdout.decode("utf-8").split('\n')
-                for error in post_script_errors:
-                    if error:
-                        row_id, error_message = error.split(': ')
-                        # determine problem_name and row
-                        sha = hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6]
-                        if row_id[1:7] == sha:  # using sha1 only
-                            problem_name = re.search('[\D]*\d+', row_id[7:]).group(0)
-                        elif row_id[0] == 'b' and row_id[1].isnumeric():  # using b# and sha1
-                            problem_name = re.search('[\D]*\d+', row_id[re.search(sha, row_id).end(0):]).group(0)
-                        else:  # shouldn't need to use this
-                            problem_name = re.search('[\D]*[\d]+', row_id).group(0)
-                        if '-h' not in row_id:
-                            ord_step = ord(row_id[-1]) - 97
-                            error_row = \
-                                (df[df['Problem Name'] == problem_name].index & df[df['Row Type'] == 'step'].index)[
-                                    ord_step]
-                        elif '-h' in row_id:
-                            ord_step = ord(re.search('\d([\D]+)\-h', row_id).group(1)) - 97
-                            hint_num = re.search('-(h[\d]+)', row_id).group(1)
-                            step_row = \
-                                (df[df['Problem Name'] == problem_name].index & df[df['Row Type'] == 'step'].index)[
-                                    ord_step]
-                            all_hints = df[df['Problem Name'] == problem_name].index & df[
-                                df['HintID'] == hint_num].index
-                            error_row = min(r for r in all_hints if r > step_row)
-                        else:
-                            error_row = (df[df['Problem Name'] == problem_name].index)[0]
-
-                        # add error message
-                        if not pd.isna(error_df.at[error_row, 'Check 2']):
-                            error_message = str(error_df.at[error_row, 'Check 2']) + '\n' + error_message
-                        error_df.at[error_row, 'Check 2'] = error_message
+                error_df = validator_check(response, df, error_df, sheet_name)
 
             else:
                 sys.stderr.write(response.stderr.decode("utf-8"))
@@ -459,6 +429,44 @@ def generate_id():
     shortuuid.set_alphabet("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQSRTUVWXYZ1234567890")
     raw_id = shortuuid.encode(uuid.uuid4())
     return raw_id[:8] + "-" + raw_id[8:12] + "-" + raw_id[12:]
+
+
+def validator_check(response, df, error_df, sheet_name):
+    post_script_errors = response.stdout.decode("utf-8").split('\n')
+    for error in post_script_errors:
+        if error:
+            row_id, error_message = error.split(': ')
+            # determine problem_name and row
+            sha = hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6]
+            if row_id[1:7] == sha:  # using sha1 only
+                problem_name = re.search('[\D]*\d+', row_id[7:]).group(0)
+            elif row_id[0] == 'b' and row_id[1].isnumeric():  # using b# and sha1
+                problem_name = re.search('[\D]*\d+', row_id[re.search(sha, row_id).end(0):]).group(0)
+            else:  # shouldn't need to use this
+                problem_name = re.search('[\D]*[\d]+', row_id).group(0)
+            if '-h' not in row_id:
+                ord_step = ord(row_id[-1]) - 97
+                error_row = \
+                    (df[df['Problem Name'] == problem_name].index & df[df['Row Type'] == 'step'].index)[
+                        ord_step]
+            elif '-h' in row_id:
+                ord_step = ord(re.search('\d([\D]+)\-h', row_id).group(1)) - 97
+                hint_num = re.search('-(h[\d]+)', row_id).group(1)
+                step_row = \
+                    (df[df['Problem Name'] == problem_name].index & df[df['Row Type'] == 'step'].index)[
+                        ord_step]
+                all_hints = df[df['Problem Name'] == problem_name].index & df[
+                    df['HintID'] == hint_num].index
+                error_row = min(r for r in all_hints if r > step_row)
+            else:
+                error_row = (df[df['Problem Name'] == problem_name].index)[0]
+
+            # add error message
+            if not pd.isna(error_df.at[error_row, 'Check 2']):
+                error_message = str(error_df.at[error_row, 'Check 2']) + '\n' + error_message
+            error_df.at[error_row, 'Check 2'] = error_message
+
+    return error_df
 
 
 if __name__ == '__main__':
