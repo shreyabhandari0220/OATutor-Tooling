@@ -20,7 +20,8 @@ replace = {"⋅" : "*",
             "–": "-", 
             "≥" : ">=", 
             "≤": "<=", 
-            "∪" : "U", 
+            "∪" : "U",
+            "\\cap": "∩", 
             "π" : "pi"}
 conditionally_replace = {"[" : "(", "]" : ")"}
 regex = re.compile("|".join(map(re.escape, replace.keys())))
@@ -95,7 +96,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
             elif word[-2:] == '$$':
                 word = word[:-2]
             try:        
-                sides = re.split('((?<!\\\\)=|U|<=|>=|_{3})', word)
+                sides = re.split('((?<!\\\\)=|U|∩|<=|>=|_{3})', word)
                 sides = [handle_word(side) for side in sides]
                 new_word = ""
                 if tutoring and stepMC:
@@ -169,7 +170,7 @@ def use_latex(word, render_latex):
     return False
 
 def handle_word(word, coord=True):
-    latex_dic = {"=": "=", "U": " \cup ", "<=" : " \leq ", ">=" : " \geq "}
+    latex_dic = {"=": "=", "U": " \cup ", "∩": " \cap ", "<=" : " \leq ", ">=" : " \geq "}
     if word in latex_dic:
         return latex_dic[word]
 
@@ -264,7 +265,8 @@ def handle_word(word, coord=True):
     #Here do the substitutions for the things that py2tex can't handle
     for item in scientific_notation:
         word = re.sub(item[0] + "\{" + item[1] + "\}", item[0] + "\\\\times {" + item[1] + "}", word)
-    word = re.sub(r"\\operatorname{negneg}\\left\(", r"\\left(-", word)
+    
+    word = re.sub(r"\\operatorname{(.*)negneg}\\left\(", r"\g<1>\\left(-", word)
     word = re.sub(r"\\operatorname{invert}", r"\\pm ", word)
     word = re.sub(r"\+plusminus\+", "\\\\pm", word)
     word = re.sub(r"\\operatorname{(\w)}", r"\g<1>", word)
