@@ -295,7 +295,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         for i in range(len(problem_skills)):
             if (i != 0):
                 result_problems += ", "
-            result_problems += "'{0}'".format(problem_skills[i])
+            result_problems += "`{0}`".format(problem_skills[i])
             skills_unformatted.extend(problem_skills)
 
         for index, row in question.iterrows():
