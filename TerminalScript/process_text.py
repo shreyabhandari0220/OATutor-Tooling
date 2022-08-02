@@ -1,5 +1,6 @@
 import re
 import sys
+from tkinter import WORD
 sys.path.insert(0, "../textToLatex")
 from pytexit import py2tex
 import io
@@ -22,7 +23,9 @@ replace = {"⋅" : "*",
             "≤": "<=", 
             "∪" : "U",
             "\\cap": "∩", 
-            "π" : "pi"}
+            "π" : "pi", 
+            "µ": "\\mu", 
+            "α": "\\alpha"}
 conditionally_replace = {"[" : "(", "]" : ")"}
 regex = re.compile("|".join(map(re.escape, replace.keys())))
 force_latex = 0.0
@@ -55,12 +58,9 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
         text = re.sub("_\(([^)]+)\)", "_\g<1>", text) # To account for subscript in form of A_(BC) (chage to A_BC)
         text = re.sub(r"_{2,}", r"___", text)
 
-        # for operator in supported_operators:
-        #     text = re.sub("(\s?){0}(\s?)".format(re.escape(operator)), "{0}".format(operator), text)
 
     words = text.split()
     latex = False
-    angle_bracket = False
     for i in list(range(len(words))):
         word = words[i]
         word = re.sub(r"(\d)(?<![a-zA-Z])pi", r"\g<1>*pi", word)
@@ -181,12 +181,16 @@ def handle_word(word, coord=True):
         return word
 
     if not (any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])):
+        print(0, word)
         word = re.sub("𝜃", "\\\\theta", word)
         word = re.sub("°", "\\\\degree", word)
         word = re.sub("θ", "\\\\theta", word)
         word = re.sub("ε", "\\\\varepsilon", word)
         word = re.sub("λ", "\\\\lambda", word)
-        word = re.sub("μ", "\\\\mu", word)
+        word = re.sub(r"%", "\\\\%", word)
+        print(1, word)
+        word = re.sub(r"\$", "\\\\$", word)
+        print(2, word)
         return word
 
     if "log{" in word:
@@ -201,7 +205,8 @@ def handle_word(word, coord=True):
         return re.sub("ln{", r"\\ln{", word)
         
     coordinates = re.findall("(?<!sqrt)[\(|\[][(sqrt)\+\-\*/\(\)_\d\s\w]+,[(sqrt)\+\-\*/\(\)_\d\s\w]+[\)|\]]", word)
-    if coord and coordinates:
+    nth_root = re.search("sqrt([+\-\*/\(\)\d\w]+,[+\-\*/\(\)\d\w]+)", word)
+    if coord and coordinates and not nth_root:
         trailing = ''
         if word[-1] != ')' and word[-1] != ']':
             trailing = word[-1]
@@ -258,7 +263,6 @@ def handle_word(word, coord=True):
             sum_upper = sum_match.group(2)
             sum_upper_num = False
         word = 'sum([' + sum_match.group(3) + ' for ' + sum_var + ' in range(' + sum_lower + ',' + sum_upper + ')])'
-    
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
 
 
@@ -266,11 +270,12 @@ def handle_word(word, coord=True):
     for item in scientific_notation:
         word = re.sub(item[0] + "\{" + item[1] + "\}", item[0] + "\\\\times {" + item[1] + "}", word)
     
-    word = re.sub(r"\\operatorname{(.*)negneg}\\left\(", r"\g<1>\\left(-", word)
+    word = re.sub(r"\\operatorname{([^(negneg)]*)negneg}\\left\(", r"\g<1>\\left(-", word)
     word = re.sub(r"\\operatorname{invert}", r"\\pm ", word)
-    word = re.sub(r"\+plusminus\+", "\\\\pm", word)
+    word = re.sub(r"\+plusminus\+", "\\\\pm ", word)
     word = re.sub(r"\\operatorname{(\w)}", r"\g<1>", word)
     word = re.sub(r"zero", r"-0.", word)
+    word = re.sub(r"%", "\\\\%", word)
     word = re.sub('leftt\+', '\\\\left(', word)
     word = re.sub('\+rightt', '\\\\right)', word)
     word = re.sub("primesymbol", "\'", word)
@@ -279,7 +284,6 @@ def handle_word(word, coord=True):
     word = re.sub("θ", "\\\\theta", word)
     word = re.sub("ε", "\\\\varepsilon", word)
     word = re.sub("λ", "\\\\lambda", word)
-    word = re.sub("μ", "\\\\mu", word)
     word = re.sub("getsgets", " \\\\gets ", word)
     word = re.sub("dotdotdot", "...", word)
     if bracketsub:
