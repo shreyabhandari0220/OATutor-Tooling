@@ -181,16 +181,13 @@ def handle_word(word, coord=True):
         return word
 
     if not (any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])):
-        print(0, word)
         word = re.sub("𝜃", "\\\\theta", word)
         word = re.sub("°", "\\\\degree", word)
         word = re.sub("θ", "\\\\theta", word)
         word = re.sub("ε", "\\\\varepsilon", word)
         word = re.sub("λ", "\\\\lambda", word)
         word = re.sub(r"%", "\\\\%", word)
-        print(1, word)
         word = re.sub(r"\$", "\\\\$", word)
-        print(2, word)
         return word
 
     if "log{" in word:
@@ -203,9 +200,14 @@ def handle_word(word, coord=True):
 
     if "ln{" in word:
         return re.sub("ln{", r"\\ln{", word)
-        
+    
     coordinates = re.findall("(?<!sqrt)[\(|\[][(sqrt)\+\-\*/\(\)_\d\s\w]+,[(sqrt)\+\-\*/\(\)_\d\s\w]+[\)|\]]", word)
-    nth_root = re.search("sqrt([+\-\*/\(\)\d\w]+,[+\-\*/\(\)\d\w]+)", word)
+    nth_root = re.search("sqrt\([+\-\*/\(\)\d\w]+(,)[+\-\*/\(\)\d\w]+\)", word)
+    if nth_root:
+        comma_idx = nth_root.start(1)
+        sqrt_end_idx = find_matching(word, word[nth_root.start() + 4], nth_root.start() + 4)
+        if sqrt_end_idx < comma_idx:
+            nth_root = None
     if coord and coordinates and not nth_root:
         trailing = ''
         if word[-1] != ')' and word[-1] != ']':
