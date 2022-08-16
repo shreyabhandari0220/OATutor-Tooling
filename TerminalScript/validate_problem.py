@@ -1,15 +1,30 @@
 import requests
+import os
+from PIL import Image, UnidentifiedImageError
+
 from create_dir import *
 from create_content import *
 
 
 def validate_image(image):
-    try:
-        images = image.split(" ")
-        for i in images:
-            requests.get(i)
-    except:
-        raise Exception("Image retrieval error")
+    images = image.split(" ")
+    name = ".figure.gif"
+    for i in images:
+        try:
+            i = re.sub(r"https://imgur\.com/([\d\w]+)", r"https://i.imgur.com/\g<1>.png", i)
+            r = requests.get(i)
+        except:
+            print(1)
+            raise Exception("Image retrieval error")
+        with open(name, 'wb') as outfile:
+            outfile.write(r.content)
+        # check if image is valid
+        try:
+            Image.open(name)
+        except UnidentifiedImageError:
+            os.remove(name)
+            raise Exception("Downloaded image cannot be opened")
+        os.remove(name)
 
 
 def validate_step(row, variabilization, latex, verbosity):
