@@ -38,7 +38,7 @@ def create_lesson_plan(sheet, skills, lesson_id):
     return lesson_plan
 
 
-def create_course_plan(course_name, lesson_plan):
+def create_course_plan(course_name, lesson_plan, editor=False):
     if not lesson_plan:
         lesson_plan = []
 
@@ -46,6 +46,11 @@ def create_course_plan(course_name, lesson_plan):
         "courseName": course_name,
         "lessons": lesson_plan
     }
+
+    if editor:
+        course_plan.update({
+            "editor": True
+        })
 
     return course_plan
 
@@ -88,22 +93,32 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
 
     elif is_local == 'online':
         url_df = get_all_url(bank_url=bank_url)
-        for index, row in url_df.iterrows():
+
+        sheets_queue = []
+        for _, row in url_df.iterrows():
+            course_name, book_url, editor_url = row['Book'], row['URL'], row['Editor Sheet']
+            if book_url:
+                sheets_queue.append((book_url, False, course_name))
+            if editor_url:
+                sheets_queue.append((editor_url, True, ""))
+        for sheet_url, is_editor, course_name in sheets_queue:
             lesson_plan = []
-            course_name, book_url = row['Book'], row['URL']
-            book = get_sheet(book_url)
+            book = get_sheet(sheet_url)
+
+            if is_editor:
+                course_name = "!!Editor Sheet " + hashlib.sha1(str(sheet_url).encode("utf-8")).hexdigest()[:6]
             try:
                 sheet_names = [sheet.title for sheet in book.worksheets() if sheet.title[:2] != '!!']
             except Exception as e:
-                print("Gspread Error in {}, {}:".format(course_name, book_url), e)
+                print("Gspread Error in {}, {}:".format(course_name, sheet_url), e)
             for sheet in sheet_names:
                 start = time.time()
                 if sheet[:2] == '##':
-                    skills, lesson_id = process_sheet(book_url, sheet, default_path, 'online', 'FALSE',
-                                           validator_path=validator_path, course_name=course_name)
+                    skills, lesson_id = process_sheet(sheet_url, sheet, default_path, 'online', 'FALSE',
+                                           validator_path=validator_path, course_name=course_name, editor=is_editor)
                 else:
-                    skills, lesson_id = process_sheet(book_url, sheet, default_path, 'online', 'TRUE',
-                                           validator_path=validator_path, course_name=course_name)
+                    skills, lesson_id = process_sheet(sheet_url, sheet, default_path, 'online', 'TRUE',
+                                           validator_path=validator_path, course_name=course_name, editor=is_editor)
                 if not lesson_id:
                     continue
                 if not skills:
@@ -116,29 +131,7 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
                 end = time.time()
                 if end - start < 4.5:
                     time.sleep(4.5 - (end - start))
-            course_plan.append(create_course_plan(course_name, lesson_plan))
-
-        # process editor sheet
-        for index, row in url_df.iterrows():
-            editor_url = row['Editor Sheet']
-            if editor_url:
-                editor_book = get_sheet(editor_url)
-                editor_sheet_names = [sheet.title for sheet in editor_book.worksheets() if sheet.title[:2] != '!!']
-                for sheet in editor_sheet_names:
-                    start = time.time()
-                    try:
-                        if sheet[:2] == '##':
-                            process_sheet(editor_url, sheet, editor_content_path, 'online', 'FALSE',
-                                          validator_path=validator_path, editor=True, course_name="")
-                        else:
-                            process_sheet(editor_url, sheet, editor_content_path, 'online', 'TRUE',
-                                          validator_path=validator_path, editor=True, course_name="")
-                    except Exception as e:
-                        print("Error in {}:".format(sheet), e)
-
-                    end = time.time()
-                    if end - start < 4.5:
-                        time.sleep(4.5 - (end - start))
+            course_plan.append(create_course_plan(course_name, lesson_plan, editor=is_editor))
 
     file = open(os.path.join("..", "coursePlans.js"), "w")
     finish_course_plan(course_plan, file)
