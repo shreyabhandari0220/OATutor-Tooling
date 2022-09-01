@@ -16,6 +16,7 @@ def test_all_content(url_prefix):
     driver = start_driver()
 
     all_files = get_all_content_filename()
+    # all_files = ['a18d102geometric22', 'a1a1ee1measure30', 'a1f32dfFormula3', 'a9e42b3CompInv11', 'a0cc26bpoly10', 'a53b893whole8', 'a5c2168rotation7', 'a9c142dVarCon32', 'a251a50multiplication10', 'a443311sqroots22', 'a3d6ae2sys7', 'a1f32dfFormula18']
     alert_df = pd.DataFrame(columns=["Book Name", "Error Log", "Commit Hash", "Issue Type", "Status", "Comment"])
 
     count = 0
@@ -65,6 +66,11 @@ def test_all_content(url_prefix):
             err = "Exception on problem {0}: {1}".format(problem_name, e)
             print(err)
             alert_df = alert_df.append({"Book Name": problem.book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            try:
+                driver.close()
+                driver = start_driver()
+            except InvalidSessionIdException:
+                driver = start_driver()
 
     try:
         driver.close()

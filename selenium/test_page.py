@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.common.exceptions import NoSuchElementException, InvalidSessionIdException, TimeoutException, ElementNotInteractableException, MoveTargetOutOfBoundsException, ElementClickInterceptedException
@@ -14,11 +15,9 @@ import re
 import pandas as pd
 
 from fetch_problem_ans import fetch_problem_ans_info
-from generate_script import generate_script_arithmetic
 from alert_error import alert
 from wait_class import element_has_attribute
 
-# URL_PREFIX = "https://cahlr.github.io/OATutor-Staging/#/debug/"
 CORRECT = "https://cahlr.github.io/OATutor-Content-Staging/static/images/icons/green_check.svg"
 WRONG = "https://cahlr.github.io/OATutor-Content-Staging/static/images/icons/error.svg"
 SCROLL_LENGTH = 500
@@ -29,21 +28,35 @@ def start_driver():
     # sets up selenium driver with correct Chrome headless version
     os.environ['WDM_LOG_LEVEL'] = '0'  # suppress logs from ChromeDriverManager install
     options = webdriver.ChromeOptions()
-    options.headless = True
+    # options.headless = True
     options.add_argument("start-maximized")
     options.add_argument("disable-infobars")
     options.add_argument("--disable-extensions")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
-    # options.add_experimental_option('w3c', False)
-    driver = webdriver.Chrome(ChromeDriverManager(version="103.0.5060.53").install(), options=options)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager(version="103.0.5060.53").install()), options=options)
     driver.maximize_window()
     return driver
+
+
+def generate_script_arithmetic(selector, answer):
+    answer = re.sub(r'\\', r'\\\\', answer)
+    answer = re.sub('\'', '\\\'', answer)
+    answer = re.sub('\$', '', answer)
+    selector = re.sub(r"\"", "\\\"", selector)
+    script = "document = new Document();\n"
+    script += "ans = document.querySelector(\"{}\");\n".format(selector)
+    script += "var MQ = MathQuill.getInterface(2);\n"
+    script += "mathField = MQ.MathField(ans);\n"
+    script += "mathField.focus();\n"
+    script += "mathField.latex(\"\");\n"
+    script += "mathField.write('{}');\n".format(answer)
+    return script
+
 
 def test_page(url_prefix, problem, driver, alert_df, test_hints=True):
     global page_breaks
     global last_katex_time
-
     url = url_prefix + problem.problem_name
     driver.get(url)
     header_selector = "[data-selenium-target=problem-header]"
@@ -51,8 +64,9 @@ def test_page(url_prefix, problem, driver, alert_df, test_hints=True):
 
     try:
         WebDriverWait(driver, 2).until(EC.presence_of_element_located((By.CSS_SELECTOR, header_selector)))
-        driver.find_element_by_css_selector(header_selector)
-    except Exception:
+        driver.find_element(By.CSS_SELECTOR, header_selector)
+    except Exception as err:
+        print(err)
         err = "{}: Cannot load problem page.".format(problem.problem_name)
         alert_df = alert_df.append({"Book Name": problem.book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         try:
@@ -65,21 +79,19 @@ def test_page(url_prefix, problem, driver, alert_df, test_hints=True):
     problem_index = 0
     page_breaks = False
 
-    katex_error_msg = "ParseError: KaTeX parse error"
-    for log in driver.get_log('browser'): 
-        if katex_error_msg in log["message"] and (last_katex_time == None or log["timestamp"] > last_katex_time + 2000):
-            print(log)
-            last_katex_time = log["timestamp"]
-            err = "{}: Katex parser error".format(problem.problem_name)
-            alert_df = alert_df.append({"Book Name": problem.book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-            break
-            
-
     for step in problem.steps:
         if page_breaks:
             break
         alert_df, driver = test_step(problem.problem_name, driver, problem_index, step, alert_df, problem.book_name, len(problem.steps), test_hints=test_hints)
         problem_index += 1
+
+    katex_error_msg = "ParseError: KaTeX parse error"
+    for log in driver.get_log('browser'): 
+        if katex_error_msg in log["message"] and (last_katex_time == None or log["timestamp"] > last_katex_time + 2000):
+            last_katex_time = log["timestamp"]
+            err = "{}: Katex parser error".format(problem.problem_name)
+            alert_df = alert_df.append({"Book Name": problem.book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            break
 
     driver.execute_script('console.clear()')
 
@@ -92,36 +104,38 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
 
     # Enter step answer
     if step.type.split()[0] == "TextBox":
-        if type(step.answer) != list:
+        if type(step.answer) != list: # if not using variabilization
             alert_df = enter_text_answer(problem_name, driver, problem_index, step.answer, step.type.split()[1], alert_df, book_name, step_len)
             # click submit and check correctness  
             try:
                 submit_selector = "[data-selenium-target=submit-button-{}]".format(problem_index)
                 icon_selector = "[data-selenium-target=step-correct-img-{}]".format(problem_index)
-                submit = driver.find_element_by_css_selector(submit_selector)
+                submit = driver.find_element(By.CSS_SELECTOR, submit_selector)
+
+                # Click Submit button
                 try:
-                    # ActionChains(driver).move_to_element(submit).click(submit).perform()
                     submit.send_keys(Keys.SPACE)
                 except MoveTargetOutOfBoundsException:
-                    # driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
                     driver.execute_script("arguments[0].scrollIntoView();", submit)
                     driver.execute_script("arguments[0].click();", submit)
                     print('text step submit button')
+
+                # Check correctness
                 try:
                     WebDriverWait(driver, 0.45).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
                 except TimeoutException:
                     submit.click()
                     WebDriverWait(driver, 0.45).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
-                icon = driver.find_element_by_css_selector(icon_selector)
+                icon = driver.find_element(By.CSS_SELECTOR, icon_selector)
                 if icon.get_attribute("src") != CORRECT:
                     err = "{0}: Invalid answer for step {1}: {2}".format(problem_name, problem_index + 1, step.answer)
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            
             except NoSuchElementException:
                 err = "{0}: step {1} submit does not exist.".format(problem_name, problem_index + 1)
                 alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         
-        # if using variablization
-        else:
+        else:  # if using variablization, need to check every possible answer
             correct = False
             for answer in step.answer:
                 alert_df = enter_text_answer(problem_name, driver, problem_index, answer, step.type.split()[1], alert_df, book_name, step_len)
@@ -129,20 +143,23 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
                 try:
                     submit_selector = "[data-selenium-target=submit-button-{}]".format(problem_index)
                     icon_selector = "[data-selenium-target=step-correct-img-{}]".format(problem_index)
-                    submit = driver.find_element_by_css_selector(submit_selector)
+                    submit = driver.find_element(By.CSS_SELECTOR, submit_selector)
+
+                    # Click Submit button
                     try:
-                        # ActionChains(driver).move_to_element(submit).click(submit).perform()
                         submit.send_keys(Keys.SPACE)
                     except MoveTargetOutOfBoundsException:
-                        # driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
                         driver.execute_script("arguments[0].scrollIntoView();", submit)
                         driver.execute_script("arguments[0].click();", submit)
                         print ('text step var submit button')
+
+                    # Check correctness
                     WebDriverWait(driver, 0.45).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
-                    icon = driver.find_element_by_css_selector(icon_selector)
+                    icon = driver.find_element(By.CSS_SELECTOR, icon_selector)
                     if icon.get_attribute("src") == CORRECT:
                         correct = True
                         break
+
                 except NoSuchElementException:
                     err = "{0}: step {1} submit does not exist.".format(problem_name, problem_index + 1)
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
@@ -151,8 +168,7 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
                 alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         
     elif step.type.split()[0] == "MultipleChoice":
-        pass
-        # enter_mc_answer(problem_name, driver, problem_index, correct_answer)
+        pass # MC check not supported
     
     else:
         err = '{0}: Wrong answer type for step {1}: {2}'.format(problem_name, problem_index + 1, step.type)
@@ -172,24 +188,23 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
 
     commit_hash = driver.execute_script("return document['oats-meta-site-hash']")
 
+    # Matrix type
     if answer_type == "arithmetic" and "begin{bmatrix}" in correct_answer: 
         try:
             # Enter matrix dimension
             row_count = correct_answer.count('\\\\') + 1
             col_count = re.search(r'begin\{bmatrix\}(.*?)\\\\', correct_answer).group(1).count('&') + 1
             row_selector = "[data-selenium-target=grid-answer-row-input-{}] > div > input".format(problem_index)
-            row = driver.find_element_by_css_selector(row_selector)
+            row = driver.find_element(By.CSS_SELECTOR, row_selector)
             row.send_keys(row_count)
             col_selector = "[data-selenium-target=grid-answer-col-input-{}] > div > input".format(problem_index)
-            col = driver.find_element_by_css_selector(col_selector)
+            col = driver.find_element(By.CSS_SELECTOR, col_selector)
             col.send_keys(col_count)
             next_button_selector = "[data-selenium-target=grid-answer-next-{}]".format(problem_index)
-            next_button = driver.find_element_by_css_selector(next_button_selector)
+            next_button = driver.find_element(By.CSS_SELECTOR, next_button_selector)
             try:
-                # ActionChains(driver).move_to_element(next_button).click(next_button).perform()
                 next_button.send_keys(Keys.SPACE)
             except MoveTargetOutOfBoundsException:
-                # driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
                 driver.execute_script("arguments[0].scrollIntoView();", next_button)
                 driver.execute_script("arguments[0].click();", next_button)
                 print ('matrix step next button')
@@ -200,44 +215,39 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
             matrix_elements = [elem.group(1) for elem in answer_iter]
             for i in range(row_count * col_count):
                 ans_selector = "[data-selenium-target=grid-answer-cell-{0}-{1}] > span".format(i, problem_index)
-                ans = driver.find_element_by_css_selector(ans_selector)
+                ans = driver.find_element(By.CSS_SELECTOR, ans_selector)
                 script = generate_script_arithmetic(ans_selector, matrix_elements[i])
                 driver.execute_script(script, ans)
 
         except NoSuchElementException:
             err = "{0}: step {1} matrix dimension or answer input box does not exist.".format(problem_name, problem_index + 1)
             alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-            # print("{0}: step {1} matrix dimension or answer input box does not exist.".format(problem_name, problem_index - 1))
         except AttributeError:
             err = "{0}: step {1} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index + 1)
             alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-            # print("{0}: step {1} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index - 1))
     
     elif answer_type == "arithmetic":
         ans_selector = "[data-selenium-target=arithmetic-answer-{}] > span".format(problem_index)
         try:
-            ans = driver.find_element_by_css_selector(ans_selector)
+            ans = driver.find_element(By.CSS_SELECTOR, ans_selector)
             script = generate_script_arithmetic(ans_selector, correct_answer)
             driver.execute_script(script, ans)
         except NoSuchElementException:
             err = "{0}: step {1} arithmetic answer box does not exist.".format(problem_name, problem_index + 1)
             alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-            # print("{0}: step {1} arithmetic answer box does not exist.".format(problem_name, problem_index))
 
     elif answer_type == "string":
         ans_selector = "[data-selenium-target=string-answer-{}] > div > input".format(problem_index)
         try:
-            ans = driver.find_element_by_css_selector(ans_selector)
+            ans = driver.find_element(By.CSS_SELECTOR, ans_selector)
             ans.send_keys(correct_answer)
         except NoSuchElementException:
             err = "{0}: step {1} string answer box does not exist.".format(problem_name, problem_index + 1)
             alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-            # print("{0}: step {1} string answer box does not exist.".format(problem_name, problem_index))
 
     else:
         err = "{0}: step {1} string answer box does not exist.".format(problem_name, problem_index + 1)
         alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-        # print("{0}: step {1} answer box type not defined: {2}".format(problem_name, problem_index, answer_type))
     return alert_df
 
 
@@ -248,12 +258,10 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
 
     try:
         raise_hand_selector = "[data-selenium-target=hint-button-{}]".format(problem_index)
-        raise_hand_button = driver.find_element_by_css_selector(raise_hand_selector)
+        raise_hand_button = driver.find_element(By.CSS_SELECTOR, raise_hand_selector)
         try:
-            # ActionChains(driver).move_to_element(raise_hand_button).click(raise_hand_button).perform()
             raise_hand_button.send_keys(Keys.SPACE)
         except MoveTargetOutOfBoundsException:
-            # driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
             driver.execute_script("arguments[0].scrollIntoView();", raise_hand_button)
             driver.execute_script("arguments[0].click();", raise_hand_button)
             print ('raise hand button')
@@ -261,7 +269,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
         # checks if clicking on raise hand button breaks the page
         try:
             header_selector = "[data-selenium-target=problem-header]"
-            driver.find_element_by_css_selector(header_selector)
+            driver.find_element(By.CSS_SELECTOR, header_selector)
         except Exception:
             page_breaks = True
             err = "{0}: Clicking on step {1} raise hand button breaks the page.".format(problem_name, problem_index + 1)
@@ -291,6 +299,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
         err = "{0}: step {1} raise hand button not found.".format(problem_name, problem_index + 1)
         alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         return alert_df, driver
+    
     hint_idx = 0
 
     while hint_idx <= len(hints):
@@ -305,20 +314,10 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                 alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                 return alert_df, driver
             
-            hint_expand_button = driver.find_element_by_css_selector(hint_selector)
-
+            hint_expand_button = driver.find_element(By.CSS_SELECTOR, hint_selector)
             try:
-                # ActionChains(driver).move_to_element(hint_expand_button).click(hint_expand_button).perform()
-                # hint_expand_button.click()
                 hint_expand_button.send_keys(Keys.SPACE)
-            except MoveTargetOutOfBoundsException:
-                # driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
-                driver.execute_script("arguments[0].scrollIntoView();", hint_expand_button)
-                driver.execute_script("arguments[0].click();", hint_expand_button)
-                print('hint expand button', hint_selector)
-
-            except ElementClickInterceptedException:
-                # driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
+            except (MoveTargetOutOfBoundsException, ElementClickInterceptedException):
                 driver.execute_script("arguments[0].scrollIntoView();", hint_expand_button)
                 driver.execute_script("arguments[0].click();", hint_expand_button)
                 print('hint expand button', hint_selector)
@@ -328,9 +327,11 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
             alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             return alert_df, driver
 
+        # if is hint, proceed to the next hint
         if hint_idx == len(hints) or hints[hint_idx] == "hint":
             hint_idx += 1
-            # print(hint_selector)
+
+        # if is scaffold, check scaffold answer
         else:
             correct_answer, answer_type = hints[hint_idx]
 
@@ -348,26 +349,24 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                     col_count = re.search(r'begin\{bmatrix\}(.*?)\\\\', correct_answer).group(1).count('&') + 1
                     row_selector = "[data-selenium-target=grid-answer-row-input-{0}-{1}] > div > input".format(hint_idx, problem_index)
                     WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, row_selector)))
-                    row = driver.find_element_by_css_selector(row_selector)
+                    row = driver.find_element(By.CSS_SELECTOR, row_selector)
                     try:
                         row.send_keys(row_count)
                     except ElementNotInteractableException:
                         time.sleep(0.1)
                         row.send_keys(row_count)
                     col_selector = "[data-selenium-target=grid-answer-col-input-{0}-{1}] > div > input".format(hint_idx, problem_index)
-                    col = driver.find_element_by_css_selector(col_selector)
+                    col = driver.find_element(By.CSS_SELECTOR, col_selector)
                     try:
                         col.send_keys(col_count)
                     except ElementNotInteractableException:
                         time.sleep(0.1)
                         col.send_keys(col_count)
                     next_button_selector = "[data-selenium-target=grid-answer-next-{0}-{1}]".format(hint_idx, problem_index)
-                    next_button = driver.find_element_by_css_selector(next_button_selector)
+                    next_button = driver.find_element(By.CSS_SELECTOR, next_button_selector)
                     try:
-                        # ActionChains(driver).move_to_element(next_button).click(next_button).perform()
                         next_button.send_keys(Keys.SPACE)
                     except MoveTargetOutOfBoundsException:
-                        # driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
                         driver.execute_script("arguments[0].scrollIntoView();", next_button)
                         driver.execute_script("arguments[0].click();", next_button)
                         print ('hint matrix next button')
@@ -378,21 +377,18 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                     matrix_elements = [elem.group(1) for elem in answer_iter]
                     for i in range(row_count * col_count):
                         ans_selector = "[data-selenium-target=grid-answer-cell-{0}-{1}-{2}] > span".format(i, hint_idx, problem_index)
-                        ans = driver.find_element_by_css_selector(ans_selector)
+                        ans = driver.find_element(By.CSS_SELECTOR, ans_selector)
                         script = generate_script_arithmetic(ans_selector, matrix_elements[i])
                         driver.execute_script(script, ans)
 
                 except NoSuchElementException:
                     err = "{0}: step {1} hint {2} matrix dimension or answer input box does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-                    # print("{0}: step {1} matrix dimension or answer input box does not exist.".format(problem_name, problem_index))
                     return alert_df, driver
                 except AttributeError:
                     err = "{0}: step {1} hint {2} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index + 1, hint_idx + 1)
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-                    # print("{0}: step {1} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index))
                     return alert_df, driver
-
 
             elif answer_type == "arithmetic":
                 scaffold_answer_selector = "[data-selenium-target=arithmetic-answer-{0}-{1}] > span".format(hint_idx, problem_index)
@@ -403,7 +399,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                     return alert_df, driver
                 try:
-                    ans = driver.find_element_by_css_selector(scaffold_answer_selector)
+                    ans = driver.find_element(By.CSS_SELECTOR, scaffold_answer_selector)
                     script = generate_script_arithmetic(scaffold_answer_selector, correct_answer)
                     driver.execute_script(script, ans)
                 except NoSuchElementException:
@@ -415,7 +411,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                 scaffold_answer_selector = "[data-selenium-target=string-answer-{0}-{1}] > div > input".format(hint_idx, problem_index)
                 WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, scaffold_answer_selector)))
                 try:
-                    ans = driver.find_element_by_css_selector(scaffold_answer_selector)
+                    ans = driver.find_element(By.CSS_SELECTOR, scaffold_answer_selector)
                     ans.send_keys(correct_answer)
                 except NoSuchElementException:
                     err = "{0}: step {1} hint {2} string answer box does not exist.".format(problem_name, problem_index + 1, hint_idx + 1)
@@ -434,14 +430,10 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
             try:
                 submit_selector = "[data-selenium-target=submit-button-{0}-{1}]".format(hint_idx, problem_index)
                 icon_selector = "[data-selenium-target=step-correct-img-{0}-{1}]".format(hint_idx, problem_index)
-                submit = driver.find_element_by_css_selector(submit_selector)
+                submit = driver.find_element(By.CSS_SELECTOR, submit_selector)
                 try:
-                    # ActionChains(driver).move_to_element(submit).click(submit).perform()
-                    # submit.click()
                     submit.send_keys(Keys.SPACE)
-                    # time.sleep(1)
                 except MoveTargetOutOfBoundsException:
-                    # driver.execute_script('window.scrollBy(0, ' + str(SCROLL_LENGTH) + ');')
                     driver.execute_script("arguments[0].scrollIntoView();", submit)
                     driver.execute_script("arguments[0].click();", submit)
                     print('submit button')
@@ -450,7 +442,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                     driver.execute_script("arguments[0].click();", submit)
                     print('submit button 1')
                 WebDriverWait(driver, 1).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
-                icon = driver.find_element_by_css_selector(icon_selector)
+                icon = driver.find_element(By.CSS_SELECTOR, icon_selector)
                 if icon.get_attribute("src") != CORRECT:
                     err = "{0}: Invalid answer for step {1} hint {2}: {3}".format(problem_name, problem_index + 1, hint_idx + 1, correct_answer)
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
@@ -460,10 +452,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                 alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)     
                 return alert_df, driver
 
-            # time.sleep(0.3)
-
             hint_idx += 1
-        # time.sleep(0.3)
     
     return alert_df, driver
 

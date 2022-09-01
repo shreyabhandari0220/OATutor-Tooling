@@ -22,7 +22,7 @@ def process_hint_answer(hint_text):
     for hint in hint_list:
         if not re.search(", type: \"(\w+)\"", hint):
             break
-        if not re.search("id: \"a.+\-h\d+\"", hint):
+        if not re.search("id: \"a[^-]+\-[hs]\d+(?!\-)\"", hint):
             continue
         hint_type = re.search(", type: \"(\w+)\"", hint).group(1)
         if hint_type == "hint":
