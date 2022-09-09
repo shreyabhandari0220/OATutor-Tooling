@@ -6,7 +6,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 FEEDBACK_SPREADSHEET = "1PoPG4i_gQy20YdeyYpD5SvjfohbuUwSyLCcNOKDBQ20"
 SHEET_NAME = "Selenium Error Log"
-# SHEET_NAME = "Test"
 
 def alert(alert_df):
     scope = ['https://spreadsheets.google.com/feeds'] 
@@ -27,9 +26,6 @@ def alert(alert_df):
     alert_df = alert_df.set_index("Error Log")
     missing_rows = alert_df.index.difference(original_df.index)
     new_df = original_df.append(alert_df.loc[missing_rows])
-
-
-
 
     new_df = new_df.reset_index()
     new_df = new_df.reindex(columns=['Book Name', 'Error Log', 'Commit Hash', 'Issue Type', 'Status', 'Comment'])

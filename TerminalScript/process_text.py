@@ -103,9 +103,9 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
                     new_word = "$$" + "".join(sides) + "$$"
                 else:
                     if quote:
-                        new_word = "$$" + "\\\"" + "".join([side.replace("\\", "\\\\") for side in sides]) + "\\\"" + "$$"
+                        new_word = "$$" + "\\\"" + "".join([side.replace("\\", "\\") for side in sides]) + "\\\"" + "$$"
                     else:
-                        new_word = "$$" + "".join([side.replace("\\", "\\\\") for side in sides]) + "$$"
+                        new_word = "$$" + "".join([side.replace("\\", "\\") for side in sides]) + "$$"
                     new_word = re.sub(r"\\\\\"\$\$", r"\"$$", new_word)
                     new_word = re.sub(r"\$\$\\\\\"", r"$$\"", new_word)
                 if strip_punc:

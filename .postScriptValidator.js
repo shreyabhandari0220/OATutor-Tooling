@@ -12,6 +12,8 @@ if (process.argv.length > 2 && process.argv[2] == 'auto') {
 
 // node --experimental-modules .\postScriptValidator.js
 
+// TODO: migrate into process sheet.py
+
 problems.map(problem => {
   problem.steps.map(step => {
     stepCounter += 1;

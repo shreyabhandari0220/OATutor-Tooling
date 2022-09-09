@@ -27,9 +27,9 @@ def create_problem_dir(sheet_name, name, path, verbosity):
 
     os.makedirs(target)
     os.mkdir(target + "/steps")
-    problem_js = target + "/" + name+".js"
-    open(problem_js, "x")
-    return name, target, problem_js
+    problem_json_path = target + "/" + name+".json"
+    open(problem_json_path, "x")
+    return name, target, problem_json_path
 
 def create_fig_dir(path):
     figures = path+"/figures"
@@ -40,13 +40,13 @@ def create_step_dir(name, path, verbosity):
     target = path + "/" + name
     os.mkdir(target)
     os.mkdir(target + "/tutoring")
-    reg_js = target + "/" + name+".js"
-    default_pathway = target + "/tutoring/" + name + "DefaultPathway.js"
+    step_reg_json_path = target + "/" + name+".json"
+    default_pathway = target + "/tutoring/" + name + "DefaultPathway.json"
     if verbosity:
         print("This is the pathway for " + name, default_pathway)
-    open(reg_js, "x")
+    open(step_reg_json_path, "x")
     open(default_pathway,"x")
-    return target, reg_js, default_pathway
+    return target, step_reg_json_path, default_pathway
 
 def create_validator_dir(name, path):
     target = path + "/" + name

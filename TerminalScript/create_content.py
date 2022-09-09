@@ -3,24 +3,22 @@ import re
 
 from process_text import preprocess_text_to_latex
 
+
 def create_variabilization(variabilization):
     if variabilization:
         var_list = variabilization.split("\n")
-        var_str = ""
-        for var in var_list:
-            name, field = var.split(":")
-            fields = field.split("|") 
-            var_str += name + ": ["
-            for f in fields:
-                var_str += "\"" + f + "\", "
-            var_str = var_str[:-2]
-            var_str += "], "
-        var_str = "{" + var_str[:-2] + "}"
-    else:
-        var_str = "{}"
-    return var_str
 
-def create_problem_js(name,title,body,oer,images=[],variabilization='',latex=True,verbosity=False,course_name="",sheet_name=""):
+        def var_str_pair_to_tuple (var_str_pair):
+            [var_name, var_value_str] = var_str_pair.split(":")
+            var_values = var_value_str.split("|")
+            return var_name, var_values
+        var_dict = dict(map(var_str_pair_to_tuple, var_list))
+    else:
+        var_dict = {}
+    return var_dict
+
+
+def create_problem_json(name,title,body,oer,images=[],var_str='',latex=True,verbosity=False,course_name="",sheet_name=""):
     if type(body) == float:
         body= ""
     for image in images:
@@ -30,27 +28,24 @@ def create_problem_js(name,title,body,oer,images=[],variabilization='',latex=Tru
 
     title, title_latex = preprocess_text_to_latex(title, render_latex=latex, verbosity=verbosity)
     body, body_latex = preprocess_text_to_latex(body, render_latex=latex, verbosity=verbosity)
-    
-    var_str = create_variabilization(variabilization)
 
-    contents = "import steps from \"./{0}-index.js\"; const problem = ".format(name) + "{" + "id: \"{0}\", ".format(name)
+    # TODO: fix "create_variabilization"
+    variabilization = create_variabilization(var_str)
 
-    contents += "title: \"{0}\", ".format(title)
-    contents += "body: \"{0}\", ".format(body)
+    problem_dict = {
+        "id": name,
+        "title": title,
+        "body": body,
+        "variabilization": variabilization,
+        "oer": oer,
+        "lesson": sheet_name,
+        "courseName": course_name
+    }
     
-    contents +=  "steps: steps, "
-    contents += "variabilization: {0}, ".format(var_str)
-    contents += "oer: \"{0}\", ".format(oer)
-    contents += "lesson: \"{0}\", ".format(sheet_name)
-    contents += "courseName: \"{0}\"".format(course_name)
-    contents += "}; export { problem };"
-    
-    contents = re.sub("(\.js){2,}", ".js", contents) #To account for .js.js or .js.js.js
-    
-    return contents
+    return json.dumps(problem_dict, indent=4)
 
 
-def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhints=[], hint_dic={}, variabilization='',latex=True,verbosity=False):
+def create_hint(step, hint_id, title, body, dependencies="", images=[], subhints=[], hint_dic={}, var_str='',latex=True,verbosity=False):
     if type(body) == float:
         body = ""
     if type(title) == float:
@@ -59,7 +54,7 @@ def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhint
     title, title_latex = preprocess_text_to_latex(title, True, render_latex=latex, verbosity=verbosity)
     body, body_latex = preprocess_text_to_latex(body, True, render_latex=latex, verbosity=verbosity)
 
-    var_str = create_variabilization(variabilization)
+    variabilization = create_variabilization(var_str)
     
     try:
         hint_id = step + "-" + hint_id
@@ -69,31 +64,31 @@ def create_hint(step, hint_id, title, body, dependencies=0.0, images=[], subhint
         body += "\\n##{0}##".format(image)
     if type(dependencies) == str and dependencies != 'None':
         try:
-            dependencies = json.dumps([hint_dic[hint_id] for hint_id in dependencies.split(",")])
+            dependencies = [hint_dic[hint_id] for hint_id in dependencies.split(",")]
         except Exception as e:
             raise Exception("Hint key error (might be cause by errors in the rows above)")
     else:
-        dependencies = "[]"
-    
-    subhint_text = ""
-    for subhint in subhints:
-        subhint_text += subhint + ", "
-    subhint_text = "[" + subhint_text + "]"
-    
-    hint_obj = "id: \"{0}\", type: \"hint\", dependencies: {1}".format(hint_id, dependencies)
-    hint_obj += ", title: \"{0}\"".format(title)
-    hint_obj += ", text: \"{0}\"".format(body)
-    
-    if len(subhints) > 0:
-        hint_obj += ", subHints: {0}".format(subhint_text)
-    
-    hint_obj += ", variabilization: {0}".format(var_str)
+        dependencies = []
 
-    hint_obj = "{" + hint_obj + "}"
-    return hint_obj, hint_id
+    hint_dict = {
+        "id": hint_id,
+        "type": "hint",
+        "dependencies": dependencies,
+        "title": title,
+        "text": body,
+        "variabilization": variabilization
+    }
+
+    if len(subhints) > 0:
+        hint_dict.update({
+            "subHints": subhints
+        })
+
+    return hint_dict, hint_id
 
 
 scaff_dic = {"mc": "string", "numeric": "TextBox", "algebra": "TextBox", "string": "string"}
+
 
 def handle_answer_type(answer_type):
     if answer_type == "mc":
@@ -108,7 +103,7 @@ def handle_answer_type(answer_type):
         raise Exception('Answer type not correct: ' + answer_type)
 
 
-def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, dependencies=0.0, images="", subhints=[], hint_dic={}, variabilization="",latex=True,verbosity=False):
+def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, dependencies=0.0, images="", subhints=[], hint_dic={}, var_str="",latex=True,verbosity=False):
     if type(body) == float:
         body = ""
     if type(title) == float:
@@ -117,7 +112,7 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
     title, title_latex = preprocess_text_to_latex(title, True, render_latex=latex, verbosity=verbosity)
     body, body_latex = preprocess_text_to_latex(body, True, render_latex=latex, verbosity=verbosity)
 
-    var_str = create_variabilization(variabilization)
+    variabilization = create_variabilization(var_str)
 
     # getting rid of timestamp format for fractions
     try:
@@ -136,46 +131,47 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
 
     if type(dependencies) == str and dependencies != 'None':
         try:
-            dependencies = json.dumps([hint_dic[hint_id] for hint_id in dependencies.split(",")])
+            dependencies = [hint_dic[hint_id] for hint_id in dependencies.split(",")]
         except Exception as e:
             raise Exception("Hint key error (might be cause by errors in the rows above)")
     else:
-        dependencies = "[]"
+        dependencies = []
     
     answer_type, problem_type = handle_answer_type(answer_type)
     if answer_type == "arithmetic":
         answer = preprocess_text_to_latex(answer, render_latex=latex, verbosity=verbosity)[0]
-    scaff_ans = "[\"" + str(answer) + "\"]"
-
+    scaff_ans = [answer]
     
     if type(mc_answers) != float:
-        mc_answers = json.dumps([preprocess_text_to_latex(mc_answer, True, True, render_latex=latex, verbosity=verbosity)[0] for mc_answer in mc_answers.split("|") if mc_answer])
-        answer = json.dumps(preprocess_text_to_latex(answer, True, True, render_latex=latex, verbosity=verbosity)[0])
-        scaff_ans = "[" + str(answer) + "]"
-    
-    
-    scaff_obj = "id: \"{0}\", type: \"scaffold\", problemType: \"{1}\", answerType: \"{2}\", hintAnswer: {3}, dependencies: {4}".format(scaffold_id, problem_type, answer_type, scaff_ans, dependencies)
-    scaff_obj += ", title: \"{0}\"".format(title)
-    scaff_obj += ", text: \"{0}\"".format(body)
-    
-    
-    if type(mc_answers) == str:
-        scaff_obj += ", choices: {0}".format(mc_answers)
+        mc_answers = [preprocess_text_to_latex(mc_answer, True, True, render_latex=latex, verbosity=verbosity)[0] for mc_answer in mc_answers.split("|") if mc_answer]
+        answer = preprocess_text_to_latex(answer, True, True, render_latex=latex, verbosity=verbosity)[0]
+        scaff_ans = [answer]
+
+    scaff_dict = {
+        "id": scaffold_id,
+        "type": "scaffold",
+        "problemType": problem_type,
+        "answerType": answer_type,
+        "hintAnswer": scaff_ans,
+        "dependencies": dependencies,
+        "title": title,
+        "text": body,
+        "variabilization": variabilization
+    }
+
+    if type(mc_answers) is list:
+        scaff_dict.update({
+            "choices": mc_answers
+        })
     if len(subhints) > 0:
-        subhint_text = ""
-        for subhint in subhints:
-            subhint_text += subhint + ", "
-        subhint_text = subhint_text[:-2]
-        subhint_text = "[" + subhint_text + "]"    
-        scaff_obj += ", subHints: {0}".format(subhint_text)
+        scaff_dict.update({
+            "subHints": subhints
+        })
 
-    scaff_obj += ", variabilization: {0}".format(var_str)
-
-    scaff_obj = "{" + scaff_obj + "}"
-    return scaff_obj, scaffold_id
+    return scaff_dict, scaffold_id
 
 
-def create_step(name, title, body, answer, answer_type, number, choices="", image="", variabilization="",latex=True, verbosity=False):
+def create_step(name, title, body, answer, answer_type, number, choices="", image="", var_str="",latex=True, verbosity=False):
     step_id = name + chr(ord('a')+number-1)
     if type(body) == float:
         body = ""
@@ -185,7 +181,7 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
     title, title_latex = preprocess_text_to_latex(title, render_latex=latex, verbosity=verbosity)
     body, body_latex = preprocess_text_to_latex(body, render_latex=latex, verbosity=verbosity)
 
-    var_str = create_variabilization(variabilization)
+    variabilization = create_variabilization(var_str)
 
     # getting rid of timestamp format for fractions
     try:
@@ -207,24 +203,31 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
             choice_list.append(answer)
             choice_list.sort()
 
-        choices = json.dumps([preprocess_text_to_latex(mc_answer, True, True, render_latex=latex, verbosity=verbosity)[0] for mc_answer in choice_list])
+        choices = [preprocess_text_to_latex(mc_answer, True, True, render_latex=latex, verbosity=verbosity)[0] for mc_answer in choice_list]
         answer = preprocess_text_to_latex(answer, tutoring=True, render_latex=latex, verbosity=verbosity)[0]
     
     answer_type, problem_type = handle_answer_type(answer_type)
     if answer_type == "arithmetic":
         answer = new_answer
 
-    step =  "import hints from \"./{0}-index.js\"; const step = ".format(step_id) + "{" + "id: \"{0}\", stepAnswer: [\"{1}\"], problemType: \"{2}\"".format(step_id, answer, problem_type)
-    step += ", stepTitle: \"{0}\"".format(title)
-    step += ", stepBody: \"{0}\"".format(body)
-    
-    if answer_latex:
-        ", answerLatex: \"{0}\"".format(new_answer)
-        
-    if type(choices) == str:
-        step += ", choices: " + str(choices)
-    step += ", answerType: \"{0}\", hints: hints".format(answer_type)
-    step += ", variabilization: {0}".format(var_str)
-    step += "}; export {step};"
+    step_dict = {
+        "id": step_id,
+        "stepAnswer": [answer],
+        "problemType": problem_type,
+        "stepTitle": title,
+        "stepBody": body,
+        "answerType": answer_type,
+        "variabilization": variabilization
+    }
 
-    return step
+    if answer_latex:
+        step_dict.update({
+            "answerLatex": new_answer
+        })
+
+    if type(choices) is list:
+        step_dict.update({
+            "choices": choices
+        })
+
+    return json.dumps(step_dict, indent=4)
