@@ -350,20 +350,13 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     skills_unformatted = ["_".join(skill.lower().split()) for skill in skills_unformatted]
 
     # write error checks to content google sheets
-    if validator_path:
-        try:
-            for col in ['Check 1', 'Check 2']:
-                if error_df[col].isnull().values.all():
-                    error_df.at[0, col] = "No errors found"
-            set_with_dataframe(worksheet, error_df, col=len(df.columns))
-        except Exception as e:
-            print('Fail to write to google sheet. Waiting...')
-            print('sheetname:', sheet_name, e)
-            time.sleep(40)
+    for col in ['Check 1', 'Check 2']:
+        if error_df[col].isnull().values.all():
+            error_df.at[0, col] = "No errors found"
 
-    # writing debug links to the content google sheets
+    error_debug_df = pd.concat([error_df, debug_df], axis=1)
     try:
-        set_with_dataframe(worksheet, debug_df, col=len(df.columns) + len(error_df.columns))
+        set_with_dataframe(worksheet, error_debug_df, col=len(df.columns))
     except Exception as e:
         print('Fail to write to google sheet. Waiting...')
         print('sheetname:', sheet_name, e)
