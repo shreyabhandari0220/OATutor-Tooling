@@ -22,11 +22,7 @@ fake_headers = {
 
 
 def create_default_pathway(tutoring):
-    to_return = "var hints = ["
-    for hint in tutoring:
-        to_return += hint + ", "
-    to_return += "]; export {hints};"
-    return to_return
+    return json.dumps(tutoring, indent=4)
 
 
 def save_images(images, path, num):
@@ -60,12 +56,12 @@ def save_images(images, path, num):
     return names, num
 
 
-def write_step_js(default_path, problem_name, row, step_count, tutoring, skills, images, figure_path, 
-                default_pathway_js, path, verbosity, variabilization, latex, result_problems):
+def write_step_json(default_path, problem_name, row, step_count, tutoring, skills, images, figure_path, 
+                default_pathway_json_path, path, verbosity, variabilization, latex, result_problems):
     if step_count > 0:
         # writes to step
         to_write = create_default_pathway(tutoring)
-        default_pathway = open(default_pathway_js, "w", encoding="utf-8")
+        default_pathway = open(default_pathway_json_path, "w", encoding="utf-8")
         default_pathway.write(to_write)
         default_pathway.close()
     tutoring = []
@@ -75,8 +71,8 @@ def write_step_js(default_path, problem_name, row, step_count, tutoring, skills,
     step_file = open(default_path + "/stepfiles.txt", "a+", encoding="utf-8")
     step_file.writelines("    " + current_step_name + ": " + "[\"realnumber\"], \n")
     # creates step js files
-    _, step_reg_js, default_pathway_js = create_step_dir(current_step_name, path + "/steps", verbosity)
-    step_file = open(step_reg_js, "w", encoding="utf-8")
+    _, step_reg_json_path, default_pathway_json_path = create_step_dir(current_step_name, path + "/steps", verbosity)
+    step_file = open(step_reg_json_path, "w", encoding="utf-8")
     step_images = ""
     # checks images and creates the figures path if necessary
     if type(row["Images (space delimited)"]) == str:
@@ -88,7 +84,7 @@ def write_step_js(default_path, problem_name, row, step_count, tutoring, skills,
     if variabilization:
         step_file.write(
             create_step(problem_name, row['Title'], row["Body Text"], row["Answer"], row["answerType"],
-                        step_count, choices, step_images, variabilization=row["Variabilization"],
+                        step_count, choices, step_images, var_str=row["Variabilization"],
                         latex=latex, verbosity=verbosity))
     else:
         step_file.write(
@@ -99,10 +95,10 @@ def write_step_js(default_path, problem_name, row, step_count, tutoring, skills,
     skill = "    {0}: [{1}],\n".format(current_step_name, result_problems)
     skills.append(skill)
 
-    return step_count, current_step_name, tutoring, skills, images, figure_path, default_pathway_js
+    return step_count, current_step_name, tutoring, skills, images, figure_path, default_pathway_json_path
 
 
-def write_subhint_js(row, row_type, current_step_name, current_subhints, tutoring, previous_tutor, 
+def write_subhint_json(row, row_type, current_step_name, current_subhints, tutoring, previous_tutor, 
                     previous_images, images, path, figure_path, hint_dic, verbosity, variabilization, latex):
     hint_images = ""
     if type(row["Images (space delimited)"]) == str and type(
@@ -116,7 +112,7 @@ def write_subhint_js(row, row_type, current_step_name, current_subhints, tutorin
         if variabilization:
             subhint, subhint_id = create_hint(current_step_name, hint_id, row["Title"],
                                                 row["Body Text"], row["Dependency"], hint_images,
-                                                hint_dic=hint_dic, variabilization=row["Variabilization"],
+                                                hint_dic=hint_dic, var_str=row["Variabilization"],
                                                 latex=latex, verbosity=verbosity)
         else:
             subhint, subhint_id = create_hint(current_step_name, hint_id, row["Title"],
@@ -128,7 +124,7 @@ def write_subhint_js(row, row_type, current_step_name, current_subhints, tutorin
                                                     row["Body Text"], row["answerType"], row["Answer"],
                                                     row["mcChoices"], row["Dependency"], hint_images,
                                                     hint_dic=hint_dic,
-                                                    variabilization=row["Variabilization"], latex=latex,
+                                                    var_str=row["Variabilization"], latex=latex,
                                                     verbosity=verbosity)
         else:
             subhint, subhint_id = create_scaffold(current_step_name, hint_id, row["Title"],
@@ -144,7 +140,7 @@ def write_subhint_js(row, row_type, current_step_name, current_subhints, tutorin
                                             previous_tutor["Title"], previous_tutor["Body Text"],
                                             previous_tutor["Dependency"], previous_images,
                                             subhints=current_subhints, hint_dic=hint_dic,
-                                            variabilization=previous_tutor["Variabilization"],
+                                            var_str=previous_tutor["Variabilization"],
                                             latex=latex, verbosity=verbosity)
         else:
             previous, hint_id = create_hint(current_step_name, previous_tutor["HintID"],
@@ -160,7 +156,7 @@ def write_subhint_js(row, row_type, current_step_name, current_subhints, tutorin
                                                 previous_tutor["mcChoices"],
                                                 previous_tutor["Dependency"], previous_images,
                                                 subhints=current_subhints, hint_dic=hint_dic,
-                                                variabilization=previous_tutor["Variabilization"],
+                                                var_str=previous_tutor["Variabilization"],
                                                 latex=latex, verbosity=verbosity)
         else:
             previous, hint_id = create_scaffold(current_step_name, previous_tutor["HintID"],
@@ -175,7 +171,7 @@ def write_subhint_js(row, row_type, current_step_name, current_subhints, tutorin
     return images, hint_dic, current_subhints, tutoring, figure_path
 
 
-def write_hint_js(row, current_step_name, tutoring, images, figure_path, path, hint_dic, verbosity, variabilization, latex):
+def write_hint_json(row, current_step_name, tutoring, images, figure_path, path, hint_dic, verbosity, variabilization, latex):
     current_subhints = []
     hint_images = ""
     if type(row["Images (space delimited)"]) == str:
@@ -186,7 +182,7 @@ def write_hint_js(row, current_step_name, tutoring, images, figure_path, path, h
     if variabilization:
         hint, full_id = create_hint(current_step_name, row["HintID"], row["Title"],
                                     row["Body Text"], row["Dependency"], hint_images,
-                                    hint_dic=hint_dic, variabilization=row["Variabilization"],
+                                    hint_dic=hint_dic, var_str=row["Variabilization"],
                                     latex=latex, verbosity=verbosity)
     else:
         hint, full_id = create_hint(current_step_name, row["HintID"], row["Title"],
@@ -200,7 +196,7 @@ def write_hint_js(row, current_step_name, tutoring, images, figure_path, path, h
     return images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path
 
 
-def write_scaffold_js(row, current_step_name, tutoring, images, figure_path, path, hint_dic, verbosity, variabilization, latex):
+def write_scaffold_json(row, current_step_name, tutoring, images, figure_path, path, hint_dic, verbosity, variabilization, latex):
     current_subhints = []
     scaff_images = ""
     if type(row["Images (space delimited)"]) == str:
@@ -212,7 +208,7 @@ def write_scaffold_js(row, current_step_name, tutoring, images, figure_path, pat
         scaff, full_id = create_scaffold(current_step_name, row["HintID"], row["Title"],
                                             row["Body Text"], row["answerType"], row["Answer"],
                                             row["mcChoices"], row["Dependency"], scaff_images,
-                                            hint_dic=hint_dic, variabilization=row["Variabilization"],
+                                            hint_dic=hint_dic, var_str=row["Variabilization"],
                                             latex=latex, verbosity=verbosity)
     else:
         scaff, full_id = create_scaffold(current_step_name, row["HintID"], row["Title"],
@@ -227,7 +223,7 @@ def write_scaffold_js(row, current_step_name, tutoring, images, figure_path, pat
     return images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path
 
 
-def write_problem_js(problem_row, problem_name, problem_js, course_name, sheet_name, images, path, figure_path, verbosity, variabilization, latex):
+def write_problem_json(problem_row, problem_name, problem_json_path, course_name, sheet_name, images, path, figure_path, verbosity, variabilization, latex):
     problem_images = ""
     if type(problem_row["Images (space delimited)"]) == str:
         if not images:
@@ -235,16 +231,15 @@ def write_problem_js(problem_row, problem_name, problem_js, course_name, sheet_n
         problem_images, num = save_images(problem_row["Images (space delimited)"], figure_path, int(images))
         images += num
     if variabilization:
-        prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"],
+        prob_js = create_problem_json(problem_name, problem_row["Title"], problem_row["Body Text"],
                                     problem_row["OER src"], problem_images,
-                                    variabilization=problem_row["Variabilization"], latex=latex,
+                                    var_str=problem_row["Variabilization"], latex=latex,
                                     verbosity=verbosity, course_name=course_name, sheet_name=sheet_name)
     else:
-        prob_js = create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"],
+        prob_js = create_problem_json(problem_name, problem_row["Title"], problem_row["Body Text"],
                                     problem_row["OER src"], problem_images, latex=latex, verbosity=verbosity,
                                     course_name=course_name, sheet_name=sheet_name)
-    re.sub("[\.js]{2,}", ".js", prob_js)
-    file = open(problem_js, "w", encoding="utf-8")
+    file = open(problem_json_path, "w", encoding="utf-8")
     file.write(prob_js)
     file.close()
 

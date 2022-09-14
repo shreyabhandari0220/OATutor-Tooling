@@ -89,6 +89,6 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         url_prefix = sys.argv[1]
     else:
-        url_prefix = "https://cahlr.github.io/OATutor-Content-Staging/#/debug/"
+        url_prefix = "https://cahlr.github.io/OATutor-Staging/#/debug/"
     
     test_all_content(url_prefix)

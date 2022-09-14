@@ -108,11 +108,11 @@ def validate_question(question, variabilization, latex, verbosity):
     if type(problem_row["Images (space delimited)"]) == str:
         validate_image(problem_row["Images (space delimited)"])
     if variabilization:
-        create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"],
+        create_problem_json(problem_name, problem_row["Title"], problem_row["Body Text"],
                             problem_row["OER src"], problem_images,
-                            variabilization=problem_row["Variabilization"], latex=latex, verbosity=verbosity)
+                            var_str=problem_row["Variabilization"], latex=latex, verbosity=verbosity)
     else:
-        create_problem_js(problem_name, problem_row["Title"], problem_row["Body Text"],
+        create_problem_json(problem_name, problem_row["Title"], problem_row["Body Text"],
                             problem_row["OER src"], problem_images, latex=latex, verbosity=verbosity)
 
     return error_message[:-1]  # get rid of the last newline
@@ -120,6 +120,12 @@ def validate_question(question, variabilization, latex, verbosity):
 
 def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, validator_path='',
                   editor=False, skill_model="skillModel.js", course_name=""):
+    # for each sheet, do:
+    #   1. run tinna's script, update check 1 column of error_df
+    #   2. write json files to both OpenStax/ and OpenStax1/
+    #   3. write check 1 and check 2 (unused) to google spreadsheet
+    #   4. Set debug links
+
     if is_local == "online":
         book = get_sheet(spreadsheet_key)
         worksheet = book.worksheet(sheet_name)
@@ -236,7 +242,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     debug_df = pd.DataFrame(index=range(len(df)), columns=['Debug Link', 'Problem ID', 'Lesson ID'])
     debug_platform_template = "https://cahlr.github.io/OATutor-Content-Staging/#/debug/{}"
 
-    print("[{}] JS validator start".format(sheet_name))
+    print("[{}] Start validating".format(sheet_name))
 
     lesson_id = df.at[0, "Lesson ID"]
     if not lesson_id or len(str(lesson_id)) <= 3:
@@ -278,11 +284,14 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             raise Exception("Problem Skills broken")
 
         result_problems = ""
-        problem_name, path, problem_js = create_problem_dir(sheet_name, problem_name, default_path, verbosity)
-        step_count = 0
+        problem_name, path, problem_json_path = create_problem_dir(sheet_name, problem_name, default_path, verbosity)
+        step_count = 0 # TODO: document usage of how this works
+
+        # creates debug link from the name of the problem on the first index row of the problem
         debug_df.at[first_problem_index, 'Debug Link'] = debug_platform_template.format(problem_name)
         debug_df.at[first_problem_index, 'Problem ID'] = problem_name
-        current_step_name = step_reg_js = default_pathway_js = ""
+
+        current_step_name = step_reg_js = default_pathway_json_path = ""
         images = False
         figure_path = ""
         problem_row = question.iloc[0]
@@ -303,51 +312,34 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             row_type = row['Row Type'].strip().lower()
             if index != 0:  # Not problem row
                 if row_type == "step":
-                    step_count, current_step_name, tutoring, skills, images, figure_path, default_pathway_js = \
-                        write_step_js(default_path, problem_name, row, step_count, tutoring, skills, images, 
-                        figure_path, default_pathway_js, path, verbosity, variabilization, latex, result_problems)
+                    step_count, current_step_name, tutoring, skills, images, figure_path, default_pathway_json_path = \
+                        write_step_json(default_path, problem_name, row, step_count, tutoring, skills, images, 
+                        figure_path, default_pathway_json_path, path, verbosity, variabilization, latex, result_problems)
 
                 if (row_type == 'hint' or row_type == "scaffold") and type(row['Parent']) != float:
                     images, hint_dic, current_subhints, tutoring, figure_path = \
-                        write_subhint_js(row, row_type, current_step_name, current_subhints, tutoring, previous_tutor, 
+                        write_subhint_json(row, row_type, current_step_name, current_subhints, tutoring, previous_tutor, 
                         previous_images, images, path, figure_path, hint_dic, verbosity, variabilization, latex)
 
                 elif row_type == "hint":
                     images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path = \
-                        write_hint_js(row, current_step_name, tutoring, images, figure_path, path, hint_dic, 
+                        write_hint_json(row, current_step_name, tutoring, images, figure_path, path, hint_dic, 
                         verbosity, variabilization, latex)
                 
                 elif row_type == "scaffold":
                     images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path = \
-                        write_scaffold_js(row, current_step_name, tutoring, images, figure_path, path, hint_dic, 
+                        write_scaffold_json(row, current_step_name, tutoring, images, figure_path, path, hint_dic,
                                     verbosity, variabilization, latex)
 
-        to_write = create_default_pathway(tutoring)
-        default_pathway = open(default_pathway_js, "w", encoding="utf-8")
-        default_pathway.write(to_write)
-        default_pathway.close()
+        default_pathway_str = create_default_pathway(tutoring)
+        default_pathway_json_file = open(default_pathway_json_path, "w", encoding="utf-8")
+        default_pathway_json_file.write(default_pathway_str)
+        default_pathway_json_file.close()
 
-        write_problem_js(problem_row, problem_name, problem_js, course_name, sheet_name, images, path, 
+        write_problem_json(problem_row, problem_name, problem_json_path, course_name, sheet_name, images, path, 
         figure_path, verbosity, variabilization, latex)
 
-        # Copy problem tree over to validator_path for validator check
-        if validator_path:
-            val_path = create_validator_dir(problem_name, validator_path)
-            try:
-                shutil.copytree(path, val_path)
-            except Exception as e:
-                if os.path.isdir(val_path):
-                    shutil.rmtree(val_path)
-                os.mkdir(val_path)
-                try:
-                    copy_tree(path, val_path)
-                except:
-                    print("error with inner copy_tree")
-                print("For problem:", problem_name)
-                print("Encountered error when copying to validator folder")
-                print(str(e))
-
-    print("[{}] JS validator complete".format(sheet_name))
+    print("[{}] Problems validated and written".format(sheet_name))
 
     # Write skills to skillModel
     if not editor:
@@ -357,52 +349,19 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                 f.write(item)
     skills_unformatted = ["_".join(skill.lower().split()) for skill in skills_unformatted]
 
-    # Update errors on the error sheet
-
-    # for each sheet, do:
-    #   1. run tinna's script, update check 1 column of error_df
-    #   2. write json files to both OpenStax/ and OpenStax1/
-    #   3. run matthew's index and validator script on OpenStax1/
-    #   4. use validator output to update check 2 column of error_df
-    #   5. write check 1 and check 2 to google spreadsheet
-    #   6. Set debug links
-    #   7. remove Openstax1/
-
-    if validator_path and os.path.isdir(validator_path):
+    # write error checks to content google sheets
+    if validator_path:
         try:
-            # runs postScriptValidator.js
-            execute_js('../util/indexGenerator.js', 'auto')
-            response = muterun_js('../.postScriptValidator.js', 'auto')
-            if response.exitcode == 0:
-                error_df = validator_check(response, df, error_df, sheet_name)
-
-            else:
-                sys.stderr.write(response.stderr.decode("utf-8"))
-            # remove validator directory
-            shutil.rmtree(validator_path)
             for col in ['Check 1', 'Check 2']:
                 if error_df[col].isnull().values.all():
                     error_df.at[0, col] = "No errors found"
-
-        except Exception as e:
-            print("For sheet:", sheet_name)
-            print("Encountered error during Check 2:", e)
-            pass
-
-        try:
             set_with_dataframe(worksheet, error_df, col=len(df.columns))
         except Exception as e:
             print('Fail to write to google sheet. Waiting...')
             print('sheetname:', sheet_name, e)
             time.sleep(40)
 
-    elif validator_path:
-        try:
-            set_with_dataframe(worksheet, error_df, col=len(df.columns))
-        except Exception as e:
-            print('Fail to write to google sheet. Waiting...')
-            print('sheetname:', sheet_name, e)
-            time.sleep(40)
+    # writing debug links to the content google sheets
     try:
         set_with_dataframe(worksheet, debug_df, col=len(df.columns) + len(error_df.columns))
     except Exception as e:
@@ -417,10 +376,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         print('Error type:', e[2])
         print()
 
-    if os.path.isdir(validator_path):
-        shutil.rmtree(validator_path)
-
-    print("[{}] processing complete".format(sheet_name))
+    print("[{}] Processing (and writing errors) complete".format(sheet_name))
 
     return list(set(skills_unformatted)), lesson_id
 
@@ -430,7 +386,7 @@ def generate_id():
     raw_id = shortuuid.encode(uuid.uuid4())
     return raw_id[:8] + "-" + raw_id[8:12] + "-" + raw_id[12:]
 
-
+# Enter check 2 column
 def validator_check(response, df, error_df, sheet_name):
     post_script_errors = response.stdout.decode("utf-8").split('\n')
     for error in post_script_errors:

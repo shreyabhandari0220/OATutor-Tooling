@@ -34,7 +34,7 @@ def start_driver():
     options.add_argument("--disable-extensions")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager(version="103.0.5060.53").install()), options=options)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager(version="105.0.5195.52").install()), options=options)
     driver.maximize_window()
     return driver
 
@@ -190,41 +190,41 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
 
     # Matrix type
     if answer_type == "arithmetic" and "begin{bmatrix}" in correct_answer: 
-        try:
+        # try:
             # Enter matrix dimension
-            row_count = correct_answer.count('\\\\') + 1
-            col_count = re.search(r'begin\{bmatrix\}(.*?)\\\\', correct_answer).group(1).count('&') + 1
-            row_selector = "[data-selenium-target=grid-answer-row-input-{}] > div > input".format(problem_index)
-            row = driver.find_element(By.CSS_SELECTOR, row_selector)
-            row.send_keys(row_count)
-            col_selector = "[data-selenium-target=grid-answer-col-input-{}] > div > input".format(problem_index)
-            col = driver.find_element(By.CSS_SELECTOR, col_selector)
-            col.send_keys(col_count)
-            next_button_selector = "[data-selenium-target=grid-answer-next-{}]".format(problem_index)
-            next_button = driver.find_element(By.CSS_SELECTOR, next_button_selector)
-            try:
-                next_button.send_keys(Keys.SPACE)
-            except MoveTargetOutOfBoundsException:
-                driver.execute_script("arguments[0].scrollIntoView();", next_button)
-                driver.execute_script("arguments[0].click();", next_button)
-                print ('matrix step next button')
+        row_count = correct_answer.count('\\\\') + 1
+        col_count = re.search(r'begin\{bmatrix\}(.*?)\\\\', correct_answer).group(1).count('&') + 1
+        row_selector = "[data-selenium-target=grid-answer-row-input-{}] > div > input".format(problem_index)
+        row = driver.find_element(By.CSS_SELECTOR, row_selector)
+        row.send_keys(row_count)
+        col_selector = "[data-selenium-target=grid-answer-col-input-{}] > div > input".format(problem_index)
+        col = driver.find_element(By.CSS_SELECTOR, col_selector)
+        col.send_keys(col_count)
+        next_button_selector = "[data-selenium-target=grid-answer-next-{}]".format(problem_index)
+        next_button = driver.find_element(By.CSS_SELECTOR, next_button_selector)
+        try:
+            next_button.send_keys(Keys.SPACE)
+        except MoveTargetOutOfBoundsException:
+            driver.execute_script("arguments[0].scrollIntoView();", next_button)
+            driver.execute_script("arguments[0].click();", next_button)
+            print ('matrix step next button')
 
-            # Enter matrix elements
-            matrix_latex = re.search(r"\\begin\{bmatrix\}.+\\end\{bmatrix\}", correct_answer).group(0)
-            answer_iter = re.finditer(r"\s([^\s]+)\s", matrix_latex)
-            matrix_elements = [elem.group(1) for elem in answer_iter]
-            for i in range(row_count * col_count):
-                ans_selector = "[data-selenium-target=grid-answer-cell-{0}-{1}] > span".format(i, problem_index)
-                ans = driver.find_element(By.CSS_SELECTOR, ans_selector)
-                script = generate_script_arithmetic(ans_selector, matrix_elements[i])
-                driver.execute_script(script, ans)
+        # Enter matrix elements
+        matrix_latex = re.search(r"\\begin\{bmatrix\}.+\\end\{bmatrix\}", correct_answer).group(0)
+        answer_iter = re.finditer(r"\s([^\s]+)\s", matrix_latex)
+        matrix_elements = [elem.group(1) for elem in answer_iter]
+        for i in range(row_count * col_count):
+            ans_selector = "[data-selenium-target=grid-answer-cell-{0}-{1}] > span".format(i, problem_index)
+            ans = driver.find_element(By.CSS_SELECTOR, ans_selector)
+            script = generate_script_arithmetic(ans_selector, matrix_elements[i])
+            driver.execute_script(script, ans)
 
-        except NoSuchElementException:
-            err = "{0}: step {1} matrix dimension or answer input box does not exist.".format(problem_name, problem_index + 1)
-            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-        except AttributeError:
-            err = "{0}: step {1} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index + 1)
-            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+        # except NoSuchElementException:
+        #     err = "{0}: step {1} matrix dimension or answer input box does not exist.".format(problem_name, problem_index + 1)
+        #     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+        # except AttributeError:
+        #     err = "{0}: step {1} matrix answer format wrong (likely does not contain matrix latex).".format(problem_name, problem_index + 1)
+        #     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
     
     elif answer_type == "arithmetic":
         ans_selector = "[data-selenium-target=arithmetic-answer-{}] > span".format(problem_index)

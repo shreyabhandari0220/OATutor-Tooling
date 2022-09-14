@@ -1,0 +1,8 @@
+firebase_admin==5.1.0
+gspread==3.7.0
+gspread_dataframe==3.2.1
+oauth2client==4.1.3
+pandas==1.2.4
+numpy==1.20.2
+selenium==4.4.3
+webdriver_manager=3.4.2

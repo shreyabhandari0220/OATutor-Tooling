@@ -3,6 +3,7 @@ import sys
 from os.path import dirname
 import re
 import ast
+import json
 
 from problem import *
 
@@ -16,23 +17,17 @@ def get_all_content_filename(content_path=CONTENT_PATH):
     """
     return [direc for direc in os.listdir(content_path) if direc != "stepfiles.txt" and direc != ".DS_Store"]
 
-def process_hint_answer(hint_text):
-    hint_list = hint_text[:].split("}, {")
+def process_hint_answer(hint_list):
     hint_answers = []
     for hint in hint_list:
-        if not re.search(", type: \"(\w+)\"", hint):
-            break
-        if not re.search("id: \"a[^-]+\-[hs]\d+(?!\-)\"", hint):
-            continue
-        hint_type = re.search(", type: \"(\w+)\"", hint).group(1)
+        hint_type = hint["type"]
         if hint_type == "hint":
             hint_answers.append(hint_type)
         elif hint_type == "scaffold":
-            scaf_type = re.search('problemType:\s*\"(.*?)\",\s*answerType:', hint).group(1)
-            scaf_ans = re.search('hintAnswer:\s*\[\"(.*?)\"\],\s*dependencies:', hint).group(1)
-            scaf_ans = scaf_ans.replace('\\\\', '\\')
+            scaf_type = hint["problemType"]
+            scaf_ans = hint["hintAnswer"][0]
             if scaf_type == "TextBox":
-                scaf_type += " " + re.search('answerType:\s*\"(.*?)\",\s*hintAnswer:', hint).group(1)
+                scaf_type += " " + hint["answerType"]
             hint_answers.append([scaf_ans, scaf_type])
     return hint_answers
 
@@ -59,12 +54,12 @@ def fetch_problem_ans_info(problem_name, verbose=False):
         print("testing {}".format(problem_name))
     
     # fetch book name
-    problem_path = os.path.join(CONTENT_PATH, problem_name, problem_name + '.js')
+    problem_path = os.path.join(CONTENT_PATH, problem_name, problem_name + '.json')
     with open(problem_path) as problem_file:
-        data = problem_file.read()
+        data = json.load(problem_file)
         try:
-            book_name = re.search(",\scourseName:\s\"([^\"]+)\"", data).group(1)
-        except AttributeError:
+            book_name = data["courseName"]
+        except KeyError:
             book_name = ""
         
     # fetch ans and type
@@ -76,14 +71,13 @@ def fetch_problem_ans_info(problem_name, verbose=False):
     for step_name in step_name_list:
 
         # fetch step type and answer
-        step_path = os.path.join(all_steps_dir, step_name, step_name + '.js')
+        step_path = os.path.join(all_steps_dir, step_name, step_name + '.json')
         with open(step_path) as step_file:
-            data = step_file.read()
-            step_type = re.search('problemType:\s*\"(.*)\",\s*stepTitle:', data).group(1)
-            step_ans = re.search('stepAnswer:\s*\[\"(.*)\"\],\s*problemType:', data).group(1)
+            data = json.load(step_file)
+            step_type = data["problemType"]
+            step_ans = data["stepAnswer"][0]
             if step_type == "TextBox":
-                step_type += " " + re.search('answerType:\s*\"(.*)\",\s*hints:', data).group(1)
-
+                step_type += " " + data["answerType"]
 
             step_ans = re.sub("(\d)\{10\}\^([\d\w\{])", "\g<1>*{10}^\g<2>", step_ans)
             if re.search("\}\^", step_ans):
@@ -93,23 +87,19 @@ def fetch_problem_ans_info(problem_name, verbose=False):
 
 
             if "@" in step_ans:
-                variabilization = re.search('variabilization: {([^}]+)}', data).group(1)
-                var_dict = dict(re.findall('([^,:\s]+)+:\s(\[[^]]+\])', variabilization))
-                for k, v in var_dict.items():
-                    var_dict[k] = ast.literal_eval(v)
+                var_dict = data["variabilization"]
                 ans_lst = []
                 for i in range(len(list(var_dict.values())[0])):
-                    ans_lst.append(re.sub("@{(\w+)}", lambda m: var_dict.get(m.group(1))[i], step_ans).replace('\\\\', '\\'))
+                    ans_lst.append(re.sub("@{(\w+)}", lambda m: var_dict.get(m.group(1))[i], step_ans))
                 step_ans = ans_lst # list of all possible answers
-            else:
-                step_ans = step_ans.replace('\\\\', '\\')
+
             problem_info.append([step_ans, step_type])
 
         # fetch hint and scaffold answer
-        hint_path = os.path.join(all_steps_dir, step_name, "tutoring", step_name + "DefaultPathway.js")
+        hint_path = os.path.join(all_steps_dir, step_name, "tutoring", step_name + "DefaultPathway.json")
         with open(hint_path) as hint_file:
-            hint_text = hint_file.read()
-            hint_info_list = process_hint_answer(hint_text)
+            hint_data = json.load(hint_file)
+            hint_info_list = process_hint_answer(hint_data)
 
         step = Step(step_name, step_ans, step_type, hint_info_list)
         step_obj_list.append(step)
