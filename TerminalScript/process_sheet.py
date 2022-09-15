@@ -153,10 +153,9 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                      "Problem ID", "Lesson ID"]]
         except KeyError as e:
             print("[{}] error found: {}".format(sheet_name, e))
-            error_df = pd.DataFrame(index=range(len(df)), columns=['Check 1', 'Check 2', 'Time Last Checked'])
+            error_df = pd.DataFrame(index=range(len(df)), columns=['Validator Check', 'Time Last Checked'])
             error_df.at[0, 'Time Last Checked'] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-            error_df.at[0, 'Check 1'] = str(e)
-            error_df.at[0, 'Check 2'] = 'UNCHECKED'
+            error_df.at[0, 'Validator Check'] = str(e)
             try:
                 if variabilization:
                     set_with_dataframe(worksheet, error_df, col=18)
@@ -236,7 +235,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             line_counter += 1
 
     error_data = []
-    error_df = pd.DataFrame(index=range(len(df)), columns=['Check 1', 'Check 2', 'Time Last Checked'])
+    error_df = pd.DataFrame(index=range(len(df)), columns=['Validator Check', 'Time Last Checked'])
     error_df.at[0, 'Time Last Checked'] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
     debug_df = pd.DataFrame(index=range(len(df)), columns=['Debug Link', 'Problem ID', 'Lesson ID'])
@@ -264,14 +263,12 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             question_error_message = validate_question(question, variabilization, latex, verbosity)
             if question_error_message:
                 error_row = (df[df['Problem Name'] == problem_name].index)[0]
-                error_df.at[error_row, 'Check 1'] = question_error_message
-                error_df.at[error_row, 'Check 2'] = 'UNCHECKED'
+                error_df.at[error_row, 'Validator Check'] = question_error_message
                 raise Exception("Error encountered in validator")
         except Exception as e:
             if str(e) != "Error encountered in validator":  # unknown error
                 error_row = (df[df['Problem Name'] == problem_name].index)[0]
-                error_df.at[error_row, 'Check 1'] = str(e)
-                error_df.at[error_row, 'Check 2'] = 'UNCHECKED'
+                error_df.at[error_row, 'Validator Check'] = str(e)
             continue
 
         # process problem skill(s)
@@ -350,7 +347,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     skills_unformatted = ["_".join(skill.lower().split()) for skill in skills_unformatted]
 
     # write error checks to content google sheets
-    for col in ['Check 1', 'Check 2']:
+    for col in ['Validator Check']:
         if error_df[col].isnull().values.all():
             error_df.at[0, col] = "No errors found"
 
@@ -378,6 +375,8 @@ def generate_id():
     shortuuid.set_alphabet("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQSRTUVWXYZ1234567890")
     raw_id = shortuuid.encode(uuid.uuid4())
     return raw_id[:8] + "-" + raw_id[8:12] + "-" + raw_id[12:]
+
+
 
 # Enter check 2 column
 def validator_check(response, df, error_df, sheet_name):

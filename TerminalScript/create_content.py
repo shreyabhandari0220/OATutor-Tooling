@@ -136,9 +136,14 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
             raise Exception("Hint key error (might be cause by errors in the rows above)")
     else:
         dependencies = []
+
+    if answer_type == "mc" and type(mc_answers) == float:
+        raise Exception("Scaffold mc question contains no options")
     
     answer_type, problem_type = handle_answer_type(answer_type)
     if answer_type == "arithmetic":
+        if "," in answer:
+            raise Exception("Scaffold arithmetic answer contains comma")
         answer = preprocess_text_to_latex(answer, render_latex=latex, verbosity=verbosity)[0]
     scaff_ans = [answer]
     
@@ -191,6 +196,9 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
     except TypeError:
         raise Exception("Step answer missing")
 
+    if answer_type == "mc" and not choices:
+        raise Exception("Step mc question contains no options")
+
     answer_latex = False
 
     new_answer, answer_latex = preprocess_text_to_latex(answer, render_latex=latex, verbosity=verbosity)
@@ -208,6 +216,8 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
     
     answer_type, problem_type = handle_answer_type(answer_type)
     if answer_type == "arithmetic":
+        if "," in new_answer:
+            raise Exception("Step arithmetic answer contains comma")
         answer = new_answer
 
     step_dict = {
