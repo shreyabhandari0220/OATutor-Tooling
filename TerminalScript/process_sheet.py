@@ -244,6 +244,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     print("[{}] Start validating".format(sheet_name))
 
     lesson_id = df.at[0, "Lesson ID"]
+    if type(lesson_id) is pd.Series:
+        lesson_id = lesson_id[0]
     if not lesson_id or len(str(lesson_id)) <= 3:
         lesson_id = generate_id()  # DF sometimes infer float for this col
     debug_df.at[0, "Lesson ID"] = lesson_id
