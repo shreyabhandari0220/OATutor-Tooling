@@ -12,7 +12,7 @@ from fetch_problem_ans import *
 from alert_error import alert
 
 
-def test_all_content(url_prefix):
+def test_all_content(url_prefix, step_title_as_ans=False):
     driver = start_driver()
 
     all_files = get_all_content_filename()
@@ -31,7 +31,7 @@ def test_all_content(url_prefix):
             end_time = time.time()
             time_elapse = round(end_time - start_time, 2)
             
-            if count != 0 and time_elapse < 5:
+            if count != 0 and (not step_title_as_ans and time_elapse < 5):
                 print("Fetching blank pages. Logging result and breaking program...")
                 print("Last 11 problems:", all_files[max(0, count - 11): min(count + 1, len(all_files))])
 
@@ -54,13 +54,16 @@ def test_all_content(url_prefix):
         count += 1
         
         try:
-            problem = fetch_problem_ans_info(problem_name, verbose=False)
+            if step_title_as_ans:
+                problem = fetch_step_name_as_answer(problem_name, verbose=False)
+            else:
+                problem = fetch_problem_ans_info(problem_name, verbose=False)
         except Exception as e:
             err = "{0}: Exception encountered when fetching problem answer. Message: {1}".format(problem_name, str(e))
             alert_df = alert_df.append({"Book Name": problem.book_name, "Error Log": err, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         
         try:
-            alert_df, driver = test_page(url_prefix, problem, driver, alert_df)
+            alert_df, driver = test_page(url_prefix, problem, driver, alert_df, test_hints=True, step_title_as_ans=step_title_as_ans)
             commit_hash = driver.execute_script("return document['oats-meta-site-hash']")
         except Exception as e:
             err = "Exception on problem {0}: {1}".format(problem_name, e)
@@ -81,7 +84,7 @@ def test_all_content(url_prefix):
     print("Total time elapsed: {} s.".format(round(final_time - init_time, 2)))
 
     try:
-        alert(alert_df)
+        alert(alert_df, step_title_as_ans=step_title_as_ans)
     except:
         print("Error encounted when alerting error")
 
@@ -89,6 +92,6 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         url_prefix = sys.argv[1]
     else:
-        url_prefix = "https://cahlr.github.io/OATutor-Staging/#/debug/"
+        url_prefix = "https://cahlr.github.io/OATutor-Content-Staging/#/debug/"
     
-    test_all_content(url_prefix)
+    test_all_content(url_prefix, step_title_as_ans=True)

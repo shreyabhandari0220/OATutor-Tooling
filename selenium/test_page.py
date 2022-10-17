@@ -14,7 +14,7 @@ import os
 import re
 import pandas as pd
 
-from fetch_problem_ans import fetch_problem_ans_info
+from fetch_problem_ans import fetch_problem_ans_info, fetch_step_name_as_answer
 from alert_error import alert
 from wait_class import element_has_attribute
 
@@ -28,7 +28,7 @@ def start_driver():
     # sets up selenium driver with correct Chrome headless version
     os.environ['WDM_LOG_LEVEL'] = '0'  # suppress logs from ChromeDriverManager install
     options = webdriver.ChromeOptions()
-    # options.headless = True
+    options.headless = True
     options.add_argument("start-maximized")
     options.add_argument("disable-infobars")
     options.add_argument("--disable-extensions")
@@ -54,7 +54,7 @@ def generate_script_arithmetic(selector, answer):
     return script
 
 
-def test_page(url_prefix, problem, driver, alert_df, test_hints=True):
+def test_page(url_prefix, problem, driver, alert_df, test_hints=True, step_title_as_ans=False):
     global page_breaks
     global last_katex_time
     url = url_prefix + problem.problem_name
@@ -82,7 +82,7 @@ def test_page(url_prefix, problem, driver, alert_df, test_hints=True):
     for step in problem.steps:
         if page_breaks:
             break
-        alert_df, driver = test_step(problem.problem_name, driver, problem_index, step, alert_df, problem.book_name, len(problem.steps), test_hints=test_hints)
+        alert_df, driver = test_step(problem.problem_name, driver, problem_index, step, alert_df, problem.book_name, len(problem.steps), test_hints, step_title_as_ans)
         problem_index += 1
 
     katex_error_msg = "ParseError: KaTeX parse error"
@@ -98,14 +98,21 @@ def test_page(url_prefix, problem, driver, alert_df, test_hints=True):
     return alert_df, driver
 
 
-def test_step(problem_name, driver, problem_index, step, alert_df, book_name, step_len, test_hints):
+def test_step(problem_name, driver, problem_index, step, alert_df, book_name, step_len, test_hints, step_title_as_ans):
+
+    # if checking step title, skip matrix problems
+    if step_title_as_ans and step.type.split()[1] == "arithmetic" and "begin{bmatrix}" in step.answer:
+        return alert_df, driver
     
     commit_hash = driver.execute_script("return document['oats-meta-site-hash']")
 
     # Enter step answer
     if step.type.split()[0] == "TextBox":
         if type(step.answer) != list: # if not using variabilization
-            alert_df = enter_text_answer(problem_name, driver, problem_index, step.answer, step.type.split()[1], alert_df, book_name, step_len)
+            if not step_title_as_ans:
+                alert_df = enter_text_answer(problem_name, driver, problem_index, step.answer, step.type.split()[1], alert_df, book_name, step_len)
+            else:
+                enter_text_answer(problem_name, driver, problem_index, step.answer, step.type.split()[1], None, book_name, step_len)
             # click submit and check correctness  
             try:
                 submit_selector = "[data-selenium-target=submit-button-{}]".format(problem_index)
@@ -127,18 +134,25 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
                     submit.click()
                     WebDriverWait(driver, 0.45).until(EC.presence_of_element_located((By.CSS_SELECTOR, icon_selector)))
                 icon = driver.find_element(By.CSS_SELECTOR, icon_selector)
-                if icon.get_attribute("src") != CORRECT:
+                if not step_title_as_ans and icon.get_attribute("src") != CORRECT:
                     err = "{0}: Invalid answer for step {1}: {2}".format(problem_name, problem_index + 1, step.answer)
+                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                elif step_title_as_ans and icon.get_attribute("src") == CORRECT:
+                    err = "{0} step {1}, answer entered: {2}".format(problem_name, problem_index + 1, step.answer)
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
             
             except NoSuchElementException:
-                err = "{0}: step {1} submit does not exist.".format(problem_name, problem_index + 1)
-                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+                if not step_title_as_ans:
+                    err = "{0}: step {1} submit does not exist.".format(problem_name, problem_index + 1)
+                    alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         
         else:  # if using variablization, need to check every possible answer
             correct = False
             for answer in step.answer:
-                alert_df = enter_text_answer(problem_name, driver, problem_index, answer, step.type.split()[1], alert_df, book_name, step_len)
+                if not step_title_as_ans:
+                    alert_df = enter_text_answer(problem_name, driver, problem_index, answer, step.type.split()[1], alert_df, book_name, step_len)
+                else:
+                    enter_text_answer(problem_name, driver, problem_index, answer, step.type.split()[1], None, book_name, step_len)
                 # click submit and check correctness  
                 try:
                     submit_selector = "[data-selenium-target=submit-button-{}]".format(problem_index)
@@ -158,12 +172,15 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
                     icon = driver.find_element(By.CSS_SELECTOR, icon_selector)
                     if icon.get_attribute("src") == CORRECT:
                         correct = True
+                        if step_title_as_ans:
+                            err = "{0} step {1}, answer entered: {2}".format(problem_name, problem_index + 1, step.answer)
+                            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                         break
 
                 except NoSuchElementException:
                     err = "{0}: step {1} submit does not exist.".format(problem_name, problem_index + 1)
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
-            if not correct:
+            if not correct and not step_title_as_ans:
                 err = "{0}: Invalid answer for step {1} with variabilization: {2}".format(problem_name, problem_index + 1, step.answer)
                 alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         
@@ -171,12 +188,13 @@ def test_step(problem_name, driver, problem_index, step, alert_df, book_name, st
         pass # MC check not supported
     
     else:
-        err = '{0}: Wrong answer type for step {1}: {2}'.format(problem_name, problem_index + 1, step.type)
-        alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+        if not step_title_as_ans:
+            err = '{0}: Wrong answer type for step {1}: {2}'.format(problem_name, problem_index + 1, step.type)
+            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
         problem_index += 1
 
     # click through hints
-    if test_hints:
+    if test_hints and not step_title_as_ans:
         alert_df, driver = check_hints(problem_name, problem_index, driver, step.hints, alert_df, book_name, step_len)
 
     return alert_df, driver
@@ -190,8 +208,7 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
 
     # Matrix type
     if answer_type == "arithmetic" and "begin{bmatrix}" in correct_answer: 
-        # try:
-            # Enter matrix dimension
+        # Enter matrix dimension
         row_count = correct_answer.count('\\\\') + 1
         col_count = re.search(r'begin\{bmatrix\}(.*?)\\\\', correct_answer).group(1).count('&') + 1
         row_selector = "[data-selenium-target=grid-answer-row-input-{}] > div > input".format(problem_index)
@@ -233,8 +250,9 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
             script = generate_script_arithmetic(ans_selector, correct_answer)
             driver.execute_script(script, ans)
         except NoSuchElementException:
-            err = "{0}: step {1} arithmetic answer box does not exist.".format(problem_name, problem_index + 1)
-            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            if alert_df:
+                err = "{0}: step {1} arithmetic answer box does not exist.".format(problem_name, problem_index + 1)
+                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
 
     elif answer_type == "string":
         ans_selector = "[data-selenium-target=string-answer-{}] > div > input".format(problem_index)
@@ -242,10 +260,11 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
             ans = driver.find_element(By.CSS_SELECTOR, ans_selector)
             ans.send_keys(correct_answer)
         except NoSuchElementException:
-            err = "{0}: step {1} string answer box does not exist.".format(problem_name, problem_index + 1)
-            alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
+            if alert_df:
+                err = "{0}: step {1} string answer box does not exist.".format(problem_name, problem_index + 1)
+                alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
 
-    else:
+    elif alert_df:
         err = "{0}: step {1} string answer box does not exist.".format(problem_name, problem_index + 1)
         alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
     return alert_df
@@ -465,12 +484,18 @@ if __name__ == '__main__':
         url_prefix = sys.argv[2]
     else:
         url_prefix = "https://cahlr.github.io/OATutor-Content-Staging/#/debug/"
+
+    step_title_as_ans = True
     
-    problem = fetch_problem_ans_info(problem_name)
+    if step_title_as_ans:
+        problem = fetch_step_name_as_answer(problem_name)
+    else:
+        problem = fetch_problem_ans_info(problem_name)
+    
     driver = start_driver()
     alert_df = pd.DataFrame(columns=["Book Name", "Error Log", "Commit Hash", "Issue Type", "Status", "Comment"])
-    alert_df = test_page(url_prefix, problem, driver, alert_df, test_hints=True)[0]
-    alert(alert_df)
+    alert_df = test_page(url_prefix, problem, driver, alert_df, test_hints=True, step_title_as_ans=step_title_as_ans)[0]
+    alert(alert_df, step_title_as_ans=step_title_as_ans)
 
     try:
         driver.close()
