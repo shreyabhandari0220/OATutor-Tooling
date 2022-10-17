@@ -85,7 +85,8 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
             if word[:1] == "{":
                 open_braces = True
                 word = word[1:]
-            if word[-1:] == "}" and "ln{" not in word and "log{" not in word and '/mat' not in word and 'sum{' not in word and '_{' not in word: 
+            if word[-1:] == "}" and "ln{" not in word and "log{" not in word and \
+                '/mat' not in word and 'sum{' not in word and '_{' not in word and '/tab' not in word: 
                 closing_braces = True
                 word = word[:-1]
             # if the word is forced latex
@@ -178,6 +179,12 @@ def handle_word(word, coord=True):
         matches = re.finditer('/mat{.+?}', word)
         for mat in matches:
             word = re.sub(re.escape(mat.group(0)), handle_single_matrix(mat.group(0)), word)
+        return word
+
+    if r'/tab' in word:
+        matches = re.finditer('/tab{.+?}', word)
+        for mat in matches:
+            word = re.sub(re.escape(mat.group(0)), handle_single_table(mat.group(0)), word)
         return word
 
     if not (any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])):
@@ -322,3 +329,16 @@ def handle_single_matrix(mat):
     mat = ' '.join(elements)
     mat = r"\\begin{bmatrix} " + mat + r" \\end{bmatrix}"
     return mat
+
+def handle_single_table(table):
+    table = re.findall('/tab{(.+?)}', table)[0]
+    l1_end = find_matching(table, '(', 0)
+    num_cols = table[0: l1_end].count(',') + 1
+    table = re.sub(r'\),[\s]*\(', r' \\\\ \\hline ', table)
+    table = re.sub('[\(|\)]', '', table)
+    table = re.sub('\s*,\s*', ' & ', table)
+    elements = table.split()
+    elements = [re.sub('\\\\', r'\\\\', handle_word(e)) for e in elements]
+    table = ' '.join(elements)
+    table = r'\\begin{tabular} {|' + ' c |' * num_cols + r'} \\hline ' + table + r' \\hline \\end{tabular}'
+    return table
