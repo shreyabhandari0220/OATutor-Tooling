@@ -193,6 +193,7 @@ def handle_word(word, coord=True):
         word = re.sub("θ", "\\\\theta", word)
         word = re.sub("ε", "\\\\varepsilon", word)
         word = re.sub("λ", "\\\\lambda", word)
+        word = re.sub("𝛼", "\\\\alpha", word)
         word = re.sub(r"%", "\\\\%", word)
         word = re.sub(r"\$", "\\\\$", word)
         return word
