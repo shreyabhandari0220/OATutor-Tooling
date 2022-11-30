@@ -1,7 +1,7 @@
-# OpenITS-Content
+# OATutor-Content
 
 ## Our project
-This repository is meant to store content curated for the OpenITS system developed by Computational Approaches to Human Learning at UC Berkeley. The OpenITS system was developed to make learning more accessible and provide an open-source tutoring system for researchers, teachers, and students to access, disseminate, and better understand learning materials. The purpose of this README is to provide better understanding of how to structure content such that it can be read into the OpenITS system.
+This repository is meant to store content curated for the OATutor system developed by Computational Approaches to Human Learning at UC Berkeley. The OATutor system was developed to make learning more accessible and provide an open-source tutoring system for researchers, teachers, and students to access, disseminate, and better understand learning materials. The purpose of this README is to provide better understanding of how to structure content such that it can be read into the OATutor system.
 
 ## Structure of README
 The README of the repository is composed of two main parts. The first part explains the usage and structure of the content generation script, which is located under the TerminalScript directory, and the second part explains the usage of the Selenium testing and answer validation script, which is located under the selenium directory.
@@ -11,7 +11,7 @@ To run script on one sheet, change directory into TerminalScript, and use the co
 ```
 python3 process_sheet.py online <sheet_key> <sheet_name>
 ```
-where `sheet_key` is part of the google sheet URL, and `sheet_name` is the name of Google sheet tab to be run on. The generated content will appear under OpenITS-content/OpenStax1, and the corresponding skillModel will be in the file skillModel1.js.
+where `sheet_key` is part of the google sheet URL, and `sheet_name` is the name of Google sheet tab to be run on. The generated content will appear under OATutor-content/OpenStax1, and the corresponding skillModel will be in the file skillModel1.js.
 Note: sheet with name that starts with "##" will not run in LaTeX mode by default. However, users are able to wrap desired LaTeX content within "$$" on content Googlesheet to force LaTeX generation.
 
 To run script on all content, use the command:
@@ -24,10 +24,10 @@ This will regenerate content for all books listed in Problem Bank URL (https://d
 The script in this repo reads in Google Sheets and outputs JS files ready to be processed by the system. For every sheet procesed by the system, there are some requirements for headers and notation that ensure the script is read properly. Every sheet must have: "Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", and "Taxonomy", and may optionally include "Variabilization".
 
 ## Content Organization
-The content in OpenITS is organized into different lessons. On a Google Sheets Document, each lesson should have its own sheet. Each lesson has different KC's, or knowledge components, associated with it, and the OpenITS system attempts to ensure that a student has only finished the lesson after demonstrating mastery of each KC within the lesson.
+The content in OATutor is organized into different lessons. On a Google Sheets Document, each lesson should have its own sheet. Each lesson has different KC's, or knowledge components, associated with it, and the OATutor system attempts to ensure that a student has only finished the lesson after demonstrating mastery of each KC within the lesson.
 
 ## Problem Organization
-The way that content in OpenITS is structured is that every row denotes either a problem, step, hint, or scaffold. Problems are generally just headers that tell the student what skill the question is about, meaning that the actual question is asked in the steps of the problem. This also means that every problem must have at least one step. Steps ask the actual questions and as a result, also have corresponding answers that can be formatted in different ways. Since steps themselves are questions, they have associated hints and scaffolds to provide students with help. Hints are sentences (not questions) that provide students with information such that they can answer the step better. Scaffolds on the other hand are questions themselves that have answers so that students can work through part of the problem. 
+The way that content in OATutor is structured is that every row denotes either a problem, step, hint, or scaffold. Problems are generally just headers that tell the student what skill the question is about, meaning that the actual question is asked in the steps of the problem. This also means that every problem must have at least one step. Steps ask the actual questions and as a result, also have corresponding answers that can be formatted in different ways. Since steps themselves are questions, they have associated hints and scaffolds to provide students with help. Hints are sentences (not questions) that provide students with information such that they can answer the step better. Scaffolds on the other hand are questions themselves that have answers so that students can work through part of the problem. 
 
 
 ## Headers and associated values:
@@ -47,19 +47,19 @@ answerType: The answer types are "mc", "string", and "algebra". "mc" denotes mul
 
 HintID: The id of the hint/scaffold. Leave this field blank if the row is a problem or a step. These are generally denoted "h1", "h2", etc. for the number of hint they are for the step. Every hint/scaffold in a step must have a unique hint ID, but hint IDs don't have to be unique across steps and problems. 
 
-Dependency: This field enables the OpenITS to open hints only after certain other hints have already been opened or scaffolds have been correctly answered. The dependency field can also include multiple other hints, and is comma-delimited. An example could be "h1,h2,h3" if the content creator wants students to only access this hint after finishing "h1", "h2", and "h3".
+Dependency: This field enables the OATutor to open hints only after certain other hints have already been opened or scaffolds have been correctly answered. The dependency field can also include multiple other hints, and is comma-delimited. An example could be "h1,h2,h3" if the content creator wants students to only access this hint after finishing "h1", "h2", and "h3".
 
 mcChoices: This field is only filled in if the answerType is "mc". One of the choices here must be exactly similar to the answer provided in the answer field. This field is "|" delimited. For example, if the possible answers are "square", "cirle", "triangle", or "octagon", then this field must be "square|circle|triangle|octagon" with the Answer field being either "square", "cirle", "triangle", or "octagon". 
 
 Images (space delimited): If you want to provide images in the questions, you can do so here. Please provide the URL's to the images themselves, not a URL that contains the image but may have other content.
 
-Parent: The OpenITS system supports subhints and sub-scaffolds, which are hints and scaffolds provided to help students answer hints and scaffolds. For example, if the hint with id "h3" needs subhints, then that can be expressed here by setting the Parent field to "h3". The hint id for subhint is denoted analogous to regular hint id's, except the "h" is replaced with an "s".
+Parent: The OATutor system supports subhints and sub-scaffolds, which are hints and scaffolds provided to help students answer hints and scaffolds. For example, if the hint with id "h3" needs subhints, then that can be expressed here by setting the Parent field to "h3". The hint id for subhint is denoted analogous to regular hint id's, except the "h" is replaced with an "s".
 
 OER src: If the problem comes from an OER source, provide the URL here.
 
 openstax KC: KC denotes knowledge component. If using an openstax textbook, you can provide the KC name provided by the OpenStax textbook here.
 
-KC: A name for the KC. Every problem row must have this field filled in. Questions within the OpenITS system are grouped by their KC, so if multiple questions have the same skills, they will appear within the same lesson.
+KC: A name for the KC. Every problem row must have this field filled in. Questions within the OATutor system are grouped by their KC, so if multiple questions have the same skills, they will appear within the same lesson.
 
 Taxonomy: If it exists, a link to the skill taxonomy which specifies the order of the KC's. This field is optional.
 
@@ -67,9 +67,9 @@ Variabilization: If it exists, each cell in this column will contain group(s) of
 
 
 ## Text Formatting
-OpenITS supports mathematical notation so that questions can render properly and more easily for students to see. There are two options when it comes to math notation. First, content creators can use OpenITS' mathematical notation itself, but this math notation has specific formatting rules and only supports a limited amount of math operations, which will be explained below. For broader math/symbol support, content creators can write their content directly in LaTex and wrap the LaTex portions of their content in "$$" which tells the system to process it as LaTex. 
+OATutor supports mathematical notation so that questions can render properly and more easily for students to see. There are two options when it comes to math notation. First, content creators can use OATutor's mathematical notation itself, but this math notation has specific formatting rules and only supports a limited amount of math operations, which will be explained below. For broader math/symbol support, content creators can write their content directly in LaTex and wrap the LaTex portions of their content in "$$" which tells the system to process it as LaTex. 
 
-### OpenITS math formatting:
+### OATutor math formatting:
 This is the default math formatting that the system uses. If you wish to use the math formatting, please adhere to the following formatting rules:
 
 Leave no spaces within the mathematical expression. This means that "x = 5 + 3 / 4" should be denoted as "x=5+3/4".
@@ -158,7 +158,7 @@ For example, putting `= getProblemId("real1")` into a cell returns `a6f9727real1
 
 ### Errors?
 
-This could be because the library project has not been shared with you yet. Message an OpenITS dev.
+This could be because the library project has not been shared with you yet. Message an OATutor dev.
 
 ### Updating the Library
 
