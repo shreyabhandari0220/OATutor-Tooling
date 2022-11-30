@@ -64,7 +64,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
     for i in list(range(len(words))):
         word = words[i]
         word = re.sub(r"(\d)(?<![a-zA-Z])pi", r"\g<1>*pi", word)
-        if use_latex(word, render_latex):
+        if use_latex(word, render_latex, stepMC):
             if not re.findall("[\[|\(][\+\-\*/\(\)\d\s\w]+,[\+\-\*/\(\)\d\s\w]+[\)|\]]", word): # only add in space if is not coordinate
                 word = re.sub(",(\S)", ", \g<1>", word)
 
@@ -141,7 +141,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
     force_latex = 0.0
     return text, latex
 
-def use_latex(word, render_latex):
+def use_latex(word, render_latex, stepMC):
     global force_latex
     if word[:2] == '$$' and word[-2:] == '$$':
         force_latex = 0.0
@@ -167,6 +167,8 @@ def use_latex(word, render_latex):
         return False
     if not render_latex:
         return False
+    if stepMC and any([op in word for op in answer_only_operators]):
+        return True
     parts = word.split('-')
     for part in parts:
         if any([op in part for op in supported_operators]) or any([op in part for op in supported_word_operators]) and 'info' not in part:
