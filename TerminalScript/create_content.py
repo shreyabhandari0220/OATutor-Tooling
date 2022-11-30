@@ -212,7 +212,7 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
             choice_list.sort()
 
         choices = [preprocess_text_to_latex(mc_answer, True, True, render_latex=latex, verbosity=verbosity)[0] for mc_answer in choice_list]
-        answer = preprocess_text_to_latex(answer, tutoring=True, render_latex=latex, verbosity=verbosity)[0]
+        answer = preprocess_text_to_latex(answer, True, True, render_latex=latex, verbosity=verbosity)[0]
     
     answer_type, problem_type = handle_answer_type(answer_type)
     if answer_type == "arithmetic":

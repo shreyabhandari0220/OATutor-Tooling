@@ -45,10 +45,10 @@ def find_matching(word, char, idx):
         idx -= 1
     raise Exception("unmatched" + char)
 
-def fetch_problem_ans_info(problem_name, verbose=False):
+def fetch_problem_ans_info(problem_name, step_name_as_ans=False, verbose=False):
     """
     input: problem name (ex. real1)
-    output: list of pairs of [step answer, step type]
+    output: Problem type
     """
     if verbose:
         print("testing {}".format(problem_name))
@@ -76,6 +76,8 @@ def fetch_problem_ans_info(problem_name, verbose=False):
             data = json.load(step_file)
             step_type = data["problemType"]
             step_ans = data["stepAnswer"][0]
+            if step_name_as_ans:
+                step_ans = data["stepTitle"]
             if step_type == "TextBox":
                 step_type += " " + data["answerType"]
 
@@ -96,10 +98,13 @@ def fetch_problem_ans_info(problem_name, verbose=False):
             problem_info.append([step_ans, step_type])
 
         # fetch hint and scaffold answer
-        hint_path = os.path.join(all_steps_dir, step_name, "tutoring", step_name + "DefaultPathway.json")
-        with open(hint_path) as hint_file:
-            hint_data = json.load(hint_file)
-            hint_info_list = process_hint_answer(hint_data)
+        if step_name_as_ans:
+            hint_info_list = []
+        else:
+            hint_path = os.path.join(all_steps_dir, step_name, "tutoring", step_name + "DefaultPathway.json")
+            with open(hint_path) as hint_file:
+                hint_data = json.load(hint_file)
+                hint_info_list = process_hint_answer(hint_data)
 
         step = Step(step_name, step_ans, step_type, hint_info_list)
         step_obj_list.append(step)
@@ -111,6 +116,8 @@ def fetch_problem_ans_info(problem_name, verbose=False):
 
     return problem
 
+def fetch_step_name_as_answer(problem_name, verbose=False):
+    return fetch_problem_ans_info(problem_name, step_name_as_ans=True, verbose=verbose)
 
 if __name__ == '__main__':
     problem_name = sys.argv[1]

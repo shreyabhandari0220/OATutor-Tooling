@@ -64,7 +64,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
     for i in list(range(len(words))):
         word = words[i]
         word = re.sub(r"(\d)(?<![a-zA-Z])pi", r"\g<1>*pi", word)
-        if use_latex(word, render_latex):
+        if use_latex(word, render_latex, stepMC):
             if not re.findall("[\[|\(][\+\-\*/\(\)\d\s\w]+,[\+\-\*/\(\)\d\s\w]+[\)|\]]", word): # only add in space if is not coordinate
                 word = re.sub(",(\S)", ", \g<1>", word)
 
@@ -85,7 +85,8 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
             if word[:1] == "{":
                 open_braces = True
                 word = word[1:]
-            if word[-1:] == "}" and "ln{" not in word and "log{" not in word and '/mat' not in word and 'sum{' not in word and '_{' not in word: 
+            if word[-1:] == "}" and "ln{" not in word and "log{" not in word and \
+                '/mat' not in word and 'sum{' not in word and '_{' not in word and '/tab' not in word: 
                 closing_braces = True
                 word = word[:-1]
             # if the word is forced latex
@@ -95,8 +96,11 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
                 word = word[2:]
             elif word[-2:] == '$$':
                 word = word[:-2]
-            try:        
-                sides = re.split('((?<!\\\\)=|U|∩|<=|>=|_{3})', word)
+            
+            # process each side of the equation
+            try:
+                word = re.sub(r'!=', r'`', word) # use ` to temporarily denote not equal  
+                sides = re.split('((?<!\\\\)`|=|U|∩|<=|>=|_{3})', word)
                 sides = [handle_word(side) for side in sides]
                 new_word = ""
                 if tutoring and stepMC:
@@ -137,7 +141,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
     force_latex = 0.0
     return text, latex
 
-def use_latex(word, render_latex):
+def use_latex(word, render_latex, stepMC):
     global force_latex
     if word[:2] == '$$' and word[-2:] == '$$':
         force_latex = 0.0
@@ -163,6 +167,8 @@ def use_latex(word, render_latex):
         return False
     if not render_latex:
         return False
+    if stepMC and any([op in word for op in answer_only_operators]):
+        return True
     parts = word.split('-')
     for part in parts:
         if any([op in part for op in supported_operators]) or any([op in part for op in supported_word_operators]) and 'info' not in part:
@@ -170,7 +176,7 @@ def use_latex(word, render_latex):
     return False
 
 def handle_word(word, coord=True):
-    latex_dic = {"=": "=", "U": " \cup ", "∩": " \cap ", "<=" : " \leq ", ">=" : " \geq "}
+    latex_dic = {"=": "=", "U": " \cup ", "∩": " \cap ", "<=" : " \leq ", ">=" : " \geq ", "`": " \\neq "}
     if word in latex_dic:
         return latex_dic[word]
 
@@ -180,12 +186,19 @@ def handle_word(word, coord=True):
             word = re.sub(re.escape(mat.group(0)), handle_single_matrix(mat.group(0)), word)
         return word
 
+    if r'/tab' in word:
+        matches = re.finditer('/tab{.+?}', word)
+        for mat in matches:
+            word = re.sub(re.escape(mat.group(0)), handle_single_table(mat.group(0)), word)
+        return word
+
     if not (any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])):
         word = re.sub("𝜃", "\\\\theta", word)
         word = re.sub("°", "\\\\degree", word)
         word = re.sub("θ", "\\\\theta", word)
         word = re.sub("ε", "\\\\varepsilon", word)
         word = re.sub("λ", "\\\\lambda", word)
+        word = re.sub("𝛼", "\\\\alpha", word)
         word = re.sub(r"%", "\\\\%", word)
         word = re.sub(r"\$", "\\\\$", word)
         return word
@@ -322,3 +335,16 @@ def handle_single_matrix(mat):
     mat = ' '.join(elements)
     mat = r"\\begin{bmatrix} " + mat + r" \\end{bmatrix}"
     return mat
+
+def handle_single_table(table):
+    table = re.findall('/tab{(.+?)}', table)[0]
+    l1_end = find_matching(table, '(', 0)
+    num_cols = table[0: l1_end].count(',') + 1
+    table = re.sub(r'\),[\s]*\(', r' \\\\ \\hline ', table)
+    table = re.sub('[\(|\)]', '', table)
+    table = re.sub('\s*,\s*', ' & ', table)
+    elements = table.split()
+    elements = [re.sub('\\\\', r'\\\\', handle_word(e)) for e in elements]
+    table = ' '.join(elements)
+    table = r'\\begin{tabular} {|' + ' c |' * num_cols + r'} \\hline ' + table + r' \\hline \\end{tabular}'
+    return table
