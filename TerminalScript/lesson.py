@@ -56,18 +56,16 @@ def create_course_plan(course_name, lesson_plan, editor=False):
 
 
 def finish_course_plan(courses, file):
-    course_to_write = "const courses="
-    course_to_write += json.dumps(courses, separators=(',', ':'))
-    course_to_write += ";export default courses"
-    file.write(course_to_write)
+    file.write(json.dumps(courses, indent=4))
     file.close()
 
 
 def finish_bkt_params(bkt_params, file):
-    bkt_params_string = "const bktParams="
-    bkt_params_string += json.dumps(bkt_params, separators=(',', ':'))
-    bkt_params_string += ";export {bktParams}"
-    file.write(bkt_params_string)
+    file.write(json.dumps(bkt_params, indent=4))
+    file.close()
+
+def finish_skill_model(bkt_params, file):
+    file.write(json.dumps(bkt_params, indent=4))
     file.close()
 
 
@@ -75,8 +73,9 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
     """if sheet_names is not provided, default to run all sheets"""
     course_plan = []
     bkt_params = {}
+    skill_model: dict = {}
 
-    skill_model_path = os.path.join("..", "skillModel.js")
+    skill_model_path = os.path.join("..", "skillModel.json")
     editor_content_path = os.path.join("..", "Editor Content")
     validator_path = os.path.join("..", ".OpenStax Validator")
     if os.path.exists(skill_model_path):
@@ -114,15 +113,16 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
             for sheet in sheet_names:
                 start = time.time()
                 if sheet[:2] == '##':
-                    skills, lesson_id = process_sheet(sheet_url, sheet, default_path, 'online', 'FALSE',
+                    skills, lesson_id, skills_dict = process_sheet(sheet_url, sheet, default_path, 'online', 'FALSE',
                                            validator_path=validator_path, course_name=course_name, editor=is_editor)
                 else:
-                    skills, lesson_id = process_sheet(sheet_url, sheet, default_path, 'online', 'TRUE',
+                    skills, lesson_id, skills_dict = process_sheet(sheet_url, sheet, default_path, 'online', 'TRUE',
                                            validator_path=validator_path, course_name=course_name, editor=is_editor)
                 if not lesson_id:
                     continue
                 if not skills:
                     skills = []
+                skill_model.update(skills_dict)
                 skills.sort()
                 lesson_plan.append(create_lesson_plan(sheet, skills, lesson_id))
                 for skill in skills:
@@ -133,11 +133,14 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
                     time.sleep(4.5 - (end - start))
             course_plan.append(create_course_plan(course_name, lesson_plan, editor=is_editor))
 
-    file = open(os.path.join("..", "coursePlans.js"), "w")
+    file = open(os.path.join("..", "coursePlans.json"), "w")
     finish_course_plan(course_plan, file)
 
-    file = open(os.path.join("..", "bktParams.js"), "w")
+    file = open(os.path.join("..", "bktParams.json"), "w")
     finish_bkt_params(bkt_params, file)
+
+    file = open(os.path.join("..", "skillModel.json"), "w")
+    finish_skill_model(skill_model, file)
 
     file.close()
 

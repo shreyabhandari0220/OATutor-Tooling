@@ -119,7 +119,7 @@ def validate_question(question, variabilization, latex, verbosity):
 
 
 def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, validator_path='',
-                  editor=False, skill_model="skillModel.js", course_name=""):
+                  editor=False, skill_model="skillModel.json", course_name=""):
     # for each sheet, do:
     #   1. run tinna's script, update check 1 column of error_df
     #   2. write json files to both OpenStax/ and OpenStax1/
@@ -134,7 +134,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             df = pd.DataFrame(table[1:], columns=table[0])
         except:
             print("[{}] data frame not found, returning early".format(sheet_name))
-            return None, None
+            return None, None, None
         if "Problem ID" not in df.columns:
             df["Problem ID"] = ""
         if "Lesson ID" not in df.columns:
@@ -165,7 +165,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                 print('Fail to write to google sheet. Waiting...')
                 print('sheetname:', sheet_name, e)
                 time.sleep(40)
-            return None, None
+            return None, None, None
         df = df.astype(str)
         df.replace('', 0.0, inplace=True)
         df.replace(' ', 0.0, inplace=True)
@@ -178,7 +178,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             df = pd.read_excel(excel_path, sheet_name, header=0)
         except:
             print("path not found:", excel_path, sheet_name)
-            return None, None
+            return None, None, None
         ##Only keep columns we need
         if "Problem ID" not in df.columns:
             df["Problem ID"] = ""
@@ -202,37 +202,11 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             'Please enter either \'local\' to indicate a locally stored file, or \'online\' to indicate a file stored as a google sheet.')
     try:
         df["Problem Name"] = df["Problem Name"].str.replace(r"\s", "", regex=True)
-        df["Body Text"] = df["Body Text"].str.replace("\"", "\\\"")
-        df["Title"] = df["Title"].str.replace("\"", "\\\"")
-        df["Answer"] = df["Answer"].str.replace("\"", "\\\"")
-        df["mcChoices"] = df["mcChoices"].str.replace("\"", "\\\"")
-        df["Body Text"] = df["Body Text"].str.replace("\\n", r" \\\\n ", regex=True)
-        df["Title"] = df["Title"].str.replace("\\n", r" \\\\n ", regex=True)
-        df["openstax KC"] = df["openstax KC"].str.replace("\'", "\\\'")
-        df["KC"] = df["KC"].str.replace("\'", "\\\'")
     except AttributeError:
         pass
-    
 
-    skillModelJS_lines = []
-    skills = []
+    skills: dict = {}
     skills_unformatted = []
-    if not editor:
-        skillModelJS_path = os.path.join("..", skill_model)
-        if not os.path.exists(skillModelJS_path):
-            skillModelJS_file = open(skillModelJS_path, "a", encoding="utf-8")
-            skillModelJS_file.write("const skillModel = {\n\n    // Start Inserting\n\n}\n\nexport default skillModel;")
-            skillModelJS_file.close()
-        skillModelJS_file = open(skillModelJS_path, "r", encoding="utf-8")
-
-        # Insert before "Start Inserting"
-        break_index = 0
-        line_counter = 0
-        for line in skillModelJS_file:
-            if "Start Inserting" in line:
-                break_index = line_counter
-            skillModelJS_lines.append(line)
-            line_counter += 1
 
     error_data = []
     error_df = pd.DataFrame(index=range(len(df)), columns=['Validator Check', 'Time Last Checked'])
@@ -282,7 +256,6 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                 print("Problem skills empty for: ", problem_name)
             raise Exception("Problem Skills broken")
 
-        result_problems = ""
         problem_name, path, problem_json_path = create_problem_dir(sheet_name, problem_name, default_path, verbosity)
         step_count = 0 # TODO: document usage of how this works
 
@@ -300,11 +273,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         previous_images = ""
         hint_dic = {}
 
-        for i in range(len(problem_skills)):
-            if (i != 0):
-                result_problems += ", "
-            result_problems += "`{0}`".format(problem_skills[i])
-            skills_unformatted.extend(problem_skills)
+        skills_unformatted.extend(problem_skills)
 
         for index, row in question.iterrows():
             # checks row type
@@ -313,7 +282,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                 if row_type == "step":
                     step_count, current_step_name, tutoring, skills, images, figure_path, default_pathway_json_path = \
                         write_step_json(default_path, problem_name, row, step_count, tutoring, skills, images, 
-                        figure_path, default_pathway_json_path, path, verbosity, variabilization, latex, result_problems)
+                        figure_path, default_pathway_json_path, path, verbosity, variabilization, latex, problem_skills)
 
                 if (row_type == 'hint' or row_type == "scaffold") and type(row['Parent']) != float:
                     images, hint_dic, current_subhints, tutoring, figure_path = \
@@ -340,12 +309,6 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     print("[{}] Problems validated and written".format(sheet_name))
 
-    # Write skills to skillModel
-    if not editor:
-        new_skillModelJS_lines = skillModelJS_lines[0:break_index] + skills + skillModelJS_lines[break_index:]
-        with open(skillModelJS_path, 'w', encoding="utf-8") as f:
-            for item in new_skillModelJS_lines:
-                f.write(item)
     skills_unformatted = ["_".join(skill.lower().split()) for skill in skills_unformatted]
 
     # write error checks to content google sheets
@@ -370,7 +333,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     print("[{}] Processing (and writing errors) complete".format(sheet_name))
 
-    return list(set(skills_unformatted)), lesson_id
+    return list(set(skills_unformatted)), lesson_id, skills
 
 
 def generate_id():
