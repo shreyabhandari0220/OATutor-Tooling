@@ -173,6 +173,10 @@ def use_latex(word, render_latex, stepMC):
     for part in parts:
         if any([op in part for op in supported_operators]) or any([op in part for op in supported_word_operators]) and 'info' not in part:
             return True
+        if re.match("[\d\.]*[bdhnprtxyz]+[.\?\!,\%\$]{,1}$", part):
+            return True
+    if "(" in word and ")" in word and "-" in word:
+        return True
     return False
 
 def handle_word(word, coord=True):
@@ -279,7 +283,6 @@ def handle_word(word, coord=True):
             sum_upper_num = False
         word = 'sum([' + sum_match.group(3) + ' for ' + sum_var + ' in range(' + sum_lower + ',' + sum_upper + ')])'
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
-
 
     #Here do the substitutions for the things that py2tex can't handle
     for item in scientific_notation:

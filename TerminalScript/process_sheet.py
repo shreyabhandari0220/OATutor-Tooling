@@ -202,14 +202,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             'Please enter either \'local\' to indicate a locally stored file, or \'online\' to indicate a file stored as a google sheet.')
     try:
         df["Problem Name"] = df["Problem Name"].str.replace(r"\s", "", regex=True)
-        df["Body Text"] = df["Body Text"].str.replace("\"", "\\\"")
-        df["Title"] = df["Title"].str.replace("\"", "\\\"")
-        df["Answer"] = df["Answer"].str.replace("\"", "\\\"")
-        df["mcChoices"] = df["mcChoices"].str.replace("\"", "\\\"")
         df["Body Text"] = df["Body Text"].str.replace("\\n", r" \\\\n ", regex=True)
         df["Title"] = df["Title"].str.replace("\\n", r" \\\\n ", regex=True)
-        df["openstax KC"] = df["openstax KC"].str.replace("\'", "\\\'")
-        df["KC"] = df["KC"].str.replace("\'", "\\\'")
     except AttributeError:
         pass
     
