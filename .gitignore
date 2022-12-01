@@ -23,9 +23,12 @@ skillModel1.js
 Editor Content
 OpenStax Content
 bktParams.js
+bktParams.json
 coursePlans.js
+coursePlans.json
 skillModel.js
 lessonPlans.js
+skillModel.json
 
 # Student Data
 Data Analytics/data

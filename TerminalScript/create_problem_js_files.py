@@ -56,8 +56,8 @@ def save_images(images, path, num):
     return names, num
 
 
-def write_step_json(default_path, problem_name, row, step_count, tutoring, skills, images, figure_path, 
-                default_pathway_json_path, path, verbosity, variabilization, latex, result_problems):
+def write_step_json(default_path, problem_name, row, step_count, tutoring, skills: dict, images, figure_path,
+                    default_pathway_json_path, path, verbosity, variabilization, latex, problem_skills: list):
     if step_count > 0:
         # writes to step
         to_write = create_default_pathway(tutoring)
@@ -92,8 +92,10 @@ def write_step_json(default_path, problem_name, row, step_count, tutoring, skill
                         step_count, choices, step_images, latex=latex, verbosity=verbosity))
     step_file.close()
 
-    skill = "    {0}: [{1}],\n".format(current_step_name, result_problems)
-    skills.append(skill)
+    skill = {
+        current_step_name: problem_skills
+    }
+    skills.update(skill)
 
     return step_count, current_step_name, tutoring, skills, images, figure_path, default_pathway_json_path
 
