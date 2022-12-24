@@ -50,12 +50,11 @@ def get_lesson_skill_df():
             table = worksheet.get_all_values()
             try:
                 df = pd.DataFrame(table[1:], columns=table[0])
+                questions = [x for _, x in df.groupby('Problem Name')]
             except:
                 print("[{}] data frame not found, returning early".format(sheet))
                 continue
-
-            questions = [x for _, x in df.groupby('Problem Name')]
-
+            
             for question in questions:
                 problem_name = question.iloc[0]['Problem Name']
                 problem_skills = re.split("\||,", question.iloc[0]["openstax KC"])
