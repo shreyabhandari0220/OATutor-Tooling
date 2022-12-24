@@ -27,7 +27,6 @@ def test_course_linking(driver):
             course_button = driver.find_element(By.XPATH, course_button_xpath)
             course_button.send_keys(Keys.SPACE)
         except NoSuchElementException:
-            print("finishing idx: {}".format(idx))
             break
 
         # Click into the first lesson
@@ -40,7 +39,7 @@ def test_course_linking(driver):
 
         actual_course = driver.execute_script("return document['oats-meta-courseName']")
         actual_lesson = driver.execute_script("return document['oats-meta-textbookName']")
-        print("course: {}, lesson: {}".format(actual_course, actual_lesson))
+        print("expected: {}, course: {}, lesson: {}".format(course_name, actual_course, actual_lesson))
 
         driver.get(PROD_URL)
 
