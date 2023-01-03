@@ -14,7 +14,6 @@ def validate_image(image):
             i = re.sub(r"https://imgur\.com/([\d\w]+)", r"https://i.imgur.com/\g<1>.png", i)
             r = requests.get(i)
         except:
-            print(1)
             raise Exception("Image retrieval error")
         with open(name, 'wb') as outfile:
             outfile.write(r.content)

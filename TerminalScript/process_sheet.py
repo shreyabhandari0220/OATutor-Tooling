@@ -26,6 +26,7 @@ import functools
 print = functools.partial(print, flush=True)
 
 URL_SPREADSHEET_KEY = '1yyeDxm52Zd__56Y0T3CdoeyXvxHVt0ITDKNKWIoIMkU'
+# URL_SPREADSHEET_KEY = '1SXk7QA88FvA-GH1IR7I992I-5IK2_SLBQvjhZ8t0xvc'
 
 
 def get_sheet(spreadsheet_key):
@@ -40,13 +41,22 @@ def get_all_url(bank_url):
     if not bank_url:
         bank_url = URL_SPREADSHEET_KEY
     book = get_sheet(bank_url)
-    worksheet = book.worksheet('URLs')
-    table = worksheet.get_all_values()
-    df = pd.DataFrame(table[1:], columns=table[0])
-    df = df[["Book", "URL", "Editor Sheet"]]
-    df = df.astype(str)
-    df.replace('', 0.0, inplace=True)
-    return df
+
+    url_sheet = book.worksheet('URLs')
+    url_table = url_sheet.get_all_values()
+    url_df = pd.DataFrame(url_table[1:], columns=url_table[0])
+    url_df = url_df[["Book", "URL", "Editor Sheet"]]
+    url_df = url_df.astype(str)
+    url_df.replace('', 0.0, inplace=True)
+
+    hash_sheet = book.worksheet('Content Hash')
+    hash_table = hash_sheet.get_all_values()
+    hash_df = pd.DataFrame(hash_table[1:], columns=hash_table[0])
+    hash_df = hash_df[["Sheet Name", "Content Hash", "Changed Sheets"]]
+    hash_df = hash_df.astype(str)
+    hash_df.replace('', 0.0, inplace=True)
+
+    return url_df, hash_df
 
 
 def next_available_row(worksheet):
@@ -139,7 +149,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             df["Problem ID"] = ""
         if "Lesson ID" not in df.columns:
             df["Lesson ID"] = ""
-        ##Only keep columns we need
+        # Only keep columns we need
         variabilization = 'Variabilization' in df.columns
         try:
             if variabilization:

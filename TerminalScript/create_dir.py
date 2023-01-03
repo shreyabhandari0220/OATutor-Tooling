@@ -1,5 +1,6 @@
 import os
 import hashlib
+import shutil
 
 BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -14,16 +15,9 @@ def create_problem_dir(sheet_name, name, path, verbosity):
     name = 'a' + hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6] + name
     target = path + "/" + name
 
-    # most likely will not use this, but this is an additional catch for namespace error
-    if os.path.exists(target):
-        target = path + "/b" + str(tailing) + name
-        case = True 
-    while os.path.exists(target):
-        case = True
-        tailing += 1
-        target = path + "/b" + str(tailing) + name
-    if case:
-        name = "b" + str(tailing) + name
+    # remove old content
+    if os.path.isdir(target):
+        shutil.rmtree(target)
 
     os.makedirs(target)
     os.mkdir(target + "/steps")
