@@ -137,6 +137,7 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
                 if full_update or sheet != 0.0 and sheet + sheet_url in hash_df["Changed Sheets"].unique():
                     start = time.time()
                     if sheet[:2] == '##':
+                        sheet = sheet[2:]
                         skills, lesson_id, skills_dict = process_sheet(sheet_url, sheet, default_path, 'online', 'FALSE',
                                             validator_path=validator_path, course_name=course_name, editor=is_editor)
                     else:

@@ -401,6 +401,7 @@ if __name__ == '__main__':
     sheet_name = sys.argv[3]
     if sheet_name[:2] == '##':
         latex = 'FALSE'
+        sheet_name = sheet_name[2:]
     else:
         latex = 'TRUE'
     process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, validator_path='../.OpenStax Validator',
