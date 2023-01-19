@@ -25,8 +25,8 @@ import functools
 
 print = functools.partial(print, flush=True)
 
-# URL_SPREADSHEET_KEY = '1yyeDxm52Zd__56Y0T3CdoeyXvxHVt0ITDKNKWIoIMkU'
-URL_SPREADSHEET_KEY = '1SXk7QA88FvA-GH1IR7I992I-5IK2_SLBQvjhZ8t0xvc'
+URL_SPREADSHEET_KEY = '1yyeDxm52Zd__56Y0T3CdoeyXvxHVt0ITDKNKWIoIMkU'
+# URL_SPREADSHEET_KEY = '1SXk7QA88FvA-GH1IR7I992I-5IK2_SLBQvjhZ8t0xvc'
 
 
 def get_sheet(spreadsheet_key):
