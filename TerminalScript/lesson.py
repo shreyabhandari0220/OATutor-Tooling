@@ -22,7 +22,7 @@ def create_bkt_params(name):
     return bkt_params
 
 
-def create_lesson_plan(sheet, skills, lesson_id):
+def create_lesson_plan(sheet, skills, lesson_id, meta):
     lesson_number = sheet.split()[0]
     lesson_topics = " ".join(sheet.split()[1:])
 
@@ -35,6 +35,9 @@ def create_lesson_plan(sheet, skills, lesson_id):
         "allowRecycle": True,
         "learningObjectives": dict(zip(skills, [0.85 for _ in skills]))
     }
+
+    if meta:
+        lesson_plan.update(meta)
 
     return lesson_plan
 
@@ -137,11 +140,11 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
                 if full_update or sheet != 0.0 and sheet + sheet_url in hash_df["Changed Sheets"].unique():
                     start = time.time()
                     if sheet[:2] == '##':
-                        sheet = sheet[2:]
-                        skills, lesson_id, skills_dict = process_sheet(sheet_url, sheet, default_path, 'online', 'FALSE',
+                        skills, lesson_id, skills_dict, meta = process_sheet(sheet_url, sheet, default_path, 'online', 'FALSE',
                                             validator_path=validator_path, course_name=course_name, editor=is_editor)
+                        sheet = sheet[2:]
                     else:
-                        skills, lesson_id, skills_dict = process_sheet(sheet_url, sheet, default_path, 'online', 'TRUE',
+                        skills, lesson_id, skills_dict, meta = process_sheet(sheet_url, sheet, default_path, 'online', 'TRUE',
                                             validator_path=validator_path, course_name=course_name, editor=is_editor)
                     if not lesson_id:
                         continue
@@ -149,7 +152,7 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
                         continue
                     skill_model.update(skills_dict)
                     skills.sort()
-                    lesson_plan.append(create_lesson_plan(sheet, skills, lesson_id))
+                    lesson_plan.append(create_lesson_plan(sheet, skills, lesson_id, meta))
                     for skill in skills:
                         bkt_params.update(create_bkt_params(skill))
 

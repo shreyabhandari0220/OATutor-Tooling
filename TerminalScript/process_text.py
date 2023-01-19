@@ -173,7 +173,7 @@ def use_latex(word, render_latex, stepMC):
     for part in parts:
         if any([op in part for op in supported_operators]) or any([op in part for op in supported_word_operators]) and 'info' not in part:
             return True
-        if re.match("[\d\.]*[bdhnprtxyz]+[.\?\!,\%\$]{,1}$", part):
+        if re.match("[\d\.]*[bdhnprtxyz][.\?\!,\%\$]{,1}$", part):
             return True
     if "(" in word and ")" in word and "-" in word:
         return True

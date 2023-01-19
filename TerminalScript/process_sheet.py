@@ -25,8 +25,8 @@ import functools
 
 print = functools.partial(print, flush=True)
 
-URL_SPREADSHEET_KEY = '1yyeDxm52Zd__56Y0T3CdoeyXvxHVt0ITDKNKWIoIMkU'
-# URL_SPREADSHEET_KEY = '1SXk7QA88FvA-GH1IR7I992I-5IK2_SLBQvjhZ8t0xvc'
+# URL_SPREADSHEET_KEY = '1yyeDxm52Zd__56Y0T3CdoeyXvxHVt0ITDKNKWIoIMkU'
+URL_SPREADSHEET_KEY = '1SXk7QA88FvA-GH1IR7I992I-5IK2_SLBQvjhZ8t0xvc'
 
 
 def get_sheet(spreadsheet_key):
@@ -151,14 +151,22 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             df["Lesson ID"] = ""
         # Only keep columns we need
         variabilization = 'Variabilization' in df.columns
+        meta = 'Meta' in df.columns
         try:
-            if variabilization:
+            if variabilization and meta:
+                df = df[["Problem Name", "Row Type", "Variabilization", "Title", "Body Text", "Answer", "answerType",
+                         "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
+                         "openstax KC", "KC", "Taxonomy", "Problem ID", "Lesson ID", "Meta"]]
+            elif variabilization:
                 df = df[["Problem Name", "Row Type", "Variabilization", "Title", "Body Text", "Answer", "answerType",
                          "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
                          "openstax KC", "KC", "Taxonomy", "Problem ID", "Lesson ID"]]
+            elif meta:
+                df = df[["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType",
+                         "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
+                         "openstax KC", "KC", "Taxonomy", "Problem ID", "Lesson ID","Meta"]]
             else:
-                df = df[
-                    ["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency",
+                df = df[["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency",
                      "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", "Taxonomy",
                      "Problem ID", "Lesson ID"]]
         except KeyError as e:
@@ -214,6 +222,9 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         df["Problem Name"] = df["Problem Name"].str.replace(r"\s", "", regex=True)
     except AttributeError:
         pass
+
+    if sheet_name[:2] == "##":
+        sheet_name = sheet_name[2:]
 
     skills: dict = {}
     skills_unformatted = []
@@ -321,6 +332,16 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     skills_unformatted = ["_".join(skill.lower().split()) for skill in skills_unformatted]
 
+    meta_dict = {}
+    if meta:
+        for m in df["Meta"]:
+            if m:
+                try:
+                    key, value = m.split(": ")
+                    meta_dict[key] = True if value.lower() == "true" else False
+                except ValueError:
+                    continue
+
     # write error checks to content google sheets
     for col in ['Validator Check']:
         if error_df[col].isnull().values.all():
@@ -328,7 +349,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     error_debug_df = pd.concat([error_df, debug_df], axis=1)
     try:
-        set_with_dataframe(worksheet, error_debug_df, col=len(df.columns))
+        col = len(df.columns) if not meta else len(df.columns) - 1
+        set_with_dataframe(worksheet, error_debug_df, col=col)
     except Exception as e:
         print('Fail to write to google sheet. Waiting...')
         print('sheetname:', sheet_name, e)
@@ -343,7 +365,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     print("[{}] Processing (and writing errors) complete".format(sheet_name))
 
-    return list(set(skills_unformatted)), lesson_id, skills
+    return list(set(skills_unformatted)), lesson_id, skills, meta_dict
 
 
 def generate_id():
@@ -401,7 +423,6 @@ if __name__ == '__main__':
     sheet_name = sys.argv[3]
     if sheet_name[:2] == '##':
         latex = 'FALSE'
-        sheet_name = sheet_name[2:]
     else:
         latex = 'TRUE'
     process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, validator_path='../.OpenStax Validator',
