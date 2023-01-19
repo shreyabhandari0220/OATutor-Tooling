@@ -144,7 +144,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             df = pd.DataFrame(table[1:], columns=table[0])
         except:
             print("[{}] data frame not found, returning early".format(sheet_name))
-            return None, None, None
+            return None, None, None, {}
         if "Problem ID" not in df.columns:
             df["Problem ID"] = ""
         if "Lesson ID" not in df.columns:
@@ -183,7 +183,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                 print('Fail to write to google sheet. Waiting...')
                 print('sheetname:', sheet_name, e)
                 time.sleep(40)
-            return None, None, None
+            return None, None, None, {}
         df = df.astype(str)
         df.replace('', 0.0, inplace=True)
         df.replace(' ', 0.0, inplace=True)
@@ -196,7 +196,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             df = pd.read_excel(excel_path, sheet_name, header=0)
         except:
             print("path not found:", excel_path, sheet_name)
-            return None, None, None
+            return None, None, None, {}
         ##Only keep columns we need
         if "Problem ID" not in df.columns:
             df["Problem ID"] = ""
