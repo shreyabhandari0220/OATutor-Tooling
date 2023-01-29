@@ -57,7 +57,9 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
         text = re.sub(r"_\{([\w]+),([\w]+)\}", r"_\g<1>_\g<2>", text) #To account for subscript in form of A_{i,j} (change to A_ij)
         text = re.sub("_\(([^)]+)\)", "_\g<1>", text) # To account for subscript in form of A_(BC) (chage to A_BC)
         text = re.sub(r"_{2,}", r"___", text)
-
+    
+    # Handle newline
+    text = re.sub(r"\n", " |newline| ", text)
 
     words = text.split()
     latex = False
@@ -138,6 +140,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
     text = " ".join(words)
     text = re.sub(r"\\\\slash\\\\", "/", text)
     text = re.sub(r"aaa(\w+|\d+)ttt", r"@{\g<1>}", text)
+    text = re.sub(r"\s\|newline\|\s", "\n", text)
     force_latex = 0.0
     return text, latex
 
