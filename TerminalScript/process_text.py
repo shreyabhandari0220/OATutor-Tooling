@@ -176,9 +176,19 @@ def use_latex(word, render_latex, stepMC):
     for part in parts:
         if any([op in part for op in supported_operators]) or any([op in part for op in supported_word_operators]) and 'info' not in part:
             return True
-        if re.match("[\d\.]*[bdhnprtxyz][.\?\!,\%\$]{,1}$", part):
-            return True
+        if re.match("[\d\.]*[bdhmnprtxyz][.\?\!,\%\$]{,1}$", part) and "y-coord" not in word:
+            verbose_words = ["y-axis", "y-coord", "y-intercept", "y-value", "x-axis", "x-coord", "x-intercept", "x-value"]
+            if not any([v in word for v in verbose_words]):
+                return True
     if "(" in word and ")" in word and "-" in word:
+        return True
+    if re.search("\d-\d", word):
+        return True
+    if re.search("\.\d", word):
+        return True
+    if re.search("\([\d\.]+,[\d\.]+\)", word):
+        return True
+    if re.match("-*\d+[.\,]*$", word):
         return True
     return False
 
