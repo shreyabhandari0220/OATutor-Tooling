@@ -1,7 +1,7 @@
 # OATutor-Content
 
 ## Our project
-This repository is meant to store content curated for the OATutor system developed by Computational Approaches to Human Learning at UC Berkeley. The OATutor system was developed to make learning more accessible and provide an open-source tutoring system for researchers, teachers, and students to access, disseminate, and better understand learning materials. The purpose of this README is to provide better understanding of how to structure content such that it can be read into the OATutor system.
+This repository is meant to store content and quality assurance tools used for the OATutor system developed by Computational Approaches to Human Learning at UC Berkeley. The OATutor system was developed to make learning more accessible and provide an open-source tutoring system for researchers, teachers, and students to access, disseminate, and better understand learning materials.
 
 ## Structure of README
 The README of the repository is composed of two main parts. The first part explains the usage and structure of the content generation script, which is located under the TerminalScript directory, and the second part explains the usage of the Selenium testing and answer validation script, which is located under the selenium directory.
@@ -11,24 +11,30 @@ To run script on one sheet, change directory into TerminalScript, and use the co
 ```
 python3 process_sheet.py online <sheet_key> <sheet_name>
 ```
-where `sheet_key` is part of the google sheet URL, and `sheet_name` is the name of Google sheet tab to be run on. The generated content will appear under OATutor-content/OpenStax1, and the corresponding skillModel will be in the file skillModel1.js.
-Note: sheet with name that starts with "##" will not run in LaTeX mode by default. However, users are able to wrap desired LaTeX content within "$$" on content Googlesheet to force LaTeX generation.
+where `sheet_key` is taken from the google sheet URL, and `sheet_name` is the name of Google sheet tab to be run on. The generated content will appear under OATutor-Tooling/OpenStax1.
 
-To run script on all content, use the command:
+To run script over the full content pool (i.e. full content update), use the command:
+```
+python3 final.py online full
+```
+This will regenerate content for all books listed in Problem Bank URL (https://docs.google.com/spreadsheets/d/1yyeDxm52Zd__56Y0T3CdoeyXvxHVt0ITDKNKWIoIMkU). 
+
+To run script over contents that have been recently modified, used the command:
 ```
 python3 final.py online
 ```
-This will regenerate content for all books listed in Problem Bank URL (https://docs.google.com/spreadsheets/d/1yyeDxm52Zd__56Y0T3CdoeyXvxHVt0ITDKNKWIoIMkU). As the script runs, content feedback will be directly updated onto the original Google sheets. Content for the Editor Sheet will also be regenerated, but it is currently not deployed to frontend. The main purpose for Editor Sheet content generation is to provide content feedback directly onto the Editor Sheet. 
+This will only update the json content files corresponding to problems that are modified or newly added since the last content script execution.
+
+The script is also responsible for auto-checking the content format, and providing instant feedback to content editors directly through Google sheets. 
 
 ## How to structure content
-The script in this repo reads in Google Sheets and outputs JS files ready to be processed by the system. For every sheet procesed by the system, there are some requirements for headers and notation that ensure the script is read properly. Every sheet must have: "Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", and "Taxonomy", and may optionally include "Variabilization".
+The script in this repo reads in Google Sheets and outputs json files ready to be processed by the system. For every sheet procesed by the system, there are some requirements for headers and notation that ensure the script is read properly. Every sheet must have: "Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", and "Taxonomy", and may optionally include "Variabilization" and "Meta".
 
 ## Content Organization
-The content in OATutor is organized into different lessons. On a Google Sheets Document, each lesson should have its own sheet. Each lesson has different KC's, or knowledge components, associated with it, and the OATutor system attempts to ensure that a student has only finished the lesson after demonstrating mastery of each KC within the lesson.
+The content in OATutor is organized into different lessons. On a Google Sheets Document, each lesson should have its own sheet (i.e. tab). Each lesson has different KC's, or knowledge components, associated with it, and the OATutor system attempts to ensure that a student has only finished the lesson after demonstrating mastery of each KC within the lesson.
 
 ## Problem Organization
 The way that content in OATutor is structured is that every row denotes either a problem, step, hint, or scaffold. Problems are generally just headers that tell the student what skill the question is about, meaning that the actual question is asked in the steps of the problem. This also means that every problem must have at least one step. Steps ask the actual questions and as a result, also have corresponding answers that can be formatted in different ways. Since steps themselves are questions, they have associated hints and scaffolds to provide students with help. Hints are sentences (not questions) that provide students with information such that they can answer the step better. Scaffolds on the other hand are questions themselves that have answers so that students can work through part of the problem. 
-
 
 ## Headers and associated values:
 Here is an example of a fully finished Google Sheets with content ready to be loaded into the system: https://docs.google.com/spreadsheets/d/1kp-RgMBtw-B5hXrMuMG4J40WYTJrMuF34seTAwaSAl4/edit?usp=sharing
@@ -65,9 +71,10 @@ Taxonomy: If it exists, a link to the skill taxonomy which specifies the order o
 
 Variabilization: If it exists, each cell in this column will contain group(s) of variable-value matching. Variable that appears in problem or answer text will have one of its possible values selected at random, which will replace the variable name in the problem text. This field is optional.
 
+Meta: It it exists, contains metadata about mode of the problem.
 
 ## Text Formatting
-OATutor supports mathematical notation so that questions can render properly and more easily for students to see. There are two options when it comes to math notation. First, content creators can use OATutor's mathematical notation itself, but this math notation has specific formatting rules and only supports a limited amount of math operations, which will be explained below. For broader math/symbol support, content creators can write their content directly in LaTex and wrap the LaTex portions of their content in "$$" which tells the system to process it as LaTex. 
+OATutor supports mathematical notation so that questions can render properly and more easily for students to see. There are two options when it comes to math notation. First, content creators can use OATutor's mathematical notation itself, but this math notation has specific formatting rules and only supports a limited amount of math operations, which will be explained below. For broader math/symbol support, content creators can write their content directly in LaTex and wrap the LaTex portions of their content in "$$" which tells the system to process it as LaTex. Prepending "##" to the sheet name prevents the content script from rendering mathematical notations in LaTex. 
 
 ### OATutor math formatting:
 This is the default math formatting that the system uses. If you wish to use the math formatting, please adhere to the following formatting rules:
@@ -103,8 +110,12 @@ Less than or equal to: <=
 
 Greater than or equal to: >=
 
+Subscript: _
+
+Matrix: /mat{(a,b,c),(d,e,f),(g,h,i)} . This will give a 3x3 matrix where the first row is (a,b,c), second row is (d,e,f), and third row is (g,h,i). The system supports arbitrary number of rows and columns, and supports math expressions for each element. 
+
 ## Selenium Script Intro
-The Selenium script is developed with the purpose of answer validation testing. The script connects to the debug tool in the staging server and simulates user's behavior of inputting answers, and checks for the correctness of each answer. There are two modes for which the script could be run: testing one problem, or testing all problem contents. For both modes, errors are summarized in a Pandas DataFrame, and reported to the feedback Google sheet. 
+The Selenium script is developed with the purpose of answer validation testing. The script connects to the debug tool in the content-staging server, simulates user's behavior of inputting answers, and checks for the correctness of each answer. There are two modes for which the script could be run: testing one problem, or testing all problem contents. For both modes, errors are summarized in a Pandas DataFrame, and reported to the feedback Google sheet. 
 
 ## Selenium Script Usage
 To test all steps of a particular problem, change directory to selenium, and run the following command:
