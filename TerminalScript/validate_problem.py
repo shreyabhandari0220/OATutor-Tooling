@@ -1,10 +1,19 @@
 import requests
 import os
+import signal
+import time
 from PIL import Image, UnidentifiedImageError
 
 from create_dir import *
 from create_content import *
 
+
+def image_timeout():
+    raise Exception("Image retrieval timeout")
+
+# Register timeout for image retrieval
+signal.signal(signal.SIGALRM, image_timeout)
+signal.alarm(10)
 
 def validate_image(image):
     images = image.split(" ")
