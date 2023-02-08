@@ -190,30 +190,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
 
     elif is_local == "local":
-        excel_path = '../Excel/'
-        excel_path += spreadsheet_key
-        try:
-            df = pd.read_excel(excel_path, sheet_name, header=0)
-        except:
-            print("path not found:", excel_path, sheet_name)
-            return None, None, None, {}
-        ##Only keep columns we need
-        if "Problem ID" not in df.columns:
-            df["Problem ID"] = ""
-        if "Lesson ID" not in df.columns:
-            df["Lesson ID"] = ""
-        variabilization = 'Variabilization' in df.columns
-        if variabilization:
-            df = df[
-                ["Problem Name", "Row Type", "Variabilization", "Title", "Body Text", "Answer", "answerType", "HintID",
-                 "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC",
-                 "Taxonomy", "Problem ID", "Lesson ID"]]
-        else:
-            df = df[["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency",
-                     "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", "Taxonomy",
-                     "Problem ID", "Lesson ID"]]
-        df = df.astype(str)
-        df.replace('nan', float(0.0), inplace=True)
+       raise Exception("Local problem reads no longer supported.")
 
     elif is_local != "local" and is_local != "online":
         raise NameError(

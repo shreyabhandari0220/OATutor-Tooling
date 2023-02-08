@@ -8,12 +8,12 @@ from create_dir import *
 from create_content import *
 
 
-def image_timeout():
+def image_timeout(signum, frame):
     raise Exception("Image retrieval timeout")
 
 # Register timeout for image retrieval
-signal.signal(signal.SIGALRM, image_timeout)
-signal.alarm(10)
+# signal.signal(signal.SIGALRM, image_timeout)
+# signal.alarm(10)
 
 def validate_image(image):
     images = image.split(" ")
