@@ -30,6 +30,12 @@ skillModel.js
 lessonPlans.js
 skillModel.json
 
+# credential files
+firebase_service_account.json
+sunlit-shelter-282118-8847831293f8.json
+oatutor-firebase-adminsdk.json
+.env
+
 # Student Data
 Data Analytics/data
 
