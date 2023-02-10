@@ -73,7 +73,7 @@ def finish_skill_model(bkt_params, file):
     file.close()
 
 
-def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank_url=None, full_update=False):
+def create_total(default_path, is_local, sheet_names=None, bank_url=None, full_update=False):
     """if sheet_names is not provided, default to run all sheets"""
     course_plan = old_course_plan = []
     bkt_params = old_bkt_params = {}
@@ -137,15 +137,15 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
                 print("Gspread Error in {}, {}:".format(course_name, sheet_url), e)
             for sheet in sheet_names:
                 # process only the sheets that have changed since last final.py run
-                if full_update or sheet != 0.0 and sheet + sheet_url in hash_df["Changed Sheets"].unique():
+                if full_update or sheet != 0.0 and sheet + sheet_url in list(hash_df["Changed Sheets"].unique()):
                     start = time.time()
                     if sheet[:2] == '##':
                         skills, lesson_id, skills_dict, meta = process_sheet(sheet_url, sheet, default_path, 'online', 'FALSE',
-                                            validator_path=validator_path, course_name=course_name, editor=is_editor)
+                                            course_name=course_name)
                         sheet = sheet[2:]
                     else:
                         skills, lesson_id, skills_dict, meta = process_sheet(sheet_url, sheet, default_path, 'online', 'TRUE',
-                                            validator_path=validator_path, course_name=course_name, editor=is_editor)
+                                            course_name=course_name)
                     if not lesson_id:
                         continue
                     if not skills:
@@ -206,6 +206,5 @@ def create_total(default_path, is_local, sheet_keys=None, sheet_names=None, bank
 
 if __name__ == '__main__':
     is_local = sys.argv[1]
-    sheet_key = sys.argv[2]
-    sheet_names = sys.argv[3:]
-    create_total(sheet_key, sheet_names, '../OpenStax Content', is_local)
+    sheet_names = sys.argv[2:]
+    create_total('../OpenStax Content', is_local, sheet_names)

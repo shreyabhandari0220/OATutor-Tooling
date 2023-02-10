@@ -68,8 +68,6 @@ def write_step_json(default_path, problem_name, row, step_count, tutoring, skill
     step_count += 1
     # sets the current step name and path
     current_step_name = problem_name + chr(96 + step_count)
-    step_file = open(default_path + "/stepfiles.txt", "a+", encoding="utf-8")
-    step_file.writelines("    " + current_step_name + ": " + "[\"realnumber\"], \n")
     # creates step js files
     _, step_reg_json_path, default_pathway_json_path = create_step_dir(current_step_name, path + "/steps", verbosity)
     step_file = open(step_reg_json_path, "w", encoding="utf-8")

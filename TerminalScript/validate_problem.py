@@ -1,7 +1,5 @@
 import requests
 import os
-import signal
-import time
 from PIL import Image, UnidentifiedImageError
 
 from create_dir import *

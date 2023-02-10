@@ -1,11 +1,8 @@
 import sys
-import os
 import pandas as pd
 import time
 
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.common.exceptions import NoSuchElementException, InvalidSessionIdException
+from selenium.common.exceptions import InvalidSessionIdException
 
 from test_page import test_page, start_driver
 from fetch_problem_ans import *

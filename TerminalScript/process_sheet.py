@@ -1,18 +1,15 @@
-import shutil
 import sys
+import os
 import time
 import uuid
 from datetime import datetime
-from distutils.dir_util import copy_tree
-from urllib.parse import urlparse
 import gspread
-import numpy as np
 import pandas as pd
-import requests
 import shortuuid
-from Naked.toolshed.shell import muterun_js, execute_js
 from gspread_dataframe import set_with_dataframe
 from oauth2client.service_account import ServiceAccountCredentials
+from dotenv import load_dotenv
+from pathlib import Path
 
 pd.options.display.html.use_mathjax = False
 
@@ -25,9 +22,10 @@ import functools
 
 print = functools.partial(print, flush=True)
 
-URL_SPREADSHEET_KEY = '1yyeDxm52Zd__56Y0T3CdoeyXvxHVt0ITDKNKWIoIMkU'
-# URL_SPREADSHEET_KEY = '1SXk7QA88FvA-GH1IR7I992I-5IK2_SLBQvjhZ8t0xvc'
-
+# load problem bank url
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
+URL_SPREADSHEET_KEY = os.environ['URL_SPREADSHEET_KEY']
 
 def get_sheet(spreadsheet_key):
     scope = ['https://spreadsheets.google.com/feeds']
@@ -128,13 +126,7 @@ def validate_question(question, variabilization, latex, verbosity):
     return error_message[:-1]  # get rid of the last newline
 
 
-def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, validator_path='',
-                  editor=False, skill_model="skillModel.json", course_name=""):
-    # for each sheet, do:
-    #   1. run tinna's script, update check 1 column of error_df
-    #   2. write json files to both OpenStax/ and OpenStax1/
-    #   3. write check 1 and check 2 (unused) to google spreadsheet
-    #   4. Set debug links
+def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, course_name=""):
 
     if is_local == "online":
         book = get_sheet(spreadsheet_key)
@@ -255,13 +247,13 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             raise Exception("Problem Skills broken")
 
         problem_name, path, problem_json_path = create_problem_dir(sheet_name, problem_name, default_path, verbosity)
-        step_count = 0 # TODO: document usage of how this works
+        step_count = 0 # used for naming steps (first step is a, second is b, etc.)
 
         # creates debug link from the name of the problem on the first index row of the problem
         debug_df.at[first_problem_index, 'Debug Link'] = debug_platform_template.format(problem_name)
         debug_df.at[first_problem_index, 'Problem ID'] = problem_name
 
-        current_step_name = step_reg_js = default_pathway_json_path = ""
+        current_step_name = default_pathway_json_path = ""
         images = False
         figure_path = ""
         problem_row = question.iloc[0]
@@ -352,45 +344,6 @@ def generate_id():
 
 
 
-# Enter check 2 column
-def validator_check(response, df, error_df, sheet_name):
-    post_script_errors = response.stdout.decode("utf-8").split('\n')
-    for error in post_script_errors:
-        if error:
-            row_id, error_message = error.split(': ')
-            # determine problem_name and row
-            sha = hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6]
-            if row_id[1:7] == sha:  # using sha1 only
-                problem_name = re.search('[\D]*\d+', row_id[7:]).group(0)
-            elif row_id[0] == 'b' and row_id[1].isnumeric():  # using b# and sha1
-                problem_name = re.search('[\D]*\d+', row_id[re.search(sha, row_id).end(0):]).group(0)
-            else:  # shouldn't need to use this
-                problem_name = re.search('[\D]*[\d]+', row_id).group(0)
-            if '-h' not in row_id:
-                ord_step = ord(row_id[-1]) - 97
-                error_row = \
-                    (df[df['Problem Name'] == problem_name].index & df[df['Row Type'] == 'step'].index)[
-                        ord_step]
-            elif '-h' in row_id:
-                ord_step = ord(re.search('\d([\D]+)\-h', row_id).group(1)) - 97
-                hint_num = re.search('-(h[\d]+)', row_id).group(1)
-                step_row = \
-                    (df[df['Problem Name'] == problem_name].index & df[df['Row Type'] == 'step'].index)[
-                        ord_step]
-                all_hints = df[df['Problem Name'] == problem_name].index & df[
-                    df['HintID'] == hint_num].index
-                error_row = min(r for r in all_hints if r > step_row)
-            else:
-                error_row = (df[df['Problem Name'] == problem_name].index)[0]
-
-            # add error message
-            if not pd.isna(error_df.at[error_row, 'Check 2']):
-                error_message = str(error_df.at[error_row, 'Check 2']) + '\n' + error_message
-            error_df.at[error_row, 'Check 2'] = error_message
-
-    return error_df
-
-
 if __name__ == '__main__':
     # when calling:
     # if stored locally: python3 final.py "local" <filename> <sheet_names>
@@ -402,5 +355,4 @@ if __name__ == '__main__':
         latex = 'FALSE'
     else:
         latex = 'TRUE'
-    process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, validator_path='../.OpenStax Validator',
-                  skill_model="skillModel1.js", course_name="")
+    process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, course_name="")

@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 import gspread 
 from gspread_dataframe import set_with_dataframe
 from oauth2client.service_account import ServiceAccountCredentials

@@ -2,7 +2,6 @@ import os
 import sys
 from os.path import dirname
 import re
-import ast
 import json
 
 from problem import *
