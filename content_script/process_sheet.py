@@ -307,7 +307,14 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             if m:
                 try:
                     key, value = m.split(": ")
-                    meta_dict[key] = True if value.lower() == "true" else False
+                    if value.lower() == "true":
+                        meta_dict[key] = True
+                    elif value.lower() == "false":
+                        meta_dict[key] = False
+                    elif value.isnumeric():
+                        meta_dict[key] = int(value)
+                    else:
+                        meta_dict[key] = value
                 except ValueError:
                     continue
 
