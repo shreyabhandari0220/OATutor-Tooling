@@ -111,25 +111,25 @@ def write_subhint_json(row, row_type, current_step_name, current_subhints, tutor
     if row_type == 'hint':
         if variabilization:
             subhint, subhint_id = create_hint(current_step_name, hint_id, row["Title"],
-                                                row["Body Text"], row["Dependency"], hint_images,
+                                                row["Body Text"], "", row["Dependency"], hint_images,
                                                 hint_dic=hint_dic, var_str=row["Variabilization"],
                                                 latex=latex, verbosity=verbosity)
         else:
             subhint, subhint_id = create_hint(current_step_name, hint_id, row["Title"],
-                                                row["Body Text"], row["Dependency"], hint_images,
+                                                row["Body Text"], "", row["Dependency"], hint_images,
                                                 hint_dic=hint_dic, latex=latex, verbosity=verbosity)
     else:
         if variabilization:
             subhint, subhint_id = create_scaffold(current_step_name, hint_id, row["Title"],
                                                     row["Body Text"], row["answerType"], row["Answer"],
-                                                    row["mcChoices"], row["Dependency"], hint_images,
+                                                    row["mcChoices"], "", row["Dependency"], hint_images,
                                                     hint_dic=hint_dic,
                                                     var_str=row["Variabilization"], latex=latex,
                                                     verbosity=verbosity)
         else:
             subhint, subhint_id = create_scaffold(current_step_name, hint_id, row["Title"],
                                                     row["Body Text"], row["answerType"], row["Answer"],
-                                                    row["mcChoices"], row["Dependency"], hint_images,
+                                                    row["mcChoices"], "", row["Dependency"], hint_images,
                                                     hint_dic=hint_dic, latex=latex, verbosity=verbosity)
     hint_dic[row["HintID"]] = subhint_id
     current_subhints.append(subhint)
@@ -137,14 +137,14 @@ def write_subhint_json(row, row_type, current_step_name, current_subhints, tutor
     if previous_tutor['Row Type'] == 'hint':
         if variabilization:
             previous, hint_id = create_hint(current_step_name, previous_tutor["HintID"],
-                                            previous_tutor["Title"], previous_tutor["Body Text"],
+                                            previous_tutor["Title"], previous_tutor["Body Text"], "",
                                             previous_tutor["Dependency"], previous_images,
                                             subhints=current_subhints, hint_dic=hint_dic,
                                             var_str=previous_tutor["Variabilization"],
                                             latex=latex, verbosity=verbosity)
         else:
             previous, hint_id = create_hint(current_step_name, previous_tutor["HintID"],
-                                            previous_tutor["Title"], previous_tutor["Body Text"],
+                                            previous_tutor["Title"], previous_tutor["Body Text"], "",
                                             previous_tutor["Dependency"], previous_images,
                                             subhints=current_subhints, hint_dic=hint_dic, latex=latex,
                                             verbosity=verbosity)
@@ -153,7 +153,7 @@ def write_subhint_json(row, row_type, current_step_name, current_subhints, tutor
             previous, hint_id = create_scaffold(current_step_name, previous_tutor["HintID"],
                                                 previous_tutor["Title"], previous_tutor["Body Text"],
                                                 previous_tutor["answerType"], previous_tutor["Answer"],
-                                                previous_tutor["mcChoices"],
+                                                previous_tutor["mcChoices"], "",
                                                 previous_tutor["Dependency"], previous_images,
                                                 subhints=current_subhints, hint_dic=hint_dic,
                                                 var_str=previous_tutor["Variabilization"],
@@ -162,7 +162,7 @@ def write_subhint_json(row, row_type, current_step_name, current_subhints, tutor
             previous, hint_id = create_scaffold(current_step_name, previous_tutor["HintID"],
                                                 previous_tutor["Title"], previous_tutor["Body Text"],
                                                 previous_tutor["answerType"], previous_tutor["Answer"],
-                                                previous_tutor["mcChoices"],
+                                                previous_tutor["mcChoices"], "",
                                                 previous_tutor["Dependency"], previous_images,
                                                 subhints=current_subhints, hint_dic=hint_dic,
                                                 latex=latex, verbosity=verbosity)
@@ -171,7 +171,7 @@ def write_subhint_json(row, row_type, current_step_name, current_subhints, tutor
     return images, hint_dic, current_subhints, tutoring, figure_path
 
 
-def write_hint_json(row, current_step_name, tutoring, images, figure_path, path, hint_dic, verbosity, variabilization, latex):
+def write_hint_json(row, current_step_name, oer, tutoring, images, figure_path, path, hint_dic, verbosity, variabilization, latex):
     current_subhints = []
     hint_images = ""
     if type(row["Images (space delimited)"]) == str:
@@ -181,12 +181,12 @@ def write_hint_json(row, current_step_name, tutoring, images, figure_path, path,
         images += num
     if variabilization:
         hint, full_id = create_hint(current_step_name, row["HintID"], row["Title"],
-                                    row["Body Text"], row["Dependency"], hint_images,
+                                    row["Body Text"], oer, row["Dependency"], hint_images,
                                     hint_dic=hint_dic, var_str=row["Variabilization"],
                                     latex=latex, verbosity=verbosity)
     else:
         hint, full_id = create_hint(current_step_name, row["HintID"], row["Title"],
-                                    row["Body Text"], row["Dependency"], hint_images,
+                                    row["Body Text"], oer, row["Dependency"], hint_images,
                                     hint_dic=hint_dic, latex=latex, verbosity=verbosity)
     hint_dic[row["HintID"]] = full_id
     tutoring.append(hint)
@@ -196,7 +196,7 @@ def write_hint_json(row, current_step_name, tutoring, images, figure_path, path,
     return images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path
 
 
-def write_scaffold_json(row, current_step_name, tutoring, images, figure_path, path, hint_dic, verbosity, variabilization, latex):
+def write_scaffold_json(row, current_step_name, oer, tutoring, images, figure_path, path, hint_dic, verbosity, variabilization, latex):
     current_subhints = []
     scaff_images = ""
     if type(row["Images (space delimited)"]) == str:
@@ -207,13 +207,13 @@ def write_scaffold_json(row, current_step_name, tutoring, images, figure_path, p
     if variabilization:
         scaff, full_id = create_scaffold(current_step_name, row["HintID"], row["Title"],
                                             row["Body Text"], row["answerType"], row["Answer"],
-                                            row["mcChoices"], row["Dependency"], scaff_images,
+                                            row["mcChoices"], oer, row["Dependency"], scaff_images,
                                             hint_dic=hint_dic, var_str=row["Variabilization"],
                                             latex=latex, verbosity=verbosity)
     else:
         scaff, full_id = create_scaffold(current_step_name, row["HintID"], row["Title"],
                                             row["Body Text"], row["answerType"], row["Answer"],
-                                            row["mcChoices"], row["Dependency"], scaff_images,
+                                            row["mcChoices"], oer, row["Dependency"], scaff_images,
                                             hint_dic=hint_dic, latex=latex, verbosity=verbosity)
     hint_dic[row["HintID"]] = full_id
     tutoring.append(scaff)
@@ -232,13 +232,13 @@ def write_problem_json(problem_row, problem_name, problem_json_path, course_name
         images += num
     if variabilization:
         prob_js = create_problem_json(problem_name, problem_row["Title"], problem_row["Body Text"],
-                                    problem_row["OER src"], problem_images,
+                                    problem_row["OER src"], problem_row["License"], problem_images,
                                     var_str=problem_row["Variabilization"], latex=latex,
                                     verbosity=verbosity, course_name=course_name, sheet_name=sheet_name)
     else:
         prob_js = create_problem_json(problem_name, problem_row["Title"], problem_row["Body Text"],
-                                    problem_row["OER src"], problem_images, latex=latex, verbosity=verbosity,
-                                    course_name=course_name, sheet_name=sheet_name)
+                                    problem_row["OER src"], problem_row["License"], problem_images, latex=latex, 
+                                    verbosity=verbosity, course_name=course_name, sheet_name=sheet_name)
     file = open(problem_json_path, "w", encoding="utf-8")
     file.write(prob_js)
     file.close()

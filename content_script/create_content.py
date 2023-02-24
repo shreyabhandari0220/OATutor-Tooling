@@ -18,7 +18,7 @@ def create_variabilization(variabilization):
     return var_dict
 
 
-def create_problem_json(name,title,body,oer,images=[],var_str='',latex=True,verbosity=False,course_name="",sheet_name=""):
+def create_problem_json(name,title,body,oer,license,images=[],var_str='',latex=True,verbosity=False,course_name="",sheet_name=""):
     if type(body) == float:
         body= ""
     for image in images:
@@ -38,6 +38,7 @@ def create_problem_json(name,title,body,oer,images=[],var_str='',latex=True,verb
         "body": body,
         "variabilization": variabilization,
         "oer": oer,
+        "license": license,
         "lesson": sheet_name,
         "courseName": course_name
     }
@@ -45,7 +46,7 @@ def create_problem_json(name,title,body,oer,images=[],var_str='',latex=True,verb
     return json.dumps(problem_dict, indent=4)
 
 
-def create_hint(step, hint_id, title, body, dependencies="", images=[], subhints=[], hint_dic={}, var_str='',latex=True,verbosity=False):
+def create_hint(step, hint_id, title, body, oer, dependencies="", images=[], subhints=[], hint_dic={}, var_str='',latex=True,verbosity=False):
     if type(body) == float:
         body = ""
     if type(title) == float:
@@ -76,7 +77,8 @@ def create_hint(step, hint_id, title, body, dependencies="", images=[], subhints
         "dependencies": dependencies,
         "title": title,
         "text": body,
-        "variabilization": variabilization
+        "variabilization": variabilization,
+        "oer": oer
     }
 
     if len(subhints) > 0:
@@ -103,7 +105,7 @@ def handle_answer_type(answer_type):
         raise Exception('Answer type not correct: ' + answer_type)
 
 
-def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, dependencies=0.0, images="", subhints=[], hint_dic={}, var_str="",latex=True,verbosity=False):
+def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, oer, dependencies=0.0, images="", subhints=[], hint_dic={}, var_str="",latex=True,verbosity=False):
     if type(body) == float:
         body = ""
     if type(title) == float:
@@ -161,7 +163,8 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
         "dependencies": dependencies,
         "title": title,
         "text": body,
-        "variabilization": variabilization
+        "variabilization": variabilization, 
+        "oer": oer
     }
 
     if type(mc_answers) is list:

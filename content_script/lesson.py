@@ -42,12 +42,14 @@ def create_lesson_plan(sheet, skills, lesson_id, meta):
     return lesson_plan
 
 
-def create_course_plan(course_name, lesson_plan, editor=False):
+def create_course_plan(course_name, lesson_plan, course_oer, course_license, editor=False):
     if not lesson_plan:
         lesson_plan = []
 
     course_plan = {
         "courseName": course_name,
+        "courseOER": course_oer,
+        "courseLicense": course_license,
         "lessons": lesson_plan
     }
 
@@ -119,13 +121,13 @@ def create_total(default_path, is_local, sheet_names=None, bank_url=None, full_u
 
         sheets_queue = []
         for _, row in url_df.iterrows():
-            course_name, book_url, editor_url = row['Book'], row['URL'], row['Editor Sheet']
+            course_name, book_url, book_oer, book_license, editor_url = row['Book'], row['URL'], row['OER'], row['License'], row['Editor Sheet']
             if book_url:
-                sheets_queue.append((book_url, False, course_name))
+                sheets_queue.append((book_url, False, course_name, book_oer, book_license))
             if editor_url:
-                sheets_queue.append((editor_url, True, ""))
+                sheets_queue.append((editor_url, True, "", "", ""))
                 
-        for sheet_url, is_editor, course_name in sheets_queue:
+        for sheet_url, is_editor, course_name, course_oer, course_license in sheets_queue:
             lesson_plan = []
             book = get_sheet(sheet_url)
 
@@ -177,7 +179,7 @@ def create_total(default_path, is_local, sheet_names=None, bank_url=None, full_u
                         lesson_plan.append(lesson)
 
             lesson_plan.sort(key=lambda lesson: lesson["name"])
-            course_plan.append(create_course_plan(course_name, lesson_plan, editor=is_editor))
+            course_plan.append(create_course_plan(course_name, lesson_plan, course_oer, course_license, editor=is_editor))
 
         if not full_update:
             # Append everything from the old bkt_params to the new bkt_params

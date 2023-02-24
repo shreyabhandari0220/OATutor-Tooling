@@ -43,7 +43,7 @@ def get_all_url(bank_url):
     url_sheet = book.worksheet('URLs')
     url_table = url_sheet.get_all_values()
     url_df = pd.DataFrame(url_table[1:], columns=url_table[0])
-    url_df = url_df[["Book", "URL", "Editor Sheet"]]
+    url_df = url_df[["Book", "URL", "OER", "License", "Editor Sheet"]]
     url_df = url_df.astype(str)
     url_df.replace('', 0.0, inplace=True)
 
@@ -148,18 +148,18 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             if variabilization and meta:
                 df = df[["Problem Name", "Row Type", "Variabilization", "Title", "Body Text", "Answer", "answerType",
                          "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
-                         "openstax KC", "KC", "Taxonomy", "Problem ID", "Lesson ID", "Meta"]]
+                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID", "Meta"]]
             elif variabilization:
                 df = df[["Problem Name", "Row Type", "Variabilization", "Title", "Body Text", "Answer", "answerType",
                          "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
-                         "openstax KC", "KC", "Taxonomy", "Problem ID", "Lesson ID"]]
+                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID"]]
             elif meta:
                 df = df[["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType",
                          "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
-                         "openstax KC", "KC", "Taxonomy", "Problem ID", "Lesson ID","Meta"]]
+                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID","Meta"]]
             else:
                 df = df[["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency",
-                     "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", "Taxonomy",
+                     "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", "Taxonomy", "License", 
                      "Problem ID", "Lesson ID"]]
         except KeyError as e:
             print("[{}] error found: {}".format(sheet_name, e))
@@ -168,9 +168,9 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             error_df.at[0, 'Validator Check'] = str(e)
             try:
                 if variabilization:
-                    set_with_dataframe(worksheet, error_df, col=18)
+                    set_with_dataframe(worksheet, error_df, col=19)
                 else:
-                    set_with_dataframe(worksheet, error_df, col=17)
+                    set_with_dataframe(worksheet, error_df, col=18)
             except Exception as e:
                 print('Fail to write to google sheet. Waiting...')
                 print('sheetname:', sheet_name, e)
@@ -262,6 +262,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         previous_tutor = ""
         previous_images = ""
         hint_dic = {}
+        hint_oer = ""
 
         skills_unformatted.extend(problem_skills)
 
@@ -270,6 +271,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             row_type = row['Row Type'].strip().lower()
             if index != 0:  # Not problem row
                 if row_type == "step":
+                    hint_oer = "" # reset hint oer for each step
                     step_count, current_step_name, tutoring, skills, images, figure_path, default_pathway_json_path = \
                         write_step_json(default_path, problem_name, row, step_count, tutoring, skills, images, 
                         figure_path, default_pathway_json_path, path, verbosity, variabilization, latex, problem_skills)
@@ -280,13 +282,17 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                         previous_images, images, path, figure_path, hint_dic, verbosity, variabilization, latex)
 
                 elif row_type == "hint":
+                    if type(row["OER src"]) != float and row["OER src"] != "":
+                        hint_oer = row["OER src"]
                     images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path = \
-                        write_hint_json(row, current_step_name, tutoring, images, figure_path, path, hint_dic, 
+                        write_hint_json(row, current_step_name, hint_oer, tutoring, images, figure_path, path, hint_dic, 
                         verbosity, variabilization, latex)
                 
                 elif row_type == "scaffold":
+                    if type(row["OER src"]) != float and row["OER src"] != "":
+                        hint_oer = row["OER src"]
                     images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path = \
-                        write_scaffold_json(row, current_step_name, tutoring, images, figure_path, path, hint_dic,
+                        write_scaffold_json(row, current_step_name, hint_oer, tutoring, images, figure_path, path, hint_dic,
                                     verbosity, variabilization, latex)
 
         default_pathway_str = create_default_pathway(tutoring)
