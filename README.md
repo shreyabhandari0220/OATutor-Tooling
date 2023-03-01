@@ -1,4 +1,4 @@
-# OATutor-Content
+# OATutor-Tooling
 
 ## Our project
 This repository is meant to store content and quality assurance tools used for the OATutor system developed by Computational Approaches to Human Learning at UC Berkeley. The OATutor system was developed to make learning more accessible and provide an open-source tutoring system for researchers, teachers, and students to access, disseminate, and better understand learning materials.
