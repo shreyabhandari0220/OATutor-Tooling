@@ -1,5 +1,6 @@
 import json
 import re
+import numpy as np
 
 from process_text import preprocess_text_to_latex
 
@@ -19,11 +20,11 @@ def create_variabilization(variabilization):
 
 
 def create_problem_json(name,title,body,oer,license,images=[],var_str='',latex=True,verbosity=False,course_name="",sheet_name=""):
-    if type(body) == float:
+    if type(body) == float or type(body) == np.float64:
         body= ""
     for image in images:
         body += "\\n##{0}##".format(image)
-    if type(title) == float:
+    if type(title) == float or type(title) == np.float64:
         title = ""
 
     title, title_latex = preprocess_text_to_latex(title, render_latex=latex, verbosity=verbosity)
@@ -47,9 +48,9 @@ def create_problem_json(name,title,body,oer,license,images=[],var_str='',latex=T
 
 
 def create_hint(step, hint_id, title, body, oer, dependencies="", images=[], subhints=[], hint_dic={}, var_str='',latex=True,verbosity=False):
-    if type(body) == float:
+    if type(body) == float or type(body) == np.float64:
         body = ""
-    if type(title) == float:
+    if type(title) == float or type(title) == np.float64:
         title = ""
     
     title, title_latex = preprocess_text_to_latex(title, True, render_latex=latex, verbosity=verbosity)
@@ -106,9 +107,9 @@ def handle_answer_type(answer_type):
 
 
 def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, oer, dependencies=0.0, images="", subhints=[], hint_dic={}, var_str="",latex=True,verbosity=False):
-    if type(body) == float:
+    if type(body) == float or type(body) == np.float64:
         body = ""
-    if type(title) == float:
+    if type(title) == float or type(title) == np.float64:
         title = ""
     
     title, title_latex = preprocess_text_to_latex(title, True, render_latex=latex, verbosity=verbosity)
@@ -139,7 +140,7 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
     else:
         dependencies = []
 
-    if answer_type == "mc" and type(mc_answers) == float:
+    if answer_type == "mc" and (type(mc_answers) == float or type(mc_answers) == np.float64):
         raise Exception("Scaffold mc question contains no options")
     
     answer_type, problem_type = handle_answer_type(answer_type)
@@ -149,7 +150,7 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
         answer = preprocess_text_to_latex(answer, render_latex=latex, verbosity=verbosity)[0]
     scaff_ans = [answer]
     
-    if type(mc_answers) != float:
+    if type(mc_answers) != float and type(mc_answers) != np.float64:
         mc_answers = [preprocess_text_to_latex(mc_answer, True, True, render_latex=latex, verbosity=verbosity)[0] for mc_answer in mc_answers.split("|") if mc_answer]
         answer = preprocess_text_to_latex(answer, True, True, render_latex=latex, verbosity=verbosity)[0]
         scaff_ans = [answer]
@@ -181,9 +182,9 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
 
 def create_step(name, title, body, answer, answer_type, number, choices="", image="", var_str="",latex=True, verbosity=False):
     step_id = name + chr(ord('a')+number-1)
-    if type(body) == float:
+    if type(body) == float or type(body) == np.float64:
         body = ""
-    if type(title) == float:
+    if type(title) == float or type(title) == np.float64:
         title = ""
     
     title, title_latex = preprocess_text_to_latex(title, render_latex=latex, verbosity=verbosity)

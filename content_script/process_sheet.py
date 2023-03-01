@@ -5,6 +5,7 @@ import uuid
 from datetime import datetime
 import gspread
 import pandas as pd
+import numpy as np
 import shortuuid
 from gspread_dataframe import set_with_dataframe
 from oauth2client.service_account import ServiceAccountCredentials
@@ -89,7 +90,7 @@ def validate_question(question, variabilization, latex, verbosity):
     for index, row in question.iterrows():
         # checks row type
         try:
-            if type(row["Row Type"]) == float:
+            if type(row["Row Type"]) == float or type(row["Row Type"]) == np.float64:
                 raise Exception("Row type is missing")
 
             row_type = row['Row Type'].strip().lower()
@@ -299,7 +300,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         default_pathway_json_file = open(default_pathway_json_path, "w", encoding="utf-8")
         default_pathway_json_file.write(default_pathway_str)
         default_pathway_json_file.close()
-
+        
         write_problem_json(problem_row, problem_name, problem_json_path, course_name, sheet_name, images, path, 
         figure_path, verbosity, variabilization, latex)
 
