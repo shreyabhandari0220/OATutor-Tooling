@@ -64,7 +64,7 @@ def create_hint(step, hint_id, title, body, oer, dependencies="", images=[], sub
         raise Exception("Hint ID is missing")
     for image in images:
         body += "\\n##{0}##".format(image)
-    if type(dependencies) == str and dependencies != 'None':
+    if type(dependencies) == str and dependencies != 'None' and dependencies != '':
         try:
             dependencies = [hint_dic[hint_id] for hint_id in dependencies.split(",")]
         except Exception as e:
@@ -132,7 +132,7 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
     for image in images:
         body += "\\n##{0}##".format(image)
 
-    if type(dependencies) == str and dependencies != 'None':
+    if type(dependencies) == str and dependencies != 'None' and dependencies != '':
         try:
             dependencies = [hint_dic[hint_id] for hint_id in dependencies.split(",")]
         except Exception as e:

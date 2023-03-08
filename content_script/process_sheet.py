@@ -241,7 +241,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                 df.replace(0.0, '', inplace=True)
                 df.replace('nan', '', inplace=True)
                 excel_df = pd.concat([df.drop(columns=df.columns[val_col:]), empty_col, error_df, df[add]], axis=1)
-                excel_df.to_excel(writer, 'Output', index=False, na_rep='')
+                excel_df.to_excel(writer, sheet_name, index=False, na_rep='')
                 writer.save()
 
             except Exception as e:
@@ -422,7 +422,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         df.replace(0.0, '', inplace=True)
         df.replace('nan', '', inplace=True)
         excel_df = pd.concat([df.drop(columns=drop), empty_col, error_debug_df, df[add]], axis=1)
-        excel_df.to_excel(writer, 'Output', index=False, na_rep='')
+        excel_df.to_excel(writer, sheet_name, index=False, na_rep='')
         writer.save()
 
 
