@@ -11,6 +11,7 @@ from gspread_dataframe import set_with_dataframe
 from oauth2client.service_account import ServiceAccountCredentials
 from dotenv import load_dotenv
 from pathlib import Path
+from openpyxl import load_workbook
 
 pd.options.display.html.use_mathjax = False
 
@@ -129,6 +130,7 @@ def validate_question(question, variabilization, latex, verbosity):
 
 def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, course_name=""):
 
+    variabilization = meta = False
     if is_local == "online":
         book = get_sheet(spreadsheet_key)
         worksheet = book.worksheet(sheet_name)
@@ -183,7 +185,75 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
 
     elif is_local == "local":
-       raise Exception("Local problem reads no longer supported.")
+        df = pd.read_excel(spreadsheet_key, sheet_name=sheet_name, engine='openpyxl')
+
+        book = load_workbook(spreadsheet_key)
+        writer = pd.ExcelWriter(spreadsheet_key, engine='openpyxl') 
+        writer.book = book
+        writer.sheets = dict((ws.title, ws) for ws in book.worksheets)
+        
+        if "Problem ID" not in df.columns:
+            df["Problem ID"] = ""
+        if "Lesson ID" not in df.columns:
+            df["Lesson ID"] = ""
+        variabilization = 'Variabilization' in df.columns
+        meta = 'Meta' in df.columns
+        try:
+            keep = []
+            if variabilization and meta:
+                keep = ["Problem Name", "Row Type", "Variabilization", "Title", "Body Text", "Answer", "answerType",
+                         "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
+                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID", "Meta"]
+               
+            elif variabilization:
+                keep = ["Problem Name", "Row Type", "Variabilization", "Title", "Body Text", "Answer", "answerType",
+                         "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
+                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID"]
+            elif meta:
+                keep = ["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType",
+                         "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
+                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID", "Meta"]
+            else:
+                keep = ["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency",
+                     "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", "Taxonomy", "License", 
+                     "Problem ID", "Lesson ID"]
+            df = df[keep]
+
+        except KeyError as e:
+            print("[{}] error found: {}".format(sheet_name, e))
+            error_df = pd.DataFrame(index=range(len(df)), columns=['Validator Check', 'Time Last Checked', 'Debug Link', 'Problem ID', 'Lesson ID'])
+            error_df.at[0, 'Time Last Checked'] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+            error_df.at[0, 'Validator Check'] = str(e)
+            if 'Lesson ID' in df.columns:
+                error_df.at[0, 'Lesson ID'] = df['Lesson ID'][0]
+            try:
+                empty_col = pd.DataFrame(index=range(len(df)), columns=[''])
+                if "Validator Check" in df.columns:
+                    val_col = df.columns.get_loc("Validator Check") - 1
+                else:
+                    val_col = 16 + int(variabilization)
+
+                if meta:
+                    add = ['Meta']
+                else:
+                    add = []
+
+                df.replace(0.0, '', inplace=True)
+                df.replace('nan', '', inplace=True)
+                excel_df = pd.concat([df.drop(columns=df.columns[val_col:]), empty_col, error_df, df[add]], axis=1)
+                excel_df.to_excel(writer, 'Output', index=False, na_rep='')
+                writer.save()
+
+            except Exception as e:
+                print('Fail to write to excel document')
+                print('sheetname:', sheet_name, e)
+            return None, None, None, {}
+
+        df = df.astype(str)
+        df.replace('', 0.0, inplace=True)
+        df.replace(' ', 0.0, inplace=True)
+        df.replace('nan', 0.0, inplace=True)
+
 
     elif is_local != "local" and is_local != "online":
         raise NameError(
@@ -331,13 +401,30 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             error_df.at[0, col] = "No errors found"
 
     error_debug_df = pd.concat([error_df, debug_df], axis=1)
-    try:
-        col = len(df.columns) if not meta else len(df.columns) - 1
-        set_with_dataframe(worksheet, error_debug_df, col=col)
-    except Exception as e:
-        print('Fail to write to google sheet. Waiting...')
-        print('sheetname:', sheet_name, e)
-        time.sleep(40)
+    col = len(df.columns) if not meta else len(df.columns) - 1
+
+    if is_local == "online":
+        try:
+            set_with_dataframe(worksheet, error_debug_df, col=col)
+        except Exception as e:
+            print('Fail to write to google sheet. Waiting...')
+            print('sheetname:', sheet_name, e)
+            time.sleep(40)
+
+    elif is_local == "local":
+        empty_col = pd.DataFrame(index=range(len(df)), columns=[''])
+        if meta:
+            drop = ['Problem ID', 'Lesson ID', 'Meta']
+            add = ['Meta']
+        else:
+            drop = ['Problem ID', 'Lesson ID']
+            add = []
+        df.replace(0.0, '', inplace=True)
+        df.replace('nan', '', inplace=True)
+        excel_df = pd.concat([df.drop(columns=drop), empty_col, error_debug_df, df[add]], axis=1)
+        excel_df.to_excel(writer, 'Output', index=False, na_rep='')
+        writer.save()
+
 
     for e in error_data:
         print("====")
