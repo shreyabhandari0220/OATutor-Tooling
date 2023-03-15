@@ -32,3 +32,4 @@ urllib3==1.26.4
 wincertstore==0.2
 wrapt==1.11.2
 python-dotenv==0.19.2
+openpyxl==3.0.10
