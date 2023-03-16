@@ -27,9 +27,12 @@ print = functools.partial(print, flush=True)
 # load problem bank url
 env_path = Path('.') / '.env'
 load_dotenv(dotenv_path=env_path)
-URL_SPREADSHEET_KEY = os.environ['URL_SPREADSHEET_KEY']
+try:
+    URL_SPREADSHEET_KEY = os.environ['URL_SPREADSHEET_KEY']
+except:
+    URL_SPREADSHEET_KEY = ""
 
-def get_sheet(spreadsheet_key):
+def get_sheet_online(spreadsheet_key):
     scope = ['https://spreadsheets.google.com/feeds']
     credentials = ServiceAccountCredentials.from_json_keyfile_name('../sunlit-shelter-282118-8847831293f8.json', scope)
     gc = gspread.authorize(credentials)
@@ -37,24 +40,36 @@ def get_sheet(spreadsheet_key):
     return book
 
 
-def get_all_url(bank_url):
-    if not bank_url:
-        bank_url = URL_SPREADSHEET_KEY
-    book = get_sheet(bank_url)
+def get_all_url(bank_url, is_local):
+    if is_local == "online":
 
-    url_sheet = book.worksheet('URLs')
-    url_table = url_sheet.get_all_values()
-    url_df = pd.DataFrame(url_table[1:], columns=url_table[0])
+        if not bank_url:
+            bank_url = URL_SPREADSHEET_KEY
+
+        book = get_sheet_online(bank_url)
+        url_sheet = book.worksheet('URLs')
+        url_table = url_sheet.get_all_values()
+        url_df = pd.DataFrame(url_table[1:], columns=url_table[0])
+
+        hash_sheet = book.worksheet('Content Hash')
+        hash_table = hash_sheet.get_all_values()
+        hash_df = pd.DataFrame(hash_table[1:], columns=hash_table[0])
+    
+    else:
+        url_df = pd.read_excel(bank_url, sheet_name='URLs', engine='openpyxl')
+        hash_df = pd.DataFrame(columns=["Sheet Name", "Content Hash", "Changed Sheets"])
+
+    
     url_df = url_df[["Book", "URL", "OER", "License", "Editor Sheet"]]
     url_df = url_df.astype(str)
     url_df.replace('', 0.0, inplace=True)
+    url_df.replace('nan', 0.0, inplace=True)
 
-    hash_sheet = book.worksheet('Content Hash')
-    hash_table = hash_sheet.get_all_values()
-    hash_df = pd.DataFrame(hash_table[1:], columns=hash_table[0])
+    
     hash_df = hash_df[["Sheet Name", "Content Hash", "Changed Sheets"]]
     hash_df = hash_df.astype(str)
     hash_df.replace('', 0.0, inplace=True)
+    hash_df.replace('nan', 0.0, inplace=True)
 
     return url_df, hash_df
 
@@ -132,7 +147,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     variabilization = meta = False
     if is_local == "online":
-        book = get_sheet(spreadsheet_key)
+        book = get_sheet_online(spreadsheet_key)
         worksheet = book.worksheet(sheet_name)
         table = worksheet.get_all_values()
         try:
@@ -278,7 +293,10 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     print("[{}] Start validating".format(sheet_name))
 
-    lesson_id = df.at[0, "Lesson ID"]
+    try:
+        lesson_id = df.at[0, "Lesson ID"]
+    except KeyError:
+        lesson_id = ""
     if type(lesson_id) is pd.Series:
         lesson_id = lesson_id[0]
     if not lesson_id or len(str(lesson_id)) <= 3:
