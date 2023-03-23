@@ -124,11 +124,11 @@ def create_total(default_path, is_local, sheet_names=None, bank_url=None, full_u
 
     sheets_queue = []
     for _, row in url_df.iterrows():
-        course_name, book_url, book_oer, book_license, editor_url = row['Book'], row['URL'], row['OER'], row['License'], row['Editor Sheet']
-        if book_url:
+        course_name, book_url, book_oer, book_license, editor_url, editor_oer, editor_license = row['Book'], row['URL'], row['OER'], row['License'], row['Editor Sheet'], row['Editor OER'], row['Editor License']
+        if type(book_url) == str and book_url:
             sheets_queue.append((book_url, False, course_name, book_oer, book_license))
-        if editor_url:
-            sheets_queue.append((editor_url, True, "", "", ""))
+        if type(editor_url) == str and editor_url:
+            sheets_queue.append((editor_url, True, "", editor_oer, editor_license))
             
     for sheet_url, is_editor, course_name, course_oer, course_license in sheets_queue:
         lesson_plan = []

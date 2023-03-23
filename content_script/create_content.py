@@ -47,7 +47,7 @@ def create_problem_json(name,title,body,oer,license,images=[],var_str='',latex=T
     return json.dumps(problem_dict, indent=4)
 
 
-def create_hint(step, hint_id, title, body, oer, dependencies="", images=[], subhints=[], hint_dic={}, var_str='',latex=True,verbosity=False):
+def create_hint(step, hint_id, title, body, oer, license, dependencies="", images=[], subhints=[], hint_dic={}, var_str='',latex=True,verbosity=False):
     if type(body) == float or type(body) == np.float64:
         body = ""
     if type(title) == float or type(title) == np.float64:
@@ -79,7 +79,8 @@ def create_hint(step, hint_id, title, body, oer, dependencies="", images=[], sub
         "title": title,
         "text": body,
         "variabilization": variabilization,
-        "oer": oer
+        "oer": oer, 
+        "license": license
     }
 
     if len(subhints) > 0:
@@ -106,7 +107,7 @@ def handle_answer_type(answer_type):
         raise Exception('Answer type not correct: ' + answer_type)
 
 
-def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, oer, dependencies=0.0, images="", subhints=[], hint_dic={}, var_str="",latex=True,verbosity=False):
+def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers, oer, license, dependencies=0.0, images="", subhints=[], hint_dic={}, var_str="",latex=True,verbosity=False):
     if type(body) == float or type(body) == np.float64:
         body = ""
     if type(title) == float or type(title) == np.float64:
@@ -165,7 +166,8 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
         "title": title,
         "text": body,
         "variabilization": variabilization, 
-        "oer": oer
+        "oer": oer, 
+        "license": license
     }
 
     if type(mc_answers) is list:

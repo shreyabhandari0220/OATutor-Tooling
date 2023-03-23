@@ -60,7 +60,7 @@ def get_all_url(bank_url, is_local):
         hash_df = pd.DataFrame(columns=["Sheet Name", "Content Hash", "Changed Sheets"])
 
     
-    url_df = url_df[["Book", "URL", "OER", "License", "Editor Sheet"]]
+    url_df = url_df[["Book", "URL", "OER", "License", "Editor Sheet", "Editor OER", "Editor License"]]
     url_df = url_df.astype(str)
     url_df.replace('', 0.0, inplace=True)
     url_df.replace('nan', 0.0, inplace=True)
@@ -351,7 +351,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         previous_tutor = ""
         previous_images = ""
         hint_dic = {}
-        hint_oer = ""
+        hint_oer = hint_license = ""
 
         skills_unformatted.extend(problem_skills)
 
@@ -360,28 +360,32 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             row_type = row['Row Type'].strip().lower()
             if index != 0:  # Not problem row
                 if row_type == "step":
-                    hint_oer = "" # reset hint oer for each step
+                    hint_oer = hint_license = "" # reset hint oer and license for each step
                     step_count, current_step_name, tutoring, skills, images, figure_path, default_pathway_json_path = \
                         write_step_json(default_path, problem_name, row, step_count, tutoring, skills, images, 
                         figure_path, default_pathway_json_path, path, verbosity, variabilization, latex, problem_skills)
 
                 if (row_type == 'hint' or row_type == "scaffold") and type(row['Parent']) != float:
                     images, hint_dic, current_subhints, tutoring, figure_path = \
-                        write_subhint_json(row, row_type, current_step_name, current_subhints, tutoring, previous_tutor, 
-                        previous_images, images, path, figure_path, hint_dic, verbosity, variabilization, latex)
+                        write_subhint_json(row, row_type, current_step_name, current_subhints, hint_oer, hint_license, tutoring, 
+                                           previous_tutor, previous_images, images, path, figure_path, hint_dic, verbosity, variabilization, latex)
 
                 elif row_type == "hint":
                     if type(row["OER src"]) != float and row["OER src"] != "":
                         hint_oer = row["OER src"]
+                    if type(row["License"]) != float and row["License"] != "":
+                        hint_license = row["License"]
                     images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path = \
-                        write_hint_json(row, current_step_name, hint_oer, tutoring, images, figure_path, path, hint_dic, 
+                        write_hint_json(row, current_step_name, hint_oer, hint_license, tutoring, images, figure_path, path, hint_dic, 
                         verbosity, variabilization, latex)
                 
                 elif row_type == "scaffold":
                     if type(row["OER src"]) != float and row["OER src"] != "":
                         hint_oer = row["OER src"]
+                    if type(row["License"]) != float and row["License"] != "":
+                        hint_license = row["License"]
                     images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path = \
-                        write_scaffold_json(row, current_step_name, hint_oer, tutoring, images, figure_path, path, hint_dic,
+                        write_scaffold_json(row, current_step_name, hint_oer, hint_license, tutoring, images, figure_path, path, hint_dic,
                                     verbosity, variabilization, latex)
 
         default_pathway_str = create_default_pathway(tutoring)
