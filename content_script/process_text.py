@@ -140,7 +140,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
     text = " ".join(words)
     text = re.sub(r"\\\\slash\\\\", "/", text)
     text = re.sub(r"aaa(\w+|\d+)ttt", r"@{\g<1>}", text)
-    text = re.sub(r"\s\|newline\|\s", "\\\\n", text)
+    text = re.sub(r"\s*\|newline\|\s*", "\\\\n", text)
     force_latex = 0.0
     return text, latex
 
@@ -175,7 +175,10 @@ def use_latex(word, render_latex, stepMC):
     parts = word.split('-')
     for part in parts:
         if any([op in part for op in supported_operators]) or any([op in part for op in supported_word_operators]) and 'info' not in part:
-            return True
+            if "inf" in part and (any([op in part for op in supported_operators]) or any([op in part for op in supported_word_operators if op != "inf"])):
+                return True            
+            if part == "inf" or not part.isalpha():
+                return True
         if re.match("[\d\.]*[bdhmnprtxyz][.\?\!,\%\$]{,1}$", part) and "y-coord" not in word:
             verbose_words = ["y-axis", "y-coord", "y-intercept", "y-value", "x-axis", "x-coord", "x-intercept", "x-value"]
             if not any([v in word for v in verbose_words]):
