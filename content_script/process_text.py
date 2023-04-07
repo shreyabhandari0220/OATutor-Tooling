@@ -88,7 +88,8 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
                 open_braces = True
                 word = word[1:]
             if word[-1:] == "}" and "ln{" not in word and "log{" not in word and \
-                '/mat' not in word and 'sum{' not in word and '_{' not in word and '/tab' not in word: 
+                '/mat' not in word and 'sum{' not in word and '_{' not in word and '/tab' not in word and \
+                '/lim' not in word: 
                 closing_braces = True
                 word = word[:-1]
             # if the word is forced latex
@@ -210,6 +211,12 @@ def handle_word(word, coord=True):
         matches = re.finditer('/tab{.+?}', word)
         for mat in matches:
             word = re.sub(re.escape(mat.group(0)), handle_single_table(mat.group(0)), word)
+        return word
+    
+    if r'/lim' in word:
+        matches = re.finditer('/lim{.+?}', word)
+        for mat in matches:
+            word = re.sub(re.escape(mat.group(0)), handle_single_limit(mat.group(0)), word)
         return word
 
     if not (any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])):
@@ -367,3 +374,12 @@ def handle_single_table(table):
     table = ' '.join(elements)
     table = r'\\begin{tabular} {|' + ' c |' * num_cols + r'} \\hline ' + table + r' \\hline \\end{tabular}'
     return table
+
+def handle_single_limit(lim):
+    a = re.search("/lim{([^,]+),([^,]+),(.+)}", lim).group(1)
+    b = re.search("/lim{([^,]+),([^,]+),(.+)}", lim).group(2)
+    c = re.search("/lim{([^,]+),([^,]+),(.+)}", lim).group(3)
+    lim_latex = r"\\lim_{" + re.sub("\\\\", r"\\\\", handle_word(a)) + r"\\to" + \
+                re.sub("\\\\", r"\\\\", handle_word(b)) + r"} " + \
+                re.sub("\\\\", r"\\\\", handle_word(c))
+    return lim_latex
