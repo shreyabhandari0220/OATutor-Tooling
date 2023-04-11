@@ -408,13 +408,20 @@ def handle_single_limit(lim):
     return lim_latex
 
 def handle_single_integral(integral):
-    func = re.search("/int{(.+),([^,]+),([^,]+),([^,]+)}", integral).group(1)
-    a = re.search("/int{(.+),([^,]+),([^,]+),([^,]+)}", integral).group(2)
-    b = re.search("/int{(.+),([^,]+),([^,]+),([^,]+)}", integral).group(3)
-    var = re.search("/int{(.+),([^,]+),([^,]+),([^,]+)}", integral).group(4)
-    int_latex = r"\\int_{" + re.sub("\\\\", r"\\\\", handle_word(a)) + r"}^{" + \
-                re.sub("\\\\", r"\\\\", handle_word(b)) + r"} " + \
-                re.sub("\\\\", r"\\\\", handle_word(func)) + r" \\,d" + \
-                re.sub("\\\\", r"\\\\", handle_word(var))
+    definite = re.search("/int{(.+),([^,]+),([^,]+),([^,]+)}", integral)
+    if definite:
+        func = definite.group(1)
+        a = definite.group(2)
+        b = definite.group(3)
+        var = definite.group(4)
+        int_latex = r"\\int_{" + re.sub("\\\\", r"\\\\", handle_word(a)) + r"}^{" + \
+                    re.sub("\\\\", r"\\\\", handle_word(b)) + r"} " + \
+                    re.sub("\\\\", r"\\\\", handle_word(func)) + r" \\,d" + \
+                    re.sub("\\\\", r"\\\\", handle_word(var))
+    else:
+        indefinite = re.search("/int{(.+),([^,]+)}", integral)
+        func = indefinite.group(1)
+        var = indefinite.group(2)
+        int_latex = r"\\int " + re.sub("\\\\", r"\\\\", handle_word(func)) + r" \\,d" + \
+                    re.sub("\\\\", r"\\\\", handle_word(var))
     return int_latex
-    # "\\int_{a}^{b} x^2 \\,dx"
