@@ -12,6 +12,7 @@ supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_", "~"]
 supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{", 'log(', 'sum{', '\\theta', '/mat', '/tab', '/lim' '/int']
 answer_only_operators = ["-"]
 skip_braces_operators = ["ln{", "log{", "/mat", "sum{", "_{", "/tab", "/lim", "/int"]
+trig_operators = ["sin", "cos", "tan", "csc", "sec", "cot"]
 replace = {"⋅" : "*", 
             "−" : "-", 
             "^" : "**", 
@@ -312,6 +313,7 @@ def handle_word(word, coord=True):
             sum_upper = sum_match.group(2)
             sum_upper_num = False
         word = 'sum([' + sum_match.group(3) + ' for ' + sum_var + ' in range(' + sum_lower + ',' + sum_upper + ')])'
+
     word = py2tex(word, print_latex=False, print_formula=False, simplify_output=False)
 
     #Here do the substitutions for the things that py2tex can't handle
@@ -339,6 +341,20 @@ def handle_word(word, coord=True):
 
     while re.search(r"sqrt\{[^\,]+\,\s*[^\,]+\}", word):
         word = re.sub(r"sqrt\{([^\,]+)\,\s*([^\,]+)\}", r"sqrt[\g<1>]{\g<2>}",  word)
+
+    # handle trig power
+    for trig in trig_operators:
+        matches = re.finditer(r"{" + trig + r"\\left\(", word)
+        for mat in matches:
+            power_idx = find_matching(word, '{', mat.start()) + 2
+            if word[power_idx] == '{':
+                power = word[power_idx : find_matching(word, '{', power_idx) + 1]
+            elif word[power_idx].isnumeric():
+                power = re.match('[0-9\.]+', word[power_idx:]).group(0)
+            else:
+                power = word[power_idx]
+            word = word[:mat.start(0)] + trig + r'^' + power + word[mat.start()+4 : power_idx-2] + word[power_idx+len(power):]
+            
 
     if sum_match:
         if not sum_upper_num:
