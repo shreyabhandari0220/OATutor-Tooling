@@ -9,8 +9,9 @@ sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
 sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
 
 supported_operators = ["**", "/", "*", "+", ">", "<", "=", "_", "~"]
-supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{", 'log(', 'sum{', '\\theta']
+supported_word_operators = ["sqrt", "abs(", "inf", "log{", "ln{", 'log(', 'sum{', '\\theta', '/mat', '/tab', '/lim' '/int']
 answer_only_operators = ["-"]
+skip_braces_operators = ["ln{", "log{", "/mat", "sum{", "_{", "/tab", "/lim", "/int"]
 replace = {"⋅" : "*", 
             "−" : "-", 
             "^" : "**", 
@@ -87,9 +88,7 @@ def preprocess_text_to_latex(text, tutoring=False, stepMC=False, render_latex="T
             if word[:1] == "{":
                 open_braces = True
                 word = word[1:]
-            if word[-1:] == "}" and "ln{" not in word and "log{" not in word and \
-                '/mat' not in word and 'sum{' not in word and '_{' not in word and '/tab' not in word and \
-                '/lim' not in word: 
+            if word[-1:] == "}" and all([op not in word for op in skip_braces_operators]): 
                 closing_braces = True
                 word = word[:-1]
             # if the word is forced latex
@@ -214,9 +213,17 @@ def handle_word(word, coord=True):
         return word
     
     if r'/lim' in word:
+        word = re.sub('\s', '', word)
         matches = re.finditer('/lim{.+?}', word)
         for mat in matches:
             word = re.sub(re.escape(mat.group(0)), handle_single_limit(mat.group(0)), word)
+        return word
+    
+    if r'/int' in word:
+        word = re.sub('\s', '', word)
+        matches = re.finditer('/int{.+?}', word)
+        for mat in matches:
+            word = re.sub(re.escape(mat.group(0)), handle_single_integral(mat.group(0)), word)
         return word
 
     if not (any([op in word for op in supported_operators]) or any([op in word for op in supported_word_operators])):
@@ -383,3 +390,15 @@ def handle_single_limit(lim):
                 re.sub("\\\\", r"\\\\", handle_word(b)) + r"} " + \
                 re.sub("\\\\", r"\\\\", handle_word(c))
     return lim_latex
+
+def handle_single_integral(integral):
+    func = re.search("/int{(.+),([^,]+),([^,]+),([^,]+)}", integral).group(1)
+    a = re.search("/int{(.+),([^,]+),([^,]+),([^,]+)}", integral).group(2)
+    b = re.search("/int{(.+),([^,]+),([^,]+),([^,]+)}", integral).group(3)
+    var = re.search("/int{(.+),([^,]+),([^,]+),([^,]+)}", integral).group(4)
+    int_latex = r"\\int_{" + re.sub("\\\\", r"\\\\", handle_word(a)) + r"}^{" + \
+                re.sub("\\\\", r"\\\\", handle_word(b)) + r"} " + \
+                re.sub("\\\\", r"\\\\", handle_word(func)) + r" \\,d" + \
+                re.sub("\\\\", r"\\\\", handle_word(var))
+    return int_latex
+    # "\\int_{a}^{b} x^2 \\,dx"
