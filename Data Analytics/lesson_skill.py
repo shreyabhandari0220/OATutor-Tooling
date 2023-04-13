@@ -14,7 +14,7 @@ import pickle
 URL_SPREADSHEET_KEY = '1yyeDxm52Zd__56Y0T3CdoeyXvxHVt0ITDKNKWIoIMkU'
 
 def get_all_url():
-    book = get_sheet(URL_SPREADSHEET_KEY)
+    book = get_sheet_online(URL_SPREADSHEET_KEY)
     worksheet = book.worksheet('URLs')
     table = worksheet.get_all_values()
     df = pd.DataFrame(table[1:], columns=table[0])
@@ -23,7 +23,7 @@ def get_all_url():
     df.replace('', 0.0, inplace=True)
     return df
 
-def get_sheet(spreadsheet_key):
+def get_sheet_online(spreadsheet_key):
     scope = ['https://spreadsheets.google.com/feeds']
     credentials = ServiceAccountCredentials.from_json_keyfile_name('../sunlit-shelter-282118-8847831293f8.json', scope)
     gc = gspread.authorize(credentials)
@@ -38,7 +38,7 @@ def get_lesson_skill_df():
     # For each book
     for index, row in url_df.iterrows():
         course_name, book_url = row['Book'], row['URL']
-        book = get_sheet(book_url)
+        book = get_sheet_online(book_url)
         sheet_names = [sheet.title for sheet in book.worksheets() if sheet.title[:2] != '!!']
 
         # For each lesson
