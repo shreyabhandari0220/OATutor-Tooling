@@ -7,10 +7,24 @@ import shutil
 from gspread_dataframe import set_with_dataframe
 from openpyxl import load_workbook
 import json
+import re
 
 from process_sheet import process_sheet, get_all_url, get_sheet_online, URL_SPREADSHEET_KEY
 
 
+def sort_lessons(name):
+    section = re.search(('[a-zA-Z\s]+([0-9]+)'), name)
+    if section:
+        section = int(section.group(1))
+        subsection = re.search(('[a-zA-Z\s]+[0-9]+\.([0-9]+)'), name)
+        if subsection:
+            subsection = int(subsection.group(1))
+        else:
+            subsection = 50
+    else:
+        section = 100
+        subsection = 50
+    return section * 100 + subsection
 
 def create_bkt_params(name):
     bkt_params = {
@@ -187,7 +201,7 @@ def create_total(default_path, is_local, sheet_names=None, bank_url=None, full_u
                 if lesson["id"] not in new_lesson_ids:
                     lesson_plan.append(lesson)
 
-        lesson_plan.sort(key=lambda lesson: lesson["name"])
+        lesson_plan.sort(key=lambda lesson: sort_lessons(lesson["name"]))
         course_plan.append(create_course_plan(course_name, lesson_plan, course_oer, course_license, editor=is_editor))
 
     if is_local == 'online' and not full_update:
