@@ -1,8 +1,15 @@
 import json
 import re
 import numpy as np
+from PIL import Image
+import hashlib
 
 from process_text import preprocess_text_to_latex
+
+
+def create_image_md5(image_path):
+    md5hash = hashlib.md5(Image.open(image_path).tobytes())
+    return md5hash.hexdigest()
 
 
 def create_variabilization(variabilization):

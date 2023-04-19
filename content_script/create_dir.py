@@ -46,3 +46,18 @@ def create_validator_dir(name, path):
     target = path + "/" + name
     # os.makedirs(target)
     return target
+
+def rename_problem_dir(sheet_name, name, path):
+    # handle namespace collision
+    name = 'a' + hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6] + name
+    target = path + "/" + name
+
+    # rename old content
+    if os.path.isdir(target):
+        new_target = path + "/." + name
+        os.makedirs(new_target)
+        for file in os.listdir(target):
+            shutil.move(os.path.join(target, file), new_target)
+        return new_target
+    else:
+        return ""

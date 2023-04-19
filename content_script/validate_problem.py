@@ -13,11 +13,21 @@ def image_timeout(signum, frame):
 # signal.signal(signal.SIGALRM, image_timeout)
 # signal.alarm(10)
 
-def validate_image(image):
-    images = image.split(" ")
+def validate_image(image, old_path):
+    images = image.split()
     name = ".figure.gif"
     for i in images:
+        # if checksum is there, can avoid re-downloading
+        if re.match('[^<^>]+<(\w+)>', i):
+            stored_md5 = re.match('[^<^>]+<(\w+)>', i).group(1)
+            print(stored_md5)
+            figures_dir = old_path + "/figures"
+            if os.path.isdir(figures_dir):
+                if any([create_image_md5(figures_dir + "/" + figure_name) == stored_md5 for figure_name in os.listdir(figures_dir)]):
+                    continue
         try:
+            if re.match('([^<^>]+)<\w+>', i):
+                i = re.match('([^<^>]+)<\w+>', i).group(1)
             i = re.sub(r"https://imgur\.com/([\d\w]+)", r"https://i.imgur.com/\g<1>.png", i)
             r = requests.get(i)
         except:
@@ -33,10 +43,10 @@ def validate_image(image):
         os.remove(name)
 
 
-def validate_step(row, variabilization, latex, verbosity):
+def validate_step(row, variabilization, latex, verbosity, old_path):
     # check images and create figure path if necessary
     if type(row["Images (space delimited)"]) == str:
-        validate_image(row["Images (space delimited)"])
+        validate_image(row["Images (space delimited)"], old_path)
     choices = type(row["mcChoices"]) == str and row["mcChoices"]
     if variabilization:
         create_step(row['Problem Name'], row['Title'], row["Body Text"], row["Answer"], row["answerType"],
@@ -47,7 +57,7 @@ def validate_step(row, variabilization, latex, verbosity):
                     1, choices, "", latex=latex, verbosity=verbosity)
 
 
-def validate_hint_with_parent(row, scaff_lst, row_type, hint_dic, previous_tutor, variabilization, latex, verbosity):
+def validate_hint_with_parent(row, scaff_lst, row_type, hint_dic, previous_tutor, variabilization, latex, verbosity, old_path):
     current_step_name = ""
 
     if row['Parent'] not in scaff_lst:
@@ -56,7 +66,7 @@ def validate_hint_with_parent(row, scaff_lst, row_type, hint_dic, previous_tutor
     hint_images = ""
     if type(row["Images (space delimited)"]) == str and type(
             row["Images (space delimited)"]) != np.float64:
-        validate_image(row["Images (space delimited)"])
+        validate_image(row["Images (space delimited)"], old_path)
     try:
         hint_id = row['Parent'] + "-" + row['HintID']
     except TypeError:
@@ -122,12 +132,12 @@ def validate_hint_with_parent(row, scaff_lst, row_type, hint_dic, previous_tutor
     return scaff_lst, hint_dic
 
 
-def validate_hint_without_parent(row, scaff_lst, row_type, hint_dic, variabilization, latex, verbosity):
+def validate_hint_without_parent(row, scaff_lst, row_type, hint_dic, variabilization, latex, verbosity, old_path):
     current_step_name = ""
     if row_type == "hint":
         hint_images = ""
         if type(row["Images (space delimited)"]) == str:
-            validate_image(row["Images (space delimited)"])
+            validate_image(row["Images (space delimited)"], old_path)
         if variabilization:
             hint, full_id = create_hint(current_step_name, row["HintID"], row["Title"],
                                         row["Body Text"], "", "", row["Dependency"], hint_images,
@@ -142,7 +152,7 @@ def validate_hint_without_parent(row, scaff_lst, row_type, hint_dic, variabiliza
         scaff_lst.append(row["HintID"])
         scaff_images = ""
         if type(row["Images (space delimited)"]) == str:
-            validate_image(row["Images (space delimited)"])
+            validate_image(row["Images (space delimited)"], old_path)
         if variabilization:
             scaff, full_id = create_scaffold(current_step_name, row["HintID"], row["Title"],
                                                 row["Body Text"], row["answerType"], row["Answer"],

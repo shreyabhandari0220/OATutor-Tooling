@@ -25,18 +25,32 @@ def create_default_pathway(tutoring):
     return json.dumps(tutoring, indent=4)
 
 
-def save_images(images, path, num):
+def save_images(images, path, num, old_path):
     # images is a string of urls separated by spaces
     if type(images) != str:
         return "", 0
-    images = images.split(" ")
+    images = images.split()
     names = []
+    image_df_str = ""
     for i in images:
         num += 1
         name = "figure" + str(num) + ".gif"
         names.append(name)
         i = re.sub(r"https://imgur\.com/([\d\w]+)", r"https://i.imgur.com/\g<1>.png", i)
+
+        # if checksum is there, can avoid re-downloading
+        if re.match('[^<^>]+<(\w+)>', i):
+            stored_md5 = re.match('[^<^>]+<(\w+)>', i).group(1)
+            figures_dir = old_path + "/figures"
+            if os.path.isdir(figures_dir) and os.path.exists(figures_dir + "/" + name) and \
+                create_image_md5(figures_dir + "/" + name) == stored_md5:
+                shutil.copyfile(figures_dir + "/" + name, path + "/" + name)
+                image_df_str += i + " "
+                continue
+
         try:
+            if re.match('([^<^>]+)<\w+>', i):
+                i = re.match('([^<^>]+)<\w+>', i).group(1)
             r = requests.get(i, headers=fake_headers)
         except (requests.exceptions.ConnectionError, ConnectionResetError) as exc:
             # could be because the requested service is blocking our ip, try again with a free proxy service
@@ -53,11 +67,13 @@ def save_images(images, path, num):
             sys.exit(1)
         with open(path + "/" + name, 'wb') as outfile:
             outfile.write(r.content)
-    return names, num
+        image_df_str += i + "<" + create_image_md5(path + "/" + name) + "> "
+
+    return names, num, image_df_str
 
 
 def write_step_json(default_path, problem_name, row, step_count, tutoring, skills: dict, images, figure_path,
-                    default_pathway_json_path, path, verbosity, variabilization, latex, problem_skills: list):
+                    default_pathway_json_path, path, verbosity, variabilization, latex, problem_skills: list, old_path):
     if step_count > 0:
         # writes to step
         to_write = create_default_pathway(tutoring)
@@ -71,13 +87,12 @@ def write_step_json(default_path, problem_name, row, step_count, tutoring, skill
     # creates step js files
     _, step_reg_json_path, default_pathway_json_path = create_step_dir(current_step_name, path + "/steps", verbosity)
     step_file = open(step_reg_json_path, "w", encoding="utf-8")
-    step_images = ""
+    step_images = image_df_str = ""
     # checks images and creates the figures path if necessary
     if type(row["Images (space delimited)"]) == str:
         if not images:
             figure_path = create_fig_dir(path)
-        step_images, num = save_images(row["Images (space delimited)"], figure_path, int(images))
-        images += num
+        step_images, images, image_df_str = save_images(row["Images (space delimited)"], figure_path, int(images), old_path)
     choices = type(row["mcChoices"]) == str and row["mcChoices"]
     if variabilization:
         step_file.write(
@@ -95,18 +110,17 @@ def write_step_json(default_path, problem_name, row, step_count, tutoring, skill
     }
     skills.update(skill)
 
-    return step_count, current_step_name, tutoring, skills, images, figure_path, default_pathway_json_path
+    return step_count, current_step_name, tutoring, skills, images, figure_path, default_pathway_json_path, image_df_str
 
 
 def write_subhint_json(row, row_type, current_step_name, current_subhints, oer, license, tutoring, previous_tutor, 
-                    previous_images, images, path, figure_path, hint_dic, verbosity, variabilization, latex):
-    hint_images = ""
+                    previous_images, images, path, figure_path, hint_dic, verbosity, variabilization, latex, old_path):
+    hint_images = image_df_str = ""
     if type(row["Images (space delimited)"]) == str and type(
             row["Images (space delimited)"]) != np.float64:
         if not images:
             figure_path = create_fig_dir(path)
-        hint_images, num = save_images(row["Images (space delimited)"], figure_path, int(images))
-        images += num
+        hint_images, images, image_df_str = save_images(row["Images (space delimited)"], figure_path, int(images), old_path)
     hint_id = row['Parent'] + "-" + row['HintID']
     if row_type == 'hint':
         if variabilization:
@@ -168,17 +182,16 @@ def write_subhint_json(row, row_type, current_step_name, current_subhints, oer, 
                                                 latex=latex, verbosity=verbosity)
     tutoring.append(previous)
 
-    return images, hint_dic, current_subhints, tutoring, figure_path
+    return images, hint_dic, current_subhints, tutoring, figure_path, image_df_str
 
 
-def write_hint_json(row, current_step_name, oer, license, tutoring, images, figure_path, path, hint_dic, verbosity, variabilization, latex):
+def write_hint_json(row, current_step_name, oer, license, tutoring, images, figure_path, path, hint_dic, verbosity, variabilization, latex, old_path):
     current_subhints = []
-    hint_images = ""
+    hint_images = image_df_str = ""
     if type(row["Images (space delimited)"]) == str:
         if not images:
             figure_path = create_fig_dir(path)
-        hint_images, num = save_images(row["Images (space delimited)"], figure_path, int(images))
-        images += num
+        hint_images, images, image_df_str = save_images(row["Images (space delimited)"], figure_path, int(images), old_path)
     if variabilization:
         hint, full_id = create_hint(current_step_name, row["HintID"], row["Title"],
                                     row["Body Text"], oer, license, row["Dependency"], hint_images,
@@ -193,17 +206,16 @@ def write_hint_json(row, current_step_name, oer, license, tutoring, images, figu
     previous_tutor = row
     previous_images = hint_images
 
-    return images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path
+    return images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path, image_df_str
 
 
-def write_scaffold_json(row, current_step_name, oer, license, tutoring, images, figure_path, path, hint_dic, verbosity, variabilization, latex):
+def write_scaffold_json(row, current_step_name, oer, license, tutoring, images, figure_path, path, hint_dic, verbosity, variabilization, latex, old_path):
     current_subhints = []
-    scaff_images = ""
+    scaff_images = image_df_str = ""
     if type(row["Images (space delimited)"]) == str:
         if not images:
             figure_path = create_fig_dir(path)
-        scaff_images, num = save_images(row["Images (space delimited)"], figure_path, int(images))
-        images += num
+        scaff_images, images, image_df_str = save_images(row["Images (space delimited)"], figure_path, int(images), old_path)
     if variabilization:
         scaff, full_id = create_scaffold(current_step_name, row["HintID"], row["Title"],
                                             row["Body Text"], row["answerType"], row["Answer"],
@@ -220,16 +232,15 @@ def write_scaffold_json(row, current_step_name, oer, license, tutoring, images, 
     previous_tutor = row
     previous_images = scaff_images
 
-    return images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path
+    return images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path, image_df_str
 
 
-def write_problem_json(problem_row, problem_name, problem_json_path, course_name, sheet_name, images, path, figure_path, verbosity, variabilization, latex):
-    problem_images = ""
+def write_problem_json(problem_row, problem_name, problem_json_path, course_name, sheet_name, images, path, figure_path, verbosity, variabilization, latex, old_path):
+    problem_images = image_df_str = ""
     if type(problem_row["Images (space delimited)"]) == str:
         if not images:
             figure_path = create_fig_dir(path)
-        problem_images, num = save_images(problem_row["Images (space delimited)"], figure_path, int(images))
-        images += num
+        problem_images, images, image_df_str = save_images(problem_row["Images (space delimited)"], figure_path, int(images), old_path)
     if variabilization:
         prob_js = create_problem_json(problem_name, problem_row["Title"], problem_row["Body Text"],
                                     problem_row["OER src"], problem_row["License"], problem_images,
@@ -242,4 +253,4 @@ def write_problem_json(problem_row, problem_name, problem_json_path, course_name
     file = open(problem_json_path, "w", encoding="utf-8")
     file.write(prob_js)
     file.close()
-
+    return figure_path, image_df_str

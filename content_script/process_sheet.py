@@ -1,5 +1,6 @@
 import sys
 import os
+import shutil
 import time
 import uuid
 from datetime import datetime
@@ -79,7 +80,7 @@ def next_available_row(worksheet):
     return str(len(str_list) + 1)
 
 
-def validate_question(question, variabilization, latex, verbosity):
+def validate_question(question, variabilization, latex, verbosity, old_path):
     problem_row = question.iloc[0]
     previous_tutor = ""
     hint_dic = {}
@@ -112,18 +113,18 @@ def validate_question(question, variabilization, latex, verbosity):
             row_type = row['Row Type'].strip().lower()
             if index != 0:
                 if row_type == "step":
-                    validate_step(row, variabilization, latex, verbosity)
+                    validate_step(row, variabilization, latex, verbosity, old_path)
 
                 elif row_type == "hint" and type(row["Answer"]) != float:
                     raise Exception("{} is \"hint\" but has answer".format(row["HintID"]))
 
                 elif (row_type == 'hint' or row_type == "scaffold") and type(row['Parent']) != float:
                     scaff_lst, hint_dic = validate_hint_with_parent(row, scaff_lst, row_type, hint_dic, 
-                                            previous_tutor, variabilization, latex, verbosity)
+                                            previous_tutor, variabilization, latex, verbosity, old_path)
 
                 elif row_type == "hint" or row_type == "scaffold":
                     previous_tutor, hint_dic = validate_hint_without_parent(row, scaff_lst, row_type, 
-                                                hint_dic, variabilization, latex, verbosity)
+                                                hint_dic, variabilization, latex, verbosity, old_path)
 
         except Exception as e:
             error_message = error_message + str(e) + '\n'
@@ -131,7 +132,7 @@ def validate_question(question, variabilization, latex, verbosity):
 
     problem_images = ""
     if type(problem_row["Images (space delimited)"]) == str:
-        validate_image(problem_row["Images (space delimited)"])
+        validate_image(problem_row["Images (space delimited)"], old_path)
     if variabilization:
         create_problem_json(problem_name, problem_row["Title"], problem_row["Body Text"],
                             problem_row["OER src"], problem_images,
@@ -291,6 +292,10 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     debug_df = pd.DataFrame(index=range(len(df)), columns=['Debug Link', 'Problem ID', 'Lesson ID'])
     debug_platform_template = "https://cahlr.github.io/OATutor-Content-Staging/#/debug/{}"
 
+    image_df = df[["Images (space delimited)"]].copy()
+    image_df.replace(0.0, '', inplace=True)
+    image_df_changed = False
+
     print("[{}] Start validating".format(sheet_name))
 
     try:
@@ -313,9 +318,12 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         if type(problem_name) != str:
             continue
 
+        # copy old content (if exist) into old_path
+        old_path = rename_problem_dir(sheet_name, problem_name, default_path)
+
         # validate all fields that relate to this problem
         try:
-            question_error_message = validate_question(question, variabilization, latex, verbosity)
+            question_error_message = validate_question(question, variabilization, latex, verbosity, old_path)
             if question_error_message:
                 error_row = (df[df['Problem Name'] == problem_name].index)[0]
                 error_df.at[error_row, 'Validator Check'] = question_error_message
@@ -344,6 +352,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
         current_step_name = default_pathway_json_path = ""
         images = False
+        image_names = image_df_str = ""
         figure_path = ""
         problem_row = question.iloc[0]
         tutoring = []
@@ -361,40 +370,52 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             if index != 0:  # Not problem row
                 if row_type == "step":
                     hint_oer = hint_license = "" # reset hint oer and license for each step
-                    step_count, current_step_name, tutoring, skills, images, figure_path, default_pathway_json_path = \
+                    step_count, current_step_name, tutoring, skills, images, figure_path, default_pathway_json_path, image_df_str = \
                         write_step_json(default_path, problem_name, row, step_count, tutoring, skills, images, 
-                        figure_path, default_pathway_json_path, path, verbosity, variabilization, latex, problem_skills)
+                        figure_path, default_pathway_json_path, path, verbosity, variabilization, latex, problem_skills, old_path)
 
                 if (row_type == 'hint' or row_type == "scaffold") and type(row['Parent']) != float:
-                    images, hint_dic, current_subhints, tutoring, figure_path = \
+                    images, hint_dic, current_subhints, tutoring, figure_path, image_df_str = \
                         write_subhint_json(row, row_type, current_step_name, current_subhints, hint_oer, hint_license, tutoring, 
-                                           previous_tutor, previous_images, images, path, figure_path, hint_dic, verbosity, variabilization, latex)
+                                           previous_tutor, previous_images, images, path, figure_path, hint_dic, verbosity, variabilization, latex, old_path)
 
                 elif row_type == "hint":
                     if type(row["OER src"]) != float and row["OER src"] != "":
                         hint_oer = row["OER src"]
                     if type(row["License"]) != float and row["License"] != "":
                         hint_license = row["License"]
-                    images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path = \
+                    images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path, image_df_str = \
                         write_hint_json(row, current_step_name, hint_oer, hint_license, tutoring, images, figure_path, path, hint_dic, 
-                        verbosity, variabilization, latex)
+                        verbosity, variabilization, latex, old_path)
                 
                 elif row_type == "scaffold":
                     if type(row["OER src"]) != float and row["OER src"] != "":
                         hint_oer = row["OER src"]
                     if type(row["License"]) != float and row["License"] != "":
                         hint_license = row["License"]
-                    images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path = \
+                    images, hint_dic, current_subhints, tutoring, previous_tutor, previous_images, figure_path, image_df_str = \
                         write_scaffold_json(row, current_step_name, hint_oer, hint_license, tutoring, images, figure_path, path, hint_dic,
-                                    verbosity, variabilization, latex)
+                                    verbosity, variabilization, latex, old_path)
+
+            # add md5 checksum to image_df
+            if image_df_str and image_df.iloc[index, 0] != image_df_str:
+                image_df_changed = True
+                image_df.iloc[index, 0] = image_df_str
 
         default_pathway_str = create_default_pathway(tutoring)
         default_pathway_json_file = open(default_pathway_json_path, "w", encoding="utf-8")
         default_pathway_json_file.write(default_pathway_str)
         default_pathway_json_file.close()
+        figure_path, image_df_str = write_problem_json(problem_row, problem_name, problem_json_path, course_name, sheet_name, 
+                                                      images, path, figure_path, verbosity, variabilization, latex, old_path)
         
-        write_problem_json(problem_row, problem_name, problem_json_path, course_name, sheet_name, images, path, 
-        figure_path, verbosity, variabilization, latex)
+        # add md5 checksum to image_df
+        if image_df_str and image_df.iloc[first_problem_index, 0] != image_df_str:
+            image_df_changed = True
+            image_df.iloc[first_problem_index, 0] = image_df_str
+
+        if old_path and os.path.isdir(old_path):
+            shutil.rmtree(old_path)
 
     print("[{}] Problems validated and written".format(sheet_name))
 
@@ -424,10 +445,13 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     error_debug_df = pd.concat([error_df, debug_df], axis=1)
     col = len(df.columns) if not meta else len(df.columns) - 1
+    image_col = np.where(df.columns == "Images (space delimited)")[0][0] + 1
 
     if is_local == "online":
         try:
             set_with_dataframe(worksheet, error_debug_df, col=col)
+            if image_df_changed:
+                set_with_dataframe(worksheet, image_df, col=image_col)
         except Exception as e:
             print('Fail to write to google sheet. Waiting...')
             print('sheetname:', sheet_name, e)
