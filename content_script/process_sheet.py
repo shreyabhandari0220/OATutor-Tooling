@@ -206,6 +206,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             df["Problem ID"] = ""
         if "Lesson ID" not in df.columns:
             df["Lesson ID"] = ""
+        if "Image Checksum" not in df.columns:
+            df["Image Checksum"] = ""
         variabilization = 'Variabilization' in df.columns
         meta = 'Meta' in df.columns
         try:
@@ -213,20 +215,20 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             if variabilization and meta:
                 keep = ["Problem Name", "Row Type", "Variabilization", "Title", "Body Text", "Answer", "answerType",
                          "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
-                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID", "Meta"]
+                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID", "Image Checksum", "Meta"]
                
             elif variabilization:
                 keep = ["Problem Name", "Row Type", "Variabilization", "Title", "Body Text", "Answer", "answerType",
                          "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
-                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID"]
+                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID", "Image Checksum"]
             elif meta:
                 keep = ["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType",
                          "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
-                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID", "Meta"]
+                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID", "Image Checksum", "Meta"]
             else:
                 keep = ["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency",
                      "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", "Taxonomy", "License", 
-                     "Problem ID", "Lesson ID"]
+                     "Problem ID", "Lesson ID", "Image Checksum"]
             df = df[keep]
 
         except KeyError as e:
@@ -435,8 +437,6 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     if is_local == "online":
         try:
             set_with_dataframe(worksheet, error_debug_df, col=col)
-            # if image_df_changed:
-            #     set_with_dataframe(worksheet, image_df, col=image_col)
         except Exception as e:
             print('Fail to write to google sheet. Waiting...')
             print('sheetname:', sheet_name, e)
@@ -445,10 +445,10 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     elif is_local == "local":
         empty_col = pd.DataFrame(index=range(len(df)), columns=[''])
         if meta:
-            drop = ['Problem ID', 'Lesson ID', 'Meta']
+            drop = ['Problem ID', 'Lesson ID', 'Image Checksum', 'Meta']
             add = ['Meta']
         else:
-            drop = ['Problem ID', 'Lesson ID']
+            drop = ['Problem ID', 'Lesson ID', 'Image Checksum']
             add = []
         df.replace(0.0, '', inplace=True)
         df.replace('nan', '', inplace=True)
