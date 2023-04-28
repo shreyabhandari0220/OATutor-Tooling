@@ -111,7 +111,13 @@ def create_total(default_path, is_local, sheet_names=None, bank_url=None, full_u
     if full_update:
         if os.path.exists(skill_model_path):
             os.remove(skill_model_path)
+        dest_path = os.path.dirname(default_path) + "/.OpenStax Content"
+        if os.path.isdir(dest_path):
+            shutil.rmtree(dest_path)
+        os.makedirs(dest_path)
         if os.path.isdir(default_path):
+            for file in os.listdir(default_path):
+                shutil.move(os.path.join(default_path, file), dest_path)
             shutil.rmtree(default_path)
         if os.path.isdir(editor_content_path):
             shutil.rmtree(editor_content_path)
@@ -160,17 +166,21 @@ def create_total(default_path, is_local, sheet_names=None, bank_url=None, full_u
             book = load_workbook(sheet_url)
             sheet_names = [sheet.title for sheet in book.worksheets if sheet.title[:2] != '!!']
         
+        if full_update:
+            mode = "full"
+        else:
+            mode = "final"
         for sheet in sheet_names:
             # process only the sheets that have changed since last final.py run
             if is_local == 'local' or full_update or sheet != 0.0 and sheet + sheet_url in list(hash_df["Changed Sheets"].unique()):
                 start = time.time()
                 if sheet[:2] == '##':
                     skills, lesson_id, skills_dict, meta = process_sheet(sheet_url, sheet, default_path, is_local, 'FALSE',
-                                        course_name=course_name)
+                                        course_name=course_name, mode=mode)
                     sheet = sheet[2:]
                 else:
                     skills, lesson_id, skills_dict, meta = process_sheet(sheet_url, sheet, default_path, is_local, 'TRUE',
-                                        course_name=course_name)
+                                        course_name=course_name, mode=mode)
                 if not lesson_id:
                     continue
                 if not skills:
@@ -229,6 +239,9 @@ def create_total(default_path, is_local, sheet_names=None, bank_url=None, full_u
             set_with_dataframe(hash_sheet, changed_df, col=4)
         except Exception as e:
             print('Fail to clear changed sheets list')
+    
+    if full_update and os.path.isdir(dest_path):
+        shutil.rmtree(dest_path)
 
 if __name__ == '__main__':
     is_local = sys.argv[1]

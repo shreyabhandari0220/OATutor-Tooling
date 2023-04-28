@@ -41,6 +41,7 @@ def save_images(images, checksums, path, num, old_path):
         names.append(name)
         i = re.sub(r"https://imgur\.com/([\d\w]+)", r"https://i.imgur.com/\g<1>.png", i)
         found = False
+        print(i)
         # if checksum is there, can avoid re-downloading
         for stored_md5 in stored_checksums:
             figures_dir = old_path + "/figures"
@@ -49,6 +50,7 @@ def save_images(images, checksums, path, num, old_path):
                 shutil.copyfile(figures_dir + "/" + name, path + "/" + name)
                 updated_checksums.append(stored_md5)
                 found = True
+                print("found")
                 break
         if found:
             continue

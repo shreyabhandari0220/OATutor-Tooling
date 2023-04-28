@@ -47,17 +47,30 @@ def create_validator_dir(name, path):
     # os.makedirs(target)
     return target
 
-def rename_problem_dir(sheet_name, name, path):
-    # handle namespace collision
-    name = 'a' + hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6] + name
-    target = path + "/" + name
+def rename_problem_dir(sheet_name, name, path, mode="full"):
+    '''
+    mode: either "final" or "process_sheet". Denote which script is being run.
+    '''
 
-    # rename old content
-    if os.path.isdir(target):
-        new_target = path + "/." + name
-        os.makedirs(new_target)
-        for file in os.listdir(target):
-            shutil.move(os.path.join(target, file), new_target)
-        return new_target
-    else:
-        return ""
+    if mode == "process_sheet" or mode == "final":
+        # handle namespace collision
+        name = 'a' + hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6] + name
+        target = path + "/" + name
+
+        # rename old content
+        if os.path.isdir(target):
+            new_target = path + "/." + name
+            os.makedirs(new_target)
+            for file in os.listdir(target):
+                shutil.move(os.path.join(target, file), new_target)
+            return new_target
+        else:
+            return ""
+    
+    elif mode == "full":
+        name = 'a' + hashlib.sha1(sheet_name.encode('utf-8')).hexdigest()[:6] + name
+        new_target = os.path.dirname(path) + "/.OpenStax Content/" + name
+        if os.path.isdir(new_target):
+            return new_target
+        else:
+            return ""

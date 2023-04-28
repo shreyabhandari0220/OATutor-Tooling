@@ -18,7 +18,7 @@ def validate_image(image, checksum, old_path):
     name = ".figure.gif"
     for i in images:
         # if checksum is there, can avoid re-downloading
-        if type(checksum) != float and checksum:
+        if type(checksum) != float and checksum and old_path:
             stored_md5 = checksum
             figures_dir = old_path + "/figures"
             if os.path.isdir(figures_dir):

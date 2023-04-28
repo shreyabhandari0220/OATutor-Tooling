@@ -144,7 +144,7 @@ def validate_question(question, variabilization, latex, verbosity, old_path):
     return error_message[:-1]  # get rid of the last newline
 
 
-def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, course_name=""):
+def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, verbosity=False, course_name="", mode="full"):
 
     variabilization = meta = False
     if is_local == "online":
@@ -309,7 +309,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             continue
 
         # copy old content (if exist) into old_path
-        old_path = rename_problem_dir(sheet_name, problem_name, default_path)
+        old_path = rename_problem_dir(sheet_name, problem_name, default_path, mode=mode)
 
         # validate all fields that relate to this problem
         try:
@@ -400,7 +400,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
         # add md5 checksum to image_df
         debug_df.iloc[first_problem_index, 3] = image_df_str
 
-        if old_path and os.path.isdir(old_path):
+        if mode != "full" and old_path and os.path.isdir(old_path):
             shutil.rmtree(old_path)
 
     print("[{}] Problems validated and written".format(sheet_name))
@@ -431,7 +431,6 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     error_debug_df = pd.concat([error_df, debug_df], axis=1)
     col = len(df.columns) if not meta else len(df.columns) - 1
-    # image_col = np.where(df.columns == "Images (space delimited)")[0][0] + 1
 
     if is_local == "online":
         try:
@@ -488,4 +487,4 @@ if __name__ == '__main__':
         latex = 'FALSE'
     else:
         latex = 'TRUE'
-    process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, course_name="")
+    process_sheet(sheet_key, sheet_name, '../OpenStax1', is_local, latex, course_name="", mode="process_sheet")
