@@ -132,7 +132,7 @@ def validate_question(question, variabilization, latex, verbosity, old_path):
 
     problem_images = ""
     if type(problem_row["Images (space delimited)"]) == str:
-        validate_image(problem_row["Images (space delimited)"], old_path)
+        validate_image(problem_row["Images (space delimited)"], problem_row["Image Checksum"], old_path)
     if variabilization:
         create_problem_json(problem_name, problem_row["Title"], problem_row["Body Text"],
                             problem_row["OER src"], problem_images,
@@ -160,26 +160,20 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
             df["Problem ID"] = ""
         if "Lesson ID" not in df.columns:
             df["Lesson ID"] = ""
+        if "Image Checksum" not in df.columns:
+            df["Image Checksum"] = ""
         # Only keep columns we need
         variabilization = 'Variabilization' in df.columns
         meta = 'Meta' in df.columns
-        try:
-            if variabilization and meta:
-                df = df[["Problem Name", "Row Type", "Variabilization", "Title", "Body Text", "Answer", "answerType",
-                         "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
-                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID", "Meta"]]
-            elif variabilization:
-                df = df[["Problem Name", "Row Type", "Variabilization", "Title", "Body Text", "Answer", "answerType",
-                         "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
-                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID"]]
-            elif meta:
-                df = df[["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType",
-                         "HintID", "Dependency", "mcChoices", "Images (space delimited)", "Parent", "OER src",
-                         "openstax KC", "KC", "Taxonomy", "License", "Problem ID", "Lesson ID","Meta"]]
-            else:
-                df = df[["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency",
+        preserved = ["Problem Name", "Row Type", "Title", "Body Text", "Answer", "answerType", "HintID", "Dependency",
                      "mcChoices", "Images (space delimited)", "Parent", "OER src", "openstax KC", "KC", "Taxonomy", "License", 
-                     "Problem ID", "Lesson ID"]]
+                     "Problem ID", "Lesson ID", "Image Checksum"]
+        if variabilization:
+            preserved.append("Variabilization")
+        if meta: 
+            preserved.append("Meta")
+        try:
+            df = df[preserved]
         except KeyError as e:
             print("[{}] error found: {}".format(sheet_name, e))
             error_df = pd.DataFrame(index=range(len(df)), columns=['Validator Check', 'Time Last Checked'])
@@ -289,12 +283,8 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
     error_df = pd.DataFrame(index=range(len(df)), columns=['Validator Check', 'Time Last Checked'])
     error_df.at[0, 'Time Last Checked'] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
-    debug_df = pd.DataFrame(index=range(len(df)), columns=['Debug Link', 'Problem ID', 'Lesson ID'])
+    debug_df = pd.DataFrame(index=range(len(df)), columns=['Debug Link', 'Problem ID', 'Lesson ID', 'Image Checksum'])
     debug_platform_template = "https://cahlr.github.io/OATutor-Content-Staging/#/debug/{}"
-
-    image_df = df[["Images (space delimited)"]].copy()
-    image_df.replace(0.0, '', inplace=True)
-    image_df_changed = False
 
     print("[{}] Start validating".format(sheet_name))
 
@@ -398,9 +388,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                                     verbosity, variabilization, latex, old_path)
 
             # add md5 checksum to image_df
-            if image_df_str and image_df.iloc[index, 0] != image_df_str:
-                image_df_changed = True
-                image_df.iloc[index, 0] = image_df_str
+            debug_df.iloc[index, 3] = image_df_str
 
         default_pathway_str = create_default_pathway(tutoring)
         default_pathway_json_file = open(default_pathway_json_path, "w", encoding="utf-8")
@@ -410,9 +398,7 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
                                                       images, path, figure_path, verbosity, variabilization, latex, old_path)
         
         # add md5 checksum to image_df
-        if image_df_str and image_df.iloc[first_problem_index, 0] != image_df_str:
-            image_df_changed = True
-            image_df.iloc[first_problem_index, 0] = image_df_str
+        debug_df.iloc[first_problem_index, 3] = image_df_str
 
         if old_path and os.path.isdir(old_path):
             shutil.rmtree(old_path)
@@ -445,13 +431,13 @@ def process_sheet(spreadsheet_key, sheet_name, default_path, is_local, latex, ve
 
     error_debug_df = pd.concat([error_df, debug_df], axis=1)
     col = len(df.columns) if not meta else len(df.columns) - 1
-    image_col = np.where(df.columns == "Images (space delimited)")[0][0] + 1
+    # image_col = np.where(df.columns == "Images (space delimited)")[0][0] + 1
 
     if is_local == "online":
         try:
             set_with_dataframe(worksheet, error_debug_df, col=col)
-            if image_df_changed:
-                set_with_dataframe(worksheet, image_df, col=image_col)
+            # if image_df_changed:
+            #     set_with_dataframe(worksheet, image_df, col=image_col)
         except Exception as e:
             print('Fail to write to google sheet. Waiting...')
             print('sheetname:', sheet_name, e)

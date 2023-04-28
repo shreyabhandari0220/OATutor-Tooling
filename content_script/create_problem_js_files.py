@@ -25,32 +25,35 @@ def create_default_pathway(tutoring):
     return json.dumps(tutoring, indent=4)
 
 
-def save_images(images, path, num, old_path):
+def save_images(images, checksums, path, num, old_path):
     # images is a string of urls separated by spaces
     if type(images) != str:
         return "", 0
     images = images.split()
     names = []
-    image_df_str = ""
+    stored_checksums = []
+    if type(checksums) == str and checksums:
+        stored_checksums = checksums.split()
+    updated_checksums = []
     for i in images:
         num += 1
         name = "figure" + str(num) + ".gif"
         names.append(name)
         i = re.sub(r"https://imgur\.com/([\d\w]+)", r"https://i.imgur.com/\g<1>.png", i)
-
+        found = False
         # if checksum is there, can avoid re-downloading
-        if re.match('[^<^>]+<(\w+)>', i):
-            stored_md5 = re.match('[^<^>]+<(\w+)>', i).group(1)
+        for stored_md5 in stored_checksums:
             figures_dir = old_path + "/figures"
             if os.path.isdir(figures_dir) and os.path.exists(figures_dir + "/" + name) and \
                 create_image_md5(figures_dir + "/" + name) == stored_md5:
                 shutil.copyfile(figures_dir + "/" + name, path + "/" + name)
-                image_df_str += i + " "
-                continue
+                updated_checksums.append(stored_md5)
+                found = True
+                break
+        if found:
+            continue
 
         try:
-            if re.match('([^<^>]+)<\w+>', i):
-                i = re.match('([^<^>]+)<\w+>', i).group(1)
             r = requests.get(i, headers=fake_headers)
         except (requests.exceptions.ConnectionError, ConnectionResetError) as exc:
             # could be because the requested service is blocking our ip, try again with a free proxy service
@@ -67,9 +70,9 @@ def save_images(images, path, num, old_path):
             sys.exit(1)
         with open(path + "/" + name, 'wb') as outfile:
             outfile.write(r.content)
-        image_df_str += i + "<" + create_image_md5(path + "/" + name) + "> "
+        updated_checksums.append(create_image_md5(path + "/" + name))
 
-    return names, num, image_df_str
+    return names, num, " ".join(updated_checksums)
 
 
 def write_step_json(default_path, problem_name, row, step_count, tutoring, skills: dict, images, figure_path,
@@ -92,7 +95,8 @@ def write_step_json(default_path, problem_name, row, step_count, tutoring, skill
     if type(row["Images (space delimited)"]) == str:
         if not images:
             figure_path = create_fig_dir(path)
-        step_images, images, image_df_str = save_images(row["Images (space delimited)"], figure_path, int(images), old_path)
+        step_images, images, image_df_str = save_images(row["Images (space delimited)"], row["Image Checksum"], 
+                                                        figure_path, int(images), old_path)
     choices = type(row["mcChoices"]) == str and row["mcChoices"]
     if variabilization:
         step_file.write(
@@ -120,7 +124,8 @@ def write_subhint_json(row, row_type, current_step_name, current_subhints, oer, 
             row["Images (space delimited)"]) != np.float64:
         if not images:
             figure_path = create_fig_dir(path)
-        hint_images, images, image_df_str = save_images(row["Images (space delimited)"], figure_path, int(images), old_path)
+        hint_images, images, image_df_str = save_images(row["Images (space delimited)"], row["Image Checksum"], 
+                                                        figure_path, int(images), old_path)
     hint_id = row['Parent'] + "-" + row['HintID']
     if row_type == 'hint':
         if variabilization:
@@ -191,7 +196,8 @@ def write_hint_json(row, current_step_name, oer, license, tutoring, images, figu
     if type(row["Images (space delimited)"]) == str:
         if not images:
             figure_path = create_fig_dir(path)
-        hint_images, images, image_df_str = save_images(row["Images (space delimited)"], figure_path, int(images), old_path)
+        hint_images, images, image_df_str = save_images(row["Images (space delimited)"], row["Image Checksum"], 
+                                                        figure_path, int(images), old_path)
     if variabilization:
         hint, full_id = create_hint(current_step_name, row["HintID"], row["Title"],
                                     row["Body Text"], oer, license, row["Dependency"], hint_images,
@@ -215,7 +221,8 @@ def write_scaffold_json(row, current_step_name, oer, license, tutoring, images, 
     if type(row["Images (space delimited)"]) == str:
         if not images:
             figure_path = create_fig_dir(path)
-        scaff_images, images, image_df_str = save_images(row["Images (space delimited)"], figure_path, int(images), old_path)
+        scaff_images, images, image_df_str = save_images(row["Images (space delimited)"], row["Image Checksum"], 
+                                                         figure_path, int(images), old_path)
     if variabilization:
         scaff, full_id = create_scaffold(current_step_name, row["HintID"], row["Title"],
                                             row["Body Text"], row["answerType"], row["Answer"],
@@ -240,7 +247,8 @@ def write_problem_json(problem_row, problem_name, problem_json_path, course_name
     if type(problem_row["Images (space delimited)"]) == str:
         if not images:
             figure_path = create_fig_dir(path)
-        problem_images, images, image_df_str = save_images(problem_row["Images (space delimited)"], figure_path, int(images), old_path)
+        problem_images, images, image_df_str = save_images(problem_row["Images (space delimited)"], problem_row["Image Checksum"], 
+                                                           figure_path, int(images), old_path)
     if variabilization:
         prob_js = create_problem_json(problem_name, problem_row["Title"], problem_row["Body Text"],
                                     problem_row["OER src"], problem_row["License"], problem_images,
