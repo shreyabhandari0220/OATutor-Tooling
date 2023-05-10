@@ -98,7 +98,7 @@ def create_hint(step, hint_id, title, body, oer, license, dependencies="", image
     return hint_dict, hint_id
 
 
-scaff_dic = {"mc": "string", "numeric": "TextBox", "algebra": "TextBox", "string": "string"}
+scaff_dic = {"mc": "string", "numeric": "TextBox", "algebra": "TextBox", "string": "string", "sa": "sa"}
 
 
 def handle_answer_type(answer_type):
@@ -108,6 +108,8 @@ def handle_answer_type(answer_type):
         return answer_type, "TextBox"
     elif answer_type == "algebra" or answer_type == "algebraic" or answer_type == "numeric":
         return "arithmetic", "TextBox"
+    elif answer_type == "sa":
+        return "sa", "sa"
     elif type(answer_type) != str:
         raise Exception("Answer type is missing")
     else:
@@ -127,7 +129,7 @@ def create_scaffold(step, hint_id, title, body, answer_type, answer, mc_answers,
 
     # getting rid of timestamp format for fractions
     try:
-        if len(answer) > 8 and answer[-8:] == '00:00:00':
+        if answer_type != "sa" and len(answer) > 8 and answer[-8:] == '00:00:00':
             li = re.split('-| ', answer)
             answer = str(int(li[1])) + '/' + str(int(li[2]))
     except TypeError:
@@ -203,7 +205,7 @@ def create_step(name, title, body, answer, answer_type, number, choices="", imag
 
     # getting rid of timestamp format for fractions
     try:
-        if len(answer) > 8 and answer[-8:] == '00:00:00':
+        if answer_type != "sa" and len(answer) > 8 and answer[-8:] == '00:00:00':
             li = re.split('-| ', answer)
             answer = str(int(li[1])) + '/' + str(int(li[2]))
     except TypeError:
