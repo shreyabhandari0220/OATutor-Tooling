@@ -98,13 +98,13 @@ def create_hint(step, hint_id, title, body, oer, license, dependencies="", image
     return hint_dict, hint_id
 
 
-scaff_dic = {"mc": "string", "numeric": "TextBox", "algebra": "TextBox", "string": "string", "sa": "sa"}
+scaff_dic = {"mc": "string", "numeric": "TextBox", "algebra": "TextBox", "string": "string", "short-essay": "string"}
 
 
 def handle_answer_type(answer_type):
     if answer_type == "mc":
         return "string", "MultipleChoice"
-    elif answer_type == "string":
+    elif answer_type == "string" or answer_type == "short-essay":
         return answer_type, "TextBox"
     elif answer_type == "algebra" or answer_type == "algebraic" or answer_type == "numeric":
         return "arithmetic", "TextBox"

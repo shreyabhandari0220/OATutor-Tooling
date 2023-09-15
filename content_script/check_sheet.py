@@ -7,7 +7,7 @@ pd.options.display.html.use_mathjax = False
 
 
 def check_sheet(spreadsheet_key, sheet_name, is_local):
-    scaff_dic = {"mc": "string", "numeric": "TextBox", "algebra": "TextBox", "string": "string", "sa": "sa"}
+    scaff_dic = {"mc": "string", "numeric": "TextBox", "algebra": "TextBox", "string": "string", "short-essay": "string"}
 
     if is_local == "online":
         scope = ['https://spreadsheets.google.com/feeds'] 

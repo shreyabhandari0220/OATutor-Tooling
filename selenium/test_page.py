@@ -253,7 +253,7 @@ def enter_text_answer(problem_name, driver, problem_index, correct_answer, answe
                 err = "{0}: step {1} arithmetic answer box does not exist.".format(problem_name, problem_index + 1)
                 alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
 
-    elif answer_type == "string":
+    elif answer_type == "string" or answer_type == "short-essay":
         ans_selector = "[data-selenium-target=string-answer-{}] > div > input".format(problem_index)
         try:
             ans = driver.find_element(By.CSS_SELECTOR, ans_selector)
@@ -425,7 +425,7 @@ def check_hints(problem_name, problem_index, driver, hints, alert_df, book_name,
                     alert_df = alert_df.append({"Book Name": book_name, "Error Log": err, "Commit Hash": commit_hash, "Issue Type": "", "Status": "open", "Comment": ""}, ignore_index=True)
                     return alert_df, driver
             
-            elif answer_type == "string":
+            elif answer_type == "string" or answer_type == "short-essay":
                 scaffold_answer_selector = "[data-selenium-target=string-answer-{0}-{1}] > div > input".format(hint_idx, problem_index)
                 WebDriverWait(driver, 0.2).until(EC.presence_of_element_located((By.CSS_SELECTOR, scaffold_answer_selector)))
                 try:
